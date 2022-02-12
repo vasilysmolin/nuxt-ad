@@ -1,6 +1,7 @@
 FROM node:16.13.2-alpine
 
 ARG HUB_DIR
+ARG NUXT_PORT
 
 # create destination directory
 RUN mkdir -p /var/www/${HUB_DIR}
@@ -15,6 +16,7 @@ COPY . /var/www/${HUB_DIR}/
 RUN npm install
 
 # Build
+RUN echo ${NUXT_PORT}
 RUN npm run build
 
 #ENV HOST 0.0.0.0
