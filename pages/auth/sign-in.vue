@@ -74,15 +74,24 @@ export default {
   methods: {
       submitted() {
         // this.$axios.$post(`auth/login`, { email: this.email, password: this.password });
-        this.$auth.loginWith('laravelJWT', {
-          data: {
-            email: this.email,
-            password: this.password
-          }
-        }).then(() => {
+          this.$auth.loginWith('laravelJWT', {
+            data: {
+              email: this.email,
+              password: this.password
+            }
+          }).then(() => {
           this.$router.push({name: 'profile'});
           // document.location.href = this.from;
         });
+        // this.$auth.loginWith('laravelJWT', {
+        //   data: {
+        //     email: this.email,
+        //     password: this.password
+        //   }
+        // }).then(() => {
+        //   this.$router.push({name: 'profile'});
+        //   // document.location.href = this.from;
+        // });
       },
     },
 };

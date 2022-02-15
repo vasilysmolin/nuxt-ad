@@ -74,7 +74,7 @@ export default {
   computed: {
     isPerson: {
       get(){
-        if(this.user.profile != null) {
+        if(this.user != null && this.user.profile != null) {
             if(this.user.profile.isPerson === true) {
               return true;
             }

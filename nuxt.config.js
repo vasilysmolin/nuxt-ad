@@ -122,7 +122,7 @@ export default {
                             login: { url: '/api/auth/login', method: 'post' },
                             refresh: { url: '/api/auth/refresh', method: 'post' },
                             user: {
-                                url: '/api/user',
+                                url: '/api/auth/user',
                                 method: 'get',
                             },
                             logout: { url: '/api/auth/logout', method: 'post' },
