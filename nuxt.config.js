@@ -145,22 +145,22 @@ export default {
         '@nuxtjs/proxy',
     ],
     proxy: {
-        '/auth': {
-            target: 'https://tapigo.tech',
-            // auth: 'ktotam:eto_tapigo',
-            secure: false,
-            changeOrigin: false,
-            ws: false,
-            // pathRewrite: { '^/_nuxt/': '.nuxt/' }
-        },
-        '/_nuxt': {
-            target: 'https://tapigo.tech',
-            // auth: 'ktotam:eto_tapigo',
-            secure: false,
-            changeOrigin: false,
-            ws: false,
-            // pathRewrite: { '^/_nuxt/': '.nuxt/' }
-        },
+        ...(isDev && {
+            '/auth': {
+                target: 'https://tapigo.tech',
+                // auth: 'ktotam:eto_tapigo',
+                secure: false,
+                changeOrigin: false,
+                ws: false,
+            },
+            '/_nuxt': {
+                target: 'https://tapigo.tech',
+                // auth: 'ktotam:eto_tapigo',
+                secure: false,
+                changeOrigin: false,
+                ws: false,
+            },
+        }),
     },
     // axios: {
     //     proxy: true
