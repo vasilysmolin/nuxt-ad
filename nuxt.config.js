@@ -87,6 +87,7 @@ export default {
             '@nuxtjs/axios',
             {
                 // credentials: true,
+                // proxy: true,
                 baseURL: process.env.API_DOMAIN + '/api/',
             },
         ],
@@ -137,8 +138,30 @@ export default {
                 },
             },
         ],
-        'nuxt-basic-auth-module'
+        'nuxt-basic-auth-module',
+        '@nuxtjs/proxy',
     ],
+    proxy: {
+        '/auth': {
+            target: 'https://tapigo.tech',
+            // auth: 'ktotam:eto_tapigo',
+            secure: false,
+            changeOrigin: false,
+            ws: false,
+            // pathRewrite: { '^/_nuxt/': '.nuxt/' }
+        },
+        '/_nuxt': {
+            target: 'https://tapigo.tech',
+            // auth: 'ktotam:eto_tapigo',
+            secure: false,
+            changeOrigin: false,
+            ws: false,
+            // pathRewrite: { '^/_nuxt/': '.nuxt/' }
+        },
+    },
+    // axios: {
+    //     proxy: true
+    // },
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
         postcss: {
