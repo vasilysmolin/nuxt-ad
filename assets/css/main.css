@@ -4,6 +4,24 @@
 
 @layer base {
     body {
+        background-color: #F7F7FC;
         font-family: 'Roboto', sans-serif;
+    }
+}
+@layer components {
+    .hub-nav {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    .hub-nav::-webkit-scrollbar {
+        display: none;
+    }
+    .hub-nav-active {
+        padding-bottom: 3px;
+        color: black;
+        border-bottom: 2px solid black;
     }
 }
