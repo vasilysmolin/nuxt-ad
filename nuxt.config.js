@@ -12,7 +12,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Личны кабинет Tapigo.ru | Бесплатно и без ограничений создавайте вакансии или резюме | Работа',
+        title: 'Профиль пользователя Тапиго',
         meta: [
             {charset: 'utf-8'},
             {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -30,6 +30,9 @@ export default {
             {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
             {rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: true},
             {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'}
+        ],
+        script: [
+            {hid: 'stripe', src: '@/node_modules/tw-elements/dist/js/index.min.js', defer: true}
         ]
     },
 
