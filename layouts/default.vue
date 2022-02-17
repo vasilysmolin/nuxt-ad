@@ -4,6 +4,7 @@
       <GlobalNav/>
       <TLogo/>
       <UserNav/>
+      <UserNavWin/>
     </header>
     <Nuxt/>
   </main>
@@ -13,7 +14,8 @@
 import GlobalNav from "../components/icons/GlobalNav";
 import TLogo from "../components/icons/TLogo";
 import UserNav from "../components/icons/UserNav";
+import UserNavWin from "../components/UserNavWin";
 export default {
-  components: {TLogo, GlobalNav, UserNav}
+  components: {UserNavWin, TLogo, GlobalNav, UserNav}
 }
 </script>
