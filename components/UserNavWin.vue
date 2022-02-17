@@ -16,7 +16,7 @@
       <li class="pt-5"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><UserLLC/><span class="pl-4">Стать компанией</span></nuxt-link></li>
       -->
       <li class="pt-5"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><EditPass/><span class="pl-4">Изменить пароль</span></nuxt-link></li>
-      <li class="pt-5"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><Logout/><span class="pl-4">Выйти из аккаунта</span></nuxt-link></li>
+      <li class="pt-5" @click.prevent="logout"><nuxt-link  to="#" class="flex justify-start items-center hover:text-blue-600"><Logout/><span class="pl-4">Выйти из аккаунта</span></nuxt-link></li>
     </ul>
     <hr>
     <div class="flex justify-start w-full pt-5">
@@ -36,6 +36,24 @@ import UserNav from "./icons/UserNav";
 export default {
   name: "UserNavWin",
   components: {UserNav, UserLLC, DelAcc, Logout, EditPass, AddManager, AddAcc},
+  methods: {
+    logout() {
+        if (process.client) {
+          this.$cookies.removeAll();
+          localStorage.removeItem('vuex')
+          localStorage.removeItem('auth._token.laravelJWT');
+          localStorage.removeItem('auth._refresh_token_expiration.laravelJWT');
+          localStorage.removeItem("auth._refresh_token.laravelJWT");
+          localStorage.removeItem("auth._token_expiration.laravelJWT");
+        }
+        setTimeout(() => {
+          document.location.href = process.env.REDIRECT_DOMAIN_AUTH;
+        },3);
+
+
+    },
+
+  }
 }
 
 </script>

@@ -35,6 +35,9 @@ export default {
             {hid: 'stripe', src: '@/node_modules/tw-elements/dist/js/index.min.js', defer: true}
         ]
     },
+    env: {
+        REDIRECT_DOMAIN_AUTH: process.env.REDIRECT_DOMAIN_AUTH,
+    },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
@@ -107,11 +110,11 @@ export default {
                     global: true,
                 },
 
-                cookie: {
-                    options: {
-                        domain: '.' + process.env.DOMAIN_NUXT,
-                    },
-                },
+                // cookie: {
+                //     options: {
+                //         domain: '.' + process.env.DOMAIN_NUXT,
+                //     },
+                // },
 
                 strategies: {
                     laravelJWT: {
@@ -142,10 +145,10 @@ export default {
             },
         ],
         'nuxt-basic-auth-module',
+        'cookie-universal-nuxt',
         '@nuxtjs/proxy',
     ],
     proxy: {
-        ...(isDev && {
             '/auth': {
                 target: 'https://tapigo.tech',
                 // auth: 'ktotam:eto_tapigo',
@@ -160,7 +163,6 @@ export default {
                 changeOrigin: false,
                 ws: false,
             },
-        }),
     },
     // axios: {
     //     proxy: true
