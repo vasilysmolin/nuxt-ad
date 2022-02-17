@@ -112,11 +112,11 @@ export default {
                     global: true,
                 },
 
-                // cookie: {
-                //     options: {
-                //         domain: '.' + process.env.DOMAIN_NUXT,
-                //     },
-                // },
+                cookie: {
+                    options: {
+                        domain: '.tapigo.ru',
+                    },
+                },
 
                 strategies: {
                     laravelJWT: {
