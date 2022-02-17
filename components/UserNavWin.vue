@@ -37,7 +37,7 @@ export default {
   name: "UserNavWin",
   data() {
     return {
-      isHidden: false
+      isHidden: true
     }
   },
   components: {UserNav, UserLLC, DelAcc, Logout, EditPass, AddManager, AddAcc},
