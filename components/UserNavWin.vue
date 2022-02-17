@@ -43,14 +43,6 @@ export default {
   components: {UserNav, UserLLC, DelAcc, Logout, EditPass, AddManager, AddAcc},
   methods: {
     logout() {
-        // if (process.client) {
-        //   this.$cookies.removeAll();
-        //   localStorage.removeItem('vuex')
-        //   localStorage.removeItem('auth._token.laravelJWT');
-        //   localStorage.removeItem('auth._refresh_token_expiration.laravelJWT');
-        //   localStorage.removeItem("auth._refresh_token.laravelJWT");
-        //   localStorage.removeItem("auth._token_expiration.laravelJWT");
-        // }
         this.$auth.logout();
         setTimeout(() => {
           document.location.href = process.env.REDIRECT_DOMAIN_AUTH;
