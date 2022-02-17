@@ -1,6 +1,6 @@
 <template>
-  <NuxtLink to="/">
-    <svg width="80" height="35" viewBox="0 0 80 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <NuxtLink to="/" >
+    <svg @click.prevent="submitted" width="80" height="35" viewBox="0 0 80 35" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clip-path="url(#clip0_250_4745)">
         <path d="M72.1536 10.6656C73.3026 10.6656 74.234 9.73416 74.234 8.58521C74.234 7.43625 73.3026 6.50484 72.1536 6.50484C71.0047 6.50484 70.0733 7.43625 70.0733 8.58521C70.0733 9.73416 71.0047 10.6656 72.1536 10.6656Z" fill="#212121"/>
         <path d="M6.4755 9.7133H11.1051V20.9942H13.9326V9.7133H18.5621V6.88576H6.4755V9.7133Z" fill="#212121"/>
@@ -25,5 +25,10 @@
 <script>
 export default {
   name: "TLogo",
+  methods: {
+    submitted() {
+      document.location.href = process.env.DOMAIN_HOME;
+    }
+  },
 }
 </script>
