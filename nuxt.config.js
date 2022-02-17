@@ -38,6 +38,7 @@ export default {
     env: {
         REDIRECT_DOMAIN_AUTH: process.env.REDIRECT_DOMAIN_AUTH,
         DOMAIN_HOME: process.env.DOMAIN_HOME,
+        DOMAIN_HUB: process.env.DOMAIN_HUB,
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css

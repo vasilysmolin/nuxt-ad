@@ -63,9 +63,14 @@ import NavLoc from "../components/NavLoc";
 export default {
   name: 'Profile',
   components: {NavLoc},
+  // middleware: ['auth'],
   data() {
     return {
-      user: {},
+      user: {
+        email: '',
+        name: '',
+        phone: '',
+      },
     }
   },
   mounted() {
