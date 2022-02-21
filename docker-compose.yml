@@ -6,7 +6,7 @@ services:
       context: images/nginx
       dockerfile: Dockerfile
       args:
-        - HOME=${HOME}
+        - DOMAIN_HOME=${DOMAIN_HOME}
         - HUB=${HUB}
         - JOBS=${JOBS}
         - UID=${UID}

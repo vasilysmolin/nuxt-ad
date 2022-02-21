@@ -7,7 +7,7 @@ HUBCONF=/etc/nginx/conf.d/hub.conf;
 DEFAULTCONF=/etc/nginx/conf.d/default.conf;
 
 if test -f "$HOMECONF"; then
-    sed -i "s#%HOME%#${HOME}#g" "$HOMECONF";
+    sed -i "s#%DOMAIN_HOME%#${DOMAIN_HOME}#g" "$HOMECONF";
     sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$HOMECONF";
     sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$HOMECONF";
     sed -i "s#%ENV%#${ENV}#g" "$HOMECONF";
@@ -31,7 +31,7 @@ if test -f "$HUBCONF"; then
 fi
 
 if test -f "$DEFAULTCONF"; then
-    sed -i "s#%HOME%#${HOME}#g" "$DEFAULTCONF";
+    sed -i "s#%DOMAIN_HOME%#${DOMAIN_HOME}#g" "$DEFAULTCONF";
     sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$DEFAULTCONF";
     sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$DEFAULTCONF";
     sed -i "s#%ENV%#${ENV}#g" "$DEFAULTCONF";

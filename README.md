@@ -1,4 +1,4 @@
-# hub
+# front
 
 ## Build Setup
 
@@ -20,15 +20,9 @@ $ npm run generate
 
 .env добавить
 
-добавить сертификаты в папку production
+добавить сертификаты в папку images/nginx/ssl 
 
 docker-compose up -d --build
-
-зайти в контайнер jobs и выполнить docker-compose exec jobs sh
-
-* `npm i`
-* `npm run build`
-* `npm run start`
 
 
 #basic auth from dev

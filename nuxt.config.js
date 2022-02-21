@@ -1,12 +1,11 @@
-// require('dotenv').config();
-// const isDev = process.env.APP_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development';
 
-// if (isDev) {
-//     // TODO Небезопасная настройка, которая убирает проверку
-//     //  tls для самоподписанных SSL сертификатов, дает возможность axios сделать запрос
-//     // https://www.ibm.com/docs/en/netcoolomnibus/8?topic=red-using-httphttps-basic-authentication-ssl-protection
-//     process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-// }
+if (isDev) {
+    // TODO Небезопасная настройка, которая убирает проверку
+    //  tls для самоподписанных SSL сертификатов, дает возможность axios сделать запрос
+    // https://www.ibm.com/docs/en/netcoolomnibus/8?topic=red-using-httphttps-basic-authentication-ssl-protection
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}
 
 export default {
 
@@ -37,7 +36,7 @@ export default {
     },
     env: {
         REDIRECT_DOMAIN_AUTH: process.env.HOME + '/auth/sign-in',
-        HOME: process.env.HOME,
+        HOME: process.env.DOMAIN_HOME,
         HUB: process.env.HUB,
         JOBS: process.env.JOBS,
     },
@@ -162,20 +161,22 @@ export default {
     ],
 
     proxy: {
+        ...(isDev && {
             '/auth': {
-                target: process.env.HOME_URL,
+                target: 'https://' + process.env.PROXY_AUTH,
                 // auth: 'ktotam:eto_tapigo',
                 secure: false,
                 changeOrigin: false,
                 ws: false,
             },
             '/_nuxt': {
-                target: process.env.HOME_URL,
+                target: 'https://' +  process.env.PROXY_AUTH,
                 // auth: 'ktotam:eto_tapigo',
                 secure: false,
                 changeOrigin: false,
                 ws: false,
             },
+        }),
     },
     // axios: {
     //     proxy: true

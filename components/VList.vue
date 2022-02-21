@@ -1,5 +1,4 @@
 <template>
-  <!-- -->
   <section class="bg-slate-400">
     <article v-for="vacancy in vacancies" :key="vacancy.id" class="mt-3 bg-slate-500">
       <NuxtLink :to="getUrl(vacancy)">
@@ -10,11 +9,11 @@
           <!--<button>Убрать</button>-->
         </div>
       </NuxtLink>
-      <NuxtLink :to="`/hub/${vacancy.id}`">
+      <NuxtLink :to="getUrl(vacancy)">
         <button>Редактировать</button>
       </NuxtLink>
 
-   </article>
+    </article>
     <button @click="addItems({skip: vacancies.length})">Подгрузить еще</button>
   </section>
 </template>
@@ -24,9 +23,12 @@ import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
 export default {
   name: "VList",
   layout: 'default',
-  async fetch() {
+  props: {
+    type: String,
+  },
+  async mounted() {
     if(this.vacancies.length === 0) {
-        await this.getItems();
+      await this.getItems();
     }
   },
   computed: {
@@ -37,12 +39,12 @@ export default {
   },
   methods: {
     ...mapActions({
-        getItems: 'vacancies/getItems',
-        addItems: 'vacancies/addItems',
-      }),
+      getItems: 'vacancies/getItems',
+      addItems: 'vacancies/addItems',
+    }),
     getUrl(vacancy) {
-      var cat = `vacancies/${ vacancy.categories ? vacancy.categories.alias : 'none'}`;
-      return  cat + '/' + `${ vacancy.alias + '?id=' +vacancy.id }`
+      let cat = `/vacancies/${ vacancy.categories ? vacancy.categories.alias : 'none'}`;
+      return  cat + '/' + `${ vacancy.alias}`
     }
   },
 
