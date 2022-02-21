@@ -68,6 +68,8 @@ export function createRouter(ssrContext, createDefaultRouter, routerOptions) {
       });
   }
 
+  // console.log(options.routes);
+
   return new Router({
     ...options,
     routes: newRoutes
