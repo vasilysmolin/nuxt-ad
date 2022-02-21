@@ -123,7 +123,7 @@ export default {
 
                 cookie: {
                     options: {
-                        domain: '.' + process.env.HOME,
+                        domain: '.' + process.env.DOMAIN_HOME,
                     },
                 },
 
