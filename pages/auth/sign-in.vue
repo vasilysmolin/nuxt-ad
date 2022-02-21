@@ -63,15 +63,10 @@ export default {
     return {
       email: '',
       password: '',
-      from: process.env.DEFAULT_DOMAIN_REDIRECT,
+      from: process.env.HUB + '/profile',
     }
   },
   mounted() {
-    // localStorage.removeItem('auth._token.laravelJWT');
-    // localStorage.removeItem('auth._refresh_token_expiration.laravelJWT');
-    // localStorage.removeItem("auth._refresh_token.laravelJWT");
-    // localStorage.removeItem("auth._token_expiration.laravelJWT");
-    // this.$cookies.removeAll();
     this.$auth.logout();
   },
   methods: {

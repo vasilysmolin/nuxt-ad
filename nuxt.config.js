@@ -36,9 +36,10 @@ export default {
         ]
     },
     env: {
-        REDIRECT_DOMAIN_AUTH: process.env.REDIRECT_DOMAIN_AUTH,
-        DOMAIN_HOME: process.env.DOMAIN_HOME,
-        DOMAIN_HUB: process.env.DOMAIN_HUB,
+        REDIRECT_DOMAIN_AUTH: process.env.HOME + '/auth/sign-in',
+        HOME: process.env.HOME,
+        HUB: process.env.HUB,
+        JOBS: process.env.JOBS,
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
@@ -123,7 +124,7 @@ export default {
 
                 cookie: {
                     options: {
-                        domain: '.tapigo.ru',
+                        domain: '.' + process.env.HOME,
                     },
                 },
 
@@ -162,14 +163,14 @@ export default {
 
     proxy: {
             '/auth': {
-                target: 'https://tapigo.ru',
+                target: process.env.HOME_URL,
                 // auth: 'ktotam:eto_tapigo',
                 secure: false,
                 changeOrigin: false,
                 ws: false,
             },
             '/_nuxt': {
-                target: 'https://tapigo.ru',
+                target: process.env.HOME_URL,
                 // auth: 'ktotam:eto_tapigo',
                 secure: false,
                 changeOrigin: false,

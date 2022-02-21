@@ -6,6 +6,7 @@
       <section>
         <h2 class="font-bold text-lg">{{ vacancy.name }}</h2>
         <h3>{{ vacancy.min_price }}<span>&#8212;</span>{{ vacancy.max_price }}</h3>
+        <p>{{ vacancy.description }}</p>
         <span></span>
       </section>
     </article>
@@ -19,7 +20,7 @@ import {mapGetters} from "vuex";
 export default {
   name: "VObject",
   async mounted() {
-    await this.$store.dispatch('vacancies/getItem', { id: this.$route.query.id });
+    await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id });
   },
   computed: {
     vacancy() {
