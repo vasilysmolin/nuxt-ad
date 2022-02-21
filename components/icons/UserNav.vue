@@ -11,9 +11,9 @@ export default {
   methods: {
     submitted() {
       if (this.$auth.loggedIn) {
-        document.location.href = process.env.HUB_URL + '/profile';
+        document.location.href = process.env.HUB_URL;
       } else {
-        document.location.href = process.env.REDIRECT_DOMAIN_AUTH;
+        document.location.href = process.env.AUTH_URL;
       }
 
     }

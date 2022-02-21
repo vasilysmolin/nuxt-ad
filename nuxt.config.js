@@ -35,10 +35,10 @@ export default {
         ]
     },
     env: {
-        REDIRECT_DOMAIN_AUTH: process.env.HOME_URL + '/auth/sign-in',
-        HOME: process.env.HOME_URL,
-        HUB: process.env.HUB_URL,
-        JOBS: process.env.JOBS_URL,
+        AUTH_URL: process.env.HOME_URL + '/auth/sign-in',
+        HOME_URL: process.env.HOME_URL,
+        HUB_URL: process.env.HUB_URL + '/profile',
+        JOBS_URL: process.env.JOBS_URL,
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css

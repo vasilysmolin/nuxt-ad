@@ -45,7 +45,7 @@ export default {
     logout() {
         this.$auth.logout();
         setTimeout(() => {
-          document.location.href = process.env.REDIRECT_DOMAIN_AUTH;
+          document.location.href = process.env.AUTH_URL;
         },3);
 
 
