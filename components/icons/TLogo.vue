@@ -27,7 +27,7 @@ export default {
   name: "TLogo",
   methods: {
     submitted() {
-      document.location.href = process.env.HOME;
+      document.location.href = process.env.HOME_URL;
     }
   },
 }
