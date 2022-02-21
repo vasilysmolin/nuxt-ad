@@ -1,5 +1,5 @@
-require('dotenv').config();
-const isDev = process.env.APP_ENV === 'development';
+// require('dotenv').config();
+// const isDev = process.env.APP_ENV === 'development';
 
 // if (isDev) {
 //     // TODO Небезопасная настройка, которая убирает проверку
@@ -76,6 +76,15 @@ export default {
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
+        [ "k-domains", {
+            subDomains: ['auth','jobs','hub'], // List of directories to hold te pages for your subdomains
+            rootDomain: "root-domain" //  directory to hold the pages for root domain
+        }
+        ],
+        ["@nuxtjs/router",{
+            keepDefaultRouter: true // this line is mandatory...
+        }
+        ],
         '@nuxtjs/tailwindcss',
         '@nuxt/postcss8',
         '@nuxtjs/google-fonts'
@@ -150,16 +159,17 @@ export default {
         'cookie-universal-nuxt',
         '@nuxtjs/proxy',
     ],
+
     proxy: {
             '/auth': {
-                target: 'https://tapigo.tech',
+                target: 'https://tapigo.ru',
                 // auth: 'ktotam:eto_tapigo',
                 secure: false,
                 changeOrigin: false,
                 ws: false,
             },
             '/_nuxt': {
-                target: 'https://tapigo.tech',
+                target: 'https://tapigo.ru',
                 // auth: 'ktotam:eto_tapigo',
                 secure: false,
                 changeOrigin: false,

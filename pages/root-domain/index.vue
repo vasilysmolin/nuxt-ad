@@ -1,9 +1,9 @@
 <template>
-  <h1>Hub Index</h1>
+  <h1>Root</h1>
 </template>
 
 <script>
-import NavLoc from "../components/NavLoc";
+import NavLoc from "../../components/NavLoc";
 export default {
   components: {NavLoc}
 }

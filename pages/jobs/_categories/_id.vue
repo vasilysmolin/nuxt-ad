@@ -4,7 +4,7 @@
     <NavLoc/>
     <article>
       <section>
-        <h2 class="font-bold text-lg">{{ vacancy.title }}</h2>
+        <h2 class="font-bold text-lg">{{ vacancy.name }}</h2>
         <h3>{{ vacancy.min_price }}<span>&#8212;</span>{{ vacancy.max_price }}</h3>
         <span></span>
       </section>
@@ -18,16 +18,9 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "VObject",
-  async fetch() {
-    // console.log(this.$route.params);
-    // const userId = _.find(this.vacancies, {'alias': this.$route.params.id })
+  async mounted() {
     await this.$store.dispatch('vacancies/getItem', { id: this.$route.query.id });
   },
-  data() {
-    return {
-     // vacancy: {}
-    }
-},
   computed: {
     vacancy() {
       return this.$store.getters['vacancies/vacancy']
@@ -39,7 +32,7 @@ export default {
 
   head() {
     return {
-      title: `${this.vacancy.title}| Вакансии без ограничений на Tapigo.ru | Работа`,
+      title: `${this.vacancy.title} | Вакансии без ограничений на Tapigo.ru | Работа`,
       meta: [
         {hid: 'description', name: 'description', content: 'Обьект'}
       ]
