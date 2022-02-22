@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isHidden" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
+  <div v-show="tougle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
     <div class="flex justify-start w-full pb-5">
       <UserLLC/>
       <p class="pl-4">Профиль компании</p>
@@ -35,21 +35,38 @@ import UserLLC from "./icons/UserLLC";
 import UserNav from "./icons/UserNav";
 export default {
   name: "UserNavWin",
-  data() {
-    return {
-      isHidden: true
+  props: {
+    tougle: {
+      type: Boolean,
+      default: false
     }
   },
-  components: {UserNav, UserLLC, DelAcc, Logout, EditPass, AddManager, AddAcc},
+  components: {
+    UserNav,
+    UserLLC,
+    DelAcc,
+    Logout,
+    EditPass,
+    AddManager,
+    AddAcc
+  },
+  data() {
+    return {
+      bool: false
+    }
+  },
   methods: {
     logout() {
         this.$auth.logout();
         setTimeout(() => {
           document.location.href = process.env.AUTH_URL;
-        },3);
-
-
+        });
     },
+    close(event) {
+      if(event.target.className.baseVal !== 'usernav') {
+        this.$emit('toogleBlock', false);
+      }
+    }
 
   }
 }
