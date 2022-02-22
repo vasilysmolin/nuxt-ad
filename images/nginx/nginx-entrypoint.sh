@@ -4,6 +4,9 @@ set -e
 HOMECONF=/etc/nginx/conf.d/home.conf;
 JOBSCONF=/etc/nginx/conf.d/jobs.conf;
 HUBCONF=/etc/nginx/conf.d/hub.conf;
+ADMINCONF=/etc/nginx/conf.d/admin.conf;
+CATALOGCONF=/etc/nginx/conf.d/catalog.conf;
+USLUGICONF=/etc/nginx/conf.d/uslugi.conf;
 DEFAULTCONF=/etc/nginx/conf.d/default.conf;
 
 if test -f "$HOMECONF"; then
@@ -28,6 +31,30 @@ if test -f "$HUBCONF"; then
     sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$HUBCONF";
     sed -i "s#%ENV%#${ENV}#g" "$HUBCONF";
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$HUBCONF";
+fi
+
+if test -f "$ADMINCONF"; then
+    sed -i "s#%ADMIN%#${ADMIN}#g" "$ADMINCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$ADMINCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$ADMINCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$ADMINCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$ADMINCONF";
+fi
+
+if test -f "$CATALOGCONF"; then
+    sed -i "s#%CATALOG%#${CATALOG}#g" "$CATALOGCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$CATALOGCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$CATALOGCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$CATALOGCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$CATALOGCONF";
+fi
+
+if test -f "$USLUGICONF"; then
+    sed -i "s#%USLUGI%#${USLUGI}#g" "$USLUGICONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$USLUGICONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$USLUGICONF";
+    sed -i "s#%ENV%#${ENV}#g" "$USLUGICONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$USLUGICONF";
 fi
 
 if test -f "$DEFAULTCONF"; then

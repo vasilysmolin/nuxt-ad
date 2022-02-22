@@ -9,6 +9,9 @@ services:
         - DOMAIN_HOME=${DOMAIN_HOME}
         - HUB=${HUB}
         - JOBS=${JOBS}
+        - ADMIN=${ADMIN}
+        - CATALOG=${CATALOG}
+        - USLUGI=${USLUGI}
         - UID=${UID}
         - USER=${USER}
         - ENV=${APP_ENV}

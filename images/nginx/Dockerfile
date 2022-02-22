@@ -3,6 +3,9 @@ FROM nginx:stable-alpine
 ARG DOMAIN_HOME
 ARG JOBS
 ARG HUB
+ARG ADMIN
+ARG USLUGI
+ARG CATALOG
 ARG ENV
 ARG NGINX_WORKDIR
 ARG FRONT_WORKDIR
@@ -11,17 +14,21 @@ ARG NUXT_PORT
 COPY /home.conf /etc/nginx/conf.d/
 COPY /jobs.conf /etc/nginx/conf.d/
 COPY /hub.conf /etc/nginx/conf.d/
+COPY /admin.conf /etc/nginx/conf.d/
+COPY /catalog.conf /etc/nginx/conf.d/
+COPY /uslugi.conf /etc/nginx/conf.d/
 COPY /default.conf /etc/nginx/conf.d/
 
 ENV DOMAIN_HOME=${DOMAIN_HOME}
 ENV JOBS=${JOBS}
+ENV USLUGI=${USLUGI}
+ENV ADMIN=${ADMIN}
+ENV CATALOG=${CATALOG}
 ENV HUB=${HUB}
 ENV ENV=${ENV}
 ENV NGINX_WORKDIR=${NGINX_WORKDIR}
 ENV FRONT_WORKDIR=${FRONT_WORKDIR}
 ENV NUXT_PORT=${NUXT_PORT}
-
-RUN echo ${DOMAIN_HOME}
 
 RUN apk update \
     && apk add openssl \
