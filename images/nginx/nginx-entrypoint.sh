@@ -4,7 +4,7 @@ set -e
 HOMECONF=/etc/nginx/conf.d/home.conf;
 JOBSCONF=/etc/nginx/conf.d/jobs.conf;
 HUBCONF=/etc/nginx/conf.d/hub.conf;
-ADMINCONF=/etc/nginx/conf.d/admin.conf;
+OFFICECONF=/etc/nginx/conf.d/office.conf;
 CATALOGCONF=/etc/nginx/conf.d/catalog.conf;
 USLUGICONF=/etc/nginx/conf.d/uslugi.conf;
 DEFAULTCONF=/etc/nginx/conf.d/default.conf;
@@ -33,12 +33,12 @@ if test -f "$HUBCONF"; then
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$HUBCONF";
 fi
 
-if test -f "$ADMINCONF"; then
-    sed -i "s#%ADMIN%#${ADMIN}#g" "$ADMINCONF";
-    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$ADMINCONF";
-    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$ADMINCONF";
-    sed -i "s#%ENV%#${ENV}#g" "$ADMINCONF";
-    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$ADMINCONF";
+if test -f "$OFFICECONF"; then
+    sed -i "s#%OFFICE%#${OFFICE}#g" "$OFFICECONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$OFFICECONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$OFFICECONF";
+    sed -i "s#%ENV%#${ENV}#g" "$OFFICECONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$OFFICECONF";
 fi
 
 if test -f "$CATALOGCONF"; then

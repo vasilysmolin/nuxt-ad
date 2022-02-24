@@ -3,7 +3,7 @@ FROM nginx:stable-alpine
 ARG DOMAIN_HOME
 ARG JOBS
 ARG HUB
-ARG ADMIN
+ARG OFFICE
 ARG USLUGI
 ARG CATALOG
 ARG ENV
@@ -14,7 +14,7 @@ ARG NUXT_PORT
 COPY /home.conf /etc/nginx/conf.d/
 COPY /jobs.conf /etc/nginx/conf.d/
 COPY /hub.conf /etc/nginx/conf.d/
-COPY /admin.conf /etc/nginx/conf.d/
+COPY /office.conf /etc/nginx/conf.d/
 COPY /catalog.conf /etc/nginx/conf.d/
 COPY /uslugi.conf /etc/nginx/conf.d/
 COPY /default.conf /etc/nginx/conf.d/
@@ -22,7 +22,7 @@ COPY /default.conf /etc/nginx/conf.d/
 ENV DOMAIN_HOME=${DOMAIN_HOME}
 ENV JOBS=${JOBS}
 ENV USLUGI=${USLUGI}
-ENV ADMIN=${ADMIN}
+ENV OFFICE=${OFFICE}
 ENV CATALOG=${CATALOG}
 ENV HUB=${HUB}
 ENV ENV=${ENV}
