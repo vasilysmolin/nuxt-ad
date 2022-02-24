@@ -34,10 +34,10 @@ RUN apk update \
     && apk add openssl \
     && mkdir /etc/nginx/ssl \
     && openssl req -x509 -nodes -days 365 \
-        -subj '/C=CA/ST=QC/O=Company, Inc./CN=${DOMAIN_HOME}' \
-        -addext 'subjectAltName=DNS:'${DOMAIN_HOME} \
+        -subj '/C=CA/ST=QC/O=Company, Inc./CN=${ENV}' \
+        -addext 'subjectAltName=DNS:'${ENV} \
         -newkey rsa:4096 \
-        -keyout /etc/nginx/ssl/${DOMAIN_HOME}.key -out /etc/nginx/ssl/${DOMAIN_HOME}.crt
+        -keyout /etc/nginx/ssl/${ENV}.key -out /etc/nginx/ssl/${ENV}.crt
 
 RUN mkdir -p /var/lib/nginx/cache \
     && chmod 700 /var/lib/nginx/cache
