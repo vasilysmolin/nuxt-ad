@@ -24,4 +24,8 @@
         color: black;
         border-bottom: 2px solid black;
     }
+    .active-part {
+        color: black;
+        border-color: black;
+    }
 }

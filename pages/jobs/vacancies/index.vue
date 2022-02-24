@@ -1,13 +1,11 @@
 <template>
-  <main class="container box-border bg-slate-200">
-    <h1 class="text-3xl font-bold underline">Vacancies List</h1>
-    <NavLoc/>
-    <VList v-bind:type="'vacancies'" />
-  </main>
+  <VList v-bind:type="'vacancies'" />
 </template>
 
 <script>
+import VList from "../../../components/VList";
 export default {
+  components: {VList},
   head: {
     title: "Бесплатно создавайте вакансии без ограничений на Tapigo.ru | Работа",
     meta: [

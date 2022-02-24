@@ -1,11 +1,12 @@
 <template>
-  <nav class="container mt-[80px] sm:pl-0">
-    <ul class="hub-nav flex justify-start sm:justify-center flex-nowrap pb-1 w-full text-sm sm:text-base text-[#6E7191] font-bold">
-      <li class="pl-4"><NuxtLink to="/profile" class="hub-nav-active">Профиль</NuxtLink></li>
-      <li class="pl-4 sm:pl-6"><NuxtLink to="">Обьявления</NuxtLink></li>
-      <li class="pl-4 sm:pl-6"><NuxtLink to="">Вакансии</NuxtLink></li>
-      <li class="pl-4 sm:pl-6"><NuxtLink to="">Услуги</NuxtLink></li>
-      <li class="px-4 sm:pl-6"><NuxtLink to="">Рестораны</NuxtLink></li>
+  <nav class="container flex flex-col items-center mt-[80px]">
+    <ul class="flex justify-start w-[95%] sm:max-w-screen-sm">
+      <NuxtLink to="/vacancies">
+      <li class="inline-block px-3 py-1.5 border-2 border-blue-600 text-blue-600 font-bold text-sm rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Вакансии</li>
+      </NuxtLink>
+      <NuxtLink to="/resume">
+      <li class="inline-block ml-3 px-3 py-1.5 border-2 border-blue-600 text-blue-600 font-bold text-sm rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Резюме</li>
+      </NuxtLink>
     </ul>
   </nav>
 </template>

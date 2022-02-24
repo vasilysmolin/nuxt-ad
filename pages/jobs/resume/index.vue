@@ -1,15 +1,13 @@
 <template>
-  <main class="container box-border bg-slate-200">
-    <h1 class="text-3xl font-bold underline">Resume List</h1>
-    <NavLoc/>
-    <VListResume/>
-  </main>
+  <RList/>
 </template>
 
 <script>
+import RList from "../../../components/RList";
 export default {
+  components: {RList},
   head: {
-    title: "Бесплатно создавайте вакансии без ограничений на Tapigo.ru | Работа",
+    title: "Бесплатно создавайте резюме без ограничений на Tapigo.ru | Работа",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
