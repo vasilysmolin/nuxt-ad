@@ -1,26 +1,26 @@
 export const state = () => ({
-  experience: {},
-})
+	experience: {},
+});
 
 export const mutations = {
-  setExperience(state, experience) {
-    state.experience = experience
-  },
-  removeExperience(state){
-    state.experience = {}
-  },
-}
+	setExperience(state, experience) {
+		state.experience = experience;
+	},
+	removeExperience(state){
+		state.experience = {};
+	},
+};
 
 export const actions = {
-  async getItems({commit}) {
-    const experience = await this.$axios.$get('select/experience');
-    commit('setExperience', experience)
-  },
-  async removeItems({commit}) {
-    commit('removeExperience')
-  },
-}
+	async getItems({commit}) {
+		const experience = await this.$axios.$get('select/experience');
+		commit('setExperience', experience);
+	},
+	async removeItems({commit}) {
+		commit('removeExperience');
+	},
+};
 
 export const getters = {
-  experience: s => s.experience,
-}
+	experience: s => s.experience,
+};

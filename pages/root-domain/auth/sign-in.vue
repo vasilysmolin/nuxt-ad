@@ -42,6 +42,7 @@
     focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingPassword"
                    placeholder="Ваша почта">
             <label for="floatingPassword" class="text-[#6E7191]">Ваш пароль</label>
+            <p>{{ errors }}</p>
           </div>
           <div class="flex space-x-2 justify-center">
             <button type="button" @click.prevent="submitted"
@@ -61,6 +62,7 @@ export default {
     name: 'SignIn',
   data() {
     return {
+      errors: null,
       email: '',
       password: '',
       from: process.env.HUB_URL,
@@ -71,14 +73,15 @@ export default {
   },
   methods: {
       submitted() {
-        // this.$axios.$post(`auth/login`, { email: this.email, password: this.password });
         this.$auth.loginWith('laravelJWT', {
           data: {
             email: this.email,
             password: this.password
-          }
+          },
         }).then(() => {
           document.location.href = this.from;
+        }).catch(error => {
+          this.errors = error.response.data.errors.message;
         });
       },
     },

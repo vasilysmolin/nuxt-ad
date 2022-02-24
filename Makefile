@@ -5,3 +5,12 @@ update-front:
 update-nginx:
 	git pull
 	docker-compose up -d --build nginx
+
+lint:
+	npx eslint .
+
+setup:
+	yarn install --frozen-lockfile
+
+lint-fix:
+	npx eslint --fix .
