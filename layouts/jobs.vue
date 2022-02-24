@@ -12,6 +12,7 @@
           @toogleBlock="toogleBlock"
       />
     </header>
+    <NavLoc/>
     <Nuxt/>
   </main>
 </template>

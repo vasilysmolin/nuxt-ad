@@ -19,6 +19,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "VObject",
+  layout: 'jobs',
   async mounted() {
     await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id});
   },

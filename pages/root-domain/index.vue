@@ -8,8 +8,8 @@
       <h2 class="text-xl font-medium">Уже доступны:</h2>
       <ul class="mt-3 pl-5 marker:text-gray-300 list-disc text-2xl text-gray-400 font-medium">
         <li class="leading-10"><nuxt-link to="/auth/sign-in" class="text-blue-600">Личный кабинет</nuxt-link></li>
-        <li class="leading-10"><nuxt-link to="" class="text-blue-600">Вакансии</nuxt-link></li>
-        <li class="leading-10">Резюме</li>
+        <li class="leading-10" @click="vacancies"><nuxt-link to="" class="text-blue-600">Вакансии</nuxt-link></li>
+        <li class="leading-10" @click="resume"><nuxt-link to="" class="text-blue-600">Резюме</nuxt-link></li>
         <li class="leading-10">Услуги</li>
         <li class="leading-10">Каталог</li>
         <li class="leading-10">Еда</li>
@@ -21,5 +21,14 @@
 
 <script>
 export default {
+
+  methods: {
+    vacancies() {
+      document.location.href = process.env.JOBS_URL + '/vacancies';
+    },
+    resume() {
+      document.location.href = process.env.JOBS_URL + '/resume';
+    }
+  }
 }
 </script>
