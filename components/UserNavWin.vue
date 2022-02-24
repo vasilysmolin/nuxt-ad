@@ -1,11 +1,9 @@
 <template>
   <div v-show="tougle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
     <div class="flex justify-start w-full pb-5">
-      <UserLLC/>
-      <p class="pl-4">Профиль компании</p>
-      <!-- для физ лица
-      <UserNav/>
-      <p class="pl-4">Константин</p>
+      <p class="text-sm font-bold"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><UserLLC/><span class="pl-4">Личный кабинет</span></nuxt-link></p>
+      <!-- физик
+          <p class="text-sm font-bold"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><AddManager/><span class="pl-4">Личный кабинет</span></nuxt-link></p>
       -->
     </div>
     <hr>
@@ -20,7 +18,7 @@
     </ul>
     <hr>
     <div class="flex justify-start w-full pt-5">
-      <button class="flex justify-start items-center text-sm text-[#A0A3BD] font-bold"><DelAcc/><span class="pl-4">Удалить аккаунт</span></button>
+      <button class="flex justify-start items-center text-sm text-[#A0A3BD] font-bold"><DelAcc/><span class="pl-4">Выйти из аккаунта</span></button>
     </div>
   </div>
 </template>

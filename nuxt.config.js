@@ -26,9 +26,9 @@ export default {
         link: [
             {rel: 'icon', type: 'image/png', href: '/favicon-32x32.png'},
             {rel: 'apple-touch-icon', type: 'image/png', href: '/apple-touch-icon-180x180.png'},
-            {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
-            {rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: true},
-            {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'}
+            // {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
+            // {rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: true},
+            // {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'}
         ],
         script: [
             {hid: 'stripe', src: '/node_modules/tw-elements/dist/js/index.min.js', defer: true}
