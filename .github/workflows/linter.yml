@@ -21,6 +21,3 @@ jobs:
 
       - name: eslint
         run: make lint
-
-      - name: eslint-fix
-        run: make lint-fix
