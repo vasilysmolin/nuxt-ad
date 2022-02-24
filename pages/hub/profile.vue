@@ -1,6 +1,5 @@
 <template>
   <section>
-    <NavLoc/>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
