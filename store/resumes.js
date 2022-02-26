@@ -19,12 +19,12 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit}) {
-		const resumes = await this.$axios.$get('resume?skip=0&take=25');
+	async getItems({commit},{userID = null}) {
+		const resumes = await this.$axios.$get(`resume?skip=0&take=25&user_id=${userID}`);
 		commit('setresumes', resumes.jobs_resumes);
 	},
-	async addItems({commit},{skip = 0}) {
-		const resumes = await this.$axios.$get(`resume?skip=${skip}&take=25`);
+	async addItems({commit},{skip = 0,userID = null}) {
+		const resumes = await this.$axios.$get(`resume?skip=${skip}&take=25&user_id=${userID}`);
 		commit('addresumes', resumes.jobs_resumes);
 	},
 	async removeItems({commit}) {
