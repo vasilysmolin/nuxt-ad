@@ -3,7 +3,7 @@
 
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <h1>Новые</h1>
-      <article v-for="user in usersBlock" :key="user.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
+      <article v-for="user in usersNew" :key="user.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="`/users/${user.id}`">
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.name }}</h2>
           <p class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.email }}</p>
@@ -12,7 +12,7 @@
         </NuxtLink>
 
       </article>
-      <button @click="addItems({skip: usersBlock.length, status: 'new'})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+      <button @click="addItems({skip: usersNew.length, status: 'new'})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
     </section>
 
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">

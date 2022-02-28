@@ -16,36 +16,22 @@
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <h2 class="font-bold text-lg">Вакансии</h2>
         <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
-<!--          <NuxtLink :to="">-->
             <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.name }}</h2>
             <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ vacancy.min_price }}<span class="pl-1 text-xs">руб.</span></h3>
-
-<!--          </NuxtLink>-->
-
-          <!--
-
-                <NuxtLink :to="getUrl(vacancy)">
-                  <button>Редактировать</button>
-                </NuxtLink>
-          -->
+            <NuxtLink :to="`/jobs/vacancies/${vacancy.id}`">
+              <button>Редактировать</button>
+            </NuxtLink>
         </article>
         <button @click="addVacancies({skip: vacancies.length, user: user.id})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
       </section>
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <h2 class="font-bold text-lg">Резюме</h2>
         <article v-for="resume in resumes" :key="resume.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
-          <!--          <NuxtLink :to="">-->
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ resume.name }}</h2>
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ resume.min_price }}<span class="pl-1 text-xs">руб.</span></h3>
-
-          <!--          </NuxtLink>-->
-
-          <!--
-
-                <NuxtLink :to="getUrl(vacancy)">
-                  <button>Редактировать</button>
-                </NuxtLink>
-          -->
+          <NuxtLink :to="`/jobs/resume/${resume.id}`">
+            <button>Редактировать</button>
+          </NuxtLink>
         </article>
         <button @click="addResumes({skip: resumes.length, user: user.id})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
       </section>
