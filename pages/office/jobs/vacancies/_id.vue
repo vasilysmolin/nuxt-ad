@@ -6,7 +6,17 @@
         <h2 class="font-bold text-lg">{{ vacancy.name }}</h2>
         <h3>{{ vacancy.min_price }}<span>&#8212;</span>{{ vacancy.max_price }}</h3>
         <p>{{ vacancy.description }}</p>
-        <span></span>
+        <div class="form-group">
+          <label>Модерация</label>
+          <select class="form-control" v-model="vacancy.state">
+            <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === vacancy.state">
+              {{ value }}
+            </option>
+          </select>
+          <button class="btn btn-primary"
+                  @click.prevent="submitted">Редактировать
+          </button>
+        </div>
       </section>
     </article>
   </main>
@@ -21,16 +31,29 @@ export default {
   layout: 'office',
   async mounted() {
     await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id });
+    await this.$store.dispatch('states/getItems');
   },
   computed: {
     vacancy() {
-      return this.$store.getters['vacancies/vacancy']
+      return _.cloneDeep(this.$store.getters['vacancies/vacancy']);
+    },
+    states: {
+      get(){
+        return _.cloneDeep(this.$store.getters['states/states']);
+      },
+      set(states){
+        return states
+      }
     },
     ...mapGetters({
       vacancies: 'vacancies/vacancies'
     }),
   },
-
+  methods: {
+    submitted() {
+      this.$axios.$put(`vacancies/${this.vacancy.id}`, {state: this.vacancy.state}, { withCredentials: true });
+    },
+  },
   head() {
     return {
       title: `${this.vacancy.title} | Вакансии без ограничений на Tapigo.ru | Работа`,

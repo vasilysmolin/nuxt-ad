@@ -11,6 +11,17 @@
         <p class="text-xs text-[#A0A3BD]">{{isPerson ? 'Юридическое лицо' : 'Физическое лицо'}}</p>
         <p v-if="isPerson" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ inn }}</span></p>
         <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ dateFormat(user.created_at) }}</p>
+        <div class="form-group">
+          <label>Модерация</label>
+          <select class="form-control" v-model="user.state">
+            <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === user.state">
+              {{ value }}
+            </option>
+          </select>
+          <button class="btn btn-primary"
+                  @click.prevent="submitted">Редактировать
+          </button>
+        </div>
         <span></span>
       </section>
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
@@ -56,6 +67,7 @@ export default {
     await this.$store.dispatch('users/getItem', { id: this.$route.params.id });
     await this.$store.dispatch('vacancies/getItems', { userID: this.$route.params.id });
     await this.$store.dispatch('resumes/getItems', { userID: this.$route.params.id });
+    await this.$store.dispatch('states/getItems');
   },
   data() {
     return {
@@ -63,7 +75,15 @@ export default {
 },
   computed: {
     user() {
-      return this.$store.getters['users/user']
+      return _.cloneDeep(this.$store.getters['users/user']);
+    },
+    states: {
+      get(){
+        return _.cloneDeep(this.$store.getters['states/states']);
+      },
+      set(states){
+        return states
+      }
     },
     ...mapGetters({
       users: 'users/users',
@@ -101,6 +121,9 @@ export default {
       addResumes: 'resumes/addItems',
       addVacancies: 'vacancies/addItems',
     }),
+    submitted() {
+      this.$axios.$put(`users/${this.user.id}`, {state: this.user.state}, { withCredentials: true });
+    },
     dateFormat(date) {
       if(date){
         var dates = new Date(date);
