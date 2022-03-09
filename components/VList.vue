@@ -34,7 +34,7 @@ export default {
   },
   async mounted() {
     if(this.vacancies.length === 0) {
-      await this.getItems();
+      await this.getItems({status: 'active'});
     }
   },
   computed: {
