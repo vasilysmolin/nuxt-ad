@@ -26,7 +26,7 @@ export const mutations = {
 		state.vacanciesNew.push(...vacancies);
 	},
 	setAmountNew(state, amount) {
-		state.amount = amount;
+		state.amountNew = amount;
 	},
 	setAmount(state, amount) {
 		state.amount = amount;

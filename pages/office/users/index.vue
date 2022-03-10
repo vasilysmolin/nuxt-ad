@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import UList from "../../../components/UList";
+import UList from "../../../components/office/UList";
 export default {
   components: {UList},
   layout: 'office',

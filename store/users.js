@@ -1,5 +1,7 @@
 export const state = () => ({
 	users: [],
+	amount: null,
+	amountNew: null,
 	usersBlock: [],
 	usersNew: [],
 	user: {},
@@ -23,7 +25,13 @@ export const mutations = {
 	},
 	setuser(state, user) {
 		state.user = user;
-	}
+	},
+	setAmountNew(state, amount) {
+		state.amountNew = amount;
+	},
+	setAmount(state, amount) {
+		state.amount = amount;
+	},
 };
 
 export const actions = {
@@ -31,8 +39,10 @@ export const actions = {
 		const users = await this.$axios.$get(`users?skip=0&take=25&status=${status}&type=${type}`);
 		if(status === 'new'){
 			commit('setusersnew', users.users);
+			commit('setAmountNew', users.meta.total);
 		} else {
 			commit('setusers', users.users);
+			commit('setAmount', users.meta.total);
 		}
 
 	},
@@ -59,4 +69,6 @@ export const getters = {
 	usersBlock: s => s.usersBlock,
 	usersNew: s => s.usersNew,
 	user: s => s.user,
+	amount: s => s.amount,
+	amountNew: s => s.amountNew,
 };

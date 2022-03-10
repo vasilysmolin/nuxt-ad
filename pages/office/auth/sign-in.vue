@@ -62,7 +62,7 @@ export default {
     return {
       email: '',
       password: '',
-      from: process.env.ADMIN_URL,
+      from: process.env.OFFICE_URL,
     }
   },
   mounted() {

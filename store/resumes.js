@@ -26,7 +26,7 @@ export const mutations = {
 		state.resumesNew.push(...resumes);
 	},
 	setAmountNew(state, amount) {
-		state.amount = amount;
+		state.amountNew = amount;
 	},
 	setAmount(state, amount) {
 		state.amount = amount;
@@ -38,10 +38,10 @@ export const actions = {
 		const resumes = await this.$axios.$get(`resume?skip=0&take=25&user_id=${userID}&status=${status}&from=${from}`);
 		if(status === 'new'){
 			commit('setResumesNew', resumes.jobs_resumes);
-			commit('setAmountNew', vacancies.meta.total);
+			commit('setAmountNew', resumes.meta.total);
 		} else {
 			commit('setResumes', resumes.jobs_resumes);
-			commit('setAmount', vacancies.meta.total);
+			commit('setAmount', resumes.meta.total);
 		}
 	},
 	async addItems({commit},{skip = 0,userID = null,status = 'active', from = null}) {
