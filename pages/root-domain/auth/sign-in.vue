@@ -65,10 +65,13 @@ export default {
       errors: null,
       email: '',
       password: '',
-      from: process.env.HUB_URL,
+      from: null,
     }
   },
   mounted() {
+    if(this.$route.query.from) {
+      this.from = this.$route.query.from;
+    }
     this.$auth.logout();
   },
   methods: {
@@ -79,7 +82,12 @@ export default {
             password: this.password
           },
         }).then(() => {
-          document.location.href = this.from;
+          if(this.from === null) {
+            document.location.href = process.env.HUB_URL;
+          } else {
+            document.location.href = this.from
+          }
+
         }).catch(error => {
           this.errors = error.response.data.errors.message;
         });

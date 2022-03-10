@@ -1,11 +1,11 @@
 <template>
-  <VAdminList/>
+  <VOfficeList/>
 </template>
 
 <script>
-import UList from "../../../../components/VAdminList";
+import VOfficeList from "../../../../components/office/VOfficeList";
 export default {
-  components: {UList},
+  components: {VOfficeList},
   layout: 'office',
   head: {
     title: "Office",

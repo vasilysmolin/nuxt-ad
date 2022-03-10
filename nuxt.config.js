@@ -36,8 +36,8 @@ export default {
     },
     env: {
         ...(isDev && {
-            AUTH_URL: 'http://' + process.env.HOME + ':' + process.env.NUXT_PORT + '/auth/sign-in',
-            HOME_URL: 'http://' + process.env.HOME+ ':' + process.env.NUXT_PORT ,
+            AUTH_URL: 'http://' + process.env.DOMAIN_HOME + ':' + process.env.NUXT_PORT + '/auth/sign-in',
+            HOME_URL: 'http://' + process.env.DOMAIN_HOME+ ':' + process.env.NUXT_PORT ,
             HUB_URL: 'http://' + process.env.HUB + ':' + process.env.NUXT_PORT  + '/profile',
             JOBS_URL: 'http://' + process.env.JOBS + ':' + process.env.NUXT_PORT ,
             ADMIN_URL: 'http://' + process.env.ADMIN + ':' + process.env.NUXT_PORT ,
@@ -177,24 +177,24 @@ export default {
         '@nuxtjs/proxy',
     ],
 
-    proxy: {
-        ...(isDev && {
-            '/auth': {
-                target: 'https://' + process.env.PROXY_AUTH,
-                // auth: 'ktotam:eto_tapigo',
-                secure: false,
-                changeOrigin: false,
-                ws: false,
-            },
-            '/_nuxt': {
-                target: 'https://' +  process.env.PROXY_AUTH,
-                // auth: 'ktotam:eto_tapigo',
-                secure: false,
-                changeOrigin: false,
-                ws: false,
-            },
-        }),
-    },
+    // proxy: {
+    //     ...(isDev && {
+    //         '/auth': {
+    //             target: 'https://' + process.env.PROXY_AUTH,
+    //             // auth: 'ktotam:eto_tapigo',
+    //             secure: false,
+    //             changeOrigin: false,
+    //             ws: false,
+    //         },
+    //         '/_nuxt': {
+    //             target: 'https://' +  process.env.PROXY_AUTH,
+    //             // auth: 'ktotam:eto_tapigo',
+    //             secure: false,
+    //             changeOrigin: false,
+    //             ws: false,
+    //         },
+    //     }),
+    // },
     // axios: {
     //     proxy: true
     // },

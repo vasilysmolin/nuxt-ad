@@ -1,11 +1,11 @@
 <template>
-  <RAdminList/>
+  <ROfficeList/>
 </template>
 
 <script>
-import UList from "../../../../components/RAdminList";
+import ROfficeList from "../../../../components/office/ROfficeList";
 export default {
-  components: {UList},
+  components: {ROfficeList},
   layout: 'office',
   head: {
     title: "Office",

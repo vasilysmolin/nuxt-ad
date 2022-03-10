@@ -62,7 +62,7 @@ import NavLoc from "../../components/NavLoc";
 export default {
   name: 'Profile',
   components: {NavLoc},
-  // middleware: ['auth'],
+  layout: 'hub',
   data() {
     return {
       user: {

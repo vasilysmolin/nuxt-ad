@@ -5,7 +5,8 @@
 <script>
 import NavLoc from "../../components/NavLoc";
 export default {
-  components: {NavLoc}
+  components: {NavLoc},
+  layout: 'hub',
 }
 
 
