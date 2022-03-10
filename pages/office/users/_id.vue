@@ -80,7 +80,7 @@ export default {
     checkAmountR(){
       return this.resumes.length < this.amountR;
     },
-    checkAmountL(){
+    checkAmountV(){
       return this.vacancies.length < this.amountL;
     },
     states: {
@@ -130,7 +130,7 @@ export default {
       addVacancies: 'vacancies/addItems',
     }),
     submitted() {
-      this.$axios.$put(`users/${this.user.id}`, {state: this.user.state}, { withCredentials: true });
+      this.$axios.$put(`users/${this.user.id}`, {state: this.user.state});
     },
     dateFormat(date) {
       if(date){

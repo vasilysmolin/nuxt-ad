@@ -49,14 +49,14 @@ export default {
       usersNew: 'users/usersNew',
       usersActive: 'users/users',
       amount: 'users/amount',
+      amountNew: 'users/amountNew',
     }),
     checkAmountNew(){
-      return this.usersNew.length < this.amountNew;
+        return this.usersNew.length < this.amountNew;
     },
     checkAmountActive(){
-      return this.usersActive.length < this.amount;
+        return this.usersActive.length < this.amountNew;
     },
-
   },
   methods: {
     ...mapActions({

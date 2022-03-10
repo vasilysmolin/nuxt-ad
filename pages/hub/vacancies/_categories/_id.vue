@@ -157,7 +157,7 @@ export default {
   methods: {
     submitted() {
       let resp = this.data;
-      this.$axios.$put(`vacancies/${this.$route.params.id}`, resp, { withCredentials: true });
+      this.$axios.$put(`vacancies/${this.$route.params.id}`, resp);
     },
   },
 }

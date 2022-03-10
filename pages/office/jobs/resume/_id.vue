@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     submitted() {
-      this.$axios.$put(`resume/${this.resume.id}`, {state: this.resume.state}, { withCredentials: true });
+      this.$axios.$put(`resume/${this.resume.id}`, {state: this.resume.state});
     },
   },
 

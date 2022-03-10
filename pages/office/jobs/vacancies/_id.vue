@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     submitted() {
-      this.$axios.$put(`vacancies/${this.vacancy.id}`, {state: this.vacancy.state}, { withCredentials: true });
+      this.$axios.$put(`vacancies/${this.vacancy.id}`, {state: this.vacancy.state});
     },
   },
   head() {

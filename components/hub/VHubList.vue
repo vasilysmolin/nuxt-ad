@@ -5,12 +5,13 @@
         <NuxtLink :to="getUrl(vacancy)">
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.name }}</h2>
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ vacancy.min_price }}<span class="pl-1 text-xs">руб.</span></h3>
+          <h3 class="mt-1 mb-2.5 text-lg">{{vacancy.state}}</h3>
           <div class="flex justify-between w-full">
             <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Редактировать</button>
           </div>
         </NuxtLink>
       </article>
-      <button v-if="checkAmount" @click="addItems({skip: vacancies.length, from: 'cabinet'})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+      <button v-if="checkAmount" @click="addItems({status: 'all', skip: vacancies.length, from: 'cabinet'})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
     </section>
   </section>
 </template>
@@ -18,13 +19,13 @@
 <script>
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
 export default {
-  name: "VList",
+  name: "VHubList",
   props: {
     type: String,
   },
   async mounted() {
     if(this.vacancies.length === 0) {
-      await this.getItems({status: 'active', from: 'cabinet'});
+      await this.getItems({status: 'all', from: 'cabinet'});
     }
   },
   computed: {
