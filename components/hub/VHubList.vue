@@ -28,9 +28,9 @@ export default {
     type: String,
   },
   async mounted() {
-    if(this.vacancies.length === 0) {
+    // if(this.vacancies.length === 0) {
       await this.getItems({status: 'all', from: 'cabinet'});
-    }
+    // }
   },
   computed: {
     ...mapGetters({

@@ -34,9 +34,9 @@ export default {
     type: String,
   },
   async mounted() {
-    if (this.resumes.length === 0) {
+    // if (this.resumes.length === 0) {
       await this.getItems({status: 'all', from: 'cabinet'});
-    }
+    // }
   },
   computed: {
     ...mapGetters({

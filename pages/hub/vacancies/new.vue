@@ -100,27 +100,14 @@ export default {
       data: {
         name: '',
         min_price: 500,
-        max_price: 100,
+        max_price: 0,
         category_id: null,
         address: '',
         phone: '',
-        active: true
       }
     }
   },
   async mounted() {
-    // if(this.experiences.length === 0) {
-    //   await this.$store.dispatch('experiences/getItems');
-    // }
-    // if(this.category.length === 0) {
-    //   await this.$store.dispatch('categoriesVacancy/getItems');
-    // }
-    // if(this.education.length === 0) {
-    //   await this.$store.dispatch('educations/getItems');
-    // }
-    // if(this.schedule.length === 0) {
-    //   await this.$store.dispatch('schedules/getItems');
-    // }
     await this.$store.dispatch('categoriesVacancy/getItems');
     await this.$store.dispatch('experiences/getItems');
     await this.$store.dispatch('educations/getItems');

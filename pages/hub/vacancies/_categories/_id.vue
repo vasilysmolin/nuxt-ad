@@ -59,8 +59,12 @@
       <input type="text"
              id="name"
              class="form-control"
-             v-model="data.name">
+             v-model="data.name"
+      >
     </div>
+    <span v-if="nameErrors" class="caption-2 px-1 pt-s c-error">
+            {{ nameErrors }}
+    </span>
     <div class="form-group">
       <label for="address">Адрес офиса</label>
       <input type="text"
@@ -81,6 +85,9 @@
              id="phone"
              class="form-control"
              v-model="data.phone">
+      <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
+            {{ phoneErrors }}
+    </span>
     </div>
     <button class="btn btn-primary"
             @click.prevent="submitted">Редактировать
@@ -91,29 +98,39 @@
 
 <script>
 import * as _ from 'lodash';
+import { maxLength, minLength, required, integer, numeric } from 'vuelidate/lib/validators';
 import {mapGetters} from "vuex";
-// import VSelect from "../../../components/ui/v-select";
-
 export default {
   name: "VObject",
   layout: 'hub',
-  // components: {VSelect},
   data() {
     return {
       data: {},
     }
   },
-  async fetch() {
+  validations: {
+    data: {
+      name: {
+        required,
+        maxLength: maxLength(255),
+        minLength: minLength(2)
+      },
+      phone: {
+        required,
+        numeric,
+        maxLength: maxLength(20),
+        minLength: minLength(9)
+      },
+    },
+
+  },
+  async mounted() {
     await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id  });
     this.data = _.cloneDeep(this.$store.getters['vacancies/vacancy']);
     await this.$store.dispatch('categoriesVacancy/getItems');
     await this.$store.dispatch('experiences/getItems');
     await this.$store.dispatch('educations/getItems');
     await this.$store.dispatch('schedules/getItems');
-
-  },
-  mounted() {
-    console.log('-----------');
   },
   computed: {
     experiences: {
@@ -148,11 +165,65 @@ export default {
         return category
       }
     },
+    nameErrors: {
+      get(){
+        if (!this.$v.data.name.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.name.required) {
+          return 'Введите название';
+        }
+
+        if (!this.$v.data.name.maxLength) {
+          return 'Превышена допустимая длина названия';
+        }
+        if (!this.$v.data.name.minLength) {
+          return 'Ошибка, минимальное значение';
+        }
+
+        return '';
+      },
+      set(text){
+        return text;
+      }
+    },
+    phoneErrors() {
+      if (!this.$v.data.phone.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.data.phone.required) {
+        return 'Введите телефон';
+      }
+
+      if (!this.$v.data.phone.maxLength) {
+        return 'Превышена допустимая длина названия';
+      }
+      if (!this.$v.data.phone.minLength) {
+        return 'Ошибка, минимальное значение';
+      }
+      if (!this.$v.data.phone.numeric) {
+        return 'Укажите только числа, без других символов';
+      }
+
+      return '';
+    },
   },
   methods: {
     submitted() {
-      let resp = this.data;
-      this.$axios.$put(`vacancies/${this.$route.params.id}`, resp);
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
+      this.$axios.$put(`vacancies/${this.$route.params.id}`, this.data).then(() => {
+        this.$router.push({name: 'vacancies'});
+        console.log('успех')
+      }).catch((error) => {
+          // console.log(error.response.data.errors);
+          // this.$v.nameErrors = 'какой-то текст';
+      });
+
     },
   },
 }
