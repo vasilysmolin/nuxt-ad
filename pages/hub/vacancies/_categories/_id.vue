@@ -12,11 +12,6 @@
           {{ item.name }}
         </option>
       </select>
-      <!--      <VSelect-->
-      <!--          :model="data.category_id"-->
-      <!--          :items="category"-->
-      <!--          :select="data.category_id"-->
-      <!--      />-->
     </div>
     <div class="form-group">
       <label for="name">Опыт работы</label>
@@ -88,7 +83,7 @@
              v-model="data.phone">
     </div>
     <button class="btn btn-primary"
-            @click.prevent="submitted">Разместить
+            @click.prevent="submitted">Редактировать
     </button>
   </div>
 

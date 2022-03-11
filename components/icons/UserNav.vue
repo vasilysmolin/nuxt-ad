@@ -22,7 +22,7 @@ export default {
     submitted() {
       if (this.$auth.loggedIn) {
         this.$emit('toogleBlock', !this.props);
-        // document.location.href = process.env.HUB_URL;
+        // document.location.href = process.env.HUB_URL + '/profile';
       } else {
         document.location.href = process.env.AUTH_URL;
       }

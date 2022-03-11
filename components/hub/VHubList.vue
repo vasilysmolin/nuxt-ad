@@ -1,5 +1,9 @@
 <template>
+
   <section class="container flex flex-col items-center mt-[70px] pb-10">
+    <NuxtLink :to="`/vacancies/new`">
+      <h1 class="text-3xl font-bold underline">+ Вакансия</h1>
+    </NuxtLink>
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(vacancy)">

@@ -94,7 +94,7 @@ export default {
       checked: false,
       phone: '',
       password: '',
-      from: process.env.HUB_URL,
+      from: process.env.HUB_URL + '/profile',
     }
   },
   mounted() {

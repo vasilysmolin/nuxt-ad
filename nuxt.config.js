@@ -38,7 +38,7 @@ export default {
         ...(isDev && {
             AUTH_URL: 'http://' + process.env.DOMAIN_HOME + ':' + process.env.NUXT_PORT + '/auth/sign-in',
             HOME_URL: 'http://' + process.env.DOMAIN_HOME+ ':' + process.env.NUXT_PORT ,
-            HUB_URL: 'http://' + process.env.HUB + ':' + process.env.NUXT_PORT  + '/profile',
+            HUB_URL: 'http://' + process.env.HUB + ':' + process.env.NUXT_PORT,
             JOBS_URL: 'http://' + process.env.JOBS + ':' + process.env.NUXT_PORT ,
             OFFICE_URL: 'http://' + process.env.OFFICE + ':' + process.env.NUXT_PORT ,
             CATALOG_URL: 'http://' + process.env.CATALOG + ':' + process.env.NUXT_PORT ,

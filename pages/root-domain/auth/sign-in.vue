@@ -83,7 +83,7 @@ export default {
           },
         }).then(() => {
           if(this.from === null) {
-            document.location.href = process.env.HUB_URL;
+            document.location.href = process.env.HUB_URL + '/profile';
           } else {
             document.location.href = this.from
           }

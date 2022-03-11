@@ -71,7 +71,7 @@ export default {
       }
     },
     hub() {
-      document.location.href = process.env.HUB_URL;
+      document.location.href = process.env.HUB_URL + '/profile';
     },
   }
 }
