@@ -3,9 +3,9 @@
 </template>
 
 <script>
-import NavLoc from "../../components/NavLoc";
+import NavLocProfile from "../../components/NavLocProfile";
 export default {
-  components: {NavLoc},
+  components: {NavLocProfile},
   layout: 'hub',
 }
 

@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import NavLoc from "../../components/NavLoc";
+import NavLocProfile from "../../components/NavLocProfile";
 export default {
   name: 'Profile',
-  components: {NavLoc},
+  components: {NavLocProfile},
   layout: 'hub',
   data() {
     return {
