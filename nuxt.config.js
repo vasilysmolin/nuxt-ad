@@ -47,11 +47,11 @@ export default {
         ...(!isDev && {
             AUTH_URL: process.env.DOMAIN_HOME + '/auth/sign-in',
             HOME_URL: process.env.DOMAIN_HOME,
-            HUB_URL: process.env.HUB_URL,
-            JOBS_URL: process.env.JOBS_URL,
-            OFFICE_URL: process.env.OFFICE_URL,
-            CATALOG_URL: process.env.CATALOG_URL,
-            USLUGI_URL: process.env.USLUGI_URL,
+            HUB_URL: process.env.HUB,
+            JOBS_URL: process.env.JOBS,
+            OFFICE_URL: process.env.OFFICE,
+            CATALOG_URL: process.env.CATALOG,
+            USLUGI_URL: process.env.USLUGI,
         }),
     },
 
