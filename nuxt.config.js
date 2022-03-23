@@ -37,7 +37,7 @@ export default {
     env: {
         ...(isDev && {
             AUTH_URL: 'http://' + process.env.DOMAIN_HOME + ':' + process.env.NUXT_PORT + '/auth/sign-in',
-            HOME_URL: 'http://' + process.env.DOMAIN_HOME+ ':' + process.env.NUXT_PORT ,
+            HOME_URL: 'http://' + process.env.DOMAIN_HOME + ':' + process.env.NUXT_PORT ,
             HUB_URL: 'http://' + process.env.HUB + ':' + process.env.NUXT_PORT,
             JOBS_URL: 'http://' + process.env.JOBS + ':' + process.env.NUXT_PORT ,
             OFFICE_URL: 'http://' + process.env.OFFICE + ':' + process.env.NUXT_PORT ,
@@ -45,13 +45,13 @@ export default {
             USLUGI_URL: 'http://' + process.env.USLUGI + ':' + process.env.NUXT_PORT ,
         }),
         ...(!isDev && {
-            AUTH_URL: process.env.DOMAIN_HOME + '/auth/sign-in',
-            HOME_URL: process.env.DOMAIN_HOME,
-            HUB_URL: process.env.HUB,
-            JOBS_URL: process.env.JOBS,
-            OFFICE_URL: process.env.OFFICE,
-            CATALOG_URL: process.env.CATALOG,
-            USLUGI_URL: process.env.USLUGI,
+            AUTH_URL: 'https://' + process.env.DOMAIN_HOME + '/auth/sign-in',
+            HOME_URL: 'https://' + process.env.DOMAIN_HOME,
+            HUB_URL: 'https://' + process.env.HUB,
+            JOBS_URL: 'https://' + process.env.JOBS,
+            OFFICE_URL: 'https://' + process.env.OFFICE,
+            CATALOG_URL: 'https://' + process.env.CATALOG,
+            USLUGI_URL: 'https://' + process.env.USLUGI,
         }),
     },
 
