@@ -8,7 +8,8 @@
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <p class="text-sm sm:text-base">{{ resume.description }}</p>
+      <h2 class="text-sm font-bold text-black">Презентация</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ resume.description }}</p>
     </section>
 
   </article>
