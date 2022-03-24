@@ -31,7 +31,7 @@ export default {
     NavLocProfile,
     UserNav
   },
-  middleware: 'redirect',
+ // middleware: 'redirect',
   data() {
     return {
       isHidden: false,
