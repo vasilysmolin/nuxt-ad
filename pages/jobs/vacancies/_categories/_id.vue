@@ -1,16 +1,34 @@
 <template>
-  <main class="container box-border bg-slate-200">
-    <h1 class="text-3xl font-bold underline">Vacancies Object Page</h1>
-    <NavLoc/>
-    <article>
-      <section>
-        <h2 class="font-bold text-lg">{{ vacancy.name }}</h2>
-        <h3>{{ vacancy.min_price }}<span>&#8212;</span>{{ vacancy.max_price }}</h3>
-        <p>{{ vacancy.description }}</p>
-        <span></span>
-      </section>
-    </article>
-  </main>
+  <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-10">
+
+    <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h1 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.name }}</h1>
+      <!--<h2>Имя соискателя</h2>-->
+      <p class="mt-2 text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span class="pl-2 text-sm">руб.</span></p>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-gray-600">Контактное лицо</h2>
+      <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.phone }}</p>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Обязанности</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.duties }}</p>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Требования</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.demands }}</p>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Дополнительные условия</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.additionally }}</p>
+    </section>
+
+  </article>
+
 </template>
 
 <script>
