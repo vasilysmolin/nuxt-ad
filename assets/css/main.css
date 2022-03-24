@@ -7,6 +7,63 @@
         background-color: #F7F7FC;
         font-family: 'Roboto', sans-serif;
     }
+    textarea::-webkit-input-placeholder {
+        color: #6E7191;
+    }
+    .forms-input {
+        @apply
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-black
+        bg-[#EFF0F6] bg-clip-padding
+        border border-solid border-[#EFF0F6]
+        rounded-lg
+        transition
+        ease-in-out
+        m-0
+        focus:text-black focus:bg-white focus:border-black focus:outline-hidden
+    }
+    .forms-select {
+        @apply
+        mt-2
+        appearance-none
+        block
+        w-full
+        h-14
+        px-4
+        py-2
+        text-base
+        font-normal
+        text-black
+        bg-[#EFF0F6] bg-clip-padding bg-no-repeat
+        border border-solid border-[#EFF0F6]
+        rounded
+        transition
+        ease-in-out
+        m-0
+        focus:text-black focus:bg-white focus:border-black focus:outline-hidden
+    }
+    .forms-textarea {
+        @apply
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-black
+        bg-[#EFF0F6] bg-clip-padding
+        border border-solid border-[#EFF0F6]
+        rounded-lg
+        transition
+        ease-in-out
+        m-0
+        focus:text-black focus:bg-white focus:border-blue-600 focus:outline-none
+    }
 }
 @layer components {
     .hub-nav {

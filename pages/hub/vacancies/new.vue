@@ -1,100 +1,127 @@
 <template>
-  <div class="container flex flex-col items-center mt-[70px] pb-10">
-    <NuxtLink :to="`/vacancies`">
-      <h1 class="text-3xl font-bold underline">Все вакансии</h1>
-    </NuxtLink>
+  <section>
+    <div class="container flex flex-col items-center mt-[20px]">
+      <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+        <h1 class="mb-5 w-full text-xl text-black font-bold text-center leading-none truncate">Создать вакансию</h1>
 
-    <h1 class="text-3xl">Создание новой вакансии</h1>
+        <form class="w-[95%]">
 
-    <div class="form-group">
-      <label for="name">Выберите направление</label>
-      <select class="form-control" v-model="data.category_id">
-        <option v-for="item in category" :value="item.id" :key="item.id" :selected="item.id === data.category_id">
-          {{ item.name }}
-        </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="name">Опыт работы</label>
-      <select class="form-control" v-model="data.experience">
-        <option v-for="[key, value] in Object.entries(experiences)" :value="key" :key="key" :selected="key === data.experience">
-          {{ value }}
-        </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="name">Образование</label>
-      <select class="form-control" v-model="data.education">
-        <option v-for="[key, value] in Object.entries(education)" :value="key" :key="key" :selected="key === data.education">
-          {{ value}}
-        </option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label for="name">График работы</label>
-      <select class="form-control" v-model="data.schedule">
-        <option v-for="[key, value] in Object.entries(schedule)" :value="key" :key="key" :selected="key === data.schedule">
-          {{ value}}
-        </option>
-      </select>
-    </div>
+          <div class="flex flex-col items-center w-full">
 
-    <div class="form-group">
-      <label for="name">Обязанности</label>
-      <textarea
-          name="duties"
-          id="duties"
-          class="form-control"
-          v-model="data.duties"
-          placeholder="Обязанности" rows="5">
-          {{ data.duties }}
-        </textarea>
-    </div>
-    <div class="form-group">
-      <label for="name">Требования</label>
-      <textarea name="demands" id="demand" class="form-control"
-                v-model="data.demands"
-                placeholder="Требования" rows="5">{{ data.demands }}</textarea>
-    </div>
-    <div class="form-group">
-      <label for="name">Название вакансии</label>
-      <input type="text"
-             id="name"
-             class="form-control"
-             v-model="data.name">
-    </div>
-    <div class="form-group">
-      <label for="address">Адрес офиса</label>
-      <input type="text"
-             id="address"
-             class="form-control"
-             v-model="data.address">
-    </div>
-    <div class="form-group">
-      <label for="min_price">Зарплата</label>
-      <input type="text"
-             id="min_price"
-             class="form-control"
-             v-model="data.min_price">
-    </div>
-    <div class="form-group">
-      <label for="phone">Телефон</label>
-      <input type="text"
-             id="phone"
-             class="form-control"
-             v-model="data.phone">
-    </div>
-    <button class="btn btn-primary"
-            @click.prevent="submitted">Сохранить
-    </button>
-  </div>
+            <div class="mb-4 w-full sm:w-[27rem]">
+              <label for="name" class="pl-4 text-gray-500">Выберите направление</label>
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.category_id">
+                <option v-for="item in category" :value="item.id" :key="item.id"
+                        :selected="item.id === data.category_id">
+                  {{ item.name }}
+                </option>
+              </select>
+            </div>
 
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="name"
+                     placeholder="Название вакансии"
+                     v-model="data.name">
+              <label for="name" class="text-[#6E7191]">Название вакансии</label>
+            </div>
+
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="address"
+                     placeholder="Адрес офиса"
+                     v-model="data.address">
+              <label for="address" class="text-[#6E7191]">Адрес офиса</label>
+            </div>
+
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="phone"
+                     placeholder="Телефон"
+                     v-model="data.phone">
+              <label for="phone" class="text-[#6E7191]">Телефон</label>
+            </div>
+
+            <div class="mb-4 w-full sm:w-[27rem]">
+                  <textarea
+                      class="form-control forms-textarea"
+                      rows="5"
+                      name="duties"
+                      id="duties"
+                      placeholder="Обязанности"
+                      v-model="data.duties"
+                  >{{ data.duties }}</textarea>
+            </div>
+
+            <div class="mb-4 w-full sm:w-[27rem]">
+                  <textarea
+                      class="form-control forms-textarea"
+                      rows="5"
+                      name="demands"
+                      id="demand"
+                      placeholder="Требования"
+                      v-model="data.demands"
+                  >{{ data.demands }}</textarea>
+            </div>
+
+
+            <div class="mb-4 w-full sm:w-[27rem]">
+              <label for="name" class="pl-4 text-gray-500">Опыт работы</label>
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.experience">
+                <option v-for="[key, value] in Object.entries(experiences)" :value="key" :key="key"
+                        :selected="key === data.experience">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 w-full sm:w-[27rem]">
+              <label for="name" class="pl-4 text-gray-500">Образование</label>
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.education">
+                <option v-for="[key, value] in Object.entries(education)" :value="key" :key="key"
+                        :selected="key === data.education">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 w-full sm:w-[27rem]">
+              <label for="name" class="pl-4 text-gray-500">График работы</label>
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.schedule">
+                <option v-for="[key, value] in Object.entries(schedule)" :value="key" :key="key"
+                        :selected="key === data.schedule">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="min_price"
+                     placeholder="Зарплата"
+                     v-model="data.min_price">
+              <label for="min_price" class="text-[#6E7191]">Зарплата</label>
+            </div>
+
+            <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                    @click.prevent="submitted">Разместить
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
 import * as _ from "lodash";
 
 export default {
+  layout: 'hub',
   data() {
     return {
       data: {
@@ -115,34 +142,34 @@ export default {
   },
   computed: {
     experiences: {
-      get(){
+      get() {
         return _.cloneDeep(this.$store.getters['experiences/experience']);
       },
-      set(experience){
+      set(experience) {
         return experience
       }
     },
     education: {
-      get(){
+      get() {
         return _.cloneDeep(this.$store.getters['educations/education']);
       },
-      set(education){
+      set(education) {
         return education
       }
     },
     schedule: {
-      get(){
+      get() {
         return _.cloneDeep(this.$store.getters['schedules/schedule']);
       },
-      set(schedule){
+      set(schedule) {
         return schedule
       }
     },
     category: {
-      get(){
+      get() {
         return _.cloneDeep(this.$store.getters['categoriesVacancy/categoriesVacancies']);
       },
-      set(category){
+      set(category) {
         return category
       }
     },
