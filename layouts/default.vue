@@ -21,7 +21,7 @@ import GlobalNav from "../components/icons/GlobalNav";
 import TLogo from "../components/icons/TLogo";
 import UserNav from "../components/icons/UserNav";
 import UserNavWin from "../components/UserNavWin";
-import NavLoc from "../components/NavLoc";
+import NavLoc from "../components/NavLocJobs";
 export default {
   components: {
     UserNavWin,

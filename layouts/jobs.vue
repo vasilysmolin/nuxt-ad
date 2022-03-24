@@ -12,7 +12,7 @@
           @toogleBlock="toogleBlock"
       />
     </header>
-    <NavLoc/>
+    <NavLocJobs/>
     <Nuxt/>
   </main>
 </template>
@@ -22,13 +22,13 @@ import GlobalNav from "../components/icons/GlobalNav";
 import TLogo from "../components/icons/TLogo";
 import UserNav from "../components/icons/UserNav";
 import UserNavWin from "../components/UserNavWin";
-import NavLoc from "../components/NavLoc";
+import NavLocJobs from "../components/NavLocJobs";
 export default {
   components: {
     UserNavWin,
     TLogo,
     GlobalNav,
-    NavLoc,
+    NavLocJobs,
     UserNav
   },
   data() {

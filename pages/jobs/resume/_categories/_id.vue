@@ -1,16 +1,20 @@
 <template>
-  <main className="container box-border bg-slate-200">
-    <h1 className="text-3xl font-bold underline">resumes Object Page</h1>
-    <NavLoc/>
+  <section class="container flex flex-col items-center mt-[10px] pb-10 bg-blue-200">
+    <section class="flex flex-col w-[95%] sm:max-w-screen-sm bg-blue-300">
+
     <article>
       <section>
-        <h2 className="font-bold text-lg">{{ resume.name }}</h2>
-        <h3>{{ resume.price }}</h3>
+        <h1 class="font-bold text-lg">{{ resume.name }}</h1>
+        <!--<h2>Имя соискателя</h2>-->
+        <p>{{ resume.price }}</p>
+      </section>
+      <section>
         <p>{{ resume.description }}</p>
-        <span></span>
       </section>
     </article>
-  </main>
+
+    </section>
+  </section>
 </template>
 
 <script>
@@ -18,7 +22,7 @@ import * as _ from 'lodash';
 import {mapGetters} from "vuex";
 
 export default {
-  name: "VObject",
+  name: "RObject",
   layout: 'jobs',
   async mounted() {
     await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id});

@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import NavLoc from "../../components/NavLoc";
+import NavLoc from "../../components/NavLocJobs";
 export default {
   components: {NavLoc}
 }

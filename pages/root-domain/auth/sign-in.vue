@@ -72,7 +72,7 @@ export default {
     if(this.$route.query.from) {
       this.from = this.$route.query.from;
     }
-    this.$auth.logout();
+  //  this.$auth.logout();
   },
   methods: {
       submitted() {
@@ -82,11 +82,11 @@ export default {
             password: this.password
           },
         }).then(() => {
-          if(this.from === null) {
+     //     if(this.from === null) {
             document.location.href = process.env.HUB_URL + '/profile';
-          } else {
-            document.location.href = this.from
-          }
+    //      } else {
+    //        document.location.href = this.from
+     //     }
 
         }).catch(error => {
           this.errors = error.response.data.errors.message;
