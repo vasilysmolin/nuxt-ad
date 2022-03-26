@@ -141,7 +141,7 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('categoriesVacancy/getItems');
+    await this.$store.dispatch('categoriesResume/getItems');
     await this.$store.dispatch('experiences/getItems');
     await this.$store.dispatch('educations/getItems');
     await this.$store.dispatch('schedules/getItems');
@@ -173,7 +173,7 @@ export default {
     },
     category: {
       get() {
-        return _.cloneDeep(this.$store.getters['categoriesResume/categoriesResume']);
+        return _.cloneDeep(this.$store.getters['categoriesResume/categoriesResumes']);
       },
       set(category) {
         return category
