@@ -2,7 +2,7 @@
   <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-10">
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h1 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ resume.name }}</h1>
+      <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ resume.name }}</h1>
       <!--<h2>Имя соискателя</h2>-->
       <p class="mt-2 text-xl sm:text-2xl font-bold">{{ resume.price }}<span class="pl-2 text-sm">руб.</span></p>
     </section>

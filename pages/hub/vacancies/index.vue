@@ -8,7 +8,7 @@ export default {
   components: {VHubList},
   layout: 'hub',
   head: {
-    title: "Бесплатно создавайте вакансии без ограничений на Tapigo.ru | Работа",
+    title: "Мои вакансии на Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]

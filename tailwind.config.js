@@ -9,6 +9,9 @@ module.exports = {
 		'./node_modules/tw-elements/dist/js/**/*.js'
 	],
 	theme: {
+		fontFamily: {
+			'sans': ['Roboto', 'sans-serif']
+		},
 		container: {
 			center: true,
 		},

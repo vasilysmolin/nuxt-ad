@@ -63,6 +63,12 @@ export default {
   name: 'Profile',
   components: {NavLocProfile},
   layout: 'hub',
+  head: {
+    title: "Профиль пользователя Тапиго",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Список'}
+    ]
+  },
   data() {
     return {
       user: {

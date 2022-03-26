@@ -11,7 +11,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Профиль пользователя Тапиго',
+        title: 'Тапиго | Бесплатный каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание своего ресторана',
         meta: [
             {charset: 'utf-8'},
             {name: 'viewport', content: 'width=device-width, initial-scale=1'},
@@ -20,15 +20,12 @@ export default {
             {
                 hid: 'og:image',
                 property: 'og:image',
-                content: 'https://y.yarn.co/451fe9c2-9ac8-415a-8499-f24e157f128a_thumb.jpg'
+                content: ''
             }
         ],
         link: [
             {rel: 'icon', type: 'image/png', href: '/favicon-32x32.png'},
             {rel: 'apple-touch-icon', type: 'image/png', href: '/apple-touch-icon-180x180.png'},
-            // {rel: 'preconnect', href: 'https://fonts.googleapis.com'},
-            // {rel: 'preconnect', href: 'https://fonts.googleapis.com', crossorigin: true},
-            // {rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'}
         ],
         script: [
             {hid: 'stripe', src: '/node_modules/tw-elements/dist/js/index.min.js', defer: true}
@@ -69,15 +66,6 @@ export default {
         port: process.env.NUXT_PORT || 3000, // default: localhost
     },
 
-    googleFonts: {
-        families: {
-            Roboto: true,
-        },
-        display: 'swap',
-        subsets: 'cyrillic',
-        preconnect: true,
-        preload: true,
-    },
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -105,7 +93,6 @@ export default {
         ],
         '@nuxtjs/tailwindcss',
         '@nuxt/postcss8',
-        '@nuxtjs/google-fonts'
     ],
 
     basic: {

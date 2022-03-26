@@ -122,6 +122,12 @@ import * as _ from "lodash";
 
 export default {
   layout: 'hub',
+  head: {
+    title: "Создать новую вакансию на Тапиго",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Список'}
+    ]
+  },
   data() {
     return {
       data: {

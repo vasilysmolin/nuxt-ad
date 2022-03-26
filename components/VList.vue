@@ -3,7 +3,7 @@
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(vacancy)">
-          <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.name }}</h2>
+          <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.name }}</h2>
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ vacancy.min_price }}<span class="pl-1 text-xs">руб.</span></h3>
           <div class="flex justify-between w-full">
             <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>

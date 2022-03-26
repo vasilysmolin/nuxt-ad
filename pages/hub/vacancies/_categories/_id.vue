@@ -135,6 +135,12 @@ import {mapGetters} from "vuex";
 export default {
   name: "VObject",
   layout: 'hub',
+  head: {
+    title: "Редактировать вакансию на Тапиго",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Список'}
+    ]
+  },
   data() {
     return {
       data: {},
