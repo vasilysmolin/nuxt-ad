@@ -22,7 +22,7 @@
         <NuxtLink to="/rest">Рестораны</NuxtLink>
       </li>
 
-      <li v-if="!isPerson"  class="pl-4 sm:pl-6">
+      <li v-if="isPerson === false"  class="pl-4 sm:pl-6">
         <NuxtLink to="/eat">Еда</NuxtLink>
       </li>
 
