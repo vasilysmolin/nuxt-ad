@@ -5,7 +5,7 @@
         <NuxtLink to="/profile">Профиль</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
-        <NuxtLink to="/add">Обьявления</NuxtLink>
+        <NuxtLink to="/ads">Обьявления</NuxtLink>
       </li>
 
       <li v-if="isPerson" class="pl-4 sm:pl-6">
