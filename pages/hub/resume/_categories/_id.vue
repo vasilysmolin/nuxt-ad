@@ -113,7 +113,7 @@
               <input type="text"
                      class="form-control forms-input" id="min_price"
                      placeholder="Зарплата"
-                     v-model="data.min_price">
+                     v-model="data.price">
               <label for="min_price" class="text-[#6E7191]">Зарплата</label>
             </div>
 

@@ -24,7 +24,7 @@
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
                      v-model="data.name">
-              <label for="name" class="text-[#6E7191]">Название вакансии</label>
+              <label for="name" class="text-[#6E7191]">Название резюме</label>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -103,7 +103,7 @@
               <input type="text"
                      class="form-control forms-input" id="min_price"
                      placeholder="Зарплата"
-                     v-model="data.min_price">
+                     v-model="data.price">
               <label for="min_price" class="text-[#6E7191]">Зарплата</label>
             </div>
 
@@ -132,8 +132,7 @@ export default {
     return {
       data: {
         name: '',
-        min_price: 500,
-        max_price: 0,
+        price: 500,
         category_id: null,
         address: '',
         phone: '',

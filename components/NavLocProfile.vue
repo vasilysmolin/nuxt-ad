@@ -11,7 +11,6 @@
       <li v-if="isPerson" class="pl-4 sm:pl-6">
         <NuxtLink to="/vacancies">Вакансии</NuxtLink>
       </li>
-
       <li v-else class="pl-4 sm:pl-6">
         <NuxtLink to="/resume">Резюме</NuxtLink>
       </li>
