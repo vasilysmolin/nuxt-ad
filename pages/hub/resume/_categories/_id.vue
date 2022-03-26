@@ -136,7 +136,7 @@ export default {
   name: "VObject",
   layout: 'hub',
   head: {
-    title: "Редактировать вакансию на Тапиго",
+    title: "Редактировать резюме на Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
@@ -163,9 +163,9 @@ export default {
 
   },
   async mounted() {
-    await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id});
-    this.data = _.cloneDeep(this.$store.getters['vacancies/vacancy']);
-    await this.$store.dispatch('categoriesVacancy/getItems');
+    await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id});
+    this.data = _.cloneDeep(this.$store.getters['resumes/resume']);
+    await this.$store.dispatch('categoriesResume/getItems');
     await this.$store.dispatch('experiences/getItems');
     await this.$store.dispatch('educations/getItems');
     await this.$store.dispatch('schedules/getItems');
@@ -197,7 +197,7 @@ export default {
     },
     category: {
       get() {
-        return _.cloneDeep(this.$store.getters['categoriesVacancy/categoriesVacancies']);
+        return _.cloneDeep(this.$store.getters['categoriesResume/categoriesResumes']);
       },
       set(category) {
         return category
@@ -254,8 +254,8 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$put(`vacancies/${this.$route.params.id}`, this.data).then(() => {
-          this.$router.push({name: 'vacancies'});
+      this.$axios.$put(`resume/${this.$route.params.id}`, this.data).then(() => {
+          this.$router.push({name: 'resume'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);

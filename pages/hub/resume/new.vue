@@ -123,7 +123,7 @@ import * as _ from "lodash";
 export default {
   layout: 'hub',
   head: {
-    title: "Создать новую вакансию на Тапиго",
+    title: "Создать новое резюме на Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
@@ -173,7 +173,7 @@ export default {
     },
     category: {
       get() {
-        return _.cloneDeep(this.$store.getters['categoriesVacancy/categoriesVacancies']);
+        return _.cloneDeep(this.$store.getters['categoriesResume/categoriesResume']);
       },
       set(category) {
         return category
@@ -182,8 +182,8 @@ export default {
   },
   methods: {
     submitted() {
-      this.$axios.$post(`vacancies`, this.data).then(() => {
-        this.$router.push({name: 'vacancies'});
+      this.$axios.$post(`resume`, this.data).then(() => {
+        this.$router.push({name: 'resume'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
