@@ -83,6 +83,9 @@ export default {
           },
         }).then(() => {
      //     if(this.from === null) {
+          setTimeout(() => {
+            document.location.href = process.env.HUB_URL + '/profile';
+          }, 400);
     //      } else {
     //        document.location.href = this.from
      //     }
@@ -90,9 +93,7 @@ export default {
         }).catch(error => {
           this.errors = error.response.data.errors.message;
         });
-        setTimeout(() => {
-          document.location.href = process.env.HUB_URL + '/profile';
-        }, 0);
+
       },
     },
 };

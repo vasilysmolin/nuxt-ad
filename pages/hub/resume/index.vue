@@ -8,7 +8,7 @@ export default {
   components: {RHubList},
   layout: 'hub',
   head: {
-    title: "Бесплатно создавайте резюме без ограничений на Tapigo.ru | Работа",
+    title: "Мои резюме на Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]

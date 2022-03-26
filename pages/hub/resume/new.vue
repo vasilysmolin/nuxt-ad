@@ -2,10 +2,7 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-4 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
-          вакансию</h1>
-
-        <h2 class="mb-4 w-full text-base text-black font-bold text-center leading-none truncate">{{ data.name }}</h2>
+        <h1 class="mb-5 w-full text-xl text-black font-bold text-center leading-none truncate">Создать вакансию</h1>
 
         <form class="w-[95%]">
 
@@ -28,9 +25,6 @@
                      placeholder="Название вакансии"
                      v-model="data.name">
               <label for="name" class="text-[#6E7191]">Название вакансии</label>
-              <span v-if="nameErrors" class="caption-2 px-1 pt-s c-error">
-            {{ nameErrors }}
-            </span>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -47,9 +41,6 @@
                      placeholder="Телефон"
                      v-model="data.phone">
               <label for="phone" class="text-[#6E7191]">Телефон</label>
-              <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
-            {{ phoneErrors }}
-            </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -74,6 +65,7 @@
                   >{{ data.demands }}</textarea>
             </div>
 
+
             <div class="mb-4 w-full sm:w-[27rem]">
               <label for="name" class="pl-4 text-gray-500">Опыт работы</label>
               <select class="form-select form-select-lg mt-2 forms-select"
@@ -96,7 +88,6 @@
               </select>
             </div>
 
-
             <div class="mb-4 w-full sm:w-[27rem]">
               <label for="name" class="pl-4 text-gray-500">График работы</label>
               <select class="form-select form-select-lg mt-2 forms-select"
@@ -108,7 +99,6 @@
               </select>
             </div>
 
-
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="min_price"
@@ -118,7 +108,7 @@
             </div>
 
             <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
-                    @click.prevent="submitted">Сохранить
+                    @click.prevent="submitted">Разместить
             </button>
           </div>
         </form>
@@ -128,43 +118,29 @@
 </template>
 
 <script>
-import * as _ from 'lodash';
-import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
-import {mapGetters} from "vuex";
+import * as _ from "lodash";
 
 export default {
-  name: "VObject",
   layout: 'hub',
   head: {
-    title: "Редактировать вакансию на Тапиго",
+    title: "Создать новую вакансию на Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
   data() {
     return {
-      data: {},
+      data: {
+        name: '',
+        min_price: 500,
+        max_price: 0,
+        category_id: null,
+        address: '',
+        phone: '',
+      }
     }
   },
-  validations: {
-    data: {
-      name: {
-        required,
-        maxLength: maxLength(255),
-        minLength: minLength(2)
-      },
-      phone: {
-        required,
-        numeric,
-        maxLength: maxLength(20),
-        minLength: minLength(9)
-      },
-    },
-
-  },
   async mounted() {
-    await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id});
-    this.data = _.cloneDeep(this.$store.getters['vacancies/vacancy']);
     await this.$store.dispatch('categoriesVacancy/getItems');
     await this.$store.dispatch('experiences/getItems');
     await this.$store.dispatch('educations/getItems');
@@ -203,66 +179,16 @@ export default {
         return category
       }
     },
-    nameErrors: {
-      get() {
-        if (!this.$v.data.name.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.name.required) {
-          return 'Введите название';
-        }
-
-        if (!this.$v.data.name.maxLength) {
-          return 'Превышена допустимая длина названия';
-        }
-        if (!this.$v.data.name.minLength) {
-          return 'Ошибка, минимальное значение';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    phoneErrors() {
-      if (!this.$v.data.phone.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.phone.required) {
-        return 'Введите телефон';
-      }
-
-      if (!this.$v.data.phone.maxLength) {
-        return 'Превышена допустимая длина названия';
-      }
-      if (!this.$v.data.phone.minLength) {
-        return 'Ошибка, минимальное значение';
-      }
-      if (!this.$v.data.phone.numeric) {
-        return 'Укажите только числа, без других символов';
-      }
-
-      return '';
-    },
   },
   methods: {
     submitted() {
-      if (this.$v.$invalid) {
-        this.$v.$touch();
-        return;
-      }
-      this.$axios.$put(`vacancies/${this.$route.params.id}`, this.data).then(() => {
-          this.$router.push({name: 'vacancies'});
-        console.log('успех')
+      this.$axios.$post(`vacancies`, this.data).then(() => {
+        this.$router.push({name: 'vacancies'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
       });
-
-    },
+    }
   },
 }
 </script>
