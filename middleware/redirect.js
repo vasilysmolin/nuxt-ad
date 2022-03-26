@@ -1,7 +1,7 @@
 export default function ({ $auth, redirect  }) {
-    setTimeout(() => {
+    // setTimeout(() => {
         if (!$auth.loggedIn) {
             return redirect(process.env.AUTH_URL);
         }
-    }, 3000);
+    // }, 3000);
 }

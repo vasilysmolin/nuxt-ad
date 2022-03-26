@@ -26,13 +26,13 @@
 export default {
   name: "NavLocProfile",
   mounted() {
-    this.user = this.$auth.user;
+
   },
   computed: {
     isPerson: {
       get(){
-        if(this.user != null && this.user.profile != null) {
-          if(this.user.profile.isPerson === true) {
+        if(this.$auth.user != null && this.$auth.user.profile != null) {
+          if(this.$auth.user.profile.isPerson === true) {
             return true;
           }
         }

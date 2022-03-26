@@ -13,6 +13,7 @@ export default {
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
+  middleware: ['redirect', 'person'],
 }
 </script>
 

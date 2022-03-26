@@ -78,6 +78,7 @@ export default {
       },
     }
   },
+  middleware: ['redirect', 'person'],
   mounted() {
     this.user = this.$auth.user;
   },
