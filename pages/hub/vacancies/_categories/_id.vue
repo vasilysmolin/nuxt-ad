@@ -255,7 +255,7 @@ export default {
         return;
       }
       this.$axios.$put(`vacancies/${this.$route.params.id}`, this.data).then(() => {
-        this.$router.push({name: 'vacancies'});
+          this.$router.push({name: 'vacancies'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);

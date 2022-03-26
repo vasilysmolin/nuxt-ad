@@ -182,8 +182,12 @@ export default {
   },
   methods: {
     submitted() {
-      this.$axios.$post(`vacancies`, this.data);
-      document.location.href = process.env.HUB_URL + '/vacancies';
+      this.$axios.$post(`vacancies`, this.data).then(() => {
+        this.$router.push({name: 'vacancies'});
+      }).catch((error) => {
+        // console.log(error.response.data.errors);
+        // this.$v.nameErrors = 'какой-то текст';
+      });
     }
   },
 }
