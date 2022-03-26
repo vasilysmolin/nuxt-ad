@@ -83,7 +83,9 @@ export default {
           },
         }).then(() => {
      //     if(this.from === null) {
+          setTimeout(() => {
             document.location.href = process.env.HUB_URL + '/profile';
+          }, 0);
     //      } else {
     //        document.location.href = this.from
      //     }
