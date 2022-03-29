@@ -1,7 +1,7 @@
 <template>
   <section class="container flex flex-col items-center mt-[20px] pb-10">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
-      <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
+      <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
           <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.name }}</h2>
           <p class="text-sm">{{vacancy.state}}</p>
         <NuxtLink :to="getUrl(vacancy)">

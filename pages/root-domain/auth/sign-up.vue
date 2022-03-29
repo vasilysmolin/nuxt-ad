@@ -8,7 +8,7 @@
             <label class="form-check-label mb-1.5 inline-block text-sm text-black font-bold">Создать компанию</label>
             <input
                 class="form-check-input appearance-none w-9 ml-0 rounded-full float-left h-5 align-top bg-white bg-no-repeat bg-contain bg-gray-300 focus:outline-none cursor-pointer shadow-sm"
-                type="checkbox" :id="checked" v-model="checked" role="switch">
+                type="checkbox" :id="is_person" v-model="is_person" role="switch">
           </div>
         </div>
         <div class="flex flex-col items-center w-full">
@@ -91,7 +91,7 @@ export default {
   data() {
     return {
       email: '',
-      checked: false,
+      is_person: false,
       phone: '',
       password: '',
       from: process.env.HUB_URL + '/profile',
@@ -104,7 +104,7 @@ export default {
     submitted() {
       this.$axios.$post(`auth/register`, {
         email: this.email,
-        checked: this.checked,
+        is_person: this.is_person,
         password: this.password
       })
           .then((res) => {
