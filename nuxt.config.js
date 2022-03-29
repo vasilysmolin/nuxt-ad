@@ -83,7 +83,7 @@ export default {
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         [ "k-domains", {
-            subDomains: ['jobs','hub', 'office', 'catalog'], // List of directories to hold te pages for your subdomains
+            subDomains: ['jobs','hub', 'office', 'catalog', 'uslugi'], // List of directories to hold te pages for your subdomains
             rootDomain: "root-domain" //  directory to hold the pages for root domain
         }
         ],

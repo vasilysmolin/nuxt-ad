@@ -22,7 +22,7 @@ import * as _ from 'lodash';
 import {mapGetters} from "vuex";
 
 export default {
-  name: "VObject",
+  name: "CObject",
   layout: 'catalog',
   async mounted() {
     console.log(123);
