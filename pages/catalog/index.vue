@@ -1,12 +1,18 @@
 <template>
-  <h1>Catalog Index</h1>
+  <CatalogList />
 </template>
 
 <script>
-import NavLoc from "../../components/NavLocJobs";
+import CatalogList from "../../components/CatalogList";
 export default {
-  components: {NavLoc}
+  components: {CatalogList},
+  layout: 'catalog',
+  head: {
+    title: "Бесплатно создавайте объявления без ограничений на Tapigo.ru | Работа",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Список'}
+    ]
+  },
 }
-
-
 </script>
+
