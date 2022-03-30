@@ -2,15 +2,15 @@
   <div v-show="tougle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
     <div class="flex justify-start w-full pb-5">
       <p v-if="isPerson" class="text-sm font-bold" @click="hub">
-        <nuxt-link to="" class="flex justify-start items-center hover:text-blue-600">
+        <a @click="hub" class="flex justify-start items-center hover:text-blue-600">
           <UserLLC/>
           <span class="pl-4">Личный кабинет</span>
-        </nuxt-link>
+        </a>
       </p>
 
       <p v-else class="text-sm font-bold">
-        <nuxt-link to="" class="flex justify-start items-center hover:text-blue-600">
-          <AddManager/><span class="pl-4">Личный кабинет</span></nuxt-link>
+        <a @click="hub" class="flex justify-start items-center hover:text-blue-600">
+          <AddManager/><span class="pl-4">Личный кабинет</span></a>
       </p>
 
     </div>
