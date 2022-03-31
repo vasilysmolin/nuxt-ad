@@ -18,13 +18,13 @@
     <article class="flex flex-col items-start mt-6 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="font-black text-lg leading-5 sm:text-2xl">Поиск исполнителя</h2>
       <p class="mt-3 text-sm sm:text-base text-gray-700">Забить гвоздь, помыть и убрать помещение, отремонтировать бытовую технику, починить электронику, муж на час и многое другое.</p>
-      <p class="mt-3 text-gray-400">В самое ближайшее время</p>
+      <p class="mt-3 font-bold" @click="uslugi"><nuxt-link to="" class="text-blue-600">Найти исполнителя</nuxt-link></p>
     </article>
 
     <article class="flex flex-col items-start mt-4 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="font-black text-lg leading-5 sm:text-2xl">Каталог обьявлений</h2>
       <p class="mt-3 text-sm sm:text-base text-gray-700">Бесплатный каталог почти по всем направлениям &mdash; продать или купить, найти работу или подработку, хэндмэй и барахолка.</p>
-      <p class="mt-3 text-gray-400">Уже почти доступен</p>
+      <p class="mt-3 font-bold" @click="catalog"><nuxt-link to="" class="text-blue-600">Смотреть обьявления</nuxt-link></p>
     </article>
 
     <article class="flex flex-col items-start mt-4 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
@@ -48,6 +48,12 @@ export default {
     },
     resume() {
       document.location.href = process.env.JOBS_URL + '/resume';
+    },
+    uslugi() {
+      document.location.href = process.env.USLUGI_URL;
+    },
+    catalog() {
+      document.location.href = process.env.CATALOG_URL;
     }
   }
 }
