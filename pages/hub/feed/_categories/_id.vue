@@ -15,10 +15,11 @@
               <label for="name" class="pl-4 text-gray-500">Категории</label>
               <select class="form-select form-select-lg mt-2 forms-select"
                       v-model="data.category_id">
-                <option v-for="item in category" :value="item.id" :key="item.id"
-                        :selected="item.id === data.category_id">
-                  {{ item.name }}
-                </option>
+                  <option v-for="item in category" :value="item.id" :key="item.id"
+                          :selected="item.id === data.category_id">
+                    {{ item.name }}
+                  </option>
+
               </select>
             </div>
 
@@ -142,8 +143,8 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$put(`ads/${this.$route.params.id}`, this.data).then(() => {
-          this.$router.push({name: 'ads'});
+      this.$axios.$put(`declarations/${this.$route.params.id}`, this.data).then(() => {
+          this.$router.push({name: 'feed'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);
@@ -151,6 +152,9 @@ export default {
       });
 
     },
+    isParent(category) {
+      return category.parent_id === null;
+    }
   },
 }
 </script>

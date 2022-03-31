@@ -144,8 +144,8 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$post(`ads`, this.data).then(() => {
-        this.$router.push({name: 'ads'});
+      this.$axios.$post(`declarations`, this.data).then(() => {
+        this.$router.push({name: 'feed'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);
