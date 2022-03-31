@@ -22,6 +22,12 @@
 
 <script>
 export default {
+  head: {
+    title: "Бесплатно создавайте вакансии и резюме без ограничений на Tapigo.ru | Работа",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Список'}
+    ]
+  },
   methods: {
     vacancies() {
       document.location.href = process.env.JOBS_URL + '/vacancies';
