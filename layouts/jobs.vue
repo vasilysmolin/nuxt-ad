@@ -1,7 +1,14 @@
 <template>
   <main>
     <header class="fixed top-0 flex justify-between items-center w-full bg-[#F7F7FC] px-5 py-4 z-50">
-      <GlobalNav/>
+      <GlobalNav
+          :toggleG="isHiddenG"
+          @toggleGBlock="toggleGBlock"
+      />
+      <GlobalNavWin
+          :toggleG="isHiddenG"
+          @toggleGBlock="toggleGBlock"
+      />
       <TLogo/>
       <UserNav
           :toggle="isHidden"
@@ -23,8 +30,10 @@ import TLogo from "../components/icons/TLogo";
 import UserNav from "../components/icons/UserNav";
 import UserNavWin from "../components/UserNavWin";
 import NavLocJobs from "../components/NavLocJobs";
+import GlobalNavWin from "../components/GlobalNavWin";
 export default {
   components: {
+    GlobalNavWin,
     UserNavWin,
     TLogo,
     GlobalNav,
@@ -34,12 +43,16 @@ export default {
   data() {
     return {
       isHidden: false,
+      isHiddenG: false,
       open: false,
     }
   },
   methods: {
     toggleBlock(bool) {
       this.isHidden = bool;
+    },
+    toggleGBlock(bool) {
+      this.isHiddenG = bool;
     }
   },
 

@@ -10,7 +10,8 @@
     textarea::-webkit-input-placeholder {
         color: #6E7191;
     }
-    svg.usernav {
+    svg.usernav,
+    svg.globalnav {
         cursor: pointer;
     }
     .forms-input {
