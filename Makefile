@@ -14,3 +14,6 @@ setup:
 
 lint-fix:
 	npx eslint --fix .
+
+lint-fix2:
+	npx eslint --fix .
