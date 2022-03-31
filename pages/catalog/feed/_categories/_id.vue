@@ -25,7 +25,6 @@ export default {
   name: "CObject",
   layout: 'catalog',
   async mounted() {
-    console.log(123);
     await this.$store.dispatch('ads/getItem', { id: this.$route.params.id });
   },
   computed: {

@@ -16,11 +16,11 @@ export const mutations = {
 
 export const actions = {
 	async getItems({commit}) {
-		const categoriesAds = await this.$axios.$get('category-ads?skip=0&take=100');
+		const categoriesAds = await this.$axios.$get('category-declarations?skip=0&take=100');
 		commit('setcategoriesAds', categoriesAds.catalog_ad_categories);
 	},
 	async addItems({commit},{skip = 0}) {
-		const categoriesAds = await this.$axios.$get(`category-ads?skip=${skip}&take=25`);
+		const categoriesAds = await this.$axios.$get(`category-declarations?skip=${skip}&take=25`);
 		commit('addcategoriesAds', categoriesAds.catalog_ad_categories);
 	},
 	async removeItems({commit}) {

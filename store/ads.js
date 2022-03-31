@@ -35,7 +35,7 @@ export const mutations = {
 
 export const actions = {
 	async getItems({commit},{userID = null, status = 'active', from = null}) {
-		const ads = await this.$axios.$get(`ads?skip=0&take=25&user_id=${userID}&status=${status}&from=${from}`);
+		const ads = await this.$axios.$get(`declarations?skip=0&take=25&user_id=${userID}&status=${status}&from=${from}`);
 
 		if(status === 'new'){
 			commit('setadsNew', ads.catalog_ads);
@@ -46,7 +46,7 @@ export const actions = {
 		}
 	},
 	async addItems({commit},{skip = 0, userID = null, status = 'active', from = null}) {
-		const ads = await this.$axios.$get(`ads?skip=${skip}&take=25&user_id=${userID}&status=${status}&from=${from}`);
+		const ads = await this.$axios.$get(`declarations?skip=${skip}&take=25&user_id=${userID}&status=${status}&from=${from}`);
 		if(status === 'new'){
 			commit('addadsNew', ads.catalog_ads);
 		} else {
@@ -57,7 +57,7 @@ export const actions = {
 		commit('removeads');
 	},
 	async getItem({commit},{id}) {
-		const ad = await this.$axios.$get( 'ads/' + id);
+		const ad = await this.$axios.$get( 'declarations/' + id);
 		commit('setad', ad);
 	}
 };

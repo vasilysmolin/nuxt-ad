@@ -40,7 +40,7 @@ export default {
         addItems: 'ads/addItems',
       }),
     getUrl(ad) {
-      let cat = `/${ ad.categories ? ad.categories.alias : 'none'}`;
+      let cat = `/feed/${ ad.categories ? ad.categories.alias : 'none'}`;
       return  cat + '/' + `${ ad.alias}`
     }
   },
