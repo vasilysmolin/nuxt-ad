@@ -1,14 +1,14 @@
 <template>
-  <div v-show="tougle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
+  <div v-show="toggle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
     <div class="flex justify-start w-full pb-5">
-      <p v-if="isPerson" class="text-sm font-bold" @click="hub">
+      <p v-if="isPerson" class="text-sm font-bold cursor-pointer" @click="hub">
         <a @click="hub" class="flex justify-start items-center hover:text-blue-600">
           <UserLLC/>
           <span class="pl-4">Личный кабинет</span>
         </a>
       </p>
 
-      <p v-else class="text-sm font-bold">
+      <p v-else class="text-sm font-bold cursor-pointer">
         <a @click="hub" class="flex justify-start items-center hover:text-blue-600">
           <AddManager/><span class="pl-4">Личный кабинет</span></a>
       </p>
@@ -48,7 +48,7 @@ import UserNav from "./icons/UserNav";
 export default {
   name: "UserNavWin",
   props: {
-    tougle: {
+    toggle: {
       type: Boolean,
       default: false
     }
@@ -91,7 +91,7 @@ export default {
     },
     close(event) {
       if(event.target.className.baseVal !== 'usernav') {
-        this.$emit('toogleBlock', false);
+        this.$emit('toggleBlock', false);
       }
     },
     hub() {

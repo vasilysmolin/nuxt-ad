@@ -4,12 +4,12 @@
       <GlobalNav/>
       <TLogo/>
       <UserNav
-          :tougle="isHidden"
-          @toogleBlock="toogleBlock"
+          :toggle="isHidden"
+          @toggleBlock="toggleBlock"
       />
       <UserNavWin
-          :tougle="isHidden"
-          @toogleBlock="toogleBlock"
+          :toggle="isHidden"
+          @toggleBlock="toggleBlock"
       />
     </header>
     <Nuxt/>
@@ -35,7 +35,7 @@ export default {
     }
   },
   methods: {
-    toogleBlock(bool) {
+    toggleBlock(bool) {
       this.isHidden = bool;
     }
   },

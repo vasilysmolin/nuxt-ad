@@ -13,7 +13,7 @@
 export default {
   name: "UserNav",
   props: {
-    tougle: {
+    toggle: {
         type: Boolean,
         default: false
       }
@@ -21,7 +21,7 @@ export default {
   methods: {
     submitted() {
       if (this.$auth.loggedIn) {
-        this.$emit('toogleBlock', !this.props);
+        this.$emit('toggleBlock', !this.props);
         // document.location.href = process.env.HUB_URL + '/profile';
       } else {
         document.location.href = process.env.AUTH_URL;
