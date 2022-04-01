@@ -2,24 +2,21 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-4 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
+        <h1 class="mb-4 w-full text-xl text-black font-bold text-center leading-none truncate">Создать
           объявление</h1>
-
-        <h2 class="mb-4 w-full text-base text-black font-bold text-center leading-none truncate">{{ data.name }}</h2>
 
         <form class="w-[95%]">
 
           <div class="flex flex-col items-center w-full">
 
             <div class="mb-4 w-full sm:w-[27rem]">
-              <label for="name" class="pl-4 text-gray-500">Категории</label>
+              <label for="name" class="pl-4 text-gray-500">Категория</label>
               <select class="form-select form-select-lg mt-2 forms-select"
                       v-model="data.category_id">
-                  <option v-for="item in category" :value="item.id" :key="item.id"
-                          :selected="item.id === data.category_id">
-                    {{ item.name }}
-                  </option>
-
+                <option v-for="item in category" :value="item.id" :key="item.id"
+                        :selected="item.id === data.category_id">
+                  {{ item.name }}
+                </option>
               </select>
             </div>
 
@@ -61,7 +58,7 @@
             </div>
 
             <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
-                    @click.prevent="submitted">Сохранить
+                    @click.prevent="submitted">Разместить
             </button>
           </div>
         </form>
@@ -86,7 +83,13 @@ export default {
   },
   data() {
     return {
-      data: {},
+      data: {
+        name: '',
+        price: 500,
+        sale_price: 500,
+        category_id: null,
+        description: '',
+      },
     }
   },
   validations: {
@@ -100,8 +103,6 @@ export default {
 
   },
   async mounted() {
-    await this.$store.dispatch('ads/getItem', {id: this.$route.params.id});
-    this.data = _.cloneDeep(this.$store.getters['ads/ad']);
     await this.$store.dispatch('categoriesAd/getItems');
   },
   computed: {
@@ -143,8 +144,8 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$put(`declarations/${this.$route.params.id}`, this.data).then(() => {
-          this.$router.push({name: 'feed'});
+      this.$axios.$post(`declarations`, this.data).then(() => {
+        this.$router.push({name: 'catalog'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);
@@ -152,9 +153,6 @@ export default {
       });
 
     },
-    isParent(category) {
-      return category.parent_id === null;
-    }
   },
 }
 </script>
