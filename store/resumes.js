@@ -1,3 +1,5 @@
+import { params } from '../helper/requestParams';
+
 export const state = () => ({
 	resumes: [],
 	resumesNew: [],
@@ -34,8 +36,9 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{userID = null,status = 'active', from = null}) {
-		const resumes = await this.$axios.$get(`resume?skip=0&take=25&user_id=${userID}&status=${status}&from=${from}`);
+	async getItems({commit},{userID = null,status = 'active', from = null, expand = null}) {
+		const getParams = params({userID,status,expand,from});
+		const resumes = await this.$axios.$get(`resume?skip=0&take=25${getParams}`);
 		if(status === 'new'){
 			commit('setResumesNew', resumes.jobs_resumes);
 			commit('setAmountNew', resumes.meta.total);
@@ -44,8 +47,9 @@ export const actions = {
 			commit('setAmount', resumes.meta.total);
 		}
 	},
-	async addItems({commit},{skip = 0,userID = null,status = 'active', from = null}) {
-		const resumes = await this.$axios.$get(`resume?skip=${skip}&take=25&user_id=${userID}&status=${status}&from=${from}`);
+	async addItems({commit},{skip = 0,userID = null,status = 'active', from = null, expand = null}) {
+		const getParams = params({userID,status,expand,from,skip});
+		const resumes = await this.$axios.$get(`resume?take=25${getParams}`);
 		if(status === 'new'){
 			commit('addResumesNew', resumes.jobs_resumes);
 		} else {
@@ -55,13 +59,15 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeresumes');
 	},
-	async getItem({commit}, {id}) {
+	async getItem({commit}, {id,expand}) {
+		const getParams = params({expand});
 		commit('setresume', {});
 		if (id) {
-			await this.$axios.$get( 'resume/' + id).then((response) => {
+			await this.$axios.$get( `resume/${id}?${getParams}`).then((response) => {
 				commit('setresume', response);
 			});
 		}
+
 	}
 };
 

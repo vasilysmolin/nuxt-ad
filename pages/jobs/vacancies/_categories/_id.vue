@@ -10,7 +10,9 @@
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-gray-600">Контактное лицо</h2>
       <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.phone }}</p>
+      <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ getUsername(vacancy)}}</p>
     </section>
+
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Обязанности</h2>
@@ -39,7 +41,12 @@ export default {
   name: "VObject",
   layout: 'jobs',
   async mounted() {
-    await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id });
+    await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id, expand: 'profile.user' });
+  },
+  methods: {
+    getUsername(vacancy) {
+      return vacancy?.profile?.user?.name
+    }
   },
   computed: {
     vacancy() {

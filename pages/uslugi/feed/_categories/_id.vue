@@ -13,6 +13,7 @@
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-gray-600">Контактное лицо</h2>
       <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ service.phone }}</p>
+      <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ getUsername(service)}}</p>
     </section>
 
 
@@ -28,7 +29,12 @@ export default {
   name: "SObject",
   layout: 'service',
   async mounted() {
-    await this.$store.dispatch('services/getItem', { id: this.$route.params.id });
+    await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
+  },
+  methods: {
+    getUsername(vacancy) {
+      return vacancy?.profile?.user?.name
+    }
   },
   computed: {
     service() {

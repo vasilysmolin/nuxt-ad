@@ -1,3 +1,5 @@
+import { params } from '../helper/requestParams';
+
 export const state = () => ({
 	ads: [],
 	amount: null,
@@ -34,8 +36,9 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{userID = null, status = 'active', from = null}) {
-		const ads = await this.$axios.$get(`declarations?skip=0&take=25&user_id=${userID}&status=${status}&from=${from}`);
+	async getItems({commit},{userID = null, status = 'active', from = null, expand = null}) {
+		const getParams = params({userID,status,expand,from});
+		const ads = await this.$axios.$get(`declarations?skip=0&take=25&${getParams}`);
 
 		if(status === 'new'){
 			commit('setadsNew', ads.catalog_ads);
@@ -45,8 +48,9 @@ export const actions = {
 			commit('setAmount', ads.meta.total);
 		}
 	},
-	async addItems({commit},{skip = 0, userID = null, status = 'active', from = null}) {
-		const ads = await this.$axios.$get(`declarations?skip=${skip}&take=25&user_id=${userID}&status=${status}&from=${from}`);
+	async addItems({commit},{skip = 0, userID = null, status = 'active', from = null, expand = null}) {
+		const getParams = params({userID,status,expand,from,skip});
+		const ads = await this.$axios.$get(`declarations?take=25&${getParams}`);
 		if(status === 'new'){
 			commit('addadsNew', ads.catalog_ads);
 		} else {
@@ -56,8 +60,9 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeads');
 	},
-	async getItem({commit},{id}) {
-		const ad = await this.$axios.$get( 'declarations/' + id);
+	async getItem({commit},{id,expand}) {
+		const getParams = params({expand});
+		const ad = await this.$axios.$get( `declarations/${id}?${getParams}`);
 		commit('setad', ad);
 	}
 };

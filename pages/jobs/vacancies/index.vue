@@ -1,5 +1,5 @@
 <template>
-  <VList v-bind:type="'vacancies'" />
+  <VList/>
 </template>
 
 <script>

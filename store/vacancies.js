@@ -1,3 +1,5 @@
+import { params } from '../helper/requestParams';
+
 export const state = () => ({
 	vacancies: [],
 	amount: null,
@@ -34,8 +36,9 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{userID = null, status = 'active', from = null}) {
-		const vacancies = await this.$axios.$get(`vacancies?skip=0&take=25&user_id=${userID}&status=${status}&from=${from}`);
+	async getItems({commit},{userID = null, status = 'active', expand = null, from = null}) {
+		const getParams = params({userID,status,expand,from});
+		const vacancies = await this.$axios.$get(`vacancies?skip=0&take=25${getParams}`);
 
 		if(status === 'new'){
 			commit('setVacanciesNew', vacancies.jobs_vacancies);
@@ -45,8 +48,9 @@ export const actions = {
 			commit('setAmount', vacancies.meta.total);
 		}
 	},
-	async addItems({commit},{skip = 0, userID = null, status = 'active', from = null}) {
-		const vacancies = await this.$axios.$get(`vacancies?skip=${skip}&take=25&user_id=${userID}&status=${status}&from=${from}`);
+	async addItems({commit},{skip = 0, userID = null, status = 'active', expand = null, from = null}) {
+		const getParams = params({userID,status,expand,from,skip});
+		const vacancies = await this.$axios.$get(`vacancies?take=25&${getParams}`);
 		if(status === 'new'){
 			commit('addVacanciesNew', vacancies.jobs_vacancies);
 		} else {
@@ -56,8 +60,9 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeVacancies');
 	},
-	async getItem({commit},{id}) {
-		const vacancy = await this.$axios.$get( 'vacancies/' + id);
+	async getItem({commit},{id,expand = null}) {
+		const getParams = params({expand});
+		const vacancy = await this.$axios.$get( `vacancies/${id}?${getParams}`);
 		commit('setVacancy', vacancy);
 	}
 };
