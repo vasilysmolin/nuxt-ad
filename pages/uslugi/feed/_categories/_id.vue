@@ -28,7 +28,6 @@ export default {
   name: "SObject",
   layout: 'service',
   async mounted() {
-    console.log(123);
     await this.$store.dispatch('services/getItem', { id: this.$route.params.id });
   },
   computed: {

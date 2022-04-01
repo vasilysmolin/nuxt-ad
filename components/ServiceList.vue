@@ -40,7 +40,7 @@ export default {
         addItems: 'services/servicedItems',
       }),
     getUrl(service) {
-      let cat = `/${ service.categories ? service.categories.alias : 'none'}`;
+      let cat = `/feed/${ service.categories ? service.categories.alias : 'none'}`;
       return  cat + '/' + `${ service.alias}`
     }
   },
