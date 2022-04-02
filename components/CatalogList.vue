@@ -4,6 +4,7 @@
       <article v-for="ad in ads" :key="ad.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(ad)">
           <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ ad.name }}</h2>
+          <img :src="ad.photo">
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ ad.price }}<span class="pl-1 text-xs">руб.</span></h3>
           <h4 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">Контакт</span>{{ getUsername(ad) }}<span class="pl-1 text-xs"></span></h4>
           <div class="flex justify-between w-full">
