@@ -29,6 +29,26 @@
       <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.additionally }}</p>
     </section>
 
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Категория</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getCategory(vacancy) }}</p>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Опыт работы</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getExperiences(vacancy) }}</p>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Образование</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getEducations(vacancy) }}</p>
+    </section>
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">График работы</h2>
+      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getSchedules(vacancy) }}</p>
+    </section>
+
+
   </article>
 
 </template>
@@ -42,11 +62,35 @@ export default {
   layout: 'jobs',
   async mounted() {
     await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id, expand: 'profile.user' });
+    if(Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0)  {
+      await this.$store.dispatch('categoriesVacancy/getItems');
+    }
+    if(Object.keys(this.$store.getters['experiences/experience']).length === 0) {
+      await this.$store.dispatch('experiences/getItems');
+    }
+    if(Object.keys(this.$store.getters['educations/education']).length === 0) {
+      await this.$store.dispatch('educations/getItems');
+    }
+    if(Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
+      await this.$store.dispatch('schedules/getItems');
+    }
   },
   methods: {
     getUsername(vacancy) {
       return vacancy?.profile?.user?.name
-    }
+    },
+    getCategory(vacancy) {
+      return this.category[vacancy.category_id]?.name ?? 'Не указана';
+    },
+    getEducations(vacancy) {
+      return this.education[vacancy.education] ?? 'Не указан';
+    },
+    getExperiences(vacancy) {
+      return this.experiences[vacancy.experience] ?? 'Не указан';
+    },
+    getSchedules(vacancy) {
+      return this.schedule[vacancy.schedule] ?? 'Не указан';
+    },
   },
   computed: {
     vacancy() {
@@ -55,6 +99,82 @@ export default {
     ...mapGetters({
       vacancies: 'vacancies/vacancies'
     }),
+    experiences: {
+      get() {
+        return _.cloneDeep(this.$store.getters['experiences/experience']);
+      },
+      set(experience) {
+        return experience
+      }
+    },
+    education: {
+      get() {
+        return _.cloneDeep(this.$store.getters['educations/education']);
+      },
+      set(education) {
+        return education
+      }
+    },
+    schedule: {
+      get() {
+        return _.cloneDeep(this.$store.getters['schedules/schedule']);
+      },
+      set(schedule) {
+        return schedule
+      }
+    },
+    category: {
+      get() {
+        return _.cloneDeep(this.$store.getters['categoriesVacancy/categoriesVacancies']);
+      },
+      set(category) {
+        return category
+      }
+    },
+    nameErrors: {
+      get() {
+        if (!this.$v.data.name.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.name.required) {
+          return 'Введите название';
+        }
+
+        if (!this.$v.data.name.maxLength) {
+          return 'Превышена допустимая длина названия';
+        }
+        if (!this.$v.data.name.minLength) {
+          return 'Ошибка, минимальное значение';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    phoneErrors() {
+      if (!this.$v.data.phone.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.data.phone.required) {
+        return 'Введите телефон';
+      }
+
+      if (!this.$v.data.phone.maxLength) {
+        return 'Превышена допустимая длина названия';
+      }
+      if (!this.$v.data.phone.minLength) {
+        return 'Ошибка, минимальное значение';
+      }
+      if (!this.$v.data.phone.numeric) {
+        return 'Укажите только числа, без других символов';
+      }
+
+      return '';
+    },
   },
 
   head() {
