@@ -97,8 +97,9 @@ export default {
       from: process.env.HUB_URL + '/profile',
     }
   },
+  middleware: ['redirectHub'],
   mounted() {
-    this.$auth.logout();
+    // this.$auth.logout();
   },
   methods: {
     submitted() {
