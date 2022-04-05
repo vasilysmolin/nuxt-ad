@@ -13,6 +13,12 @@
       <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ ad.phone }}</p>
     </section>
 
+    <section class="grid grid-cols-3 gap-4 flex items-center">
+      <div class="mb-4" v-for="photo in ad.photos">
+        <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
+      </div>
+    </section>
+
 
   </article>
 
