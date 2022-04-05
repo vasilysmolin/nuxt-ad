@@ -11,15 +11,16 @@
 
           <div class="flex flex-col items-center w-full">
 
-            <div class="mb-4 w-full sm:w-[27rem]">
-              <label for="name" class="pl-4 text-gray-500">Категории</label>
-              <select class="form-select form-select-lg mt-2 forms-select"
-                      v-model="data.category_id">
-                  <option v-for="item in category" :value="item.id" :key="item.id"
-                          :selected="item.id === data.category_id">
-                    {{ item.name }}
-                  </option>
-
+            <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in items" :key="index">
+              <label for="name" class="pl-4 text-gray-500">{{ item.title }}</label>
+              <select @change="setCategory($event, index)"  class="form-select form-select-lg mt-2 forms-select">
+                <option v-for="category in item.categories"
+                        :value="category.id"
+                        :key="category.id"
+                        :selected="category.id === category_id[index]"
+                >
+                  {{ category.name }}
+                </option>
               </select>
             </div>
 
@@ -73,7 +74,8 @@
 <script>
 import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
-import {mapGetters} from "vuex";
+// import {mapGetters} from "vuex";
+import CategoriesMixin from '~/components/mixins/categories.mixin';
 
 export default {
   name: "VObject",
@@ -84,6 +86,7 @@ export default {
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
+  mixins: [CategoriesMixin],
   data() {
     return {
       data: {},
@@ -100,9 +103,13 @@ export default {
 
   },
   async mounted() {
-    await this.$store.dispatch('ads/getItem', {id: this.$route.params.id});
+    await this.$store.dispatch('ads/getItem', {id: this.$route.params.id, expand: 'profile.user'});
     this.data = _.cloneDeep(this.$store.getters['ads/ad']);
-    await this.$store.dispatch('categoriesAd/getItems');
+    if(this.category.length === 0) {
+      await this.$store.dispatch('categoriesAd/getItems');
+    }
+    this.items = this.iterator(this.category);
+    this.category_id = this.index(this.items);
   },
   computed: {
     category: {
