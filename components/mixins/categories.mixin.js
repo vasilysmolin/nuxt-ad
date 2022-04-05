@@ -42,7 +42,7 @@ export default {
             let newAncestry = _.cloneDeep(tree);
             let treeReverce = _.reverse(newAncestry);
             return  _.reduce(treeReverce, function(acc, item) {
-                let cat = _.find(this.getChildren(item), (item) => item.id === current);
+                let cat = _.find(item.categories, (item) => item.id === current);
                 if (cat) {
                     current = cat.parent_id;
                     acc.unshift(cat.id);
@@ -53,7 +53,7 @@ export default {
         setCategory(event,index) {
             this.items.splice(index + 1, Infinity);
             this.category_id.splice(index + 1, Infinity);
-            let category = _.find(this.getChildren(this.items[index]), (item) => item.id == event.target.value);
+            let category = _.find(this.items[index].categories, (item) => item.id == event.target.value);
             if(this.hasChildren(category)){
                 this.items.push({
                     title: '',
