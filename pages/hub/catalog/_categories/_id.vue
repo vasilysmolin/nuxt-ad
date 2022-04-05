@@ -60,10 +60,12 @@
                      v-model="data.sale_price">
               <label for="sale_price" class="text-[#6E7191]">Стоимость со скидкой</label>
             </div>
-            <div class="form-floating mb-6 w-full sm:w-[27rem]">
-              <div v-for="photo in data.photos">
-                <img :src="photo">
+            <div class="grid grid-cols-3 gap-4 flex items-center">
+              <div class="mb-4" v-for="photo in data.photos">
+                <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
               </div>
+            </div>
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
             </div>
 
@@ -159,9 +161,8 @@ export default {
         return;
       }
       let data = new FormData();
-      for (var i = 0; i < this.files.length; i++) {
-        let file = this.files[i];
-        data.append('files[]', file);
+      for (let i = 0; i < this.files.length; i++) {
+        data.append('files[]', this.files[i]);
       }
       data.append('name', this.data.name);
       data.append('description', this.data.description);
