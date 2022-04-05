@@ -32,10 +32,12 @@ export default {
                 let children = this.getChildren(node);
                 return _.flatMap(children, (child) => iter(child, newAncestry));
             };
-            return iter(tree, [{
+            const mainCategory = [{
                 title: 'Категория',
                 categories: this.category,
-            }]);
+            }];
+            let result = iter(tree, mainCategory);
+            return result.length > 0 ? result : mainCategory;
         },
         index(tree) {
             let current = this.data.category_id;
@@ -54,12 +56,12 @@ export default {
             this.items.splice(index + 1, Infinity);
             this.category_id.splice(index + 1, Infinity);
             let category = _.find(this.items[index].categories, (item) => item.id == event.target.value);
-            if(this.hasChildren(category)){
+            if(!!category && this.hasChildren(category)){
                 this.items.push({
                     title: '',
                     categories: this.getChildren(category),
                 });
-            } else {
+            } else if(!!category) {
                 this.data.category_id = category.id;
             }
         },

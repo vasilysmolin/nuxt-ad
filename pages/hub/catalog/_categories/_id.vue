@@ -60,6 +60,12 @@
                      v-model="data.sale_price">
               <label for="sale_price" class="text-[#6E7191]">Стоимость со скидкой</label>
             </div>
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+              <div v-for="photo in data.photos">
+                <img :src="photo">
+              </div>
+              <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
+            </div>
 
             <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Сохранить
@@ -89,7 +95,9 @@ export default {
   mixins: [CategoriesMixin],
   data() {
     return {
-      data: {},
+      data: {
+      },
+      files: [],
     }
   },
   validations: {
@@ -150,7 +158,18 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$put(`declarations/${this.$route.params.id}`, this.data).then(() => {
+      let data = new FormData();
+      for (var i = 0; i < this.files.length; i++) {
+        let file = this.files[i];
+        data.append('files[]', file);
+      }
+      data.append('name', this.data.name);
+      data.append('description', this.data.description);
+      data.append('price', this.data.price);
+      data.append('sale_price', this.data.sale_price);
+      data.append('category_id', this.data.category_id);
+      data.append('_method', 'put');
+      this.$axios.$post(`declarations/${this.$route.params.id}`, data).then(() => {
           this.$router.push({name: 'catalog'});
         console.log('успех')
       }).catch((error) => {
@@ -161,7 +180,15 @@ export default {
     },
     isParent(category) {
       return category.parent_id === null;
-    }
+    },
+    onFileChange(e) {
+      const files = e.target.files;
+      let $this = this;
+      this.files = files;
+      _.each(files, function(file){
+        $this.data.photos.push(URL.createObjectURL(file))
+      });
+    },
   },
 }
 </script>
