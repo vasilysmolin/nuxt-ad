@@ -3,8 +3,8 @@
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ vacancy.name }}</h1>
-      <!--<h2>Имя соискателя</h2>-->
       <p class="mt-2 text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span class="pl-2 text-sm">руб.</span></p>
+      <p class="mt-2 font-bold text-sm text-gray-400 lowercase">{{ getSalary(vacancy) }}</p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
@@ -74,6 +74,9 @@ export default {
     if(Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
       await this.$store.dispatch('schedules/getItems');
     }
+    if(Object.keys(this.$store.getters['salaries/salary_type']).length === 0) {
+      await this.$store.dispatch('salaries/getItems');
+    }
   },
   methods: {
     getUsername(vacancy) {
@@ -90,6 +93,9 @@ export default {
     },
     getSchedules(vacancy) {
       return this.schedule[vacancy.schedule] ?? 'Не указан';
+    },
+    getSalary(vacancy) {
+      return this.salary_type[vacancy.salary_type] ?? 'Не указан';
     },
   },
   computed: {
@@ -121,6 +127,14 @@ export default {
       },
       set(schedule) {
         return schedule
+      }
+    },
+    salary_type: {
+      get() {
+        return _.cloneDeep(this.$store.getters['salaries/salary_type']);
+      },
+      set(salary_type) {
+        return salary_type
       }
     },
     category: {
