@@ -4,48 +4,31 @@
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ vacancy.name }}</h1>
       <p class="mt-2 text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span class="pl-2 text-sm">руб.</span></p>
-      <p class="mt-2 font-bold text-sm text-gray-400 lowercase">{{ getSalary(vacancy) }}</p>
+      <p class="mt-2 font-bold text-sm text-gray-500 lowercase">{{ getSalary(vacancy) }}</p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-gray-600">Контактное лицо</h2>
-      <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ vacancy.phone }}</p>
-      <p class="mt-2 font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ getUsername(vacancy)}}</p>
+      <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Компания:</span>{{ getUsername(vacancy)}}</p>
+      <p class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">телефон:</span>{{ vacancy.phone }}</p>
     </section>
 
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Обязанности</h2>
       <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.duties }}</p>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Требования</h2>
+      <h2 class="mt-4 text-sm font-bold text-black">Требования</h2>
       <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.demands }}</p>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Дополнительные условия</h2>
+      <h2 class="mt-4 text-sm font-bold text-black">Дополнительные условия</h2>
       <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.additionally }}</p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Категория</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getCategory(vacancy) }}</p>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Опыт работы</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getExperiences(vacancy) }}</p>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Образование</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getEducations(vacancy) }}</p>
-    </section>
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">График работы</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ getSchedules(vacancy) }}</p>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getExperiences(vacancy) }}</p>
+      <h2 class="mt-4 text-sm font-bold text-black">Образование</h2>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getEducations(vacancy) }}</p>
+      <h2 class="mt-4 text-sm font-bold text-black">График работы</h2>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getSchedules(vacancy) }}</p>
     </section>
 
 

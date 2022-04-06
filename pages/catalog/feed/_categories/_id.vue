@@ -35,8 +35,8 @@ export default {
     await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
   },
   methods: {
-    getUsername(vacancy) {
-      return vacancy?.profile?.user?.name
+    getUsername(catalog) {
+      return catalog?.profile?.user?.name
     }
   },
   computed: {
