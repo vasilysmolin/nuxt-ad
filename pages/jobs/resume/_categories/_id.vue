@@ -16,6 +16,15 @@
       <p class="mt-2 text-sm sm:text-base text-gray-600">{{ resume.description }}</p>
     </section>
 
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <h2 class="text-sm font-bold text-black">Опыт работы</h2>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getExperiences(resume) }}</p>
+      <h2 class="mt-4 text-sm font-bold text-black">Образование</h2>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getEducations(resume) }}</p>
+      <h2 class="mt-4 text-sm font-bold text-black">График работы</h2>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getSchedules(resume) }}</p>
+    </section>
+
   </article>
 
 </template>
@@ -29,6 +38,15 @@ export default {
   layout: 'jobs',
   async mounted() {
     await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id, expand: 'profile.user'});
+    if(Object.keys(this.$store.getters['experiences/experience']).length === 0) {
+      await this.$store.dispatch('experiences/getItems');
+    }
+    if(Object.keys(this.$store.getters['educations/education']).length === 0) {
+      await this.$store.dispatch('educations/getItems');
+    }
+    if(Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
+      await this.$store.dispatch('schedules/getItems');
+    }
   },
   computed: {
     resume() {
@@ -37,6 +55,30 @@ export default {
     ...mapGetters({
       resumes: 'resumes/resumes'
     }),
+    experiences: {
+      get() {
+        return _.cloneDeep(this.$store.getters['experiences/experience']);
+      },
+      set(experience) {
+        return experience
+      }
+    },
+    education: {
+      get() {
+        return _.cloneDeep(this.$store.getters['educations/education']);
+      },
+      set(education) {
+        return education
+      }
+    },
+    schedule: {
+      get() {
+        return _.cloneDeep(this.$store.getters['schedules/schedule']);
+      },
+      set(schedule) {
+        return schedule
+      }
+    },
   },
   methods: {
     getUserName(resume) {
@@ -44,7 +86,16 @@ export default {
     },
     getUserPhone(resume) {
       return resume?.profile?.user?.phone
-    }
+    },
+    getEducations(resume) {
+      return this.education[resume.education] ?? 'Не указан';
+    },
+    getExperiences(resume) {
+      return this.experiences[resume.experience] ?? 'Не указан';
+    },
+    getSchedules(resume) {
+      return this.schedule[resume.schedule] ?? 'Не указан';
+    },
   },
   head() {
     return {

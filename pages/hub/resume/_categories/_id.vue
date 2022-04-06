@@ -27,12 +27,12 @@
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
                      v-model="data.name">
-              <label for="name" class="text-[#6E7191]">Название вакансии</label>
+              <label for="name" class="text-[#6E7191]">Заголовок резюме</label>
               <span v-if="nameErrors" class="caption-2 px-1 pt-s c-error">
             {{ nameErrors }}
             </span>
             </div>
-
+<!--
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="address"
@@ -51,27 +51,16 @@
             {{ phoneErrors }}
             </span>
             </div>
-
+-->
             <div class="mb-4 w-full sm:w-[27rem]">
                   <textarea
                       class="form-control forms-textarea"
                       rows="5"
                       name="duties"
                       id="duties"
-                      placeholder="Обязанности"
-                      v-model="data.duties"
+                      placeholder="Презентация"
+                      v-model="data.description"
                   >{{ data.duties }}</textarea>
-            </div>
-
-            <div class="mb-4 w-full sm:w-[27rem]">
-                  <textarea
-                      class="form-control forms-textarea"
-                      rows="5"
-                      name="demands"
-                      id="demand"
-                      placeholder="Требования"
-                      v-model="data.demands"
-                  >{{ data.demands }}</textarea>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">

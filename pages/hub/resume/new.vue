@@ -2,7 +2,7 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-5 w-full text-xl text-black font-bold text-center leading-none truncate">Создать вакансию</h1>
+        <h1 class="mb-5 w-full text-xl text-black font-bold text-center leading-none truncate">Создать резюме</h1>
 
         <form class="w-[95%]">
 
@@ -24,9 +24,9 @@
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
                      v-model="data.name">
-              <label for="name" class="text-[#6E7191]">Название резюме</label>
+              <label for="name" class="text-[#6E7191]">Заголовок резюме</label>
             </div>
-
+<!--
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="address"
@@ -42,29 +42,17 @@
                      v-model="data.phone">
               <label for="phone" class="text-[#6E7191]">Телефон</label>
             </div>
-
+-->
             <div class="mb-4 w-full sm:w-[27rem]">
                   <textarea
                       class="form-control forms-textarea"
                       rows="5"
                       name="duties"
                       id="duties"
-                      placeholder="Обязанности"
-                      v-model="data.duties"
+                      placeholder="Презентация"
+                      v-model="data.description"
                   >{{ data.duties }}</textarea>
             </div>
-
-            <div class="mb-4 w-full sm:w-[27rem]">
-                  <textarea
-                      class="form-control forms-textarea"
-                      rows="5"
-                      name="demands"
-                      id="demand"
-                      placeholder="Требования"
-                      v-model="data.demands"
-                  >{{ data.demands }}</textarea>
-            </div>
-
 
             <div class="mb-4 w-full sm:w-[27rem]">
               <label for="name" class="pl-4 text-gray-500">Опыт работы</label>
@@ -132,7 +120,7 @@ export default {
     return {
       data: {
         name: '',
-        price: 500,
+        price: '',
         category_id: null,
         address: '',
         phone: '',

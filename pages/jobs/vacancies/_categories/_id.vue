@@ -15,11 +15,11 @@
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Обязанности</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.duties }}</p>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ vacancy.duties }}</p>
       <h2 class="mt-4 text-sm font-bold text-black">Требования</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.demands }}</p>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ vacancy.demands }}</p>
       <h2 class="mt-4 text-sm font-bold text-black">Дополнительные условия</h2>
-      <p class="mt-2 text-sm sm:text-base text-gray-600">{{ vacancy.additionally }}</p>
+      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ vacancy.additionally }}</p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
