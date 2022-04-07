@@ -5,7 +5,6 @@
         <NuxtLink :to="getUrl(service)">
           <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ service.name }}</h2>
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ service.price }}<span class="pl-1 text-xs">руб.</span></h3>
-          <h4 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">Контакт</span>{{ getUsername(service) }}<span class="pl-1 text-xs"></span></h4>
           <div class="flex justify-between w-full">
             <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>
           </div>

@@ -1,11 +1,9 @@
 <template>
   <section class="container flex flex-col justify-center items-center mt-[100px]">
     <article class="flex flex-col items-start px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="font-black text-lg leading-5 sm:text-2xl">Услуги для компаний</h2>
-      <p class="mt-3 text-sm sm:text-base text-gray-700">Создавайте неограниченное количество бесплатных услуг для своей компании. Делегируйте контроль или размещение своему представителю.</p>
-      <p class="mt-3 font-bold" >
-        <nuxt-link to="/feed" class="text-blue-600">Смотреть услуги</nuxt-link>
-      </p>
+      <h2 class="font-black text-lg leading-5 sm:text-2xl">Поиск исполнителя</h2>
+      <p class="mt-3 text-sm sm:text-base text-gray-700">Забить гвоздь, помыть и убрать помещение, отремонтировать бытовую технику, починить электронику, муж на час и многое другое.</p>
+      <p class="mt-3 font-bold"><nuxt-link to="/feed" class="text-blue-600">Найти исполнителя</nuxt-link></p>
     </article>
 
 

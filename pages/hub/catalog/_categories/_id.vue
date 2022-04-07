@@ -2,7 +2,7 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-4 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
+        <h1 class="mb-3 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
           объявление</h1>
 
         <h2 class="mb-4 w-full text-base text-black font-bold text-center leading-none truncate">{{ data.name }}</h2>
@@ -53,6 +53,7 @@
                      v-model="data.price">
               <label for="price" class="text-[#6E7191]">Стоимость</label>
             </div>
+            <!--
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="sale_price"
@@ -60,6 +61,7 @@
                      v-model="data.sale_price">
               <label for="sale_price" class="text-[#6E7191]">Стоимость со скидкой</label>
             </div>
+            -->
             <div class="grid grid-cols-3 gap-4 flex items-center">
               <div class="mb-4" v-for="photo in data.photos">
                 <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">

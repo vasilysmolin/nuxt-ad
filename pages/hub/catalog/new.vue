@@ -86,7 +86,7 @@ export default {
   name: "VObject",
   layout: 'hub',
   head: {
-    title: "Редактировать объявление на Тапиго",
+    title: "Разместить объявление на Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
