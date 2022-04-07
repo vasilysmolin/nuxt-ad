@@ -60,7 +60,7 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeads');
 	},
-	async getItem({commit},{id,expand}) {
+	async getItem({commit},{id,expand = null}) {
 		const getParams = params({expand});
 		const ad = await this.$axios.$get( `declarations/${id}?${getParams}`);
 		commit('setad', ad);

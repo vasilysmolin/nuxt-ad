@@ -59,7 +59,7 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeresumes');
 	},
-	async getItem({commit}, {id,expand}) {
+	async getItem({commit}, {id,expand = null}) {
 		const getParams = params({expand});
 		commit('setresume', {});
 		if (id) {

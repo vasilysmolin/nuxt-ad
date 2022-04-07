@@ -60,8 +60,9 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeServices');
 	},
-	async getItem({commit},{id,expand}) {
+	async getItem({commit},{id,expand = null}) {
 		const getParams = params({expand});
+
 		const service = await this.$axios.$get( `services/${id}?${getParams}`);
 		commit('setService', service);
 	}
