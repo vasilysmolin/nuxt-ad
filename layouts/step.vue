@@ -40,7 +40,7 @@ export default {
     NavLocProfile,
     UserNav
   },
-  middleware: ['redirect', 'person', 'steps'],
+  middleware: ['redirect', 'person'],
   data() {
     return {
       isHidden: false,

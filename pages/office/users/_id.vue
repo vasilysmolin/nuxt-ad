@@ -53,6 +53,7 @@
 <script>
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
+import Person from "~/components/mixins/person.mixin";
 
 export default {
   name: "VUser",
@@ -72,7 +73,8 @@ export default {
   data() {
     return {
     }
-},
+  },
+  mixins: [Person],
   computed: {
     user() {
       return _.cloneDeep(this.$store.getters['users/user']);
@@ -98,29 +100,6 @@ export default {
       amountR: 'resumes/amount',
       amountL: 'vacancies/amount',
     }),
-    isPerson: {
-      get(){
-        if(this.user != null && this.user.profile != null) {
-          if(this.user.profile.isPerson === true) {
-            return true;
-          }
-        }
-        return false;
-      },
-      set(user){
-        return user
-      }
-    },
-    inn: {
-      get(){
-        if(this.isPerson === true && this.user.profile.person != null) {
-          return this.user.profile.person.inn
-        }
-      },
-      set(user){
-        return user
-      }
-    },
   },
   methods: {
     ...mapActions({

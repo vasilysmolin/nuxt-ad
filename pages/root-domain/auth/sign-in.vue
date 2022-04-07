@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import Person from "~/components/mixins/person.mixin";
 export default {
     name: 'SignIn',
   data() {
@@ -72,8 +73,9 @@ export default {
     if(this.$route.query.from) {
       this.from = this.$route.query.from;
     }
-  //  this.$auth.logout();
+    console.log(this.checkStepPerson);
   },
+  mixins: [Person],
   methods: {
       submitted() {
         this.$auth.loginWith('laravelJWT', {
@@ -82,13 +84,11 @@ export default {
             password: this.password
           },
         }).then(() => {
-     //     if(this.from === null) {
-          setTimeout(() => {
+          if(this.checkSteps){
             document.location.href = process.env.HUB_URL + '/profile';
-          }, 400);
-    //      } else {
-    //        document.location.href = this.from
-     //     }
+          } else {
+            document.location.href = process.env.HUB_URL;
+          }
 
         }).catch(error => {
           this.errors = error.response.data.errors.message;

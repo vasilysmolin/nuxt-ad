@@ -59,6 +59,7 @@
 
 <script>
 import NavLocProfile from "../../components/NavLocProfile";
+import Person from "~/components/mixins/person.mixin";
 export default {
   name: 'Profile',
   components: {NavLocProfile},
@@ -69,10 +70,10 @@ export default {
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
+  mixins: [Person],
   data() {
     return {
       user: {
-        email: '',
         name: '',
         phone: '',
       },
@@ -82,31 +83,6 @@ export default {
   mounted() {
     this.user = this.$auth.user;
   },
-  computed: {
-    isPerson: {
-      get(){
-        if(this.user != null && this.user.profile != null) {
-          if(this.user.profile.isPerson === true) {
-            return true;
-          }
-        }
-        return false;
-      },
-      set(user){
-        return user
-      }
-    },
-    inn: {
-      get(){
-        if(this.isPerson === true && this.user.profile.person != null) {
-          return this.user.profile.person.inn
-        }
-      },
-      set(user){
-        return user
-      }
-    },
-  }
 }
 
 
