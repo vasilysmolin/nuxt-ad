@@ -51,6 +51,7 @@
                      v-model="data.price">
               <label for="price" class="text-[#6E7191]">Стоимость</label>
             </div>
+            <!--
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="sale_price"
@@ -58,6 +59,7 @@
                      v-model="data.sale_price">
               <label for="sale_price" class="text-[#6E7191]">Стоимость со скидкой</label>
             </div>
+            -->
             <div class="grid grid-cols-3 gap-4 flex items-center">
               <div class="mb-4" v-for="photo in data.photos">
                 <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
