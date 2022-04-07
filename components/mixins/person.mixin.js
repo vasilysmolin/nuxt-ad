@@ -1,31 +1,16 @@
 export default {
-    computed: {
-        person: {
-            get(){
-                return this.$auth.user?.profile?.isPerson;
-            },
-            set(person){
-                return person;
-            }
+    methods: {
+        profile(){
+            return this.$auth.user?.profile;
         },
-        isPerson: {
-            get(){
-                return this.person?.isPerson === true;
-            },
-            set(isPerson){
-                return isPerson;
-            }
+        getInn(){
+            return this.$auth.user?.profile?.person?.inn;
         },
-        inn: {
-            get(){
-               return this.person?.inn ?? null;
-            },
-            set(inn){
-                return inn;
-            }
+        isPerson() {
+            return this.$auth.user?.profile?.isPerson;
         },
         checkStepPerson() {
-            return this.isPerson && this.inn !== null && this.$auth.user.phone !== null;
+            return this.isPerson && this.$auth.user.inn !== null && this.$auth.user.phone !== null;
         },
         checkStepIndividual() {
             return !this.isPerson && this.$auth.user.name !== null && this.$auth.user.phone !== null;

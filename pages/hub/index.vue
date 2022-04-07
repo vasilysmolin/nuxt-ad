@@ -2,7 +2,7 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <p v-if="isPerson" class="mb-6 w-full text-base sm:text-lg text-black font-bold text-center leading-none truncate">
+        <p v-if="isPerson()" class="mb-6 w-full text-base sm:text-lg text-black font-bold text-center leading-none truncate">
           Укажите ИНН компании и телефон</p>
 
 
@@ -11,7 +11,7 @@
         <form class=" w-[95%]">
           <div class="flex flex-col items-center w-full">
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <input v-model="inn" v-if="isPerson" type="text" class="form-control
+              <input v-model="person.inn" v-if="isPerson()" type="text" class="form-control
         block
         w-full
         px-3
@@ -43,7 +43,7 @@
         m-0
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInpuName"
                      placeholder="Ваше имя">
-              <label v-if="isPerson" for="floatingInput" class="text-[#6E7191]">ИНН вашей компании</label>
+              <label v-if="isPerson()" for="floatingInput" class="text-[#6E7191]">ИНН вашей компании</label>
 
               <label v-else for="floatingInpuName" class="text-[#6E7191]">Ваше имя</label>
             </div>
@@ -94,23 +94,37 @@ export default {
   mixins: [Person],
   data() {
     return {
-      user: {}
+      user: {
+        name: null,
+        phone: null,
+      },
+      person: {
+        inn: null,
+        name: 'тест',
+      }
     }
   },
   middleware: ['redirect', 'person'],
   mounted() {
     this.user = _.cloneDeep(this.$auth.user);
+    this.person.inn = this.getInn();
   },
   methods: {
     submitted() {
+      this.user.person = this.person;
+      const $this = this;
       this.$axios.$put(`users/${this.user.id}`, this.user).then(() => {
+        // $this.$auth.user.fetchUser().then(() => {
+        // const user = $this.$auth.user.fetchUser();
+        // $this.$auth.user.setUser(user)
         this.$router.push({name: 'profile'});
+        // });
+
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
       });
-
-    }
+    },
   },
 }
 

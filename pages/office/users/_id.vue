@@ -9,7 +9,7 @@
         <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.phone }}</p>
         <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.id }}</p>
         <p class="text-xs text-[#A0A3BD]">{{isPerson ? 'Юридическое лицо' : 'Физическое лицо'}}</p>
-        <p v-if="isPerson" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ inn }}</span></p>
+        <p v-if="isPerson()" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ person.inn }}</span></p>
         <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ dateFormat(user.created_at) }}</p>
         <div class="form-group">
           <label>Модерация</label>
@@ -72,6 +72,10 @@ export default {
   },
   data() {
     return {
+      person: {
+        inn: null,
+        name: 'тест',
+      }
     }
   },
   mixins: [Person],

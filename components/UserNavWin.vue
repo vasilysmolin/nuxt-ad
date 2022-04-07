@@ -1,7 +1,7 @@
 <template>
   <div v-show="toggle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
     <div class="flex justify-start w-full pb-5">
-      <p v-if="isPerson" class="text-sm font-bold cursor-pointer" @click="hub">
+      <p v-if="isPerson()" class="text-sm font-bold cursor-pointer" @click="hub">
         <a @click="hub" class="flex justify-start items-center hover:text-blue-600">
           <UserLLC/>
           <span class="pl-4">Личный кабинет</span>
@@ -17,7 +17,7 @@
     <hr>
     <ul class="pb-5 w-full text-sm font-bold">
       <li class="pt-5"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><AddAcc/><span class="pl-4">Добавить аккаунт</span></nuxt-link></li>
-      <li v-if="isPerson" class="pt-5">
+      <li v-if="isPerson()" class="pt-5">
         <nuxt-link to="" class="flex justify-start items-center hover:text-blue-600"><AddManager/>
           <span class="pl-4">Добавить менеджера</span></nuxt-link>
       </li>
@@ -45,6 +45,7 @@ import Logout from "./icons/Logout";
 import DelAcc from "./icons/DelAcc";
 import UserLLC from "./icons/UserLLC";
 import UserNav from "./icons/UserNav";
+import Person from "~/components/mixins/person.mixin";
 export default {
   name: "UserNavWin",
   props: {
@@ -62,25 +63,11 @@ export default {
     AddManager,
     AddAcc
   },
+  mixins: [Person],
   data() {
     return {
       bool: false
     }
-  },
-  computed: {
-    isPerson: {
-      get(){
-        if(this.$auth.user != null && this.$auth.user.profile != null) {
-          if(this.$auth.user.profile.isPerson === true) {
-            return true;
-          }
-        }
-        return false;
-      },
-      set(user){
-        return user
-      }
-    },
   },
   methods: {
     logout() {

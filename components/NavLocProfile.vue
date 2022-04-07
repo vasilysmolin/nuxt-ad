@@ -8,7 +8,7 @@
         <NuxtLink to="/catalog">Обьявления</NuxtLink>
       </li>
 
-      <li v-if="isPerson" class="pl-4 sm:pl-6">
+      <li v-if="isPerson()" class="pl-4 sm:pl-6">
         <NuxtLink to="/vacancies">Вакансии</NuxtLink>
       </li>
       <li v-else class="pl-4 sm:pl-6">
@@ -32,26 +32,13 @@
 
 
 <script>
+import Person from "~/components/mixins/person.mixin";
 export default {
   name: "NavLocProfile",
+  mixins: [Person],
   mounted() {
 
   },
-  computed: {
-    isPerson: {
-      get(){
-        if(this.$auth.user != null && this.$auth.user.profile != null) {
-          if(this.$auth.user.profile.isPerson === true) {
-            return true;
-          }
-        }
-        return false;
-      },
-      set(user){
-        return user
-      }
-    },
-  }
 }
 
 </script>
