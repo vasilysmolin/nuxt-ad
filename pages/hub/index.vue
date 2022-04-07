@@ -107,7 +107,7 @@ export default {
   middleware: ['redirect', 'person'],
   mounted() {
     this.user = _.cloneDeep(this.$auth.user);
-    this.person.inn = this.getInn();
+    this.person.inn = _.clone(this.getInn());
   },
   methods: {
     submitted() {
@@ -117,7 +117,12 @@ export default {
         // $this.$auth.user.fetchUser().then(() => {
         // const user = $this.$auth.user.fetchUser();
         // $this.$auth.user.setUser(user)
-        this.$router.push({name: 'profile'});
+        const user = this.$auth.fetchUser().then((res) => {
+          // console.log(res);
+          this.$auth.setUser(res.data);
+          this.$router.push({name: 'profile'});
+        });
+
         // });
 
       }).catch((error) => {

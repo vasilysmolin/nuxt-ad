@@ -60,6 +60,7 @@
 <script>
 import NavLocProfile from "../../components/NavLocProfile";
 import Person from "~/components/mixins/person.mixin";
+import * as _ from "lodash";
 export default {
   name: 'Profile',
   components: {NavLocProfile},
@@ -85,8 +86,8 @@ export default {
   },
   middleware: ['redirect', 'person'],
   mounted() {
-    this.user = this.$auth.user;
-    this.person.inn = this.getInn();
+    this.user = _.cloneDeep(this.$auth.user);
+    this.person.inn = _.clone(this.getInn());
   },
 }
 
