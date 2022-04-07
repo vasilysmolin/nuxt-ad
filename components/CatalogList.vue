@@ -3,13 +3,13 @@
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="ad in ads" :key="ad.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(ad)">
-          <section class="flex justify-start w-full">
+          <section class="grid grid-cols-[25%,_1fr]">
             <section>
-              <img class="w-[150px] rounded-lg" :src="ad.photo" :alt="ad.name">
+              <img class="w-full rounded-lg" :src="ad.photo" :alt="ad.name">
             </section>
             <section class="flex flex-col justify-between pl-4">
-              <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ ad.name }}</h2>
-              <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ ad.price }}<span
+              <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">{{ ad.name }}</h2>
+              <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ ad.price }}<span
                   class="pl-1 text-xs">руб.</span></h3>
             </section>
           </section>
