@@ -142,12 +142,12 @@ export default {
         maxLength: maxLength(255),
         minLength: minLength(2)
       },
-      phone: {
-        required,
-        numeric,
-        maxLength: maxLength(20),
-        minLength: minLength(9)
-      },
+      // phone: {
+      //   required,
+      //   numeric,
+      //   maxLength: maxLength(20),
+      //   minLength: minLength(9)
+      // },
     },
 
   },
@@ -215,27 +215,27 @@ export default {
         return text;
       }
     },
-    phoneErrors() {
-      if (!this.$v.data.phone.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.phone.required) {
-        return 'Введите телефон';
-      }
-
-      if (!this.$v.data.phone.maxLength) {
-        return 'Превышена допустимая длина названия';
-      }
-      if (!this.$v.data.phone.minLength) {
-        return 'Ошибка, минимальное значение';
-      }
-      if (!this.$v.data.phone.numeric) {
-        return 'Укажите только числа, без других символов';
-      }
-
-      return '';
-    },
+    // phoneErrors() {
+    //   if (!this.$v.data.phone.$dirty) {
+    //     return '';
+    //   }
+    //
+    //   if (!this.$v.data.phone.required) {
+    //     return 'Введите телефон';
+    //   }
+    //
+    //   if (!this.$v.data.phone.maxLength) {
+    //     return 'Превышена допустимая длина названия';
+    //   }
+    //   if (!this.$v.data.phone.minLength) {
+    //     return 'Ошибка, минимальное значение';
+    //   }
+    //   if (!this.$v.data.phone.numeric) {
+    //     return 'Укажите только числа, без других символов';
+    //   }
+    //
+    //   return '';
+    // },
   },
   methods: {
     submitted() {
