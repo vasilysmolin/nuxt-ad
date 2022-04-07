@@ -36,11 +36,11 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{userID = null, status = 'active', expand = null, from = null}) {
-		const getParams = params({userID,status,expand,from});
+	async getItems({commit},{userID = null, state = 'active', expand = null, from = null}) {
+		const getParams = params({userID,state,expand,from});
 		const vacancies = await this.$axios.$get(`vacancies?skip=0&take=25${getParams}`);
 
-		if(status === 'new'){
+		if(state === 'new'){
 			commit('setVacanciesNew', vacancies.jobs_vacancies);
 			commit('setAmountNew', vacancies.meta.total);
 		} else {
@@ -48,10 +48,10 @@ export const actions = {
 			commit('setAmount', vacancies.meta.total);
 		}
 	},
-	async addItems({commit},{skip = 0, userID = null, status = 'active', expand = null, from = null}) {
-		const getParams = params({userID,status,expand,from,skip});
+	async addItems({commit},{skip = 0, userID = null, state = 'active', expand = null, from = null}) {
+		const getParams = params({userID,state,expand,from,skip});
 		const vacancies = await this.$axios.$get(`vacancies?take=25&${getParams}`);
-		if(status === 'new'){
+		if(state === 'new'){
 			commit('addVacanciesNew', vacancies.jobs_vacancies);
 		} else {
 			commit('addVacancies', vacancies.jobs_vacancies);

@@ -35,7 +35,7 @@ export default {
   },
   async mounted() {
     if (this.resumes.length === 0) {
-      await this.getItems({status: 'active',expand: 'profile.user'});
+      await this.getItems({state: 'active',expand: 'profile.user'});
     }
   },
   computed: {
