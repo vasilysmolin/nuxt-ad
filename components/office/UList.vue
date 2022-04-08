@@ -55,7 +55,7 @@ export default {
         return this.usersNew.length < this.amountNew;
     },
     checkAmountActive(){
-        return this.usersActive.length < this.amountNew;
+        return this.usersActive.length < this.amount;
     },
   },
   methods: {
