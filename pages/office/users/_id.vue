@@ -33,7 +33,7 @@
               <button>Редактировать</button>
             </NuxtLink>
         </article>
-        <button v-if="checkAmountV" @click="addVacancies({skip: vacancies.length, user: user.id})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+        <button v-if="checkAmountV" @click="addVacancies({skip: vacancies.length, user_id: user.id, state: null})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
       </section>
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <h2 class="font-bold text-lg">Резюме</h2>
@@ -44,7 +44,7 @@
             <button>Редактировать</button>
           </NuxtLink>
         </article>
-        <button v-if="checkAmountR" @click="addResumes({skip: resumes.length, user: user.id})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+        <button v-if="checkAmountR" @click="addResumes({skip: resumes.length, user_id: user.id, state: null})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
       </section>
     </article>
   </main>
@@ -66,8 +66,8 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('users/getItem', { id: this.$route.params.id });
-    await this.$store.dispatch('vacancies/getItems', { userID: this.$route.params.id });
-    await this.$store.dispatch('resumes/getItems', { userID: this.$route.params.id });
+    await this.$store.dispatch('vacancies/getItems', { user_id: this.$route.params.id, state: null });
+    await this.$store.dispatch('resumes/getItems', { user_id: this.$route.params.id, state: null });
     await this.$store.dispatch('states/getItems');
   },
   data() {

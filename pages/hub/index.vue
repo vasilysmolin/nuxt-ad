@@ -11,7 +11,7 @@
         <form class=" w-[95%]">
           <div class="flex flex-col items-center w-full">
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <input v-model="person.inn" v-if="isPerson()" type="text" class="form-control
+              <input  v-on:input="debounceInput" v-model="person.inn" v-if="isPerson()" type="text" class="form-control
         block
         w-full
         px-3
@@ -27,6 +27,9 @@
         m-0
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
                      placeholder="ИНН вашей компании">
+              <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
+            {{ phoneErrors }}
+            </span>
               <input v-model="user.name" v-else type="text" class="form-control
         block
         w-full
@@ -67,7 +70,7 @@
                      placeholder="Ваш телефон">
               <label for="floatingPassword" class="text-[#6E7191]">Ваш телефон</label>
             </div>
-            <button @click.prevent="submitted" class="btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            <button @click.prevent="submitted"  class="btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
             >Продолжить
             </button>
           </div>
@@ -101,7 +104,9 @@ export default {
       person: {
         inn: null,
         name: 'тест',
-      }
+      },
+      filterKey: null,
+      phoneErrors: false,
     }
   },
   middleware: ['redirect', 'person'],
@@ -111,12 +116,9 @@ export default {
   },
   methods: {
     submitted() {
+
       this.user.person = this.person;
-      const $this = this;
       this.$axios.$put(`users/${this.user.id}`, this.user).then(() => {
-        // $this.$auth.user.fetchUser().then(() => {
-        // const user = $this.$auth.user.fetchUser();
-        // $this.$auth.user.setUser(user)
         const user = this.$auth.fetchUser().then((res) => {
           // console.log(res);
           this.$auth.setUser(res.data);
@@ -130,6 +132,18 @@ export default {
         // this.$v.nameErrors = 'какой-то текст';
       });
     },
+    debounceInput: _.debounce(function (e) {
+      this.person.inn = e.target.value;
+      // const services = await this.$axios.$get(`services?skip=0&take=25${getParams}`);
+      let params = {'inn': this.person.inn}
+      this.$axios.$get(`external/find-company?${params}`).then((res) => {
+            // console.log(res.data);
+            this.phoneErrors = red.data.inn;
+        }).catch((error) => {
+        // console.log(error.response.data.errors);
+        // this.$v.nameErrors = 'какой-то текст';
+      });
+    }, 500)
   },
 }
 
