@@ -27,9 +27,6 @@
         m-0
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
                      placeholder="ИНН вашей компании">
-              <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
-            {{ phoneErrors }}
-            </span>
               <input v-model="user.name" v-else type="text" class="form-control
         block
         w-full
@@ -46,6 +43,9 @@
         m-0
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInpuName"
                      placeholder="Ваше имя">
+                            <span v-show="hasCompany === false" class="caption-2 px-1 pt-s c-error">
+                          Компания не найдена или уже добавленна в другом аккаунте
+                          </span>
               <label v-if="isPerson()" for="floatingInput" class="text-[#6E7191]">ИНН вашей компании</label>
 
               <label v-else for="floatingInpuName" class="text-[#6E7191]">Ваше имя</label>
@@ -103,10 +103,10 @@ export default {
       },
       person: {
         inn: null,
-        name: 'тест',
+        name: null,
       },
       filterKey: null,
-      phoneErrors: false,
+      hasCompany: null,
     }
   },
   middleware: ['redirect', 'person'],
@@ -118,15 +118,14 @@ export default {
     submitted() {
 
       this.user.person = this.person;
+      if (this.hasCompany === false) {
+        return;
+      }
       this.$axios.$put(`users/${this.user.id}`, this.user).then(() => {
         const user = this.$auth.fetchUser().then((res) => {
-          // console.log(res);
           this.$auth.setUser(res.data);
           this.$router.push({name: 'profile'});
         });
-
-        // });
-
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -134,11 +133,8 @@ export default {
     },
     debounceInput: _.debounce(function (e) {
       this.person.inn = e.target.value;
-      // const services = await this.$axios.$get(`services?skip=0&take=25${getParams}`);
-      let params = {'inn': this.person.inn}
-      this.$axios.$get(`external/find-company?${params}`).then((res) => {
-            // console.log(res.data);
-            this.phoneErrors = red.data.inn;
+      this.$axios.$get(`external/find-company?inn=${this.person.inn}`).then((res) => {
+            this.hasCompany = res.has_company;
         }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
