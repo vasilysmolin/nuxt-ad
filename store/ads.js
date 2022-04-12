@@ -36,7 +36,7 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{userID = null, state = 'active', from = null, expand = null}) {
+	async getItems({commit},{userID = null, state = null, from = null, expand = null}) {
 		const getParams = params({userID,state,expand,from});
 		const ads = await this.$axios.$get(`declarations?skip=0&take=25&${getParams}`);
 
@@ -48,7 +48,7 @@ export const actions = {
 			commit('setAmount', ads.meta.total);
 		}
 	},
-	async addItems({commit},{skip = 0, userID = null, state = 'active', from = null, expand = null}) {
+	async addItems({commit},{skip = 0, userID = null, state = null, from = null, expand = null}) {
 		const getParams = params({userID,state,expand,from,skip});
 		const ads = await this.$axios.$get(`declarations?take=25&${getParams}`);
 		if(state === 'new'){

@@ -35,7 +35,7 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{state = 'all', type = 'all'}) {
+	async getItems({commit},{state = null, type = 'all'}) {
 		const users = await this.$axios.$get(`users?skip=0&take=25&state=${state}&type=${type}`);
 		if(state === 'new'){
 			commit('setusersnew', users.users);
@@ -46,7 +46,7 @@ export const actions = {
 		}
 
 	},
-	async addItems({commit},{skip = 0,state = 'all', type = 'all'}) {
+	async addItems({commit},{skip = 0,state = null, type = 'all'}) {
 		const users = await this.$axios.$get(`users?skip=${skip}&take=25&state=${state}&type=${type}`);
 		if(type === 'new'){
 			commit('addusersnew', users.users);

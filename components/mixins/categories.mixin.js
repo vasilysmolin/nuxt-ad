@@ -61,7 +61,7 @@ export default {
                     title: '',
                     categories: this.getChildren(category),
                 });
-            } else if(!!category) {
+            } else if(category) {
                 this.data.category_id = category.id;
             }
         },
