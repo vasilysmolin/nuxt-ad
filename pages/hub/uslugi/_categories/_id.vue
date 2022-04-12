@@ -81,6 +81,16 @@
             <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Сохранить
             </button>
+
+
+            <button @click.prevent="up" class="h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800">Поднять</button>
+
+            <button @click.prevent="deleted" class="h-10 px-5 m-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Удалить</button>
+
+            <div v-if="checkState()">
+              <button v-if="data.state !== 'active'" @click.prevent="active" class="h-10 px-5 m-2 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">Активировать</button>
+              <button v-else @click.prevent="pause"  class="h-10 px-5 m-2 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">На паузу</button>
+            </div>
           </div>
         </form>
       </div>
@@ -197,6 +207,38 @@ export default {
       });
 
     },
+    deleted() {
+      this.$axios.$delete(`services/${this.$route.params.id}`).then(() => {
+        this.$router.push({name: 'uslugi'});
+      }).catch((error) => {
+        // console.log(error.response.data.errors);
+        // this.$v.nameErrors = 'какой-то текст';
+      });
+
+    },
+    active() {
+      this.$axios.$put(`services/${this.$route.params.id}`,{state: 'active'}).then(() => {
+        this.$router.push({name: 'uslugi'});
+      }).catch((error) => {
+      });
+
+    },
+    pause() {
+      this.$axios.$put(`services/${this.$route.params.id}`,{state: 'pause'}).then(() => {
+        this.$router.push({name: 'uslugi'});
+      }).catch((error) => {
+      });
+
+    },
+    up() {
+      this.$axios.$put(`services/${this.$route.params.id}`,{}).then(() => {
+        this.$router.push({name: 'uslugi'});
+      }).catch((error) => {
+      });
+    },
+    checkState() {
+      return this.data.state === 'active' || this.data.state === 'pause';
+    }
   },
 }
 </script>
