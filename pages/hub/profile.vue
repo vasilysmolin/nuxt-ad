@@ -5,7 +5,7 @@
         <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
           <article class="flex justify-between w-full">
             <p class="text-xs text-[#A0A3BD]">{{isPerson() ? 'Юридическое лицо' : 'Физическое лицо'}}</p>
-            <p class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ person.inn }}</span></p>
+            <p v-if="isPerson()" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ person.inn }}</span></p>
           </article>
           <h1 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{user.name}}</h1>
         </section>
