@@ -214,7 +214,7 @@ export default {
 
     },
     up() {
-      this.$axios.$put(`declarations/${this.$route.params.id}`,{}).then(() => {
+      this.$axios.$put(`declarations/${this.$route.params.id}/sort`,{}).then(() => {
         this.$router.push({name: 'catalog'});
       }).catch((error) => {
       });

@@ -231,7 +231,7 @@ export default {
 
     },
     up() {
-      this.$axios.$put(`services/${this.$route.params.id}`,{}).then(() => {
+      this.$axios.$put(`services/${this.$route.params.id}/sort`,{}).then(() => {
         this.$router.push({name: 'uslugi'});
       }).catch((error) => {
       });

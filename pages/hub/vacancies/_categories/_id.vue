@@ -296,7 +296,7 @@ export default {
 
     },
     up() {
-      this.$axios.$put(`vacancies/${this.$route.params.id}`,{}).then(() => {
+      this.$axios.$put(`vacancies/${this.$route.params.id}/sort`,{}).then(() => {
         this.$router.push({name: 'vacancies'});
       }).catch((error) => {
       });

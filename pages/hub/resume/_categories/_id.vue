@@ -285,7 +285,7 @@ export default {
 
     },
     up() {
-      this.$axios.$put(`resume/${this.$route.params.id}`,{}).then(() => {
+      this.$axios.$put(`resume/${this.$route.params.id}/sort`,{}).then(() => {
         this.$router.push({name: 'resume'});
       }).catch((error) => {
       });
