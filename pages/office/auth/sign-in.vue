@@ -62,7 +62,7 @@ export default {
     return {
       email: '',
       password: '',
-      from: process.env.OFFICE_URL,
+      from: process.env.OFFICE_URL + '/users',
     }
   },
   mounted() {
@@ -76,7 +76,8 @@ export default {
             password: this.password
           }
         }).then(() => {
-          document.location.href = this.from;
+          // document.location.href = this.from;
+          this.$router.push({name: 'users'});
         });
       },
     },

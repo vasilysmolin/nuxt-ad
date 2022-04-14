@@ -4,8 +4,9 @@
       <GlobalNav/>
       <TLogo/>
       <UserNavRoot/>
-      <RootNavWin/>
+<!--      <RootNavWin/>-->
     </header>
+    <NavOffice/>
     <Nuxt/>
   </main>
 </template>

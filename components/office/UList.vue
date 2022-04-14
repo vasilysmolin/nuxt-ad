@@ -6,9 +6,11 @@
       <article v-for="user in usersNew" :key="user.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="`/users/${user.id}`">
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.name }}</h2>
-          <p class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.email }}</p>
-          <p class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ dateFormat(user.created_at) }}</p>
-          <h3 class="mt-1 mb-2.5 text-lg">{{ user.id }}</h3>
+          <p class="text-sm">Email: {{ user.email }}</p>
+          <p class="text-sm">Статус: {{getState(user)}}</p>
+          <p class="text-sm">Дата регистрации: {{ dateFormat(user.created_at) }}</p>
+          <p class="text-sm">ID: {{ user.id }}</p>
+          <p class="text-sm">Тип: {{ getType(user) }}</p>
         </NuxtLink>
 
       </article>
@@ -20,9 +22,11 @@
       <article v-for="user in usersActive" :key="user.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="`/users/${user.id}`">
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.name }}</h2>
-          <p class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.email }}</p>
-          <p class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ dateFormat(user.created_at) }}</p>
-          <h3 class="mt-1 mb-2.5 text-lg">{{ user.id }}</h3>
+          <p class="text-sm">Email: {{ user.email }}</p>
+          <p class="text-sm">Статус: {{getState(user)}}</p>
+          <p class="text-sm">Дата регистрации: {{ dateFormat(user.created_at) }}</p>
+          <p class="text-sm">ID: {{ user.id }}</p>
+          <p class="text-sm">Тип: {{ getType(user) }}</p>
         </NuxtLink>
 
       </article>
@@ -33,6 +37,7 @@
 
 <script>
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import Person from "~/components/mixins/person.mixin";
 export default {
   name: "UList",
   async mounted() {
@@ -42,14 +47,20 @@ export default {
     if(this.usersActive.length === 0) {
       await this.getItems({state: 'active'});
     }
+    // if(this.states.length === 0) {
+      await this.getItemsState();
+    // }
+
 
   },
+  mixins: [Person],
   computed: {
     ...mapGetters({
       usersNew: 'users/usersNew',
       usersActive: 'users/users',
       amount: 'users/amount',
       amountNew: 'users/amountNew',
+      states: 'states/states',
     }),
     checkAmountNew(){
         return this.usersNew.length < this.amountNew;
@@ -62,6 +73,7 @@ export default {
     ...mapActions({
         getItems: 'users/getItems',
         addItems: 'users/addItems',
+        getItemsState: 'states/getItems',
       }),
     dateFormat(date) {
       if(date) {
@@ -73,7 +85,10 @@ export default {
         });
         return formatter.format(dates);
       }
-    }
+    },
+    getState(user) {
+      return this.states[user.state];
+    },
   },
 
 }
