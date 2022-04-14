@@ -3,7 +3,8 @@
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
         <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ ad.name }}</h2>
-        <p class="text-sm">{{ad.state}}</p>
+        <p class="text-sm">Статус: {{getState(ad)}}</p>
+        <p class="text-sm">Позиция в каталоге: {{ad.sort}}</p>
         <NuxtLink :to="getUrl(ad)">
           <div class="flex justify-between mt-2 w-full">
             <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Редактировать</button>
@@ -29,11 +30,13 @@ export default {
   async mounted() {
     // if (this.ads.length === 0) {
       await this.getItems({ from: 'cabinet'});
+      await this.getItemsState();
     // }
   },
   computed: {
     ...mapGetters({
-      ads: 'ads/ads'
+      ads: 'ads/ads',
+      states: 'states/states',
     }),
     checkAmount(){
       return this.ads.length < this.amount;
@@ -44,10 +47,14 @@ export default {
     ...mapActions({
       getItems: 'ads/getItems',
       addItems: 'ads/addItems',
+      getItemsState: 'states/getItems',
     }),
     getUrl(ad) {
       let cat = `/catalog/${ad.categories ? ad.categories.alias : 'none'}`;
       return cat + '/' + `${ad.alias}`
+    },
+    getState(ad) {
+      return this.states[ad.state];
     }
   },
 
