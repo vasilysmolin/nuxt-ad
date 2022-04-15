@@ -36,8 +36,8 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{userID = null, state = null, from = null, expand = null}) {
-		const getParams = params({userID,state,expand,from});
+	async getItems({commit},{user_id = null, state = null, from = null, expand = null}) {
+		const getParams = params({user_id,state,expand,from});
 		const services = await this.$axios.$get(`services?skip=0&take=25${getParams}`);
 
 		if(state === 'new'){
@@ -48,8 +48,8 @@ export const actions = {
 			commit('setAmount', services.meta.total);
 		}
 	},
-	async addItems({commit},{skip = 0, userID = null, state = null, from = null, expand = null}) {
-		const getParams = params({userID,state,expand,from,skip});
+	async addItems({commit},{skip = 0, user_id = null, state = null, from = null, expand = null}) {
+		const getParams = params({user_id,state,expand,from,skip});
 		const services = await this.$axios.$get(`services?take=25${getParams}`);
 		if(state === 'new'){
 			commit('addServicesNew', services.services);

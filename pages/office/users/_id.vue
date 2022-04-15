@@ -48,7 +48,32 @@
             </article>
             <button v-if="checkAmountR" @click="addResumes({skip: resumes.length, user_id: user.id, state: null})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
           </section>
+          <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
+            <h2 class="font-bold text-lg">Объявления</h2>
+            <article v-for="ad in ads" :key="ad.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-green-100">
+              <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ ad.name }}</h2>
+              <p class="text-sm">Статус: {{getState(ad)}}</p>
+              <p class="text-sm">Позиция в каталоге: {{ad.sort}}</p>
+              <NuxtLink :to="`/catalog/${ad.id}`">
+                <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Редактировать</button>
+              </NuxtLink>
+            </article>
+            <button v-if="checkAmountA" @click="addAds({skip: ads.length, user_id: user.id, state: null})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+          </section>
+          <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
+            <h2 class="font-bold text-lg">Услуги</h2>
+            <article v-for="service in services" :key="service.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-green-100">
+              <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ service.name }}</h2>
+              <p class="text-sm">Статус: {{getState(service)}}</p>
+              <p class="text-sm">Позиция в каталоге: {{service.sort}}</p>
+              <NuxtLink :to="`/uslugi/${service.id}`">
+                <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Редактировать</button>
+              </NuxtLink>
+            </article>
+            <button v-if="checkAmountS" @click="addAds({skip: services.length, user_id: user.id, state: null})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+          </section>
         </article>
+
 
       </div>
     </div>
@@ -74,6 +99,8 @@ export default {
     await this.$store.dispatch('users/getItem', { id: this.$route.params.id });
     await this.$store.dispatch('vacancies/getItems', { user_id: this.$route.params.id, state: null });
     await this.$store.dispatch('resumes/getItems', { user_id: this.$route.params.id, state: null });
+    await this.$store.dispatch('ads/getItems', { user_id: this.$route.params.id, state: null });
+    await this.$store.dispatch('services/getItems', { user_id: this.$route.params.id, state: null });
     await this.$store.dispatch('states/getItems');
     await this.getItemsState();
   },
@@ -96,6 +123,12 @@ export default {
     checkAmountV(){
       return this.vacancies.length < this.amountL;
     },
+    checkAmountA(){
+      return this.ads.length < this.amountA;
+    },
+    checkAmountS(){
+      return this.services.length < this.amountS;
+    },
     states: {
       get(){
         return _.cloneDeep(this.$store.getters['states/states']);
@@ -108,6 +141,10 @@ export default {
       users: 'users/users',
       vacancies: 'vacancies/vacancies',
       resumes: 'resumes/resumes',
+      services: 'services/services',
+      ads: 'ads/ads',
+      amountA: 'ads/amount',
+      amountS: 'services/amount',
       amountR: 'resumes/amount',
       amountL: 'vacancies/amount',
       states: 'states/states',
@@ -118,7 +155,9 @@ export default {
       getItems: 'users/getItems',
       addItems: 'users/addItems',
       addResumes: 'resumes/addItems',
+      addServices: 'services/addItems',
       addVacancies: 'vacancies/addItems',
+      addAds: 'ads/addItems',
       getItemsState: 'states/getItems',
     }),
     submitted() {
