@@ -1,3 +1,5 @@
+import { params } from '../helper/requestParams';
+
 export const state = () => ({
 	users: [],
 	amount: null,
@@ -35,8 +37,9 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{state = null, type = 'all'}) {
-		const users = await this.$axios.$get(`users?skip=0&take=25&state=${state}&type=${type}`);
+	async getItems({commit},{state = null, type = null}) {
+		const getParams = params({type,state});
+		const users = await this.$axios.$get(`users?skip=0&take=25${getParams}`);
 		if(state === 'new'){
 			commit('setusersnew', users.users);
 			commit('setAmountNew', users.meta.total);
@@ -46,8 +49,9 @@ export const actions = {
 		}
 
 	},
-	async addItems({commit},{skip = 0,state = null, type = 'all'}) {
-		const users = await this.$axios.$get(`users?skip=${skip}&take=25&state=${state}&type=${type}`);
+	async addItems({commit},{skip = 0,state = null, type = null}) {
+		const getParams = params({skip, type, state});
+		const users = await this.$axios.$get(`users?&take=25${getParams}`);
 		if(type === 'new'){
 			commit('addusersnew', users.users);
 		} else {

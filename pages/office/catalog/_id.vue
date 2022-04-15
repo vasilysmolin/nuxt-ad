@@ -6,15 +6,15 @@
           вакансии</h1>
         <article>
           <section>
-            <p class="text-sm">Название: {{ resume.name }}</p>
-            <p class="text-sm">Дата создания: {{ format(resume.created_at) }}</p>
-            <p class="text-sm">Дата обновления: {{ format(resume.updated_at) }}</p>
-            <p class="text-sm">ID: {{ resume.id }}</p>
-            <p class="text-sm">Описание: {{ resume.description }}</p>
+            <p class="text-sm">Название: {{ ad.name }}</p>
+            <p class="text-sm">Дата создания: {{ format(ad.created_at) }}</p>
+            <p class="text-sm">Дата обновления: {{ format(ad.updated_at) }}</p>
+            <p class="text-sm">ID: {{ ad.id }}</p>
+            <p class="text-sm">Описание: {{ ad.description }}</p>
             <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
               <label class="pl-4 text-gray-500">Модерация</label>
-              <select class="form-select form-select-lg mt-2 forms-select" v-model="resume.state">
-                <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === resume.state">
+              <select class="form-select form-select-lg mt-2 forms-select" v-model="ad.state">
+                <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === ad.state">
                   {{ value }}
                 </option>
               </select>
@@ -33,18 +33,18 @@
 <script>
 import * as _ from 'lodash';
 import {mapGetters} from "vuex";
-import {dateFormat} from "../../../../helper/dataFormat";
+import {dateFormat} from "../../../helper/dataFormat";
 
 export default {
   name: "Radmin",
   layout: 'office',
   async mounted() {
-    await this.$store.dispatch('resumes/getItem', { id: this.$route.params.id });
+    await this.$store.dispatch('ads/getItem', { id: this.$route.params.id });
     await this.$store.dispatch('states/getItems');
   },
   computed: {
-    resume() {
-      return _.cloneDeep(this.$store.getters['resumes/resume']);
+    ad() {
+      return _.cloneDeep(this.$store.getters['ads/ad']);
     },
     states: {
       get(){
@@ -55,12 +55,12 @@ export default {
       }
     },
     ...mapGetters({
-      resumes: 'resumes/resumes'
+      ads: 'ads/ads'
     }),
   },
   methods: {
     submitted() {
-      this.$axios.$put(`resume/${this.resume.id}`, {state: this.resume.state});
+      this.$axios.$put(`declarations/${this.ad.id}`, {state: this.ad.state});
     },
     format(date) {
       return dateFormat(date);
@@ -69,7 +69,7 @@ export default {
 
   head() {
     return {
-      title: `${this.resume.title} | Вакансии без ограничений на Tapigo.ru | Работа`,
+      title: `${this.ad.title} | Вакансии без ограничений на Tapigo.ru | Работа`,
       meta: [
         {hid: 'description', name: 'description', content: 'Обьект'}
       ]

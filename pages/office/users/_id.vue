@@ -9,7 +9,7 @@
             <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.name }}</h2>
             <p class="text-sm">Email: {{ user.email }}</p>
             <p class="text-sm">Статус: {{getState(user)}}</p>
-            <p class="text-sm">Дата регистрации: {{ dateFormat(user.created_at) }}</p>
+            <p class="text-sm">Дата регистрации: {{ format(user.created_at) }}</p>
             <p class="text-sm">ID: {{ user.id }}</p>
             <p class="text-sm">Тип: {{ getType(user) }}</p>
             <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
@@ -59,6 +59,7 @@
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import Person from "~/components/mixins/person.mixin";
+import {dateFormat} from "../../../helper/dataFormat";
 
 export default {
   name: "VUser",
@@ -123,17 +124,8 @@ export default {
     submitted() {
       this.$axios.$put(`users/${this.user.id}`, {state: this.user.state});
     },
-    dateFormat(date) {
-      if(date){
-        var dates = new Date(date);
-        const formatter = new Intl.DateTimeFormat('ru-RU', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-        return formatter.format(dates);
-      }
-
+    format(date) {
+      return dateFormat(date);
     },
     getState(user) {
       return this.states[user.state];

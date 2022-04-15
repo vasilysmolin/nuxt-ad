@@ -32,7 +32,7 @@
 <script>
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
 export default {
-  name: "VAdminList",
+  name: "RAdminList",
   async mounted() {
     if(this.resumesNew.length === 0) {
       await this.getItems({state: 'new'});
