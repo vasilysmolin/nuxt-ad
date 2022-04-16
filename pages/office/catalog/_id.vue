@@ -19,6 +19,14 @@
                 </option>
               </select>
             </div>
+            <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+              <h2 class="text-sm font-bold text-black">Фотографии</h2>
+              <section class="mt-4 grid grid-cols-2 gap-4 w-full">
+                <div v-for="photo in ad.photos">
+                  <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
+                </div>
+              </section>
+            </section>
             <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Сохранить
             </button>
