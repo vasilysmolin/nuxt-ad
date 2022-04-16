@@ -282,14 +282,14 @@ export default {
 
     },
     active() {
-      this.$axios.$put(`vacancies/${this.$route.params.id}`,{state: 'active'}).then(() => {
+      this.$axios.$put(`vacancies/${this.$route.params.id}/state`,{state: 'active'}).then(() => {
         this.$router.push({name: 'vacancies'});
       }).catch((error) => {
       });
 
     },
     pause() {
-      this.$axios.$put(`vacancies/${this.$route.params.id}`,{state: 'pause'}).then(() => {
+      this.$axios.$put(`vacancies/${this.$route.params.id}/state`,{state: 'pause'}).then(() => {
         this.$router.push({name: 'vacancies'});
       }).catch((error) => {
       });

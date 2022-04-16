@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     submitted() {
-      this.$axios.$put(`services/${this.service.id}`, {state: this.service.state});
+      this.$axios.$put(`services/${this.service.id}/state`, {state: this.service.state});
     },
     format(date) {
       return dateFormat(date);
