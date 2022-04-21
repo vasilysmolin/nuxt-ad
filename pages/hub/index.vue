@@ -52,7 +52,10 @@
             </div>
 
             <div class="form-floating w-full sm:w-[27rem]">
-              <input v-model="user.phone" type="text" class="form-control
+              <the-mask :mask="['+7 (###) ###-##-##']" v-model="user.phone"
+                        id="floatingPassword"
+                        type="text"
+                        class="form-control
     block
     w-full
     px-3
@@ -66,9 +69,9 @@
     transition
     ease-in-out
     m-0
-    focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingPassword"
-                     placeholder="Ваш телефон">
-              <label for="floatingPassword" class="text-[#6E7191]">Ваш телефон</label>
+    focus:text-black focus:bg-white focus:border-black focus:outline-hidden"
+                        placeholder="Ваш телефон" />
+              <label class="text-[#6E7191]">Ваш телефон</label>
             </div>
             <button @click.prevent="submitted"  class="btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
             >Продолжить
@@ -84,6 +87,7 @@
 import NavLocProfile from "../../components/NavLocProfile";
 import Person from "~/components/mixins/person.mixin";
 import * as _ from 'lodash';
+
 export default {
   name: 'ProfileData',
   components: {NavLocProfile},

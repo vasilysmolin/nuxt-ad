@@ -32,7 +32,10 @@
             </div>
 
             <div class="form-floating w-full sm:w-[27rem]">
-              <input type="text" v-model="user.phone" class="form-control
+              <the-mask :mask="['+7 (###) ###-##-##']" v-model="user.phone"
+                        id="floatingPassword"
+                        type="text"
+                        class="form-control
     block
     w-full
     px-3
@@ -46,9 +49,9 @@
     transition
     ease-in-out
     m-0
-    focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingPassword"
-                     placeholder="Ваш телефон">
-              <label for="floatingPassword" class="text-[#6E7191]">Ваш телефон</label>
+    focus:text-black focus:bg-white focus:border-black focus:outline-hidden"
+                        placeholder="Ваш телефон" />
+              <label class="text-[#6E7191]">Ваш телефон</label>
             </div>
           </div>
         </form>

@@ -72,6 +72,7 @@ export default {
     plugins: [
         { src: '~/plugins/directives.js' },
         { src: '~/plugins/vuelidate' },
+        { src: '~/plugins/mask.js' },
     ],
     // router: {
     //     middleware: ['auth']
