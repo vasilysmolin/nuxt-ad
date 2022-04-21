@@ -73,6 +73,9 @@
                         placeholder="Ваш телефон" />
               <label class="text-[#6E7191]">Ваш телефон</label>
             </div>
+            <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
+            {{ phoneErrors }}
+            </span>
             <button @click.prevent="submitted"  class="btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
             >Продолжить
             </button>
@@ -87,6 +90,7 @@
 import NavLocProfile from "../../components/NavLocProfile";
 import Person from "~/components/mixins/person.mixin";
 import * as _ from 'lodash';
+import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 
 export default {
   name: 'ProfileData',
@@ -113,6 +117,39 @@ export default {
       hasCompany: null,
     }
   },
+  validations: {
+    user: {
+      phone: {
+        required,
+        numeric,
+        maxLength: maxLength(10),
+        minLength: minLength(10)
+      },
+    },
+  },
+  computed: {
+    phoneErrors() {
+      if (!this.$v.user.phone.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.user.phone.required) {
+        return 'Введите телефон';
+      }
+
+      if (!this.$v.user.phone.maxLength) {
+        return 'Превышена допустимая длина названия';
+      }
+      if (!this.$v.user.phone.minLength) {
+        return 'Ошибка, минимальное значение';
+      }
+      if (!this.$v.user.phone.numeric) {
+        return 'Укажите только числа, без других символов';
+      }
+
+      return '';
+    },
+  },
   middleware: ['redirect', 'person'],
   mounted() {
     this.user = _.cloneDeep(this.$auth.user);
@@ -120,7 +157,12 @@ export default {
   },
   methods: {
     submitted() {
-
+      // if (this.user.profile.isPerson === false) {
+        if (this.$v.$invalid) {
+          this.$v.$touch();
+          return;
+        }
+      // }
       this.user.person = this.person;
       if (this.hasCompany === false) {
         return;
