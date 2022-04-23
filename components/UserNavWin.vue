@@ -71,8 +71,7 @@ export default {
   },
   methods: {
     logout() {
-        this.$auth.logout();
-        setTimeout(() => {
+        this.$auth.logout().then(() =>{
           document.location.href = process.env.AUTH_URL;
         });
     },
