@@ -69,7 +69,7 @@
               <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
             </div>
 
-            <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            <button :disabled="isDisabled" class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Разместить
             </button>
           </div>
@@ -105,6 +105,7 @@ export default {
         photos: [],
       },
       files: [],
+      isDisabled: false,
     }
   },
   validations: {
@@ -161,10 +162,12 @@ export default {
   },
   methods: {
     submitted() {
+
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
       }
+      this.isDisabled = true;
       let data = new FormData();
       for (let i = 0; i < this.files.length; i++) {
         data.append('files[]', this.files[i]);
@@ -178,9 +181,11 @@ export default {
         this.$router.push({name: 'catalog'});
         console.log('успех')
       }).catch((error) => {
+
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
       });
+      this.isDisabled = false;
 
     },
     onFileChange(e) {
