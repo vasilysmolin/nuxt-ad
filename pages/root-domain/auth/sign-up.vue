@@ -78,7 +78,7 @@
           </div>
         </div>
       </form>
-      <NuxtLink to="/auth/sign-in" class="my-5 font-bold text-blue-600">Войти в аккаунт</NuxtLink>
+      <NuxtLink :to="{path: linkSignIn}" class="my-5 font-bold text-blue-600">Войти в аккаунт</NuxtLink>
       <p class="text-xs text-gray-400 text-center leading-relaxed">Нажимая кнопку «Создать аккаунт» я соглашаюсь на обработку <nuxt-link to="" class="text-blue-600">персональных данных</nuxt-link>.</p>
     </div>
   </div>
@@ -94,12 +94,24 @@ export default {
       is_person: false,
       phone: '',
       password: '',
-      from: process.env.HUB_URL + '/profile',
+      from: null,
     }
   },
   middleware: ['redirectHub'],
   mounted() {
-    // this.$auth.logout();
+    if(this.$route.query.from) {
+      this.from = this.$route.query.from;
+    }
+  },
+  computed: {
+    linkSignIn() {
+      if(this.from) {
+        return `/auth/sign-in?from=${this.from}`;
+      } else {
+        return `/auth/sign-in`;
+      }
+
+    }
   },
   methods: {
     submitted() {
@@ -116,7 +128,8 @@ export default {
                   password: this.password
                 }
               }).then(() => {
-                document.location.href = this.from;
+                const url = this.from ?? process.env.HUB_URL + '/profile';
+                document.location.href = url;
               });
             }
           })
@@ -124,7 +137,7 @@ export default {
             console.error(error)
           });
 
-      }
+      },
   },
 };
 </script>

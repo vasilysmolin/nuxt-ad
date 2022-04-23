@@ -52,7 +52,7 @@
           </div>
         </div>
       </form>
-      <NuxtLink to="/auth/sign-up" class="mt-5 font-bold text-blue-600">Создать аккаунт</NuxtLink>
+      <NuxtLink :to="{path: linkSignUp}" class="mt-5 font-bold text-blue-600">Создать аккаунт</NuxtLink>
     </div>
   </div>
 </template>
@@ -73,7 +73,15 @@ export default {
     if(this.$route.query.from) {
       this.from = this.$route.query.from;
     }
-    console.log(this.checkStepPerson);
+  },
+  computed: {
+    linkSignUp() {
+      if(this.from) {
+        return `/auth/sign-up?from=${this.from}`;
+      } else {
+        return `/auth/sign-up`;
+      }
+    }
   },
   mixins: [Person],
   methods: {
@@ -85,7 +93,8 @@ export default {
           },
         }).then(() => {
           if(this.checkSteps){
-            document.location.href = process.env.HUB_URL + '/profile';
+            const url = this.from ?? process.env.HUB_URL + '/profile';
+            document.location.href = url;
           } else {
             document.location.href = process.env.HUB_URL;
           }

@@ -1,14 +1,14 @@
 <template>
   <div>
-    <NuxtLink :to="categoryLink(category)">
-<!--      <li>{{depth + acc}} {{ category.name }}</li>-->
-      <li>{{ category.name }}</li>
-      <ListCategories
-          v-for="category in category.categories"
-          :category="category"
-          :depth="depth + acc"
-      />
-    </NuxtLink>
+<!--    <NuxtLink :to="categoryLink(category)">-->
+<!--&lt;!&ndash;      <li>{{depth + acc}} {{ category.name }}</li>&ndash;&gt;-->
+<!--      <li>{{ category.name }}</li>-->
+<!--      <ListCategories-->
+<!--          v-for="category in category.categories"-->
+<!--          :category="category"-->
+<!--          :depth="depth + acc"-->
+<!--      />-->
+<!--    </NuxtLink>-->
   </div>
 </template>
 

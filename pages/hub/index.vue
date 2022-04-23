@@ -115,6 +115,7 @@ export default {
       },
       filterKey: null,
       hasCompany: null,
+      from: null,
     }
   },
   validations: {
@@ -152,6 +153,9 @@ export default {
   },
   middleware: ['redirect', 'person'],
   mounted() {
+    if(this.$route.query.from) {
+      this.from = this.$route.query.from;
+    }
     this.user = _.cloneDeep(this.$auth.user);
     this.person.inn = _.clone(this.getInn());
   },
@@ -170,7 +174,7 @@ export default {
       this.$axios.$put(`users/${this.user.id}`, this.user).then(() => {
         const user = this.$auth.fetchUser().then((res) => {
           this.$auth.setUser(res.data);
-          this.$router.push({name: 'profile'});
+            this.$router.push({name: 'profile'});
         });
       }).catch((error) => {
         // console.log(error.response.data.errors);
