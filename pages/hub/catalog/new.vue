@@ -162,7 +162,6 @@ export default {
   },
   methods: {
     submitted() {
-
       if (this.$v.$invalid) {
         this.$v.$touch();
         return;
@@ -185,7 +184,6 @@ export default {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
       });
-      this.isDisabled = false;
 
     },
     onFileChange(e) {
