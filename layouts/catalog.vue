@@ -18,6 +18,12 @@
           :toggle="isHidden"
           @toggleBlock="toggleBlock"
       />
+      <div class="">
+          <button @click="linkHub" type="button"
+                  class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+            + Разместить объявление
+          </button>
+      </div>
     </header>
     <Nuxt/>
   </main>
@@ -50,8 +56,16 @@ export default {
     },
     toggleGBlock(bool) {
       this.isHiddenG = bool;
+    },
+    linkHub() {
+      if(this.$auth.loggedIn) {
+        document.location.href = `${process.env.HUB_URL}/catalog/new`;
+      } else {
+        document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/catalog/new`;
+      }
     }
   },
+
 
 
 }

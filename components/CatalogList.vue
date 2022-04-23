@@ -1,10 +1,6 @@
 <template>
   <section class="container flex flex-col items-center mt-[100px] pb-10">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
-      <button @click="linkHub" type="button"
-              class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-        + Разместить объявление
-      </button>
       <article v-for="ad in ads" :key="ad.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(ad)">
           <section class="grid grid-cols-[25%,_1fr]">
@@ -68,14 +64,6 @@ export default {
     getUsername(catalog) {
       return catalog?.profile?.user?.name
     },
-    linkHub() {
-      if(this.$auth.loggedIn) {
-        document.location.href = `${process.env.HUB_URL}/catalog/new`;
-      } else {
-        document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/catalog/new`;
-      }
-
-    }
   },
 
 }
