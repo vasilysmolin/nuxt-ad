@@ -14,6 +14,12 @@ export default {
         hasChildren(node) {
             return !_.isEmpty(node.categories);
         },
+        hasParent(node) {
+            return !_.isEmpty(node.categories_parent);
+        },
+        getParent(node) {
+            return node.categories_parent;
+        },
         iterator(tree) {
             const iter = (node, ancestry) => {
                 if(_.isArray(node)) {
@@ -51,6 +57,14 @@ export default {
                     return acc;
                 }
             },[]);
+        },
+        parentIter(tree, path){
+            if(!this.hasParent(tree)){
+                return path;
+            }
+            const parent = this.getParent(tree);
+            return this.parentIter(parent, `${parent.alias}/${path}`)
+
         },
         setCategory(event,index) {
             this.items.splice(index + 1, Infinity);
