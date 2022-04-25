@@ -16,7 +16,7 @@
       <p class="mt-1 text-sm sm:text-base text-gray-600">{{ ad.description }}</p>
     </section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+    <section v-if="ad.photos.length > 0" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
       <section class="mt-4 grid grid-cols-2 gap-4 w-full">
       <div v-for="photo in ad.photos">

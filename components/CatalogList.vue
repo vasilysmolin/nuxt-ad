@@ -5,7 +5,7 @@
         <NuxtLink :to="getUrl(ad)">
           <section class="grid grid-cols-[25%,_1fr]">
             <section>
-              <img class="w-full rounded-lg" :src="ad.photo" :alt="ad.name">
+              <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
             </section>
             <section class="flex flex-col justify-between pl-4">
               <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">{{ ad.name }}</h2>
@@ -64,6 +64,9 @@ export default {
     getUsername(catalog) {
       return catalog?.profile?.user?.name
     },
+    getPhoto(ad) {
+      return ad.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
+    }
   },
 
 }
