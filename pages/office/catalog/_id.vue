@@ -3,7 +3,7 @@
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <h1 class="mb-4 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
-          вакансии</h1>
+          объявление</h1>
         <article>
           <section>
             <p class="text-sm">Название: {{ ad.name }}</p>
@@ -11,10 +11,19 @@
             <p class="text-sm">Дата обновления: {{ format(ad.updated_at) }}</p>
             <p class="text-sm">ID: {{ ad.id }}</p>
             <p class="text-sm">Описание: {{ ad.description }}</p>
+            <p v-if="ad.reason" class="text-sm">Причина блокировки: {{ reasons[ad.reason] }}</p>
             <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
               <label class="pl-4 text-gray-500">Модерация</label>
-              <select class="form-select form-select-lg mt-2 forms-select" v-model="ad.state">
+              <select @change="checkState()" class="form-select form-select-lg mt-2 forms-select" v-model="ad.state">
                 <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === ad.state">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+            <div v-if="isReason" class="mb-4 w-full sm:w-[27rem] mt-[20px]">
+              <label class="pl-4 text-gray-500">Причины</label>
+              <select class="form-select form-select-lg mt-2 forms-select" v-model="reason">
+                <option v-for="[key, value] in Object.entries(reasons)" :value="key" :key="key" :selected="key === ad.reason">
                   {{ value }}
                 </option>
               </select>
@@ -47,9 +56,24 @@ export default {
   name: "Radmin",
   layout: 'office',
   async mounted() {
-    await this.$store.dispatch('ads/getItem', { id: this.$route.params.id });
+    await this.$store.dispatch('ads/getItem', { id: this.$route.params.id }).then(() =>{
+      this.checkState();
+    });
     await this.$store.dispatch('states/getItems');
+    await this.$store.dispatch('reasons/getItems');
+
   },
+  data() {
+    return {
+      reason: null,
+      isReason: false,
+    }
+  },
+  // watch: {
+  //   ad() {
+  //     this.checkState()
+  //   },
+  // },
   computed: {
     ad() {
       return _.cloneDeep(this.$store.getters['ads/ad']);
@@ -62,16 +86,31 @@ export default {
         return states
       }
     },
+    reasons: {
+      get(){
+        return _.cloneDeep(this.$store.getters['reasons/reasons']);
+      },
+      set(reasons){
+        return reasons
+      }
+    },
     ...mapGetters({
-      ads: 'ads/ads'
+      ads: 'ads/ads',
+      // states: 'states/states',
+      // reasons: 'reasons/reasons',
     }),
   },
   methods: {
     submitted() {
       this.$axios.$put(`declarations/${this.ad.id}/state`, {state: this.ad.state});
+      this.$axios.$put(`declarations/${this.ad.id}`, {reason: this.reason});
     },
     format(date) {
       return dateFormat(date);
+    },
+    checkState() {
+      console.log(this.ad.state);
+      this.isReason = this.ad.state === 'block' || this.ad.state === 're_block';
     },
   },
 

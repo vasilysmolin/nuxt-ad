@@ -25,6 +25,16 @@
                placeholder="Зарплата"
                v-model="searchByName">
         <label for="price" class="text-[#6E7191]">Имя пользователя</label>
+        <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
+          <label class="pl-4 text-gray-500">Статус</label>
+          <select class="form-select form-select-lg mt-2 forms-select" v-model="searchByState">
+            <option :value="null" :selected="key === searchByState">
+            </option>
+            <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === searchByState">
+              {{ value }}
+            </option>
+          </select>
+        </div>
         <button @click="filter" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Применить фильтр</button>
 
       </div>
@@ -39,7 +49,7 @@
         </NuxtLink>
 
       </article>
-      <button v-if="checkAmountActive" @click="addItems({skip: usersActive.length, name: searchByName })" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+      <button v-if="checkAmountActive" @click="addItems({skip: usersActive.length, name: searchByName, state: searchByState })" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
     </section>
   </section>
 </template>
@@ -65,6 +75,7 @@ export default {
   data() {
     return {
       searchByName: null,
+      searchByState: null,
     }
   },
   mixins: [Person],
@@ -101,7 +112,7 @@ export default {
       }
     },
     async filter() {
-      await this.getItems({name: this.searchByName});
+      await this.getItems({name: this.searchByName, state: this.searchByState});
     },
     getState(user) {
       return this.states[user.state];
