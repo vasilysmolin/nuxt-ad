@@ -16,7 +16,7 @@
       <p class="mt-1 text-sm sm:text-base text-gray-600">{{ ad.description }}</p>
     </section>
 
-    <section v-if="ad.photos.length > 0" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+    <section v-if="checkPhotos(ad)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
       <section class="mt-4 grid grid-cols-2 gap-4 w-full">
       <div v-for="photo in ad.photos">
@@ -40,10 +40,13 @@ export default {
   },
   methods: {
     getUsername(catalog) {
-      return catalog?.profile?.user?.name
+      return catalog?.profile?.user?.name;
     },
     getUserPhone(catalog) {
-      return catalog?.profile?.user?.phone
+      return catalog?.profile?.user?.phone;
+    },
+    checkPhotos(catalog) {
+      return !_.isEmpty(catalog.photos);
     },
   },
   computed: {
