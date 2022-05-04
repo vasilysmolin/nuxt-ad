@@ -6,7 +6,7 @@
 import CatalogList from "../../../components/CatalogList";
 export default {
   components: {CatalogList},
-  layout: 'catalog',
+  layout: 'default',
   head: {
     title: "Бесплатно создавайте объявления без ограничений на Tapigo.ru | Работа",
     meta: [
