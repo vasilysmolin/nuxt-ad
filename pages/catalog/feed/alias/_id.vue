@@ -34,7 +34,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "CObject",
-  layout: 'catalog',
+  layout: 'default',
   async mounted() {
     await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
   },
