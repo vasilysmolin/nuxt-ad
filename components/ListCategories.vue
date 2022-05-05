@@ -1,15 +1,16 @@
 <template>
-  <div>
-<!--    <NuxtLink :to="categoryLink(category)">-->
-<!--&lt;!&ndash;      <li>{{depth + acc}} {{ category.name }}</li>&ndash;&gt;-->
-<!--      <li>{{ category.name }}</li>-->
-<!--      <ListCategories-->
-<!--          v-for="category in category.categories"-->
-<!--          :category="category"-->
-<!--          :depth="depth + acc"-->
-<!--      />-->
-<!--    </NuxtLink>-->
+  <div class=" px-2 py-2 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <NuxtLink :to="categoryLink(category)">
+        {{depthSpaces(depth)}} {{ category.name }}
+      </NuxtLink>
+    <ListCategories
+        v-for="category in category.categories"
+        :category="category"
+        :depth="depth + acc"
+        :key="category.id"
+    />
   </div>
+
 </template>
 
 
@@ -29,7 +30,10 @@ export default {
     categoryLink(category) {
       const result = this.parentIter(category, category.alias);
       return `/feed/${result}`;
-    }
+    },
+    depthSpaces(depth){
+      return '-'.repeat(depth - 1);
+    },
   }
 }
 </script>

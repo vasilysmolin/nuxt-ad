@@ -45,9 +45,9 @@ export default {
   async mounted() {
     const sub = this.$route.fullPath.split('/').pop();
     this.alias = sub !== 'feed' ? sub : null;
-    if (this.ads.length === 0) {
+    // if (this.ads.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', alias: this.alias});
-    }
+    // }
   },
   computed: {
     ...mapGetters({
