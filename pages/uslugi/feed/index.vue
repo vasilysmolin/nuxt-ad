@@ -6,7 +6,7 @@
 import ServiceList from "../../../components/ServiceList";
 export default {
   components: {ServiceList},
-  layout: 'service',
+  layout: 'default',
   head: {
     title: "Бесплатно создавайте услуги без ограничений на Tapigo.ru | Работа",
     meta: [

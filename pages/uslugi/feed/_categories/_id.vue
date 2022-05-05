@@ -38,7 +38,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "SObject",
-  layout: 'service',
+  layout: 'default',
   async mounted() {
     await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
   },
