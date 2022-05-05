@@ -18,6 +18,6 @@ import UserNavRoot from "../components/icons/UserNavRoot";
 import RootNavWin from "../components/RootNavWin";
 export default {
   components: {RootNavWin, TLogo, GlobalNav, UserNavRoot},
-  middleware: 'office',
+  middleware: ['office'],
 }
 </script>

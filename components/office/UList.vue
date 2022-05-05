@@ -7,8 +7,9 @@
         <NuxtLink :to="`/users/${user.id}`">
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.name }}</h2>
           <p class="text-sm">Email: {{ user.email }}</p>
+          <p class="text-sm">Телефон: {{ user.phone }}</p>
           <p class="text-sm">Статус: {{getState(user)}}</p>
-          <p class="text-sm">Дата регистрации: {{ dateFormat(user.created_at) }}</p>
+          <p class="text-sm">Дата регистрации: {{ format(user.created_at) }}</p>
           <p class="text-sm">ID: {{ user.id }}</p>
           <p class="text-sm">Тип: {{ getType(user) }}</p>
         </NuxtLink>
@@ -21,14 +22,22 @@
       <h1>Все</h1>
       <div class="form-floating mb-6 w-full sm:w-[27rem]">
         <input type="text"
-               class="form-control forms-input" id="price"
-               placeholder="Зарплата"
+               class="form-control forms-input" id="name"
+               placeholder="Имя пользователя"
                v-model="searchByName">
-        <label for="price" class="text-[#6E7191]">Имя пользователя</label>
+        <label for="name" class="text-[#6E7191]">Имя пользователя</label>
+
+        <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
+          <the-mask :mask="['+7 (###) ###-##-##']" v-model="searchByPhone"
+                    id="phone"
+                    type="text"
+                    class="form-control forms-input"
+                    placeholder="Телефон" />
+          </div>
         <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
           <label class="pl-4 text-gray-500">Статус</label>
           <select class="form-select form-select-lg mt-2 forms-select" v-model="searchByState">
-            <option :value="null" :selected="key === searchByState">
+            <option :value="null">
             </option>
             <option v-for="[key, value] in Object.entries(states)" :value="key" :key="key" :selected="key === searchByState">
               {{ value }}
@@ -42,20 +51,22 @@
         <NuxtLink :to="`/users/${user.id}`">
           <h2 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-lg">{{ user.name }}</h2>
           <p class="text-sm">Email: {{ user.email }}</p>
+          <p class="text-sm">Телефон: {{ user.phone }}</p>
           <p class="text-sm">Статус: {{getState(user)}}</p>
-          <p class="text-sm">Дата регистрации: {{ dateFormat(user.created_at) }}</p>
+          <p class="text-sm">Дата регистрации: {{ format(user.created_at) }}</p>
           <p class="text-sm">ID: {{ user.id }}</p>
           <p class="text-sm">Тип: {{ getType(user) }}</p>
         </NuxtLink>
 
       </article>
-      <button v-if="checkAmountActive" @click="addItems({skip: usersActive.length, name: searchByName, state: searchByState })" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+      <button v-if="checkAmountActive" @click="addItems({skip: usersActive.length, name: searchByName, state: searchByState, phone: searchByPhone })" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
     </section>
   </section>
 </template>
 
 <script>
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import {dateFormat} from "../../helper/dataFormat";
 import Person from "~/components/mixins/person.mixin";
 export default {
   name: "UList",
@@ -76,6 +87,7 @@ export default {
     return {
       searchByName: null,
       searchByState: null,
+      searchByPhone: null,
     }
   },
   mixins: [Person],
@@ -100,19 +112,11 @@ export default {
         addItems: 'users/addItems',
         getItemsState: 'states/getItems',
       }),
-    dateFormat(date) {
-      if(date) {
-        var dates = new Date(date);
-        const formatter = new Intl.DateTimeFormat('ru-RU', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        });
-        return formatter.format(dates);
-      }
-    },
     async filter() {
-      await this.getItems({name: this.searchByName, state: this.searchByState});
+      await this.getItems({name: this.searchByName, state: this.searchByState, phone: this.searchByPhone});
+    },
+    format(date) {
+      return dateFormat(date);
     },
     getState(user) {
       return this.states[user.state];
