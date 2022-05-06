@@ -12,6 +12,8 @@
             <p class="text-sm">Дата регистрации: {{ format(user.created_at) }}</p>
             <p class="text-sm">ID: {{ user.id }}</p>
             <p class="text-sm">Тип: {{ getType(user) }}</p>
+            <p v-if="check" class="text-sm">Название организации: {{ getEntityName(user) }}</p>
+            <p v-if="check" class="text-sm">Инн организации: {{ getEntityInn(user) }}</p>
             <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
               <label class="pl-4 text-gray-500">Модерация</label>
               <select class="form-select form-select-lg mt-2 forms-select" v-model="user.state">
@@ -116,6 +118,9 @@ export default {
   computed: {
     user() {
       return _.cloneDeep(this.$store.getters['users/user']);
+    },
+    check(){
+      return this.checkPerson(this.user);
     },
     checkAmountR(){
       return this.resumes.length < this.amountR;

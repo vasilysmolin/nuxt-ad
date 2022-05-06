@@ -12,6 +12,15 @@ export default {
         getType(user) {
             return user?.profile?.isPerson ? 'Юридическое лицо' : 'Физическое лицо';
         },
+        checkPerson(user) {
+            return user?.profile?.isPerson;
+        },
+        getEntityName(user) {
+            return user?.profile?.person?.name;
+        },
+        getEntityInn(user){
+            return user?.profile?.person?.inn;
+        },
         checkStepPerson() {
             return this.isPerson && this.$auth.user.inn !== null && this.$auth.user.phone !== null;
         },
