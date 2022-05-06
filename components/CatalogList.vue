@@ -1,6 +1,17 @@
 <template>
   <section class="container flex flex-col items-center mt-[100px] pb-10">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
+      <nav class="rounded-md w-full">
+        <ol class="list-reset flex">
+          <li>
+            <NuxtLink :to="{path: '/'}" class="text-blue-600 hover:text-blue-700">Все категории</NuxtLink>
+          </li>
+          <li><span class="text-gray-500 mx-2">/</span></li>
+<!--          <li><a href="#" class="text-blue-600 hover:text-blue-700">Library</a></li>-->
+<!--          <li><span class="text-gray-500 mx-2">/</span></li>-->
+<!--          <li class="text-gray-500">Data</li>-->
+        </ol>
+      </nav>
       <!--
       <button @click="linkHub" type="button"
               class="fixed btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
