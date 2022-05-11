@@ -1,10 +1,16 @@
+import {params} from "../helper/requestParams";
+
 export const state = () => ({
 	categoriesAds: [],
+	categoryAds: {},
 });
 
 export const mutations = {
 	setcategoriesAds(state, categoriesAds) {
 		state.categoriesAds = categoriesAds;
+	},
+	setcategoryAds(state, categoriesAds) {
+		state.categoryAds = categoriesAds;
 	},
 	addcategoriesAds(state, categoriesAds) {
 		state.categoriesAds.push(...categoriesAds);
@@ -26,8 +32,14 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removecategoriesAds');
 	},
+	async getItem({commit},{id,expand = null}) {
+		const getParams = params({expand});
+		const catAd = await this.$axios.$get( `category-declarations/${id}?${getParams}`);
+		commit('setcategoryAds', catAd);
+	}
 };
 
 export const getters = {
 	categoriesAds: s => s.categoriesAds,
+	categoryAds: s => s.categoryAds,
 };

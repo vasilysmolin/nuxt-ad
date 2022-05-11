@@ -66,6 +66,25 @@ export default {
             return this.parentIter(parent, `${parent.alias}/${path}`)
 
         },
+        parentIterator(tree){
+            const iter = (node, ancestry, depth) => {
+                let newAncestry = ancestry;
+                const path = this.parentIter(node, node.alias);
+                newAncestry.push({
+                    path: path,
+                    last: depth === 1,
+                    name: node.name,
+                });
+                if(!this.hasParent(node)){
+                    return newAncestry;
+                }
+                const parent = this.getParent(node);
+                return iter(parent,  newAncestry)
+            };
+            let result = iter(tree, [], 1);
+            return result.reverse();
+
+        },
         setCategory(event,index) {
             this.items.splice(index + 1, Infinity);
             this.category_id.splice(index + 1, Infinity);

@@ -1,17 +1,12 @@
 <template>
   <section class="container flex flex-col items-center mt-[100px] pb-10">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
-      <nav class="rounded-md w-full">
-        <ol class="list-reset flex">
-          <li>
-            <NuxtLink :to="{path: '/'}" class="text-blue-600 hover:text-blue-700">Все категории</NuxtLink>
-          </li>
-          <li><span class="text-gray-500 mx-2">/</span></li>
-<!--          <li><a href="#" class="text-blue-600 hover:text-blue-700">Library</a></li>-->
-<!--          <li><span class="text-gray-500 mx-2">/</span></li>-->
-<!--          <li class="text-gray-500">Data</li>-->
-        </ol>
-      </nav>
+      <Breadcrumbs
+          :baseName="`Все категории`"
+          :basePath="`/`"
+          :depth="1"
+          :link="category"
+      />
       <!--
       <button @click="linkHub" type="button"
               class="fixed btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
@@ -42,9 +37,12 @@
 
 <script>
 import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import Breadcrumbs from "./Breadcrumbs";
+import * as _ from "lodash";
 
 export default {
   name: "CatalogList",
+  components: {Breadcrumbs},
   props: {
     type: String,
   },
@@ -56,6 +54,7 @@ export default {
   async mounted() {
     const sub = this.$route.fullPath.split('/').pop();
     this.alias = sub !== 'feed' ? sub : null;
+    await this.getItem({id: this.alias });
     // if (this.ads.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', alias: this.alias});
     // }
@@ -63,8 +62,17 @@ export default {
   computed: {
     ...mapGetters({
       ads: 'ads/ads',
+      // category: 'categoriesAd/categoryAds',
       amount: 'ads/amount'
     }),
+    category: {
+      get() {
+        return _.cloneDeep(this.$store.getters['categoriesAd/categoryAds']);
+      },
+      set(category) {
+        return category
+      }
+    },
     checkAmount(){
       return this.ads.length < this.amount;
     }
@@ -74,6 +82,7 @@ export default {
     ...mapActions({
       getItems: 'ads/getItems',
       addItems: 'ads/addItems',
+      getItem: 'categoriesAd/getItem',
     }),
     getUrl(ad) {
       return `/feed/alias/${ad.alias}`

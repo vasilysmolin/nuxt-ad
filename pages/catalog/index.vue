@@ -11,7 +11,7 @@
     </nuxt-link>
     </p>
 
-    <div class="grid grid-cols-4 gap-4 mt-20 mb-10">
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 mt-20 mb-10">
       <ListCategories
           v-for="category in categories"
           :category="category"

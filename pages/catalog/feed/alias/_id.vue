@@ -1,8 +1,20 @@
 <template>
   <article class="container flex flex-col items-center mt-[100px] pb-10">
+<!--    <Breadcrumbs-->
+<!--        :baseName="`Все категории`"-->
+<!--        :basePath="`/`"-->
+<!--        :depth="1"-->
+<!--        :link="adWithCategory"-->
+<!--    />-->
+    <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm">
+      <nav class="rounded-md w-full mt-5">
+        <ol class="list-reset flex">
+          <a class="text-blue-600 hover:text-blue-700" @click="$router.back()">Назад</a>
+        </ol>
+      </nav>
+    </section>
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ ad.name }}</h1>
-      <!--<h2>Имя соискателя</h2>-->
       <p class="mt-2 text-xl sm:text-2xl font-bold">{{ ad.price }}<span class="pl-2 text-sm">руб.</span></p>
     </section>
 
@@ -30,15 +42,23 @@
 
 <script>
 import * as _ from 'lodash';
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "CObject",
   layout: 'default',
   async mounted() {
     await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
+    //     .then(() => {
+    //   setTimeout(() => {
+    //     this.getItem({id: this.ad.category_id });
+    //   },1000);
+    // });
   },
   methods: {
+    ...mapActions({
+      getItem: 'categoriesAd/getItem',
+    }),
     getUsername(catalog) {
       return catalog?.profile?.user?.name;
     },
@@ -53,8 +73,12 @@ export default {
     ad() {
       return this.$store.getters['ads/ad']
     },
+    adWithCategory() {
+      return this.ad.categories_parent = _.cloneDeep(this.category);
+    },
     ...mapGetters({
-      ads: 'ads/ads'
+      ads: 'ads/ads',
+      category: 'categoriesAd/categoryAds',
     }),
   },
 
