@@ -56,6 +56,8 @@ export default {
     this.alias = sub !== 'feed' ? sub : null;
     if(this.alias !== null) {
       await this.getItem({id: this.alias });
+    } else {
+      this.removeItem();
     }
     // if (this.ads.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', alias: this.alias});
@@ -85,6 +87,7 @@ export default {
       getItems: 'ads/getItems',
       addItems: 'ads/addItems',
       getItem: 'categoriesAd/getItem',
+      removeItem: 'categoriesAd/removeItem',
     }),
     getUrl(ad) {
       return `/feed/alias/${ad.alias}`

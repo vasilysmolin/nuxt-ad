@@ -18,6 +18,9 @@ export const mutations = {
 	removecategoriesAds(state){
 		state.categoriesAds = [];
 	},
+	removecategoryAds(state){
+		state.categoryAds = {};
+	},
 };
 
 export const actions = {
@@ -31,6 +34,9 @@ export const actions = {
 	},
 	async removeItems({commit}) {
 		commit('removecategoriesAds');
+	},
+	async removeItem({commit}) {
+		commit('removecategoryAds');
 	},
 	async getItem({commit},{id,expand = null}) {
 		const getParams = params({expand});
