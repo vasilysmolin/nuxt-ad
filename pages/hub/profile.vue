@@ -5,9 +5,10 @@
         <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
           <article class="flex justify-between w-full">
             <p class="text-xs text-[#A0A3BD]">{{isPerson() ? 'Юридическое лицо' : 'Физическое лицо'}}</p>
-            <p v-if="isPerson()" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ person.inn }}</span></p>
+            <p v-if="check" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ person.inn }}</span></p>
           </article>
-          <h1 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{user.name}}</h1>
+          <h1 v-if="check" class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ getEntityName(user) }}</h1>
+          <h1 v-else class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{user.name}}</h1>
         </section>
         <form class=" w-[95%]">
           <div class="flex flex-col items-center w-full">
@@ -91,6 +92,11 @@ export default {
   mounted() {
     this.user = _.cloneDeep(this.$auth.user);
     this.person.inn = _.clone(this.getInn());
+  },
+  computed: {
+    check(){
+      return this.checkPerson(this.user);
+    },
   },
 }
 

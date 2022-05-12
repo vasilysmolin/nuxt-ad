@@ -44,7 +44,7 @@ export default {
   name: "VObject",
   layout: 'jobs',
   async mounted() {
-    await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id, expand: 'profile.user' });
+    await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person' });
     if(Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0)  {
       await this.$store.dispatch('categoriesVacancy/getItems');
     }
@@ -63,7 +63,10 @@ export default {
   },
   methods: {
     getUsername(vacancy) {
-      return vacancy?.profile?.user?.name
+      if(vacancy?.profile?.isPerson === true) {
+        return vacancy?.profile?.person?.name;
+      }
+      return vacancy?.profile?.user?.name;
     },
     getCategory(vacancy) {
       return this.category[vacancy.category_id]?.name ?? 'Не указана';

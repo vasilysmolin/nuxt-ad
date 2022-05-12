@@ -15,6 +15,7 @@
       <ListCategories
           v-for="category in categories"
           :category="category"
+          :key="category.id"
           :depth="1"
       />
     </div>

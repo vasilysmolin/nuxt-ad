@@ -48,7 +48,7 @@ export default {
   name: "CObject",
   layout: 'default',
   async mounted() {
-    await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
+    await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  });
     //     .then(() => {
     //   setTimeout(() => {
     //     this.getItem({id: this.ad.category_id });
@@ -60,6 +60,9 @@ export default {
       getItem: 'categoriesAd/getItem',
     }),
     getUsername(catalog) {
+      if(catalog?.profile?.isPerson === true) {
+        return catalog?.profile?.person?.name;
+      }
       return catalog?.profile?.user?.name;
     },
     getUserPhone(catalog) {

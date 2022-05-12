@@ -40,11 +40,14 @@ export default {
   name: "SObject",
   layout: 'default',
   async mounted() {
-    await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user'  });
+    await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  });
   },
   methods: {
     getUserName(service) {
-      return service?.profile?.user?.name
+      if(service?.profile?.isPerson === true) {
+        return service?.profile?.person?.name;
+      }
+      return service?.profile?.user?.name;
     },
     getUserPhone(service) {
       return service?.profile?.user?.phone

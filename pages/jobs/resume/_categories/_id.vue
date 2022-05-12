@@ -37,7 +37,7 @@ export default {
   name: "RObject",
   layout: 'jobs',
   async mounted() {
-    await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id, expand: 'profile.user'});
+    await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
     if(Object.keys(this.$store.getters['experiences/experience']).length === 0) {
       await this.$store.dispatch('experiences/getItems');
     }
@@ -82,7 +82,10 @@ export default {
   },
   methods: {
     getUserName(resume) {
-      return resume?.profile?.user?.name
+      if(resume?.profile?.isPerson === true) {
+        return resume?.profile?.person?.name;
+      }
+      return resume?.profile?.user?.name;
     },
     getUserPhone(resume) {
       return resume?.profile?.user?.phone
