@@ -11,7 +11,7 @@
         </NuxtLink>
 
       </article>
-      <button @click="addItems({skip: services.length, state: 'active', expand: 'profile.user'})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+      <button @click="addItems({skip: services.length, state: 'active', expand: 'profile.user', from: 'catalog'})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
     </section>
   </section>
 </template>
@@ -25,7 +25,7 @@ export default {
   },
   async mounted() {
     if(this.services.length === 0) {
-      await this.getItems({state: 'active', expand: 'profile.user'});
+      await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
   },
   computed: {
