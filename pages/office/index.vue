@@ -1,12 +1,18 @@
 <template>
-  <h1>Admin Index</h1>
+  <h1>Дашборд</h1>
+  <UList/>
 </template>
 
 <script>
-import NavLoc from "../../components/NavLocJobs";
+import UList from "../../components/office/UList";
 export default {
-  components: {NavLoc}
+  components: {UList},
+  layout: 'office',
+  head: {
+    title: "Office",
+    meta: [
+      {hid: 'description', name: 'description', content: 'Список'}
+    ]
+  },
 }
-
-
 </script>
