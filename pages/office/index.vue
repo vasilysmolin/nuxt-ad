@@ -1,6 +1,8 @@
 <template>
-  <h1>Дашборд</h1>
-  <UList/>
+  <section>
+    <h1>Дашборд</h1>
+    <UList/>
+  </section>
 </template>
 
 <script>
