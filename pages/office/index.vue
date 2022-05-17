@@ -1,5 +1,7 @@
 <template>
-  <h1>Дашборд</h1>
+  <section>
+    <h1>Дашборд</h1>
+  </section>
 </template>
 
 <script>

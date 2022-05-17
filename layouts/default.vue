@@ -15,8 +15,8 @@
       <TLogo/>
       <LineMenu/>
       <button @click="linkHub" type="button"
-              class="btn btn-primary inline-block mt-1 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
-        Разместить бесплатно
+              class="btn btn-primary inline-block mt-1 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-green-700 focus:bg-green-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+        Разместить
       </button>
       <UserNav
           :toggle="isHidden"
