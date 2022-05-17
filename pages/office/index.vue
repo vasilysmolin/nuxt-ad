@@ -1,12 +1,9 @@
 <template>
   <h1>Дашборд</h1>
-  <UList/>
 </template>
 
 <script>
-import UList from "../../components/office/UList";
 export default {
-  components: {UList},
   layout: 'office',
   head: {
     title: "Office",

@@ -60,7 +60,7 @@ export default {
         },
         parentIter(tree, path){
             if(!this.hasParent(tree)){
-                return path;
+                return `/${path}`;
             }
             const parent = this.getParent(tree);
             return this.parentIter(parent, `${parent.alias}/${path}`)

@@ -4,7 +4,7 @@
       <ol class="list-reset flex">
         <template  v-for="item of links">
           <li v-if="!item.last">
-            <NuxtLink :to="{path: item.path}" class="text-blue-600 hover:text-blue-700">{{ item.name }}</NuxtLink>
+            <NuxtLink :to="{path: path(item)}" class="text-blue-600 hover:text-blue-700">{{ item.name }}</NuxtLink>
           </li>
           <li v-else>
             <span class="text-gray-500 mx-2">{{ item.name }}</span>
@@ -29,7 +29,7 @@ export default {
       this.links.push({path: this.basePath, name: this.baseName});
       const result = this.parentIterator(this.link);
       this.links = [...this.links, ...result];
-    },1000);
+    },1700);
   },
   data() {
     return {
@@ -38,6 +38,9 @@ export default {
   },
   mixins: [CategoriesMixin],
   methods: {
+    path(item){
+      return item.path === '/' ? '/' : `/feed${item.path}`;
+    }
   }
 }
 </script>

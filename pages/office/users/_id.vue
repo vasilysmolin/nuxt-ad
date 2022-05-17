@@ -166,7 +166,7 @@ export default {
       getItemsState: 'states/getItems',
     }),
     submitted() {
-      this.$axios.$put(`users/${this.user.id}`, {state: this.user.state});
+      this.$axios.$put(`users/${this.user.id}/state`, {state: this.user.state});
     },
     format(date) {
       return dateFormat(date);
