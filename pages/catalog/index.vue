@@ -9,17 +9,19 @@
 
     <section class="mt-10 flex justify-between w-full">
       <article class="article-card-catalog-index">
-        <h2>Недвижимость</h2>
+        <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
         <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости - жилая, коммерческая, складские помещения, земельные участки.</h3>
         <hr class="my-3">
         <ul class="list-disc list-inside leading-7">
-          <li>Квартиры</li>
-          <li>Комнаты</li>
-          <li>Коммерческая недвижимость</li>
-          <li>Гаражи и машиноместа</li>
-          <li>Офисные помещения</li>
-          <li class="font-bold text-black"><nuxt-link to="/feed">Вся недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
         </ul>
+        <div class="mt-3 flex justify-center items-center w-full cursor-pointer">
+          <OpenClose/>
+        </div>
       </article>
       <article class="article-card-catalog-index">
         <h2>Услуги</h2>
@@ -153,7 +155,11 @@
 </template>
 
 <script>
+import OpenClose from "../../components/icons/OpenClose";
 export default {
+  components: {
+    OpenClose,
+  },
   head: {
     title: "Бесплатно создавайте вакансии и резюме без ограничений на Tapigo.ru | Работа",
     meta: [
