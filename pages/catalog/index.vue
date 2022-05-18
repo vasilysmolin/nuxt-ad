@@ -9,8 +9,23 @@
 
     <section class="mt-10 flex justify-between w-full">
       <article class="article-card-catalog-index">
-        <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
+        <h2>Недвижимость</h2>
         <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости - жилая, коммерческая, складские помещения, земельные участки.</h3>
+        <hr class="my-3">
+        <ul class="list-disc list-inside leading-7">
+          <li>Квартиры</li>
+          <li>Комнаты</li>
+          <li>Коммерческая недвижимость</li>
+          <li>Гаражи и машиноместа</li>
+          <li>Офисные помещения</li>
+          <li class="font-bold text-black"><nuxt-link to="/feed">Вся недвижимость</nuxt-link></li>
+        </ul>
+      </article>
+
+      <!-- beta version NOT DELETE!!!
+      <article class="article-card-catalog-index">
+        <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
+        <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости &mdash; жилая, коммерческая, складские помещения, земельные участки.</h3>
         <hr class="my-3">
         <ul class="list-disc list-inside leading-7">
           <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
@@ -23,6 +38,7 @@
           <OpenClose/>
         </div>
       </article>
+      -->
       <article class="article-card-catalog-index">
         <h2>Услуги</h2>
         <h3 class="text-gray-500">Большоле количество самых разных услуг и предложений &mdash; перевозки, ремонт, мастер на час, клининг, обучение, бухгалтерия.</h3>
@@ -161,7 +177,7 @@ export default {
     OpenClose,
   },
   head: {
-    title: "Бесплатно создавайте вакансии и резюме без ограничений на Tapigo.ru | Работа",
+    title: "Бесплатный каталог объявлений | Недвижимость, Транспорт, Работа, Услуги, Животные, Электроника, Барахолка и многое другое | Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
