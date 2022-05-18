@@ -110,7 +110,7 @@ export default {
         [
             '@nuxtjs/yandex-metrika',
             {
-                id: '54862972',
+                id: 54862972,
                 webvisor: true,
                 clickmap: true
             }
