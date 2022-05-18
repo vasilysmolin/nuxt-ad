@@ -21,7 +21,8 @@ export default {
                 hid: 'og:image',
                 property: 'og:image',
                 content: ''
-            }
+            },
+            {name: 'yandex-verification', content: '8f51fb4bdcc3c896'}
         ],
         link: [
             {rel: 'icon', type: 'image/png', href: '/favicon-32x32.png'},
