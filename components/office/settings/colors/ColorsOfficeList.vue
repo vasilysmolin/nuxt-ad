@@ -1,5 +1,8 @@
 <template>
   <section class="container flex flex-col items-center pb-10 mt-20">
+    <NuxtLink :to="`/settings/colors/new`">
+      <h2 class="first-letter:uppercase font-bold text-[0.9375rem] lecoloring-5 sm:text-lg">+ Добавить цвет</h2>
+    </NuxtLink>
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <h1>Все</h1>
       <div class="form-floating mb-6 w-full sm:w-[27rem]">
