@@ -89,7 +89,7 @@ export default {
 
   head() {
     return {
-      title: `${this.ad.title} | Объявления без ограничений на Tapigo.ru | Работа`,
+      title: `${this.ad.title} | Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог`,
       meta: [
         {hid: 'description', name: 'description', content: 'Обьект'}
       ]

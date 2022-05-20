@@ -8,7 +8,7 @@ export default {
   components: {CatalogList},
   layout: 'default',
   head: {
-    title: "Бесплатно создавайте объявления без ограничений на Tapigo.ru | Работа",
+    title: "Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
