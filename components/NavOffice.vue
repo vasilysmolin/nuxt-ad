@@ -23,6 +23,9 @@
 <!--      <li v-if="isPerson === false"  class="pl-4 sm:pl-6">-->
 <!--        <NuxtLink to="/eat">Еда</NuxtLink>-->
 <!--      </li>-->
+        <li class="pl-4 sm:pl-6">
+          <NuxtLink to="/settings">Настройки</NuxtLink>
+        </li>
 
     </ul>
   </nav>
