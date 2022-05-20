@@ -1,17 +1,13 @@
 <template>
-  <section class="container flex flex-col justify-center items-center mt-[100px]">
-    <article class="flex flex-col items-start px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="font-black text-lg leading-5 sm:text-2xl">Каталог обьявлений</h2>
-      <p class="mt-3 text-sm sm:text-base text-gray-700">Бесплатный каталог почти по всем направлениям &mdash; продать или купить, найти работу или подработку, хэндмэй и барахолка.</p>
-      <p class="mt-3 font-bold"><nuxt-link to="/feed" class="text-blue-600">Смотреть обьявления</nuxt-link></p>
-    </article>
+  <section class="container flex flex-col justify-center items-center mt-[120px] pb-10">
+    <h1 class="px-5 text-3xl text-center font-black">Бесплатный каталог<span class="mt-2 block font-normal text-gray-600 text-xl">Продать или купить, найти работу или услуги, большая барахолка и многое другое.</span></h1>
 
     <p @click="signup">
-    <nuxt-link to="" class="btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Создать аккаунт
-    </nuxt-link>
+      <nuxt-link to="" class="btn btn-primary inline-block mt-8 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Создать аккаунт
+      </nuxt-link>
     </p>
 
-    <section class="masonry-2-col gap-6 space-y-6 mt-10">
+    <section class="masonry-2-col gap-6 space-y-6 mt-10 w-full">
       <ListCategories
           v-for="category in categories"
           :category="category"
@@ -30,7 +26,7 @@ import ListCategories from "../../components/ListCategories";
 
 export default {
   head: {
-    title: "Бесплатно создавайте вакансии и резюме без ограничений на Tapigo.ru | Работа",
+    title: "Бесплатный каталог объявлений | Недвижимость, Транспорт, Работа, Услуги, Животные, Электроника, Барахолка и многое другое | Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
