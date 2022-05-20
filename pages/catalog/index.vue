@@ -7,23 +7,9 @@
       </nuxt-link>
     </p>
 
-    <section class="mt-10 flex justify-between w-full">
-      <article class="article-card-catalog-index">
-        <h2>Недвижимость</h2>
-        <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости - жилая, коммерческая, складские помещения, земельные участки.</h3>
-        <hr class="my-3">
-        <ul class="list-disc list-inside leading-7">
-          <li>Квартиры</li>
-          <li>Комнаты</li>
-          <li>Коммерческая недвижимость</li>
-          <li>Гаражи и машиноместа</li>
-          <li>Офисные помещения</li>
-          <li class="font-bold text-black"><nuxt-link to="/feed">Вся недвижимость</nuxt-link></li>
-        </ul>
-      </article>
+    <section class="masonry-2-col gap-6 space-y-6 mt-10">
 
-      <!-- beta version NOT DELETE!!!
-      <article class="article-card-catalog-index">
+      <article class="break-inside article-card-catalog-index">
         <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
         <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости &mdash; жилая, коммерческая, складские помещения, земельные участки.</h3>
         <hr class="my-3">
@@ -34,26 +20,99 @@
           <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
           <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
         </ul>
+        <!-- block hidden default-->
+        <ul class="list-disc list-inside leading-7">
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+        </ul>
+        <div class="mt-3 flex justify-center items-center w-full cursor-pointer rotate-180">
+          <OpenClose/>
+        </div>
+      </article>
+
+      <article class="break-inside article-card-catalog-index">
+        <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
+        <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости &mdash; жилая, коммерческая, складские помещения, земельные участки.</h3>
+        <hr class="my-3">
+        <ul class="list-disc list-inside leading-7">
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+        </ul>
+        <ul class="hidden list-disc list-inside leading-7">
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+        </ul>
         <div class="mt-3 flex justify-center items-center w-full cursor-pointer">
           <OpenClose/>
         </div>
       </article>
-      -->
-      <article class="article-card-catalog-index">
-        <h2>Услуги</h2>
-        <h3 class="text-gray-500">Большоле количество самых разных услуг и предложений &mdash; перевозки, ремонт, мастер на час, клининг, обучение, бухгалтерия.</h3>
+
+      <article class="break-inside article-card-catalog-index">
+        <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
+        <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости &mdash; жилая, коммерческая, складские помещения, земельные участки.</h3>
         <hr class="my-3">
         <ul class="list-disc list-inside leading-7">
-          <li>Транспорт и перевозки</li>
-          <li>Красота и здоровье</li>
-          <li>Ремонт и обслуживание техники</li>
-          <li>Организация праздников</li>
-          <li>Строительство и ремонт</li>
-          <li class="font-bold text-black"><nuxt-link to="/feed">Все услуги</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
         </ul>
+        <ul class="hidden list-disc list-inside leading-7">
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+        </ul>
+        <div class="mt-3 flex justify-center items-center w-full cursor-pointer">
+          <OpenClose/>
+        </div>
       </article>
+
+      <article class="break-inside article-card-catalog-index">
+        <h2><nuxt-link to="" class="border-b-[1px] border-gray-400 hover:text-blue-700">Недвижимость</nuxt-link></h2>
+        <h3 class="text-gray-500">Продажа, покупка и аренда любого типа недвижимости &mdash; жилая, коммерческая, складские помещения, земельные участки.</h3>
+        <hr class="my-3">
+        <ul class="list-disc list-inside leading-7">
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+        </ul>
+        <ul class="hidden list-disc list-inside leading-7">
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Квартиры</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Комнаты</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Коммерческая недвижимость</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Гаражи и машиноместа</nuxt-link></li>
+          <li><nuxt-link to="" class="text-blue-700 hover:text-black">Офисные помещения</nuxt-link></li>
+        </ul>
+        <div class="mt-3 flex justify-center items-center w-full cursor-pointer">
+          <OpenClose/>
+        </div>
+      </article>
+
     </section>
 
+
+
+
+    <!--
     <section class="mt-10 flex justify-between w-full">
       <article class="article-card-catalog-index">
         <h2>Дом и сад</h2>
@@ -166,7 +225,7 @@
         </ul>
       </article>
     </section>
-
+-->
   </section>
 </template>
 
