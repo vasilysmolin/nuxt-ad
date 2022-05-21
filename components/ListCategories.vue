@@ -10,7 +10,7 @@
 <!--        :key="category.id"-->
 <!--    />-->
 <!--  </div>-->
-  <article :class="`break-inside article-card-catalog-index bg-[${getColor(category)}]`">
+  <article v-bind:class="`break-inside article-card-catalog-index bg-[${getColor(category)}]`">
     <h2><nuxt-link :to="categoryLink(category)" :class="`border-b-[1px] border-gray-400 ${getColorH1(category)}`">{{ category.name }}</nuxt-link></h2>
     <h3 class="text-gray-500">{{ category.description }}</h3>
     <hr class="my-3">

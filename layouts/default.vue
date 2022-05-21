@@ -1,13 +1,14 @@
 <template>
   <main>
     <header class="fixed flex justify-between items-center top-0 w-full bg-[#F7F7FC] px-5 py-3 z-50">
-      <div class="flex justify-center items-center">
+      <div @click.prevent="toggleGBlock" class="flex justify-center items-center globalnav">
         <GlobalNav/>
         <span class="pl-2 font-bold">Меню</span>
       </div>
       <TLogo/>
-      <div class="flex justify-center items-center">
+      <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center usernav">
         <UserNav/>
+        <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
         <span class="pl-2 font-bold">Вход</span>
       </div>
     </header>
@@ -57,11 +58,23 @@ export default {
     }
   },
   methods: {
-    toggleBlock(bool) {
-      this.isHidden = bool;
+    toggleBlocks(bool) {
+      this.isHidden = false;
     },
-    toggleGBlock(bool) {
-      this.isHiddenG = bool;
+    toggleBlock() {
+      if (this.$auth.loggedIn) {
+        this.isHidden = !this.isHidden;
+        // document.location.href = process.env.HUB_URL + '/profile';
+      } else {
+        document.location.href = process.env.AUTH_URL;
+      }
+    },
+    toggleGBlock() {
+      this.isHiddenG = !this.isHiddenG;
+
+    },
+    close() {
+      this.isHidden = false;
     },
     linkHub() {
       var host = window.location.host

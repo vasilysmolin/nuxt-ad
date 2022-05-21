@@ -1,5 +1,5 @@
 <template>
-  <svg class="usernav" @click.prevent="submitted" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg  width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path
         d="M18.9506 17.3802C17.3783 16.5669 14.7849 15.5 12 15.5C9.21513 15.5 6.62175 16.5669 5.04942 17.3802C4.03431 17.9052 3.42295 18.9351 3.2883 20.07L3 22.5H21L20.7117 20.07C20.577 18.9351 19.9657 17.9052 18.9506 17.3802Z"
         stroke="#14142B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -19,15 +19,6 @@ export default {
       }
   },
   methods: {
-    submitted() {
-      if (this.$auth.loggedIn) {
-        this.$emit('toggleBlock', !this.props);
-        // document.location.href = process.env.HUB_URL + '/profile';
-      } else {
-        document.location.href = process.env.AUTH_URL;
-      }
-
-    },
   },
 }
 </script>

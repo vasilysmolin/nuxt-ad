@@ -1,5 +1,5 @@
 <template>
-  <div v-show="toggle" v-click-outside="close" class="absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
+  <div v-show="toggle" class="dd absolute top-4 right-4 w-[280px] p-7 bg-white rounded-lg shadow-lg z-60">
     <div class="flex justify-start w-full pb-5">
       <p v-if="isPerson()" class="text-sm font-bold cursor-pointer" @click="hub">
         <a @click="hub" class="flex justify-start items-center hover:text-blue-600">
@@ -74,11 +74,6 @@ export default {
         this.$auth.logout().then(() =>{
           document.location.href = process.env.AUTH_URL;
         });
-    },
-    close(event) {
-      if(event.target.className.baseVal !== 'usernav') {
-        this.$emit('toggleBlock', false);
-      }
     },
     hub() {
       document.location.href = process.env.HUB_URL + '/profile';
