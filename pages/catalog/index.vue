@@ -1,5 +1,5 @@
 <template>
-  <section class="container flex flex-col justify-center items-center mt-[120px] pb-10">
+  <section class="container flex flex-col justify-center items-center mt-[80px] pb-[100px]">
     <h1 class="px-5 text-3xl text-center font-black">Бесплатный каталог<span class="mt-2 block font-normal text-gray-600 text-xl">Продать или купить, найти работу или услуги, большая барахолка и многое другое.</span></h1>
 
     <p @click="signup">

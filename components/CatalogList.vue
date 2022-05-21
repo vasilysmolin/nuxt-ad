@@ -1,5 +1,5 @@
 <template>
-  <section class="container flex flex-col items-center mt-[100px] pb-10">
+  <section class="container flex flex-col items-center mt-[80px] pb-[100px]">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <Breadcrumbs
           :baseName="`Все категории`"
@@ -13,7 +13,7 @@
         Разместить бесплатно
       </button>
       -->
-      <article v-for="ad in ads" :key="ad.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
+      <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(ad)">
           <section class="grid grid-cols-[25%,_1fr]">
             <section>

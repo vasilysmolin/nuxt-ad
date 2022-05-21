@@ -1,5 +1,5 @@
 <template>
-  <article class="container flex flex-col items-center mt-[100px] pb-10">
+  <article class="container flex flex-col items-center mt-[80px] pb-[100px]">
     <Breadcrumbs
         :baseName="`Все категории`"
         :basePath="`/`"

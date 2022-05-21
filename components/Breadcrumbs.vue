@@ -1,20 +1,17 @@
 <template>
-  <div>
-    <nav class="rounded-md w-full mt-5">
-      <ol class="list-reset flex">
+    <nav class="flex w-[95%] mb-4 pl-4 sm:max-w-screen-sm">
+      <ul class="flex justify-start items-center flex-wrap text-[12px] list-reset">
         <template  v-for="item of links">
-          <li v-if="!item.last">
+          <li class="leading-6" v-if="!item.last">
             <NuxtLink :to="{path: path(item)}" class="text-blue-600 hover:text-blue-700">{{ item.name }}</NuxtLink>
           </li>
           <li v-else>
-            <span class="text-gray-500 mx-2">{{ item.name }}</span>
+            <span class="text-gray-500">{{ item.name }}</span>
           </li>
-          <li v-if="!item.last"><span class="text-gray-500 mx-2">/</span></li>
+          <li v-if="!item.last"><span class="px-2 text-gray-500">/</span></li>
         </template>
-      </ol>
+      </ul>
     </nav>
-  </div>
-
 </template>
 
 
@@ -39,7 +36,7 @@ export default {
   mixins: [CategoriesMixin],
   methods: {
     path(item){
-      return item.path === '/' ? '/' : `/feed${item.path}`;
+      return item.path === '/'?'/':`/feed${item.path}`;
     }
   }
 }
