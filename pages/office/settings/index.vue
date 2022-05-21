@@ -11,6 +11,6 @@
 
 <script>
 export default {
-
+  layout: 'office',
 }
 </script>

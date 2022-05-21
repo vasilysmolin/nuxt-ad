@@ -26,6 +26,9 @@
                 <div class="mb-4 w-full sm:w-[27rem] mt-[20px]">
                   <label class="pl-4 text-gray-500">Цвет</label>
                   <select class="form-select form-select-lg mt-2 forms-select" v-model="category.color_id">
+                    <option :value="0" key="0">
+                      нет цвета
+                    </option>
                     <option v-for="color in colors" :value="color.id" :key="color.id" :selected="color.id === category.color_id">
                       {{ color.name }}  {{ color.hash }}
                     </option>
@@ -76,7 +79,9 @@ export default {
     }),
     submitted() {
       let data = new FormData();
-      data.append('description', this.category.description);
+      if(this.category.description) {
+        data.append('description', this.category.description);
+      }
       data.append('color_id', this.category.color_id);
       data.append('_method', 'put');
       this.$axios.$post(`category-declarations/${this.category.id}`, data);
