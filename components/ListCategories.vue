@@ -14,8 +14,8 @@
     <h2><nuxt-link :to="categoryLink(category)" :class="`border-b-[1px] border-gray-400 ${getColorH1(category)}`">{{ category.name }}</nuxt-link></h2>
     <h3 class="text-gray-500">{{ category.description }}</h3>
     <hr class="my-3">
-    <ul v-for="category in category.categories " class="list-disc list-inside leading-7">
-      <li><nuxt-link :to="categoryLink(category)"  :class="`${getColorLi(category)}`">{{ category.name }}</nuxt-link></li>
+    <ul v-for="cat in category.categories " class="list-disc list-inside leading-7">
+      <li><nuxt-link :to="categoryLink(cat)"  :class="`${getColorLi(category)}`">{{ cat.name }}</nuxt-link></li>
     </ul>
   </article>
 
@@ -56,7 +56,7 @@ export default {
     },
     getColorLi(category){
       if(category?.color?.hash) {
-        return 'text-blue-400 hover:text-blue-600';
+        return 'text-blue-300 hover:text-blue-500';
       } else {
         return 'text-blue-700 hover:text-blue-800';
       }
