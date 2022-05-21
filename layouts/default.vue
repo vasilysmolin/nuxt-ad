@@ -64,8 +64,17 @@ export default {
       this.isHiddenG = bool;
     },
     linkHub() {
+      var host = window.location.host
+      var subdomain = host.split('.')[0];
+      // console.log(subdomain);
+      // var pathArray = window.location.pathname.split('/');
+      // console.log(pathArray);
       if(this.$auth.loggedIn) {
-        document.location.href = `${process.env.HUB_URL}/catalog/new`;
+        if(subdomain === 'catalog') {
+          document.location.href = `${process.env.HUB_URL}/catalog/new`;
+        } else if(subdomain === 'jobs') {
+          document.location.href = `${process.env.HUB_URL}/profile`;
+        }
       } else {
         document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/catalog/new`;
       }
