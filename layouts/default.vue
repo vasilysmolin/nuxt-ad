@@ -1,8 +1,9 @@
 <template>
   <main>
     <header class="fixed flex justify-between items-center top-0 w-full bg-[#F7F7FC] px-5 py-3 z-50">
-      <div @click.prevent="toggleGBlock" class="flex justify-center items-center globalnav">
-        <GlobalNav/>
+      <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center globalnav">
+        <GlobalNav />
+        <GlobalNavWin :toggleG="isHiddenG"/>
         <span class="pl-2 font-bold">Меню</span>
       </div>
       <TLogo/>
@@ -58,7 +59,7 @@ export default {
     }
   },
   methods: {
-    toggleBlocks(bool) {
+    toggleBlocks() {
       this.isHidden = false;
     },
     toggleBlock() {
@@ -70,11 +71,17 @@ export default {
       }
     },
     toggleGBlock() {
+      console.log(this.isHiddenG);
       this.isHiddenG = !this.isHiddenG;
-
+    },
+    toggleGBlocks() {
+      this.isHiddenG = !this.isHiddenG;
     },
     close() {
       this.isHidden = false;
+    },
+    closeG() {
+      this.isHiddenG = false;
     },
     linkHub() {
       var host = window.location.host
