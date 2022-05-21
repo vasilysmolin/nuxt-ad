@@ -27,9 +27,6 @@ export default {
         link: [
             {rel: 'icon', type: 'image/png', href: '/favicon-32x32.png'},
             {rel: 'apple-touch-icon', type: 'image/png', href: '/apple-touch-icon-180x180.png'},
-        ],
-        script: [
-            {hid: 'stripe', src: '/node_modules/tw-elements/dist/js/index.min.js', defer: true}
         ]
     },
     env: {

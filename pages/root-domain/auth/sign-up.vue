@@ -72,7 +72,7 @@
           </div>
           <div class="flex space-x-2 justify-center">
             <button type="button" @click.prevent="submitted"
-                    class="inline-block px-5 py-4 bg-blue-600 text-white font-bold text-base leading-snug rounded-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+                    class="inline-block mt-4 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
               Создать аккаунт
             </button>
           </div>

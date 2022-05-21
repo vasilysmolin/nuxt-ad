@@ -1,13 +1,13 @@
 <template>
   <main>
     <header class="fixed flex justify-between items-center top-0 w-full bg-[#F7F7FC] px-5 py-3 z-50">
-      <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center globalnav">
+      <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
         <GlobalNav />
         <GlobalNavWin :toggleG="isHiddenG"/>
         <span class="pl-2 font-bold">Меню</span>
       </div>
       <TLogo/>
-      <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center usernav">
+      <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center cursor-pointer usernav">
         <UserNav/>
         <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
         <span class="pl-2 font-bold">Вход</span>
@@ -94,6 +94,9 @@ export default {
           document.location.href = `${process.env.HUB_URL}/catalog/new`;
         } else if(subdomain === 'jobs') {
           document.location.href = `${process.env.HUB_URL}/profile`;
+        }
+        else if(process.env.HOME_URL) {
+          document.location.href = `${process.env.HUB_URL}/catalog/new`;
         }
       } else {
         document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/catalog/new`;

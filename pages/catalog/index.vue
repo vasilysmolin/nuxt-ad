@@ -2,7 +2,7 @@
   <section class="container flex flex-col justify-center items-center mt-[80px] pb-[100px]">
     <h1 class="px-5 text-3xl text-center font-black">Бесплатный каталог<span class="mt-2 block font-normal text-gray-600 text-xl">Продать или купить, найти работу или услуги, большая барахолка и многое другое.</span></h1>
 
-    <p @click="signup">
+    <p @click="linkHub">
       <nuxt-link to="" class="btn btn-primary inline-block mt-8 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Создать аккаунт
       </nuxt-link>
     </p>
@@ -49,9 +49,14 @@ export default {
     },
   },
   methods: {
-    signup() {
-      document.location.href = process.env.AUTH_URL;
-    }
+    linkHub() {
+      var host = window.location.host
+      if(this.$auth.loggedIn) {
+        document.location.href = `${process.env.HUB_URL}/profile`;
+      } else {
+        document.location.href = process.env.AUTH_URL;
+      }
+    },
   }
 }
 </script>
