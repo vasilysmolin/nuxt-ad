@@ -120,7 +120,7 @@ export default {
   },
   async mounted() {
     if(this.category.length === 0) {
-      await this.$store.dispatch('categoriesAd/getItems');
+      await this.$store.dispatch('categoriesAd/getItems', {from: 'cabinet'});
     }
     this.items.push({
       title: 'Категории',

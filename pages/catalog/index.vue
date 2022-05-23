@@ -35,7 +35,7 @@ export default {
   components:{ListCategories},
   async mounted() {
     if(this.categories.length === 0) {
-      await this.$store.dispatch('categoriesAd/getItems');
+      await this.$store.dispatch('categoriesAd/getItems', {from: 'catalog'});
     }
   },
   computed: {

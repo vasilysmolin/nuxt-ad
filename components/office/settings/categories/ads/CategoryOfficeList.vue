@@ -30,7 +30,7 @@ export default {
   name: "CategoryOfficeList",
   async mounted() {
     if(this.categories.length === 0) {
-      await this.getItems({});
+      await this.getItems({from: 'catalog'});
     }
 
   },
