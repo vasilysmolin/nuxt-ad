@@ -128,7 +128,7 @@ export default {
     await this.$store.dispatch('ads/getItem', {id: this.$route.params.id, expand: 'profile.user'});
     this.data = _.cloneDeep(this.$store.getters['ads/ad']);
     if(this.category.length === 0) {
-      await this.$store.dispatch('categoriesAd/getItems');
+      await this.$store.dispatch('categoriesAd/getItems', {from: 'cabinet'});
     }
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);

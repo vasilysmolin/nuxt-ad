@@ -24,8 +24,9 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit}) {
-		const categoriesAds = await this.$axios.$get('category-declarations?skip=0&take=100');
+	async getItems({commit}, {from = null}) {
+		const getParams = params({from});
+		const categoriesAds = await this.$axios.$get(`category-declarations?skip=0&take=100${getParams}`);
 		commit('setcategoriesAds', categoriesAds.catalog_ad_categories);
 	},
 	async addItems({commit},{skip = 0}) {
