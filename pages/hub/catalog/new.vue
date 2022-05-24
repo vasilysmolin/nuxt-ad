@@ -20,6 +20,9 @@
                   {{ category.name }}
                 </option>
               </select>
+              <span v-if="category_idErrors" class="caption-2 px-1 pt-s c-error">
+            {{ category_idErrors }}
+            </span>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -42,6 +45,9 @@
                       placeholder="Описание"
                       v-model="data.description"
                   >{{ data.description }}</textarea>
+              <span v-if="descriptionErrors" class="caption-2 px-1 pt-s c-error">
+            {{ descriptionErrors }}
+            </span>
             </div>
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -50,6 +56,9 @@
                      placeholder="Зарплата"
                      v-model="data.price">
               <label for="price" class="text-[#6E7191]">Стоимость</label>
+              <span v-if="priceErrors" class="caption-2 px-1 pt-s c-error">
+            {{ priceErrors }}
+            </span>
             </div>
             <!--
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -64,6 +73,9 @@
               <div class="mb-4" v-for="photo in data.photos">
                 <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
               </div>
+              <span v-if="photosErrors" class="caption-2 px-1 pt-s c-error">
+            {{ photosErrors }}
+            </span>
             </div>
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
@@ -115,6 +127,24 @@ export default {
         maxLength: maxLength(255),
         minLength: minLength(2)
       },
+      photos: {
+        required,
+      },
+      category_id: {
+        required,
+        numeric,
+      },
+      description: {
+        required,
+        maxLength: maxLength(2000),
+        minLength: minLength(5)
+      },
+      price: {
+        required,
+        numeric,
+        maxLength: maxLength(1000),
+        minLength: minLength(1)
+      },
     },
 
   },
@@ -138,7 +168,7 @@ export default {
     },
     nameErrors: {
       get() {
-        if (!this.$v.data.name.$dirty) {
+        if (!this.$v.data.name?.$dirty) {
           return '';
         }
 
@@ -158,6 +188,80 @@ export default {
       set(text) {
         return text;
       }
+    },
+    photosErrors: {
+      get() {
+        if (!this.$v.data.photos?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.photos.required) {
+          return 'Выберите фото';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    descriptionErrors: {
+      get() {
+        if (!this.$v.data.description?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.description.required) {
+          return 'Введите название';
+        }
+
+        if (!this.$v.data.description.maxLength) {
+          return 'Превышена допустимая длина названия';
+        }
+        if (!this.$v.data.description.minLength) {
+          return 'Ошибка, минимальное значение';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    priceErrors() {
+      if (!this.$v.data.price?.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.data.price.required) {
+        return 'Введите цену';
+      }
+
+      if (!this.$v.data.price.maxLength) {
+        return 'Превышена допустимая длина названия';
+      }
+      if (!this.$v.data.price.minLength) {
+        return 'Ошибка, минимальное значение';
+      }
+      if (!this.$v.data.price.numeric) {
+        return 'Укажите только числа, без других символов';
+      }
+
+      return '';
+    },
+    category_idErrors() {
+      if (!this.$v.data.category_id?.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.data.category_id.required) {
+        return 'Выберите категорию';
+      }
+      if (!this.$v.data.category_id.numeric) {
+        return 'Неверный формат категории';
+      }
+
+      return '';
     },
   },
   methods: {
