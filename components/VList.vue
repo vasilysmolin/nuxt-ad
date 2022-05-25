@@ -1,5 +1,5 @@
 <template>
-  <section class="container flex flex-col items-center mt-[10px] pb-10">
+  <section class="container flex flex-col items-center mt-[10px] pb-[100px]">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(vacancy)">

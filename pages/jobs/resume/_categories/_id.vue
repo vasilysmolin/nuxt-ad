@@ -1,5 +1,5 @@
 <template>
-  <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-10">
+  <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-[100px]">
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ resume.name }}</h1>

@@ -1,23 +1,17 @@
 <template>
   <main>
-    <header class="fixed top-0 flex justify-between items-center w-full bg-[#F7F7FC] px-5 py-4 z-50">
-      <GlobalNav
-          :toggleG="isHiddenG"
-          @toggleGBlock="toggleGBlock"
-      />
-      <GlobalNavWin
-          :toggleG="isHiddenG"
-          @toggleGBlock="toggleGBlock"
-      />
+    <header class="fixed flex justify-between items-center top-0 w-full bg-[#F7F7FC] px-5 py-3 z-50">
+      <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
+        <GlobalNav />
+        <GlobalNavWin :toggleG="isHiddenG"/>
+        <span class="pl-2 font-bold">Меню</span>
+      </div>
       <TLogo/>
-      <UserNav
-          :toggle="isHidden"
-          @toggleBlock="toggleBlock"
-      />
-      <UserNavWin
-          :toggle="isHidden"
-          @toggleBlock="toggleBlock"
-      />
+      <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center cursor-pointer usernav">
+        <UserNav/>
+        <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
+        <span class="pl-2 font-bold">Вход</span>
+      </div>
     </header>
     <NavLocProfile/>
     <Nuxt/>
@@ -49,12 +43,30 @@ export default {
     }
   },
   methods: {
-    toggleBlock(bool) {
-      this.isHidden = bool;
+    toggleBlocks() {
+      this.isHidden = false;
     },
-    toggleGBlock(bool) {
-      this.isHiddenG = bool;
-    }
+    toggleBlock() {
+      if (this.$auth.loggedIn) {
+        this.isHidden = !this.isHidden;
+        // document.location.href = process.env.HUB_URL + '/profile';
+      } else {
+        document.location.href = process.env.AUTH_URL;
+      }
+    },
+    toggleGBlock() {
+      console.log(this.isHiddenG);
+      this.isHiddenG = !this.isHiddenG;
+    },
+    toggleGBlocks() {
+      this.isHiddenG = !this.isHiddenG;
+    },
+    close() {
+      this.isHidden = false;
+    },
+    closeG() {
+      this.isHiddenG = false;
+    },
 
   },
 
