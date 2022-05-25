@@ -32,7 +32,7 @@
               <label for="floatingInput" class="text-[#6E7191]">Ваша почта</label>
             </div>
 
-            <div class="form-floating w-full sm:w-[27rem]">
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <the-mask :mask="['+7 (###) ###-##-##']" v-model="user.phone"
                         id="floatingPassword"
                         type="text"
@@ -54,6 +54,28 @@
                         placeholder="Ваш телефон" />
               <label class="text-[#6E7191]">Ваш телефон</label>
             </div>
+
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="text" v-model="user.city" class="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-black
+        bg-[#EFF0F6] bg-clip-padding
+        border border-solid border-[#EFF0F6]
+        rounded-lg
+        transition
+        ease-in-out
+        m-0
+        focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
+                     placeholder="Ваш город">
+              <label for="floatingInput" class="text-[#6E7191]">Ваш город</label>
+              <span class="form-errors w-full mb-2">Подскажите ваш город, так намного удобнее пользоваться сервисами</span>
+            </div>
+
           </div>
         </form>
       </div>
@@ -81,6 +103,7 @@ export default {
       user: {
         name: '',
         phone: '',
+        city: 'Пермь',
       },
       person: {
         inn: null,
