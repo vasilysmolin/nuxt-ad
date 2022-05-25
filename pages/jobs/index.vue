@@ -18,7 +18,7 @@
         <section class="flex flex-col justify-center p-5">
           <h2><nuxt-link to="/vacancies" class="font-bold text-[25px] border-b-[1px] border-gray-400 hover:text-blue-700">Вакансии</nuxt-link></h2>
           <h3 class="mt-3">Создавайте неограниченное количество бесплатных вакансий для своей компании. Делегируйте контроль или размещение своему представителю.</h3>
-          <p @click="signup">
+          <p @click="linkHub">
             <nuxt-link to="" class="inline-block mt-7 px-6 py-2 border-2 border-blue-900 text-blue-900 font-bold text-sm leading-tight rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить вакансию</nuxt-link></p>
         </section>
       </article>
@@ -37,7 +37,7 @@
         <section class="flex flex-col justify-center p-5">
           <h2><nuxt-link to="/resume" class="font-bold text-[25px] border-b-[1px] border-gray-400 hover:text-blue-700">Резюме</nuxt-link></h2>
           <h3 class="mt-3">Размещайте без ограничений бесплатные резюме для поиска работы. Получайте приглашения на собеседования сразу на Тапиго.</h3>
-          <p @click="signup">
+          <p @click="linkHub">
             <nuxt-link to="" class="inline-block mt-7 px-6 py-2 border-2 border-blue-900 text-blue-900 font-bold text-sm leading-tight rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Разместить резюме</nuxt-link></p>
         </section>
       </article>
