@@ -2,10 +2,10 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-3 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
+        <h1 class="mb-3 w-full text-xl text-black font-black text-center leading-none truncate">Редактировать
           объявление</h1>
 
-        <h2 class="mb-4 w-full text-base text-black font-black text-center leading-none truncate">{{ data.name }}</h2>
+        <h2 class="mb-4 w-full text-base text-black font-bold text-center leading-none truncate">{{ data.name }}</h2>
 
         <form class="w-[95%]">
 
@@ -22,7 +22,7 @@
                   {{ category.name }}
                 </option>
               </select>
-              <span v-if="category_idErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="category_idErrors" class="form-errors">
             {{ category_idErrors }}
             </span>
             </div>
@@ -33,7 +33,7 @@
                      placeholder="Название вакансии"
                      v-model="data.name">
               <label for="name" class="text-[#6E7191]">Название объявления</label>
-              <span v-if="nameErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="nameErrors" class="form-errors">
             {{ nameErrors }}
             </span>
             </div>
@@ -47,7 +47,7 @@
                       placeholder="Описание"
                       v-model="data.description"
                   >{{ data.description }}</textarea>
-              <span v-if="descriptionErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="descriptionErrors" class="form-errors">
             {{ descriptionErrors }}
             </span>
             </div>
@@ -58,7 +58,7 @@
                      placeholder="Зарплата"
                      v-model="data.price">
               <label for="price" class="text-[#6E7191]">Стоимость</label>
-              <span v-if="priceErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="priceErrors" class="form-errors">
             {{ priceErrors }}
             </span>
             </div>
@@ -71,27 +71,46 @@
               <label for="sale_price" class="text-[#6E7191]">Стоимость со скидкой</label>
             </div>
             -->
-            <div class="grid grid-cols-3 gap-4 flex items-center">
-              <div class="mb-4" v-for="photo in data.photos">
-                <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
+            <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
+              <div class="mb-4 w-full" v-for="photo in data.photos">
+                <img :src="photo" class="max-w-full h-auto rounded" alt="">
               </div>
             </div>
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
             </div>
 
-            <button :disabled="isDisabled" class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            <!--
+            <button :disabled="isDisabled" class="btn btn-primary inline-block px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Сохранить
             </button>
+             -->
+            <div class="mt-6 py-2 flex justify-around items-center w-full rounded-md bg-[#262338]">
 
-            <button v-if="data.state === 'active'" @click.prevent="up" class="h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800">Поднять</button>
+              <div @click.prevent="submitted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
+                <RefreshWhite/>
+                <button :disabled="isDisabled">Сохранить</button>
+              </div>
 
-            <button @click.prevent="deleted" class="h-10 px-5 m-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Удалить</button>
+              <div @click.prevent="up" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
+                <UpWhite/>
+                <button v-if="data.state === 'active'">Поднять</button>
+              </div>
 
-            <div v-if="checkState()">
-              <button v-if="data.state !== 'active'" @click.prevent="active" class="h-10 px-5 m-2 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">Активировать</button>
-              <button v-else @click.prevent="pause"  class="h-10 px-5 m-2 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">На паузу</button>
+              <div v-if="checkState()" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
+                <PauseWhite/>
+                <button v-if="data.state !== 'active'" @click.prevent="active">Запустить</button>
+                <button v-else @click.prevent="pause">На паузу</button>
+              </div>
+
+              <div @click.prevent="deleted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-red-600 cursor-pointer">
+                <DeleteWhite/>
+                <button>Удалить</button>
+              </div>
+
             </div>
+
+
           </div>
         </form>
       </div>
@@ -104,9 +123,14 @@ import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 // import {mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
+import UpWhite from "../../../../components/icons/UpWhite";
+import PauseWhite from "../../../../components/icons/PauseWhite";
+import DeleteWhite from "../../../../components/icons/DeleteWhite";
+import RefreshWhite from "../../../../components/icons/RefreshWhite";
 
 export default {
   name: "VObject",
+  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite},
   layout: 'hub',
   head: {
     title: "Редактировать объявление на Тапиго",
@@ -127,8 +151,8 @@ export default {
     data: {
       name: {
         required,
-        maxLength: maxLength(255),
-        minLength: minLength(2)
+        maxLength: maxLength(70),
+        minLength: minLength(5)
       },
       category_id: {
         required,
@@ -136,14 +160,14 @@ export default {
       },
       description: {
         required,
-        maxLength: maxLength(2000),
+        maxLength: maxLength(1000),
         minLength: minLength(5)
       },
       price: {
         required,
         numeric,
-        maxLength: maxLength(1000),
-        minLength: minLength(1)
+        maxLength: maxLength(10),
+        minLength: minLength(2)
       },
     },
 
@@ -173,14 +197,14 @@ export default {
         }
 
         if (!this.$v.data.name.required) {
-          return 'Введите название';
+          return 'Ой, вы забыли написать название объявления';
         }
 
         if (!this.$v.data.name.maxLength) {
-          return 'Превышена допустимая длина названия';
+          return 'Текст объявления вы можете написать в поле Описание';
         }
         if (!this.$v.data.name.minLength) {
-          return 'Ошибка, минимальное значение';
+          return 'Как вы думаете, вас поймут?';
         }
 
         return '';
@@ -196,14 +220,14 @@ export default {
         }
 
         if (!this.$v.data.description.required) {
-          return 'Введите название';
+          return 'Правильное описание даёт преимущество объявлению';
         }
 
         if (!this.$v.data.description.maxLength) {
-          return 'Превышена допустимая длина названия';
+          return 'Давайте сделаем текст поменьше';
         }
         if (!this.$v.data.description.minLength) {
-          return 'Ошибка, минимальное значение';
+          return 'Опишите более подробно и результат не заставит ждать';
         }
 
         return '';
@@ -218,17 +242,16 @@ export default {
       }
 
       if (!this.$v.data.price.required) {
-        return 'Введите цену';
+        return 'Напишите справедливую цену';
       }
-
       if (!this.$v.data.price.maxLength) {
-        return 'Превышена допустимая длина названия';
+        return 'Кажется, вы указали заоблачную стоимость';
       }
       if (!this.$v.data.price.minLength) {
-        return 'Ошибка, минимальное значение';
+        return 'Рекомендуем указать цену от 10 рублей';
       }
       if (!this.$v.data.price.numeric) {
-        return 'Укажите только числа, без других символов';
+        return 'Вас не поймут, цена — это цифры';
       }
 
       return '';
@@ -239,10 +262,10 @@ export default {
       }
 
       if (!this.$v.data.category_id.required) {
-        return 'Выберите категорию';
+        return 'Выберите категорию для объявления';
       }
       if (!this.$v.data.category_id.numeric) {
-        return 'Неверный формат категории';
+        return 'Что-то пошло не так, обратитесь в поддержку';
       }
 
       return '';
