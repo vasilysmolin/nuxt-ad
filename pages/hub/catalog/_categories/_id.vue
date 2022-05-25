@@ -5,7 +5,7 @@
         <h1 class="mb-3 w-full text-xl text-black font-bold text-center leading-none truncate">Редактировать
           объявление</h1>
 
-        <h2 class="mb-4 w-full text-base text-black font-bold text-center leading-none truncate">{{ data.name }}</h2>
+        <h2 class="mb-4 w-full text-base text-black font-black text-center leading-none truncate">{{ data.name }}</h2>
 
         <form class="w-[95%]">
 
