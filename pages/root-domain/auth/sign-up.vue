@@ -30,6 +30,9 @@
     focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
                    placeholder="Ваша почта">
             <label for="floatingPassword" class="text-[#6E7191]">Ваша почта</label>
+            <span v-if="emailErrors" class="form-errors">
+            {{ emailErrors }}
+            </span>
           </div>
           <div class="form-floating mb-5 w-full sm:w-[27rem]">
             <input type="password" v-model="password" class="form-control
@@ -49,6 +52,10 @@
     focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingPassword"
                    placeholder="Ваша почта">
             <label for="floatingPassword" class="text-[#6E7191]">Ваш пароль</label>
+            <p>{{ errors }}</p>
+            <span v-if="passwordErrors" class="form-errors">
+            {{ passwordErrors }}
+            </span>
           </div>
           <div class="flex space-x-2 justify-center">
             <button type="button" @click.prevent="submitted"
@@ -66,16 +73,29 @@
 
 
 <script>
+import {maxLength, minLength, required, email} from "vuelidate/lib/validators";
 export default {
   name: 'SignUp',
   data() {
     return {
+      errors: null,
       email: '',
       is_person: false,
       phone: '',
       password: '',
       from: null,
     }
+  },
+  validations: {
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      maxLength: maxLength(25),
+      minLength: minLength(6),
+    },
   },
   middleware: ['redirectHub'],
   mounted() {
@@ -84,6 +104,48 @@ export default {
     }
   },
   computed: {
+    emailErrors: {
+      get() {
+        if (!this.$v.email?.$dirty) {
+          return '';
+        }
+        if (!this.$v.email.required) {
+          return 'Кажется, вы забыли написать email';
+        }
+        if (!this.$v.email.email) {
+          return 'Это не похоже на адрес электронной почты';
+        }
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    passwordErrors: {
+      get() {
+        if (!this.$v.password?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.password.required) {
+          return 'Вы забыли указать пароль, без него не создать аккаунт';
+        }
+
+        if (!this.$v.password.maxLength) {
+          return 'Мы вас уверяем - 25 символов для пароля достаточно';
+        }
+        if (!this.$v.password.minLength) {
+          return 'Придумайте пароль не меньше 6 символов';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+
+
     linkSignIn() {
       if(this.from) {
         return `/auth/sign-in?from=${this.from}`;
@@ -95,6 +157,10 @@ export default {
   },
   methods: {
     submitted() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
       this.$axios.$post(`auth/register`, {
         email: this.email,
         is_person: this.is_person,
@@ -113,8 +179,8 @@ export default {
               });
             }
           })
-          .catch((error) =>{
-            console.error(error)
+          .catch(error => {
+            this.errors = error.response.data.errors.message;
           });
 
       },

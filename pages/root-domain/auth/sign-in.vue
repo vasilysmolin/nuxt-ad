@@ -5,7 +5,7 @@
       <form class=" w-[95%]">
         <div class="flex flex-col items-center w-full">
           <div class="form-floating mb-4 w-full sm:w-[27rem]">
-            <input v-model="email" type="email" class="form-control
+            <input v-model="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control
         block
         w-full
         px-3
@@ -20,7 +20,7 @@
         ease-in-out
         m-0
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
-                   placeholder="Ваш телефон">
+                   placeholder="Ваш телефон" />
             <label for="floatingInput" class="text-[#6E7191]">Ваша почта</label>
             <span v-if="emailErrors" class="form-errors">
             {{ emailErrors }}
@@ -65,7 +65,7 @@
 
 <script>
 import Person from "~/components/mixins/person.mixin";
-import {maxLength, minLength, numeric, required} from "vuelidate/lib/validators";
+import {maxLength, minLength, required, email} from "vuelidate/lib/validators";
 export default {
     name: 'SignIn',
   data() {
@@ -79,13 +79,10 @@ export default {
   validations: {
       email: {
         required,
-        maxLength: maxLength(70),
-        minLength: minLength(3)
+        email
       },
       password: {
         required,
-        maxLength: maxLength(1000),
-        minLength: minLength(5)
       },
   },
   mounted() {
@@ -99,18 +96,12 @@ export default {
         if (!this.$v.email?.$dirty) {
           return '';
         }
-
         if (!this.$v.email.required) {
-          return 'Ой, вы забыли написать email';
+          return 'Кажется, вы забыли написать email';
         }
-
-        if (!this.$v.email.maxLength) {
-          return 'Превышена длина';
+        if (!this.$v.email.email) {
+          return 'Это не похоже на адрес электронной почты';
         }
-        if (!this.$v.email.minLength) {
-          return 'Как вы думаете, вас поймут?';
-        }
-
         return '';
       },
       set(text) {
@@ -124,14 +115,7 @@ export default {
         }
 
         if (!this.$v.password.required) {
-          return 'Ой, вы забыли написать password';
-        }
-
-        if (!this.$v.password.maxLength) {
-          return 'Превышена длина';
-        }
-        if (!this.$v.password.minLength) {
-          return 'Как вы думаете, вас поймут?';
+          return 'Вы забыли указать правильный пароль, без него не войти';
         }
 
         return '';
