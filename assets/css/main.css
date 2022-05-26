@@ -109,6 +109,16 @@
         margin-top: 10px;
         font-size: .875rem;
     }
+    .search-tags {
+        @apply
+        text-xs inline-block mr-1 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-200 hover:bg-blue-100 text-blue-700 hover:text-black transition duration-150 ease-in-out rounded
+    }
+    .search-line {
+        @apply py-3
+    }
+    .search-line:last-child {
+        border-bottom: none;
+    }
 }
 @layer utilities {
     @variants responsive {
