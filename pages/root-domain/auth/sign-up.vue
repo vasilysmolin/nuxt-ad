@@ -12,26 +12,6 @@
           </div>
         </div>
         <div class="flex flex-col items-center w-full">
-<!--          <div class="form-floating mb-4 w-full sm:w-[27rem]">-->
-<!--            <input v-model="phone" type="text" class="form-control-->
-<!--        block-->
-<!--        w-full-->
-<!--        px-3-->
-<!--        py-1.5-->
-<!--        text-base-->
-<!--        font-normal-->
-<!--        text-black-->
-<!--        bg-[#EFF0F6] bg-clip-padding-->
-<!--        border border-solid border-[#EFF0F6]-->
-<!--        rounded-lg-->
-<!--        transition-->
-<!--        ease-in-out-->
-<!--        m-0-->
-<!--        focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"-->
-<!--                   placeholder="Ваш телефон">-->
-<!--            <label for="floatingInput" class="text-[#6E7191]">Ваш телефон</label>-->
-<!--          </div>-->
-
           <div class="form-floating mb-5 w-full sm:w-[27rem]">
             <input v-model="email" type="email" class="form-control
     block
