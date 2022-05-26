@@ -10,7 +10,7 @@
           <h1 v-if="check" class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ getEntityName(user) }}</h1>
           <h1 v-else class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{user.name}}</h1>
         </section>
-        <form class=" w-[95%]">
+        <form class="w-[95%]">
           <div class="flex flex-col items-center w-full">
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="email" v-model="user.email" class="form-control
@@ -75,8 +75,17 @@
               <label for="floatingInput" class="text-[#6E7191]">Ваш город</label>
               <span class="form-errors w-full mb-2">Подскажите ваш город, так намного удобнее пользоваться сервисами</span>
             </div>
-
           </div>
+          <article class="relative mx-auto mt-[-80px] w-full sm:w-[27rem] bg-white z-50">
+            <ul class="pt-1 px-3 w-full leading-8">
+              <li><nuxt-link to="" class="text-blue-700 hover:text-black">Пермь</nuxt-link></li>
+              <li><nuxt-link to="" class="text-blue-700 hover:text-black">Петрозаводск</nuxt-link></li>
+              <li><nuxt-link to="" class="text-blue-700 hover:text-black">Пенза</nuxt-link></li>
+              <li><nuxt-link to="" class="text-blue-700 hover:text-black">Первоуральск</nuxt-link></li>
+              <li><nuxt-link to="" class="text-blue-700 hover:text-black">Переславль-Залесский</nuxt-link></li>
+              <li><nuxt-link to="" class="text-blue-700 hover:text-black">Пересыпь</nuxt-link></li>
+            </ul>
+          </article>
         </form>
       </div>
     </div>
