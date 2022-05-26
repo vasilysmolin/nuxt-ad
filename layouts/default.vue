@@ -16,7 +16,7 @@
     <GoSearch/>
     <Nuxt/>
     <footer class="fixed flex justify-between items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
-      <div class="flex justify-center items-center cursor-pointer" @click="showSearch">
+      <div class="flex justify-center items-center cursor-pointer" @click="showGoSearch">
         <GlobalSearch/>
         <span class="pl-2 font-bold">Поиск</span>
       </div>
@@ -41,7 +41,7 @@ import UserNavWin from "../components/UserNavWin";
 import GlobalNavWin from "../components/GlobalNavWin";
 import GlobalSearch from "../components/icons/GlobalSearch";
 import GlobalConfigure from "../components/icons/GlobalConfigure";
-import GoSearch from "../components/GlobalSearch";
+import GoSearch from "../components/GoSearch";
 
 export default {
   components: {
@@ -105,12 +105,9 @@ export default {
         document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/catalog/new`;
       }
     },
-    showSearch () {
+    showGoSearch () {
       this.$modal.show('GoSearch');
     },
   },
-  mount () {
-    this.show()
-  }
 }
 </script>

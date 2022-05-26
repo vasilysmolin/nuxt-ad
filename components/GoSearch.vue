@@ -6,7 +6,7 @@
           ❌
         </button>
       </div>
-      <p>This is my first modal</p>
+      <p>This is GoSearch Tapigo</p>
     </div>
   </modal>
 </template>
