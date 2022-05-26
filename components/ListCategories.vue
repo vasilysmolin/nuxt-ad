@@ -58,7 +58,7 @@ export default {
       if(category?.color?.hash) {
         return 'text-blue-300 hover:text-blue-500';
       } else {
-        return 'text-blue-700 hover:text-blue-800';
+        return 'text-blue-700 hover:text-black';
       }
     }
   }
