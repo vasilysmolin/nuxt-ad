@@ -22,6 +22,9 @@
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
                    placeholder="Ваш телефон">
             <label for="floatingInput" class="text-[#6E7191]">Ваша почта</label>
+            <span v-if="emailErrors" class="form-errors">
+            {{ emailErrors }}
+            </span>
           </div>
 
           <div class="form-floating mb-5 w-full sm:w-[27rem]">
@@ -43,6 +46,9 @@
                    placeholder="Ваша почта">
             <label for="floatingPassword" class="text-[#6E7191]">Ваш пароль</label>
             <p>{{ errors }}</p>
+            <span v-if="passwordErrors" class="form-errors">
+            {{ passwordErrors }}
+            </span>
           </div>
           <div class="flex space-x-2 justify-center">
             <button type="button" @click.prevent="submitted"
@@ -59,6 +65,7 @@
 
 <script>
 import Person from "~/components/mixins/person.mixin";
+import {maxLength, minLength, numeric, required} from "vuelidate/lib/validators";
 export default {
     name: 'SignIn',
   data() {
@@ -69,12 +76,70 @@ export default {
       from: null,
     }
   },
+  validations: {
+      email: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(3)
+      },
+      password: {
+        required,
+        maxLength: maxLength(1000),
+        minLength: minLength(5)
+      },
+  },
   mounted() {
     if(this.$route.query.from) {
       this.from = this.$route.query.from;
     }
   },
   computed: {
+    emailErrors: {
+      get() {
+        if (!this.$v.email?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.email.required) {
+          return 'Ой, вы забыли написать email';
+        }
+
+        if (!this.$v.email.maxLength) {
+          return 'Превышена длина';
+        }
+        if (!this.$v.email.minLength) {
+          return 'Как вы думаете, вас поймут?';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    passwordErrors: {
+      get() {
+        if (!this.$v.password?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.password.required) {
+          return 'Ой, вы забыли написать password';
+        }
+
+        if (!this.$v.password.maxLength) {
+          return 'Превышена длина';
+        }
+        if (!this.$v.password.minLength) {
+          return 'Как вы думаете, вас поймут?';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
     linkSignUp() {
       if(this.from) {
         return `/auth/sign-up?from=${this.from}`;
@@ -86,6 +151,10 @@ export default {
   mixins: [Person],
   methods: {
       submitted() {
+        if (this.$v.$invalid) {
+          this.$v.$touch();
+          return;
+        }
         this.$auth.loginWith('laravelJWT', {
           data: {
             email: this.email,
