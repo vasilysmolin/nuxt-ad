@@ -2,6 +2,7 @@ import { params } from '../helper/requestParams';
 
 export const state = () => ({
 	ads: [],
+	adsFull: [],
 	amount: null,
 	amountNew: null,
 	adsNew: [],
@@ -11,6 +12,9 @@ export const state = () => ({
 export const mutations = {
 	setads(state, ads) {
 		state.ads = ads;
+	},
+	setAdsFull(state, adsFull) {
+		state.adsFull = adsFull;
 	},
 	addads(state, ads) {
 		state.ads.push(...ads);
@@ -55,6 +59,13 @@ export const actions = {
 			commit('setAmount', ads.meta.total);
 		}
 	},
+	async getItemsFull({commit},{
+		query = null,
+	}) {
+		const getParams = params({query});
+		const adsFull = await this.$axios.$get(`declarations-full?take=10${getParams}`);
+		commit('setAdsFull', adsFull.catalog_ads);
+	},
 	async addItems({commit},{
 		skip = 0,
 		user_id = null,
@@ -84,6 +95,7 @@ export const actions = {
 
 export const getters = {
 	ads: s => s.ads,
+	adsFull: s => s.adsFull,
 	adsNew: s => s.adsNew,
 	ad: s => s.ad,
 	amount: s => s.amount,
