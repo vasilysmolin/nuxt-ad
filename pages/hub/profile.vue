@@ -73,7 +73,7 @@
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
                      placeholder="Ваш город">
               <label for="floatingInput" class="text-[#6E7191]">Ваш город</label>
-              <span v-if="!success" class="form-errors w-full mb-2">
+              <span v-if="error" class="form-errors w-full mb-2">
                 Подскажите ваш город, так намного удобнее пользоваться сервисами
               </span>
               <span v-if="successChange" class="form-success w-full mb-2">
@@ -115,7 +115,7 @@ export default {
   data() {
     return {
       query: null,
-      success: false,
+      error: false,
       successChange: false,
       user: {
         name: null,
@@ -135,7 +135,8 @@ export default {
     this.user = _.cloneDeep(this.$auth.user);
     if(this.checkCity) {
       this.query = this.user?.city?.name;
-      this.success = true;
+    } else {
+      this.error = true;
     }
     this.person.inn = _.clone(this.getInn());
   },
@@ -159,7 +160,7 @@ export default {
       this.$axios.$put(`users/${this.user.id}`, {city_id: city.id}).then(() => {
         const user = this.$auth.fetchUser().then((res) => {
           this.$auth.setUser(res.data);
-          this.successChange = true;
+          // this.successChange = true;
 
         });
       }).catch((error) => {
@@ -170,12 +171,20 @@ export default {
       this.removeItemsFull();
     },
     debounceInput: _.debounce(function (e) {
-      this.getItems({query: this.query}).then((res) => {
-      }).catch((error) => {
-        // console.log(error.response.data.errors);
-        // this.$v.nameErrors = 'какой-то текст';
-      });
+      if(this.query === '') {
+        this.error = true;
+        this.removeItemsFull();
+      } else {
+        this.error = false;
+        this.getItems({query: this.query}).then((res) => {
+        }).catch((error) => {
+          // console.log(error.response.data.errors);
+          // this.$v.nameErrors = 'какой-то текст';
+        });
+      }
+
       }, 500)
+
     },
 
 }
