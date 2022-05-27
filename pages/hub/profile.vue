@@ -76,12 +76,14 @@
               <span v-if="error" class="form-errors w-full mb-2">
                 Подскажите ваш город, так намного удобнее пользоваться сервисами
               </span>
+              <!--
               <span v-if="successChange" class="form-success w-full mb-2">
                 Город успешно добавлен
               </span>
+              -->
             </div>
           </div>
-          <article class="relative mx-auto mt-[-80px] w-full sm:w-[27rem] bg-white z-50">
+          <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
             <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
               <li @click="saveCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id" >
                 <nuxt-link to="#" class="text-blue-700 hover:text-black">
