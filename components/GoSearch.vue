@@ -13,9 +13,9 @@
     </section>
     <article class="mt-0 flex justify-start items-start">
       <ul class="pl-6 py-2 w-[100%] list-disc list-inside" v-if="categories.length > 0">
-        <li @click="hide" style="list-style-type: none;" v-for="category in categories" :key="category.id" class="search-line"><nuxt-link :to="categoryLink(category)" class="text-blue-700 hover:text-black"><span class="search-tags">Категория</span>{{ category.name }}</nuxt-link></li>
+        <!--<li @click="hide" style="list-style-type: none;" v-for="category in categories" class="search-line"><nuxt-link :to="categoryLink(category)" class="text-blue-700 hover:text-black">{{ category.name }}</nuxt-link></li>-->
         <template v-if="ads.length > 0">
-          <li @click="hide" style="list-style-type: none;" v-for="ad in ads" :key="ad.id" class="search-line"><nuxt-link :to="getUrl(ad)" class="text-blue-700 hover:text-black"><span class="search-tags">Объявление</span>{{ ad.name }}</nuxt-link></li>
+          <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line"><nuxt-link :to="getUrl(ad)" class="text-blue-700 hover:text-black">{{ ad.name }}</nuxt-link></li>
         </template>
       </ul>
 
