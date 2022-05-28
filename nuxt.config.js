@@ -71,7 +71,8 @@ export default {
         { src: '~/plugins/directives.js' },
         { src: '~/plugins/vuelidate' },
         { src: '~/plugins/mask.js' },
-        { src: '~/plugins/vue-js-modal.js' }
+        { src: '~/plugins/vue-js-modal.js' },
+        { src: '~/plugins/ymapPlugin.js',  mode: 'client' },
     ],
     // router: {
     //     middleware: ['auth']

@@ -62,6 +62,18 @@
             {{ priceErrors }}
             </span>
             </div>
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+<!--              <yandex-map v-if="showMap" :coords="coords">-->
+<!--                              <ymap-marker-->
+<!--                                  marker-id="123"-->
+<!--                                  :coords="coords"-->
+<!--                                  :icon="markerIcon"-->
+<!--                              />-->
+<!--              </yandex-map>-->
+<!--            </div>-->
+
+
+
             <!--
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="text"
@@ -122,6 +134,7 @@
 import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 // import {mapGetters} from "vuex";
+import  {yandexMap, ymapMarker} from 'vue-yandex-maps';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
@@ -130,7 +143,7 @@ import RefreshWhite from "../../../../components/icons/RefreshWhite";
 
 export default {
   name: "VObject",
-  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite},
+  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite, yandexMap, ymapMarker},
   layout: 'hub',
   head: {
     title: "Редактировать объявление на Тапиго",
@@ -141,6 +154,17 @@ export default {
   mixins: [CategoriesMixin],
   data() {
     return {
+      coords: [47.79491, 52.011795],
+      showMap: false,
+      markerIcon: {
+        layout: 'default#imageWithContent',
+        // imageHref: 'https://image.flaticon.com/icons/png/512/33/33447.png',
+        imageSize: [43, 43],
+        imageOffset: [0, 0],
+        content: '123 v12',
+        contentOffset: [0, 15],
+        // contentLayout: '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+      },
       data: {
       },
       files: [],
@@ -173,6 +197,7 @@ export default {
 
   },
   async mounted() {
+    this.showMap = true;
     await this.$store.dispatch('ads/getItem', {id: this.$route.params.id, expand: 'profile.user'});
     this.data = _.cloneDeep(this.$store.getters['ads/ad']);
     if(this.category.length === 0) {
@@ -343,3 +368,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.ymap-container {
+  height: 100%;
+}
+</style>
