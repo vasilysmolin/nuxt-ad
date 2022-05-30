@@ -12,7 +12,7 @@
       </section>
     </section>
     <article class="mt-0 flex justify-start items-start">
-      <ul class="pl-6 py-2 w-[100%] list-disc list-inside" v-if="categories.length > 0">
+      <ul class="pl-6 py-2 w-[100%] list-disc list-inside" v-if="ads.length > 0">
         <!--<li @click="hide" style="list-style-type: none;" v-for="category in categories" class="search-line"><nuxt-link :to="categoryLink(category)" class="text-blue-700 hover:text-black">{{ category.name }}</nuxt-link></li>-->
         <template v-if="ads.length > 0">
           <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line"><nuxt-link :to="getUrl(ad)" class="text-blue-700 hover:text-black">{{ ad.name }}</nuxt-link></li>
@@ -73,11 +73,11 @@ export default {
       this.$modal.hide('GoSearch');
     },
     debounceInput: _.debounce(function (e) {
-      this.getItems({query: this.query}).then((res) => {
-      }).catch((error) => {
-        // console.log(error.response.data.errors);
-        // this.$v.nameErrors = 'какой-то текст';
-      });
+      // this.getItems({query: this.query}).then((res) => {
+      // }).catch((error) => {
+      //   // console.log(error.response.data.errors);
+      //   // this.$v.nameErrors = 'какой-то текст';
+      // });
       this.getItemsAds({query: this.query}).then((res) => {
       }).catch((error) => {
         // console.log(error.response.data.errors);
