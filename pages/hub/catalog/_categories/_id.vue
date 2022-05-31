@@ -27,6 +27,19 @@
             </span>
             </div>
 
+            <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
+              <label v-if="item.name.length > 0" for="name" class="pl-4 text-gray-500">{{ item.name }}</label>
+              <select class="form-select form-select-lg mt-2 forms-select">
+                <option v-for="parameter in item.parameters"
+                        :value="parameter.id"
+                        :key="parameter.id"
+                        :selected="checkSelectParams(item.id, parameter.id)"
+                >
+                  {{ parameter.value }}
+                </option>
+              </select>
+            </div>
+
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
@@ -141,6 +154,7 @@ import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
 import DeleteWhite from "../../../../components/icons/DeleteWhite";
 import RefreshWhite from "../../../../components/icons/RefreshWhite";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "VObject",
@@ -206,8 +220,20 @@ export default {
     }
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);
+
   },
   computed: {
+    ...mapGetters({
+      filters: 'categoriesAd/categoryAds',
+    }),
+    // filters: {
+    //   get() {
+    //     return this.$store.getters['categoriesAd/getItem'];
+    //   },
+    //   set(filters) {
+    //     return filters
+    //   }
+    // },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
@@ -351,6 +377,14 @@ export default {
         this.$router.push({name: 'catalog'});
       }).catch((error) => {
       });
+    },
+    getFilter(cat) {
+      return cat.filters;
+    },
+    checkSelectParams(filterId, paramsId) {
+      _.find()
+      const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === paramsId); });
+      return !_.isEmpty(filter);
     },
     checkState() {
       return this.data.state === 'active' || this.data.state === 'pause';

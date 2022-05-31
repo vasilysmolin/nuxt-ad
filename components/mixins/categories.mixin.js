@@ -1,4 +1,5 @@
 import * as _ from "lodash";
+import {mapActions} from "vuex";
 
 export default {
     data() {
@@ -8,7 +9,17 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            getItem: 'categoriesAd/getItem',
+        }),
         getChildren(node) {
+            return node.categories;
+        },
+        getChildrenWithRequest(node) {
+            const firstCategory = _.first(node.categories);
+            if(!_.isEmpty(firstCategory)) {
+                this.getItem({id: firstCategory.id});
+            }
             return node.categories;
         },
         hasChildren(node) {
@@ -47,6 +58,9 @@ export default {
         },
         index(tree) {
             let current = this.data.category_id;
+            if(current !== null) {
+                this.getItem({id: current});
+            }
             let newAncestry = _.cloneDeep(tree);
             let treeReverce = _.reverse(newAncestry);
             return  _.reduce(treeReverce, function(acc, item) {
@@ -92,9 +106,10 @@ export default {
             if(!!category && this.hasChildren(category)){
                 this.items.push({
                     title: '',
-                    categories: this.getChildren(category),
+                    categories: this.getChildrenWithRequest(category),
                 });
             } else if(category) {
+                this.getItem({id: category.id});
                 this.data.category_id = category.id;
             }
         },
