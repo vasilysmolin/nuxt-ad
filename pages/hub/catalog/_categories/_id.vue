@@ -28,8 +28,8 @@
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
-              <label v-if="item.name.length > 0" for="name" class="pl-4 text-gray-500">{{ item.name }}</label>
-              <select class="form-select form-select-lg mt-2 forms-select">
+              <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
+              <select v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select">
                 <option v-for="parameter in item.parameters"
                         :value="parameter.id"
                         :key="parameter.id"
@@ -38,6 +38,26 @@
                   {{ parameter.value }}
                 </option>
               </select>
+              <template v-if="isRange(item)" class="form-select form-select-lg mt-2 forms-select">
+                <input :id="item.id" type="range" :min="min(item)" :max="max(item)" :value="valueRange(item)" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+              </template>
+              <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
+                <div class="form-check" v-for="parameter in item.parameters">
+                  <input class="form-check-input appearance-none h-4 w-4
+                  border border-gray-300 rounded-sm bg-white checked:bg-blue-600
+                  checked:border-blue-600 focus:outline-none transition duration-200
+                  mt-1 align-top bg-no-repeat bg-center bg-contain float-left
+                  mr-2 cursor-pointer"
+                         type="checkbox"
+                         :value="parameter.id"
+                         :id="parameter.id"
+                         :checked="checkSelectParams(item.id, parameter.id)"
+                        >
+                  <label class="form-check-label inline-block text-gray-800" :for="parameter.id">
+                    {{ parameter.value }}
+                  </label>
+                </div>
+              </template>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -183,6 +203,7 @@ export default {
       data: {
       },
       files: [],
+      parameters: [],
       isDisabled: false,
     }
   },
@@ -342,7 +363,6 @@ export default {
       data.append('_method', 'put');
       this.$axios.$post(`declarations/${this.$route.params.id}`, data).then(() => {
           this.$router.push({name: 'catalog'});
-        console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -381,10 +401,31 @@ export default {
     getFilter(cat) {
       return cat.filters;
     },
-    checkSelectParams(filterId, paramsId) {
-      _.find()
-      const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === paramsId); });
-      return !_.isEmpty(filter);
+    isSelect(filter) {
+      return filter.type === 'select';
+    },
+    isRange(filter) {
+      return filter.type === 'range';
+    },
+    isCheckbox(filter) {
+      return filter.type === 'checkbox';
+    },
+    min(filter) {
+      const values = _.map(filter.parameters, (item) => item.value);
+      return _.min(values);
+    },
+    max(filter) {
+      const values = _.map(filter.parameters, (item) => item.value);
+      return _.max(values);
+    },
+    valueRange(filter) {
+      const minValue = this.min(filter);
+      return _.reduce(filter.parameters, (result, item) => {
+          if(this.checkSelectParams(item.filter_id, item.id)) {
+            return item.value;
+          }
+          return result;
+      }, minValue);
     },
     checkState() {
       return this.data.state === 'active' || this.data.state === 'pause';
@@ -399,6 +440,11 @@ export default {
       _.each(files, function(file){
         $this.data.photos.push(URL.createObjectURL(file))
       });
+    },
+    checkSelectParams(filterId, paramsId) {
+      _.find()
+      const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === paramsId); });
+      return !_.isEmpty(filter);
     },
   },
 }

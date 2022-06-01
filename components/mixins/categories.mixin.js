@@ -103,15 +103,27 @@ export default {
             this.items.splice(index + 1, Infinity);
             this.category_id.splice(index + 1, Infinity);
             let category = _.find(this.items[index].categories, (item) => item.id == event.target.value);
-            if(!!category && this.hasChildren(category)){
-                this.items.push({
-                    title: '',
-                    categories: this.getChildrenWithRequest(category),
-                });
-            } else if(category) {
-                this.getItem({id: category.id});
-                this.data.category_id = category.id;
+            const iter = (category) => {
+                if(!!category && this.hasChildren(category)){
+                    const children = this.getChildren(category)
+                    this.items.push({
+                        title: '',
+                        categories: this.getChildren(category),
+                    });
+                    const firstCategory = _.first(children);
+                    if(this.hasChildren(firstCategory)) {
+                        iter(firstCategory);
+                    } else {
+                        this.getItem({id: firstCategory.id});
+                        this.data.category_id = firstCategory.id;
+                    }
+                } else if(category) {
+                    this.getItem({id: category.id});
+                    this.data.category_id = category.id;
+                }
             }
+            iter(category);
+
         },
     },
 };
