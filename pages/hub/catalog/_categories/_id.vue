@@ -29,11 +29,12 @@
 
             <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
               <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
-              <select v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select">
+              <select v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select"
+              >
                 <option v-for="parameter in item.parameters"
                         :value="parameter.id"
                         :key="parameter.id"
-                        :selected="checkSelectParams(item.id, parameter.id)"
+                        :selected="checkSelectParams(item.id, parameter.id, item.parameters, item.alias)"
                 >
                   {{ parameter.value }}
                 </option>
@@ -51,7 +52,7 @@
                          type="checkbox"
                          :value="parameter.id"
                          :id="parameter.id"
-                         :checked="checkSelectParams(item.id, parameter.id)"
+                         :checked="checkSelectParams(item.id, parameter.id, item.parameters, item.alias)"
                         >
                   <label class="form-check-label inline-block text-gray-800" :for="parameter.id">
                     {{ parameter.value }}
@@ -203,7 +204,7 @@ export default {
       data: {
       },
       files: [],
-      parameters: [],
+      parameters: {},
       isDisabled: false,
     }
   },
@@ -421,7 +422,7 @@ export default {
     valueRange(filter) {
       const minValue = this.min(filter);
       return _.reduce(filter.parameters, (result, item) => {
-          if(this.checkSelectParams(item.filter_id, item.id)) {
+          if(this.checkSelectParams(item.filter_id, item.id, filter.parameters, filter.alias)) {
             return item.value;
           }
           return result;
@@ -441,10 +442,16 @@ export default {
         $this.data.photos.push(URL.createObjectURL(file))
       });
     },
-    checkSelectParams(filterId, paramsId) {
-      _.find()
-      const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === paramsId); });
-      return !_.isEmpty(filter);
+    checkSelectParams(filterId, parameterId, parameters, alias) {
+      // const parameterFirst = _.first(parameters);
+      const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
+      const isEmpty =_.isEmpty(filter);
+      // if(filter) {
+      //   this.parameters[`params-${alias}`] = filter.id;
+      // } else {
+      //   this.parameters[`params-${alias}`] = parameter.id;
+      // }
+      return !isEmpty;
     },
   },
 }
