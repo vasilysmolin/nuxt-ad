@@ -8,16 +8,6 @@ export default {
             items: [],
         }
     },
-    // computed: {
-    //     getRangeValue: function () {
-    //         return function (item) {
-    //             const id = this.parameters[`params-${item.alias}`];
-    //             const parameter = _.find(item.parameters, (parameter) => parameter.id === id);
-    //             console.log(parameter.value);
-    //             return parameter.value;
-    //         };
-    //     },
-    // },
     methods: {
         ...mapActions({
             getItem: 'categoriesAd/getItem',
@@ -133,24 +123,36 @@ export default {
                 }
             }
             iter(category);
-
+        },
+        setCategoryCreate(event,index) {
+            this.items.splice(index + 1, Infinity);
+            this.category_id.splice(index + 1, Infinity);
+            let category = _.find(this.items[index].categories, (item) => item.id == event.target.value);
+            const iter = (category) => {
+                if(!!category && this.hasChildren(category)){
+                    this.items.push({
+                        title: '',
+                        categories: this.getChildren(category),
+                    });
+                    this.getItem({id: category.id});
+                } else if(category) {
+                    this.data.category_id = category.id;
+                    this.getItem({id: category.id});
+                }
+            }
+            iter(category);
         },
         checkSelectParams(filterId, parameterId, parameters, alias) {
-            const parameterFirst = _.first(parameters);
-            const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
-            const hasParam = !_.isEmpty(filter);
-            if (hasParam) {
-                this.parameters[`params-${alias}`] = filter.id;
-            } else {
-                this.parameters[`params-${alias}`] = parameterFirst.id;
-            }
-            return hasParam;
+            const parameter = _.find(this.data.ad_parameters, function(o) {
+                return (o.filter_id === filterId && o.id === parameterId);
+            });
+            return !_.isEmpty(parameter);
         },
         checkRangeParams(filterId, parameterId) {
             const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
             return !_.isEmpty(filter);
         },
-        checkSelectParamsCheckbox(filterId, parameterId, parameters, alias) {
+        checkCheckboxParams(filterId, parameterId, parameters, alias) {
             const parameter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
             const hasParam = !_.isEmpty(parameter);
             if (hasParam) {
@@ -164,12 +166,6 @@ export default {
         changeRange(event,item) {
             const parameter = _.find(item.parameters, (parameter) => parameter.value === event.target.value);
             this.parameters[`params-${item.alias}`] = parseInt(parameter.id);
-            this.rangeValue[`params-${item.alias}`] = parameter.value;
-        },
-        getRangeValue(item) {
-            // const id = this.parameters[`params-${item.alias}`];
-            // const parameter = _.find(item.parameters, (parameter) => parameter.id === id);
-            return this.rangeValue[`params-${item.alias}`];
         },
         changeCheckbox(event,parameterId,item) {
             if(event.target.checked) {
@@ -179,5 +175,67 @@ export default {
             }
 
         },
+        getFilter(cat) {
+            return cat.filters;
+        },
+        isSelect(filter) {
+            return filter.type === 'select';
+        },
+        isRange(filter) {
+            return filter.type === 'range';
+        },
+        isCheckbox(filter) {
+            return filter.type === 'checkbox';
+        },
+        min(filter) {
+            const values = _.map(filter.parameters, (item) => item.value);
+            return _.min(values);
+        },
+        max(filter) {
+            const values = _.map(filter.parameters, (item) => item.value);
+            return _.max(values);
+        },
+        valueRange(filter) {
+            const minValue = this.min(filter);
+            return _.reduce(filter.parameters, (result, item) => {
+                if(this.checkRangeParams(item.filter_id, item.id)) {
+                    return item.value;
+                }
+                return result;
+            }, minValue);
+        },
+        setSelectParams() {
+            const filter = this.filters.filters;
+            const selects = _.filter(filter, (item) => item.type === 'select');
+            const ranges = _.filter(filter, (item) => item.type === 'range');
+            // const checkboxs = _.filter(filter, (item) => item.type === 'checkbox');
+            _.each(selects, (select) => {
+                const parameterFirst = _.first(select.parameters);
+                let parameterSelect = parameterFirst.id;
+                _.each(select.parameters, (item) => {
+                    let findParameter = _.find(this.data.ad_parameters, function(userParams) {
+                        return (userParams.filter_id === item.filter_id && userParams.id === item.id);
+                    });
+                    if(!_.isEmpty(findParameter)) {
+                        parameterSelect = findParameter.id;
+                    }
+                    this.parameters[`params-${select.alias}`] = parameterSelect;
+                });
+            });
+
+            _.each(ranges, (range) => {
+                const parameterFirst = _.first(range.parameters);
+                let parameterRange = parameterFirst.id;
+                _.each(range.parameters, (item) => {
+                    let findParameter = _.find(this.data.ad_parameters, function(userParams) {
+                        return (userParams.filter_id === item.filter_id && userParams.id === item.id);
+                    });
+                    if(!_.isEmpty(findParameter)) {
+                        parameterRange = findParameter.id;
+                    }
+                    this.parameters[`params-${range.alias}`] = parameterRange;
+                });
+            });
+        }
     },
 };

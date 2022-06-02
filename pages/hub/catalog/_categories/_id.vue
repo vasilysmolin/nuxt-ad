@@ -29,7 +29,9 @@
 
             <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
               <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
-              <select @change="changeSelect($event, item)" v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select"
+              <select
+                      @change="changeSelect($event, item)"
+                      v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select"
               >
                 <option v-for="parameter in item.parameters"
                         :value="parameter.id"
@@ -67,7 +69,7 @@
                          type="checkbox"
                          :value="parameter.id"
                          :id="parameter.id"
-                         :checked="checkSelectParamsCheckbox(item.id, parameter.id, item.parameters, item.alias)"
+                         :checked="checkCheckboxParams(item.id, parameter.id, item.parameters, item.alias)"
                          @change="changeCheckbox($event, parameter.id, item)"
                         >
                   <label class="form-check-label inline-block text-gray-800" :for="parameter.id">
@@ -257,22 +259,24 @@ export default {
     if(this.category.length === 0) {
       await this.$store.dispatch('categoriesAd/getItems', {from: 'cabinet'});
     }
+    await this.$store.dispatch('categoriesAd/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);
+    this.setSelectParams();
 
   },
   computed: {
     ...mapGetters({
       filters: 'categoriesAd/categoryAds',
     }),
-    rangeValue: {
-      get() {
-        return {};
-      },
-      set(value) {
-        return value
-      }
-    },
+    // rangeValue: {
+    //   get() {
+    //     return {};
+    //   },
+    //   set(value) {
+    //     return value
+    //   }
+    // },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
@@ -418,37 +422,6 @@ export default {
         this.$router.push({name: 'catalog'});
       }).catch((error) => {
       });
-    },
-    getFilter(cat) {
-      return cat.filters;
-    },
-    isSelect(filter) {
-      return filter.type === 'select';
-    },
-    isRange(filter) {
-      return filter.type === 'range';
-    },
-    isCheckbox(filter) {
-      return filter.type === 'checkbox';
-    },
-    min(filter) {
-      const values = _.map(filter.parameters, (item) => item.value);
-      return _.min(values);
-    },
-    max(filter) {
-      const values = _.map(filter.parameters, (item) => item.value);
-      return _.max(values);
-    },
-    valueRange(filter) {
-      const minValue = this.min(filter);
-      return _.reduce(filter.parameters, (result, item) => {
-          if(this.checkRangeParams(item.filter_id, item.id)) {
-            this.parameters[`params-${filter.alias}`] = item.id;
-            this.rangeValue[`params-${filter.alias}`] = item.value;
-            return item.value;
-          }
-          return result;
-      }, minValue);
     },
     checkState() {
       return this.data.state === 'active' || this.data.state === 'pause';
