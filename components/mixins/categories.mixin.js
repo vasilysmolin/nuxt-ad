@@ -8,6 +8,16 @@ export default {
             items: [],
         }
     },
+    // computed: {
+    //     getRangeValue: function () {
+    //         return function (item) {
+    //             const id = this.parameters[`params-${item.alias}`];
+    //             const parameter = _.find(item.parameters, (parameter) => parameter.id === id);
+    //             console.log(parameter.value);
+    //             return parameter.value;
+    //         };
+    //     },
+    // },
     methods: {
         ...mapActions({
             getItem: 'categoriesAd/getItem',
@@ -123,6 +133,50 @@ export default {
                 }
             }
             iter(category);
+
+        },
+        checkSelectParams(filterId, parameterId, parameters, alias) {
+            const parameterFirst = _.first(parameters);
+            const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
+            const hasParam = !_.isEmpty(filter);
+            if (hasParam) {
+                this.parameters[`params-${alias}`] = filter.id;
+            } else {
+                this.parameters[`params-${alias}`] = parameterFirst.id;
+            }
+            return hasParam;
+        },
+        checkRangeParams(filterId, parameterId) {
+            const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
+            return !_.isEmpty(filter);
+        },
+        checkSelectParamsCheckbox(filterId, parameterId, parameters, alias) {
+            const parameter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
+            const hasParam = !_.isEmpty(parameter);
+            if (hasParam) {
+                this.parameters[`params-${alias}-${parameterId}`] = parameter.id;
+            }
+            return hasParam;
+        },
+        changeSelect(event,item) {
+            this.parameters[`params-${item.alias}`] = parseInt(event.target.value);
+        },
+        changeRange(event,item) {
+            const parameter = _.find(item.parameters, (parameter) => parameter.value === event.target.value);
+            this.parameters[`params-${item.alias}`] = parseInt(parameter.id);
+            this.rangeValue[`params-${item.alias}`] = parameter.value;
+        },
+        getRangeValue(item) {
+            // const id = this.parameters[`params-${item.alias}`];
+            // const parameter = _.find(item.parameters, (parameter) => parameter.id === id);
+            return this.rangeValue[`params-${item.alias}`];
+        },
+        changeCheckbox(event,parameterId,item) {
+            if(event.target.checked) {
+                this.parameters[`params-${item.alias}-${parameterId}`] = parseInt(parameterId);
+            } else {
+                delete this.parameters[`params-${item.alias}-${parameterId}`];
+            }
 
         },
     },

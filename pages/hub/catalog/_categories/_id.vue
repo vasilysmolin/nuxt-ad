@@ -29,7 +29,7 @@
 
             <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
               <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
-              <select v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select"
+              <select @change="changeSelect($event, item)" v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select"
               >
                 <option v-for="parameter in item.parameters"
                         :value="parameter.id"
@@ -40,7 +40,22 @@
                 </option>
               </select>
               <template v-if="isRange(item)" class="form-select form-select-lg mt-2 forms-select">
-                <input :id="item.id" type="range" :min="min(item)" :max="max(item)" :value="valueRange(item)" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                <div class="relative">
+                  <div class="absolute top-0 left-0">{{min(item)}}</div>
+                </div>
+                <div class="relative">
+                  <div class="absolute top-0 right-0">{{max(item)}}</div>
+                </div>
+                  <input @change="changeRange($event, item)"
+                         :id="item.id" type="range"
+                         :min="min(item)"
+                         :max="max(item)"
+                         :value="valueRange(item)"
+                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                  >
+<!--                <div class="relative">-->
+<!--                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>-->
+<!--                </div>-->
               </template>
               <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
                 <div class="form-check" v-for="parameter in item.parameters">
@@ -52,7 +67,8 @@
                          type="checkbox"
                          :value="parameter.id"
                          :id="parameter.id"
-                         :checked="checkSelectParams(item.id, parameter.id, item.parameters, item.alias)"
+                         :checked="checkSelectParamsCheckbox(item.id, parameter.id, item.parameters, item.alias)"
+                         @change="changeCheckbox($event, parameter.id, item)"
                         >
                   <label class="form-check-label inline-block text-gray-800" :for="parameter.id">
                     {{ parameter.value }}
@@ -205,6 +221,7 @@ export default {
       },
       files: [],
       parameters: {},
+      // rangeValue: {},
       isDisabled: false,
     }
   },
@@ -248,14 +265,14 @@ export default {
     ...mapGetters({
       filters: 'categoriesAd/categoryAds',
     }),
-    // filters: {
-    //   get() {
-    //     return this.$store.getters['categoriesAd/getItem'];
-    //   },
-    //   set(filters) {
-    //     return filters
-    //   }
-    // },
+    rangeValue: {
+      get() {
+        return {};
+      },
+      set(value) {
+        return value
+      }
+    },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
@@ -356,6 +373,9 @@ export default {
       for (let i = 0; i < this.files.length; i++) {
         data.append('files[]', this.files[i]);
       }
+      _.forIn(this.parameters, function(value, key) {
+        data.append('filter[]', value);
+      });
       data.append('name', this.data.name);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
@@ -422,7 +442,9 @@ export default {
     valueRange(filter) {
       const minValue = this.min(filter);
       return _.reduce(filter.parameters, (result, item) => {
-          if(this.checkSelectParams(item.filter_id, item.id, filter.parameters, filter.alias)) {
+          if(this.checkRangeParams(item.filter_id, item.id)) {
+            this.parameters[`params-${filter.alias}`] = item.id;
+            this.rangeValue[`params-${filter.alias}`] = item.value;
             return item.value;
           }
           return result;
@@ -441,17 +463,6 @@ export default {
       _.each(files, function(file){
         $this.data.photos.push(URL.createObjectURL(file))
       });
-    },
-    checkSelectParams(filterId, parameterId, parameters, alias) {
-      // const parameterFirst = _.first(parameters);
-      const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
-      const isEmpty =_.isEmpty(filter);
-      // if(filter) {
-      //   this.parameters[`params-${alias}`] = filter.id;
-      // } else {
-      //   this.parameters[`params-${alias}`] = parameter.id;
-      // }
-      return !isEmpty;
     },
   },
 }
