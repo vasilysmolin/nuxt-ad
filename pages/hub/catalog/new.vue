@@ -164,6 +164,7 @@ export default {
       },
       files: [],
       parameters: {},
+      rangeValue: {},
       isDisabled: false,
     }
   },

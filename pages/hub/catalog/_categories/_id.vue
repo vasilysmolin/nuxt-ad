@@ -223,6 +223,7 @@ export default {
       },
       files: [],
       parameters: {},
+      rangeValue: {},
       // rangeValue: {},
       isDisabled: false,
     }

@@ -166,6 +166,7 @@ export default {
         changeRange(event,item) {
             const parameter = _.find(item.parameters, (parameter) => parameter.value === event.target.value);
             this.parameters[`params-${item.alias}`] = parseInt(parameter.id);
+            // this.rangeValue[`params-${item.alias}`] = parseInt(parameter.value);
         },
         changeCheckbox(event,parameterId,item) {
             if(event.target.checked) {
