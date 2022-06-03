@@ -148,6 +148,15 @@ export default {
             });
             return !_.isEmpty(parameter);
         },
+        checkFilterParams(filterId, parameterId, parameters, alias) {
+            const param = this.parameters[`params-${alias}`];
+            console.log(param);
+            const parameter = _.find(parameters, function(parameterFilter) {
+                console.log(parameterFilter.id);
+                return (parameterFilter.id === param);
+            });
+            return !_.isEmpty(parameter);
+        },
         checkRangeParams(filterId, parameterId) {
             const filter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
             return !_.isEmpty(filter);
@@ -161,6 +170,10 @@ export default {
             return hasParam;
         },
         changeSelect(event,item) {
+            // console.log(event);
+            // let index = event.target.selectedIndex;
+            // event.options[index].selected = true;
+            // console.log(index);
             this.parameters[`params-${item.alias}`] = parseInt(event.target.value);
         },
         changeRange(event,item) {

@@ -14,6 +14,7 @@
       </div>
     </header>
     <GoSearch/>
+    <GoFilter/>
     <Nuxt/>
     <footer class="fixed flex justify-between items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
       <div class="flex justify-center items-center cursor-pointer" @click="showGoSearch">
@@ -24,7 +25,7 @@
               class="btn btn-primary inline-block mt-1 px-7 py-4 bg-green-700 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-green-600 focus:bg-green-600 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
         Разместить
       </button>
-      <div class="flex justify-center items-center">
+      <div class="flex justify-center items-center cursor-pointer"  @click="showFilter">
         <GlobalConfigure/>
         <span class="pl-2 font-bold">Фильтр</span>
       </div>
@@ -42,11 +43,13 @@ import GlobalNavWin from "../components/GlobalNavWin";
 import GlobalSearch from "../components/icons/GlobalSearch";
 import GlobalConfigure from "../components/icons/GlobalConfigure";
 import GoSearch from "../components/GoSearch";
+import GoFilter from "../components/GoFilter";
 
 export default {
   components: {
     GoSearch,
     GlobalSearch,
+    GoFilter,
     GlobalNavWin,
     UserNavWin,
     TLogo,
@@ -107,6 +110,9 @@ export default {
     },
     showGoSearch () {
       this.$modal.show('GoSearch');
+    },
+    showFilter () {
+      this.$modal.show('GoFilter');
     },
   },
 }
