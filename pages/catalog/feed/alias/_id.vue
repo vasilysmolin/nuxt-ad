@@ -28,6 +28,34 @@
       <p class="mt-1 text-sm sm:text-base text-gray-600">{{ ad.description }}</p>
     </section>
 
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
+      <h2 class="text-sm font-bold text-black">Характеристики</h2>
+      <table class="table-auto">
+        <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
+        <tr v-if="isSelect(item)">
+          <td>{{ item.name }}</td>
+          <td>{{ getSelectParams(item, ad.ad_parameters) }}</td>
+        </tr>
+        <tr v-if="isRange(item)">
+          <td>{{ item.name }}</td>
+          <td>{{ getSelectParams(item, ad.ad_parameters) }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
+      <h2 class="text-sm font-bold text-black">Удобства</h2>
+      <table class="table-auto">
+        <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
+        <tr v-if="isCheckbox(item)" v-for="(comfort, index) in item.parameters">
+            <td>{{ comfort.value }}</td>
+            <td>{{ getCheckboxParams(comfort, ad.ad_parameters) }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+
     <section v-if="checkPhotos(ad)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
       <section class="mt-4 grid grid-cols-2 gap-4 w-full">
@@ -43,10 +71,12 @@
 <script>
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
+import CategoriesMixin from '~/components/mixins/categories.mixin';
 
 export default {
   name: "CObject",
   layout: 'default',
+  mixins: [CategoriesMixin],
   async mounted() {
     await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  })
         .then(() => {

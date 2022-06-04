@@ -47,8 +47,9 @@ export const actions = {
 		expand = null,
 		name = null,
 		alias = null,
+		filtersArray = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,alias});
+		const getParams = params({user_id,state,expand,from,name,alias,filtersArray});
 		const ads = await this.$axios.$get(`declarations?skip=0&take=25${getParams}`);
 
 		if(state === 'new'){

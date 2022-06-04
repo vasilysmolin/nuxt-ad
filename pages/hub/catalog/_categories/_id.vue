@@ -27,6 +27,58 @@
             </span>
             </div>
 
+            <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
+              <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
+              <select
+                      @change="changeSelect($event, item)"
+                      v-if="isSelect(item)" class="form-select form-select-lg mt-2 forms-select"
+              >
+                <option v-for="parameter in item.parameters"
+                        :value="parameter.id"
+                        :key="parameter.id"
+                        :selected="checkSelectParams(item.id, parameter.id, item.parameters, item.alias)"
+                >
+                  {{ parameter.value }}
+                </option>
+              </select>
+              <template v-if="isRange(item)" class="form-select form-select-lg mt-2 forms-select">
+                <div class="relative">
+                  <div class="absolute top-0 left-0">{{min(item)}}</div>
+                </div>
+                <div class="relative">
+                  <div class="absolute top-0 right-0">{{max(item)}}</div>
+                </div>
+                  <input @change="changeRange($event, item)"
+                         :id="item.id" type="range"
+                         :min="min(item)"
+                         :max="max(item)"
+                         :value="valueRange(item)"
+                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                  >
+<!--                <div class="relative">-->
+<!--                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>-->
+<!--                </div>-->
+              </template>
+              <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
+                <div class="form-check" v-for="parameter in item.parameters">
+                  <input class="form-check-input appearance-none h-4 w-4
+                  border border-gray-300 rounded-sm bg-white checked:bg-blue-600
+                  checked:border-blue-600 focus:outline-none transition duration-200
+                  mt-1 align-top bg-no-repeat bg-center bg-contain float-left
+                  mr-2 cursor-pointer"
+                         type="checkbox"
+                         :value="parameter.id"
+                         :id="parameter.id"
+                         :checked="checkCheckboxParams(item.id, parameter.id, item.parameters, item.alias)"
+                         @change="changeCheckbox($event, parameter.id, item)"
+                        >
+                  <label class="form-check-label inline-block text-gray-800" :for="parameter.id">
+                    {{ parameter.value }}
+                  </label>
+                </div>
+              </template>
+            </div>
+
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
@@ -62,6 +114,18 @@
             {{ priceErrors }}
             </span>
             </div>
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+<!--              <yandex-map v-if="showMap" :coords="coords">-->
+<!--                              <ymap-marker-->
+<!--                                  marker-id="123"-->
+<!--                                  :coords="coords"-->
+<!--                                  :icon="markerIcon"-->
+<!--                              />-->
+<!--              </yandex-map>-->
+<!--            </div>-->
+
+
+
             <!--
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="text"
@@ -112,6 +176,7 @@
 
 
           </div>
+          </div>
         </form>
       </div>
     </div>
@@ -122,15 +187,17 @@
 import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 // import {mapGetters} from "vuex";
+import  {yandexMap, ymapMarker} from 'vue-yandex-maps';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
 import DeleteWhite from "../../../../components/icons/DeleteWhite";
 import RefreshWhite from "../../../../components/icons/RefreshWhite";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "VObject",
-  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite},
+  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite, yandexMap, ymapMarker},
   layout: 'hub',
   head: {
     title: "Редактировать объявление на Тапиго",
@@ -141,9 +208,23 @@ export default {
   mixins: [CategoriesMixin],
   data() {
     return {
+      coords: [47.79491, 52.011795],
+      showMap: false,
+      markerIcon: {
+        layout: 'default#imageWithContent',
+        // imageHref: 'https://image.flaticon.com/icons/png/512/33/33447.png',
+        imageSize: [43, 43],
+        imageOffset: [0, 0],
+        content: '123 v12',
+        contentOffset: [0, 15],
+        // contentLayout: '<div style="background: red; width: 50px; color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+      },
       data: {
       },
       files: [],
+      parameters: {},
+      rangeValue: {},
+      // rangeValue: {},
       isDisabled: false,
     }
   },
@@ -173,15 +254,30 @@ export default {
 
   },
   async mounted() {
+    this.showMap = true;
     await this.$store.dispatch('ads/getItem', {id: this.$route.params.id, expand: 'profile.user'});
     this.data = _.cloneDeep(this.$store.getters['ads/ad']);
     if(this.category.length === 0) {
       await this.$store.dispatch('categoriesAd/getItems', {from: 'cabinet'});
     }
+    await this.$store.dispatch('categoriesAd/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);
+    this.setSelectParams();
+
   },
   computed: {
+    ...mapGetters({
+      filters: 'categoriesAd/categoryAds',
+    }),
+    // rangeValue: {
+    //   get() {
+    //     return {};
+    //   },
+    //   set(value) {
+    //     return value
+    //   }
+    // },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
@@ -282,6 +378,9 @@ export default {
       for (let i = 0; i < this.files.length; i++) {
         data.append('files[]', this.files[i]);
       }
+      _.forIn(this.parameters, function(value, key) {
+        data.append('filter[]', value);
+      });
       data.append('name', this.data.name);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
@@ -290,7 +389,6 @@ export default {
       data.append('_method', 'put');
       this.$axios.$post(`declarations/${this.$route.params.id}`, data).then(() => {
           this.$router.push({name: 'catalog'});
-        console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -343,3 +441,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.ymap-container {
+  height: 100%;
+}
+</style>
