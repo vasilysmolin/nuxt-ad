@@ -5,7 +5,7 @@
         <div @click.prevent="submitted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
           <button :disabled="isDisabled">Применить</button>
         </div>
-        <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
+        <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in setSelectParamsFilter(filters)" :key="item.id">
           <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
           <select
               @change="changeSelect($event, item)"
@@ -69,6 +69,9 @@ export default {
   name: 'GoFilter',
   mixins: [CategoriesMixin],
   async mounted() {
+    if(this.filter){
+      this.setSelectParamsFilter();
+    }
   },
   data() {
     return {
@@ -93,13 +96,13 @@ export default {
     }),
     submitted() {
       // this.isDisabled = true;
-      let filters = [];
+      let filtersData = [];
       _.forIn(this.parameters, function(value, key) {
         if(value !== 0) {
-          filters.push(value);
+          filtersData.push(value);
         }
       });
-      this.getItemsAds({alias: this.filters.alias, filtersArray: filters }).then(() => {
+      this.getItemsAds({alias: this.filters.alias, filtersArray: filtersData }).then(() => {
         this.$modal.hide('GoFilter');
       });
       // this.$axios.$get(`declarations/`, data).then(() => {

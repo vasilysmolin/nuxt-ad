@@ -148,6 +148,29 @@ export default {
             });
             return !_.isEmpty(parameter);
         },
+        getSelectParams(filter, adParameters) {
+            return _.reduce(adParameters, function(acc, adParam) {
+                let selectParam = _.find(filter.parameters, function(filterParam) {
+                    return (filterParam.filter_id === adParam.filter_id && filterParam.id === adParam.id);
+                });
+                if(!_.isEmpty(selectParam)) {
+                    return selectParam.value;
+                } else {
+                    return acc;
+                }
+            }, 'Не указано');
+
+        },
+        getCheckboxParams(filterParam, adParameters) {
+            let selectParam = _.find(adParameters, function(adParam) {
+                return (adParam.filter_id === filterParam.filter_id && filterParam.id === adParam.id);
+            });
+            if(!_.isEmpty(selectParam)) {
+                return selectParam.value;
+            } else {
+                return 'Нет';
+            }
+        },
         checkFilterParams(filterId, parameterId, parameters, alias) {
             const param = this.parameters[`params-${alias}`];
             console.log(param);
@@ -190,7 +213,10 @@ export default {
 
         },
         getFilter(cat) {
-            return cat.filters;
+            return cat?.filters;
+        },
+        isFilter(cat) {
+            return !_.isEmpty(cat?.filters);
         },
         isSelect(filter) {
             return filter.type === 'select';
@@ -226,6 +252,7 @@ export default {
             _.each(selects, (select) => {
                 const parameterFirst = _.first(select.parameters);
                 let parameterSelect = parameterFirst.id;
+                // console.log(parameterSelect);
                 _.each(select.parameters, (item) => {
                     let findParameter = _.find(this.data.ad_parameters, function(userParams) {
                         return (userParams.filter_id === item.filter_id && userParams.id === item.id);
@@ -250,6 +277,17 @@ export default {
                     this.parameters[`params-${range.alias}`] = parameterRange;
                 });
             });
+        },
+        setSelectParamsFilter(cat) {
+            const filter = this.filters.filters;
+            const selects = _.filter(filter, (item) => item.type === 'select');
+            const ranges = _.filter(filter, (item) => item.type === 'range');
+            console.log(selects);
+            _.each(selects, (select) => {
+                console.log(select.alias);
+                this.parameters[`params-${select.alias}`] = 0;
+            });
+            return cat.filters;
         }
     },
 };
