@@ -145,6 +145,13 @@ export default {
                 }
             }
             iter(category);
+            if(_.isEmpty(this.parameters)) {
+                setTimeout(() => {
+                    if(this.filters){
+                        this.setSelectParams();
+                    }
+                },1700);
+            }
         },
         checkSelectParams(filterId, parameterId, parameters, alias) {
             const parameter = _.find(this.data.ad_parameters, function(o) {
@@ -265,6 +272,7 @@ export default {
             const filter = this.filters.filters;
             const selects = _.filter(filter, (item) => item.type === 'select');
             const ranges = _.filter(filter, (item) => item.type === 'range');
+            // console.log(this.filters);
             // const checkboxs = _.filter(filter, (item) => item.type === 'checkbox');
             _.each(selects, (select) => {
                 const parameterFirst = _.first(select.parameters);
@@ -301,9 +309,16 @@ export default {
         setSelectParamsFilter() {
             const filter = this.filters.filters;
             const selects = _.filter(filter, (item) => item.type === 'select');
+            const ranges = _.filter(filter, (item) => item.type === 'range');
             _.each(selects, (select) => {
                 Vue.set(this.parameters, `params-${select.alias}`, parseInt(0));
-
+            });
+            _.each(ranges, (range) => {
+                const parameterFirst = _.first(range.parameters);
+                let parameterRange = parameterFirst;
+                Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(parameterFirst.value));
+                Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
+                Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
             });
         },
     },

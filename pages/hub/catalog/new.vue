@@ -197,7 +197,10 @@ export default {
       title: 'Категории',
       categories: this.category
     });
-    this.setSelectParams();
+    // setTimeout(() => {
+    //   this.setSelectParams();
+    // },2700);
+
   },
   computed: {
     category: {

@@ -67,9 +67,12 @@ export default {
   name: 'GoFilter',
   mixins: [CategoriesMixin],
   async mounted() {
-    if(this.filter){
-      this.setSelectParamsFilter();
-    }
+    setTimeout(() => {
+      if(this.filters){
+        this.setSelectParamsFilter();
+      }
+    },1700);
+
   },
   data() {
     return {
