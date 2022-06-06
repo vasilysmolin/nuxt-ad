@@ -200,7 +200,7 @@ export default {
             this.parameters[`params-${item.alias}`] = parseInt(event.target.value);
         },
         changeRange(event,item) {
-            const parameter = _.find(item.parameters, (parameter) => parameter.value === event.target.value);
+            const parameter = _.find(item.parameters, (parameter) => parseInt(parameter.sort) === parseInt(event.target.value));
             this.parameters[`params-${item.alias}`] = parseInt(parameter.id);
             // this.rangeValue[`params-${item.alias}`] = parseInt(parameter.value);
         },
@@ -228,18 +228,18 @@ export default {
             return filter.type === 'checkbox';
         },
         min(filter) {
-            const values = _.map(filter.parameters, (item) => item.value);
+            const values = _.map(filter.parameters, (item) => item.sort);
             return _.min(values);
         },
         max(filter) {
-            const values = _.map(filter.parameters, (item) => item.value);
+            const values = _.map(filter.parameters, (item) => item.sort);
             return _.max(values);
         },
         valueRange(filter) {
             const minValue = this.min(filter);
             return _.reduce(filter.parameters, (result, item) => {
                 if(this.checkRangeParams(item.filter_id, item.id)) {
-                    return item.value;
+                    return item.sort;
                 }
                 return result;
             }, minValue);
