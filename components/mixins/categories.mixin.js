@@ -1,11 +1,15 @@
 import * as _ from "lodash";
 import {mapActions} from "vuex";
+import Vue from 'vue';
 
 export default {
     data() {
         return {
             category_id: [],
             items: [],
+            parameters: {},
+            rangeValue: {},
+            rangeSort: {},
         }
     },
     methods: {
@@ -173,9 +177,7 @@ export default {
         },
         checkFilterParams(filterId, parameterId, parameters, alias) {
             const param = this.parameters[`params-${alias}`];
-            console.log(param);
             const parameter = _.find(parameters, function(parameterFilter) {
-                console.log(parameterFilter.id);
                 return (parameterFilter.id === param);
             });
             return !_.isEmpty(parameter);
@@ -188,27 +190,24 @@ export default {
             const parameter = _.find(this.data.ad_parameters, function(o) { return (o.filter_id === filterId && o.id === parameterId); });
             const hasParam = !_.isEmpty(parameter);
             if (hasParam) {
-                this.parameters[`params-${alias}-${parameterId}`] = parameter.id;
+                Vue.set(this.parameters, `params-${alias}-${parameterId}`, parseInt(parameter.id));
             }
             return hasParam;
         },
         changeSelect(event,item) {
-            // console.log(event);
-            // let index = event.target.selectedIndex;
-            // event.options[index].selected = true;
-            // console.log(index);
-            this.parameters[`params-${item.alias}`] = parseInt(event.target.value);
+            Vue.set(this.parameters, `params-${item.alias}`, parseInt(event.target.value));
         },
         changeRange(event,item) {
             const parameter = _.find(item.parameters, (parameter) => parseInt(parameter.sort) === parseInt(event.target.value));
-            this.parameters[`params-${item.alias}`] = parseInt(parameter.id);
-            // this.rangeValue[`params-${item.alias}`] = parseInt(parameter.value);
+            Vue.set(this.parameters, `params-${item.alias}`, parseInt(parameter.id));
+            Vue.set(this.rangeValue, `params-${item.alias}`, parseInt(parameter.value));
+            Vue.set(this.rangeSort, `params-${item.alias}`, parseInt(parameter.sort));
         },
         changeCheckbox(event,parameterId,item) {
             if(event.target.checked) {
-                this.parameters[`params-${item.alias}-${parameterId}`] = parseInt(parameterId);
+                Vue.set(this.parameters, `params-${item.alias}-${parameterId}`, parseInt(parameterId));
             } else {
-                delete this.parameters[`params-${item.alias}-${parameterId}`];
+                Vue.delete(this.parameters, `params-${item.alias}-${parameterId}`)
             }
 
         },
@@ -235,14 +234,28 @@ export default {
             const values = _.map(filter.parameters, (item) => item.sort);
             return _.max(values);
         },
+        minValue(filter) {
+            const values = _.map(filter.parameters, (item) => item.sort);
+            const sortMin = _.min(values);
+            const minParam = _.find(filter.parameters, (item) => item.sort === sortMin);
+            return minParam.value;
+        },
+        maxValue(filter) {
+            const values = _.map(filter.parameters, (item) => item.sort);
+            const sortMax = _.max(values);
+            const maxParam = _.find(filter.parameters, (item) => item.sort === sortMax);
+            return maxParam.value;
+        },
         valueRange(filter) {
             const minValue = this.min(filter);
-            return _.reduce(filter.parameters, (result, item) => {
+            const sort = _.reduce(filter.parameters, (result, item) => {
                 if(this.checkRangeParams(item.filter_id, item.id)) {
                     return item.sort;
                 }
                 return result;
             }, minValue);
+
+            return sort;
         },
         setSelectParams() {
             const filter = this.filters.filters;
@@ -252,7 +265,6 @@ export default {
             _.each(selects, (select) => {
                 const parameterFirst = _.first(select.parameters);
                 let parameterSelect = parameterFirst.id;
-                // console.log(parameterSelect);
                 _.each(select.parameters, (item) => {
                     let findParameter = _.find(this.data.ad_parameters, function(userParams) {
                         return (userParams.filter_id === item.filter_id && userParams.id === item.id);
@@ -260,21 +272,25 @@ export default {
                     if(!_.isEmpty(findParameter)) {
                         parameterSelect = findParameter.id;
                     }
-                    this.parameters[`params-${select.alias}`] = parameterSelect;
+                    Vue.set(this.parameters, `params-${select.alias}`, parseInt(parameterSelect));
                 });
             });
 
             _.each(ranges, (range) => {
                 const parameterFirst = _.first(range.parameters);
-                let parameterRange = parameterFirst.id;
+                let parameterRange = parameterFirst;
+                Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(parameterFirst.value));
+                Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
+                Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
                 _.each(range.parameters, (item) => {
                     let findParameter = _.find(this.data.ad_parameters, function(userParams) {
-                        return (userParams.filter_id === item.filter_id && userParams.id === item.id);
+                        return (userParams.filter_id == item.filter_id && userParams.id == item.id);
                     });
-                    if(!_.isEmpty(findParameter)) {
-                        parameterRange = findParameter.id;
+                    if( !_.isEmpty(findParameter)) {
+                        Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(findParameter.value));
+                        Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(findParameter.sort));
+                        Vue.set(this.parameters, `params-${range.alias}`, parseInt(findParameter.id));
                     }
-                    this.parameters[`params-${range.alias}`] = parameterRange;
                 });
             });
         },
@@ -282,10 +298,9 @@ export default {
             const filter = this.filters.filters;
             const selects = _.filter(filter, (item) => item.type === 'select');
             const ranges = _.filter(filter, (item) => item.type === 'range');
-            console.log(selects);
             _.each(selects, (select) => {
-                console.log(select.alias);
-                this.parameters[`params-${select.alias}`] = 0;
+                Vue.set(this.parameters, `params-${select.alias}`, parseInt(0));
+
             });
             return cat.filters;
         }

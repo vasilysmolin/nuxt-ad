@@ -42,22 +42,23 @@
                 </option>
               </select>
               <template v-if="isRange(item)" class="form-select form-select-lg mt-2 forms-select">
-                <div class="relative">
-                  <div class="absolute top-0 left-0">{{min(item)}}</div>
-                </div>
-                <div class="relative">
-                  <div class="absolute top-0 right-0">{{max(item)}}</div>
-                </div>
+<!--                <div class="relative">-->
+<!--                  <div class="absolute top-0 left-0">{{minValue(item)}}</div>-->
+<!--                </div>-->
+<!--                <div class="relative">-->
+<!--                  <div class="absolute top-0 right-0">{{maxValue(item)}}</div>-->
+<!--                </div>-->
                   <input @change="changeRange($event, item)"
-                         :id="item.id" type="range"
+                         :id="item.id"
+                         type="range"
                          :min="min(item)"
                          :max="max(item)"
-                         :value="valueRange(item)"
+                         :value="rangeSort[`params-${item.alias}`]"
                          class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                   >
-<!--                <div class="relative">-->
-<!--                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>-->
-<!--                </div>-->
+                <div class="relative">
+                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>
+                </div>
               </template>
               <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
                 <div class="form-check" v-for="parameter in item.parameters">
@@ -222,9 +223,6 @@ export default {
       data: {
       },
       files: [],
-      parameters: {},
-      rangeValue: {},
-      // rangeValue: {},
       isDisabled: false,
     }
   },
@@ -270,14 +268,6 @@ export default {
     ...mapGetters({
       filters: 'categoriesAd/categoryAds',
     }),
-    // rangeValue: {
-    //   get() {
-    //     return {};
-    //   },
-    //   set(value) {
-    //     return value
-    //   }
-    // },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);

@@ -38,22 +38,17 @@
                 </option>
               </select>
               <template v-if="isRange(item)" class="form-select form-select-lg mt-2 forms-select">
-                <div class="relative">
-                  <div class="absolute top-0 left-0">{{min(item)}}</div>
-                </div>
-                <div class="relative">
-                  <div class="absolute top-0 right-0">{{max(item)}}</div>
-                </div>
+
                 <input @change="changeRange($event, item)"
                        :id="item.id" type="range"
                        :min="min(item)"
                        :max="max(item)"
-                       :value="valueRange(item)"
+                       :value="rangeSort[`params-${item.alias}`]"
                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
                 >
-                <!--                <div class="relative">-->
-                <!--                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>-->
-                <!--                </div>-->
+                <div class="relative">
+                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>
+                </div>
               </template>
               <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
                 <div class="form-check" v-for="parameter in item.parameters">
@@ -163,8 +158,6 @@ export default {
         photos: [],
       },
       files: [],
-      parameters: {},
-      rangeValue: {},
       isDisabled: false,
     }
   },
@@ -204,11 +197,9 @@ export default {
       title: 'Категории',
       categories: this.category
     });
+    this.setSelectParams();
   },
   computed: {
-    ...mapGetters({
-      filters: 'categoriesAd/categoryAds',
-    }),
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
@@ -217,6 +208,9 @@ export default {
         return category
       }
     },
+    ...mapGetters({
+      filters: 'categoriesAd/categoryAds',
+    }),
     nameErrors: {
       get() {
         if (!this.$v.data.name?.$dirty) {
