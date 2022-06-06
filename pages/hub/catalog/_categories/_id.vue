@@ -382,7 +382,14 @@ export default {
       return '';
     },
   },
+  beforeDestroy() {
+    this.parameters = {};
+    this.removeItem();
+  },
   methods: {
+    ...mapActions({
+      removeItem: 'categoriesAd/removeItem',
+    }),
     submitted() {
       if (this.$v.$invalid) {
         this.$v.$touch();

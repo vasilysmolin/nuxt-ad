@@ -131,7 +131,7 @@
 import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "VObject",
@@ -160,6 +160,10 @@ export default {
       files: [],
       isDisabled: false,
     }
+  },
+  beforeDestroy() {
+    this.parameters = {};
+    this.removeItem();
   },
   validations: {
     data: {
@@ -211,9 +215,15 @@ export default {
         return category
       }
     },
-    ...mapGetters({
-      filters: 'categoriesAd/categoryAds',
-    }),
+    filters: {
+      get() {
+        return _.cloneDeep(this.$store.getters['categoriesAd/categoryAds']);
+      },
+      set(category) {
+        return category
+      }
+      // filters: 'categoriesAd/categoryAds',
+    },
     nameErrors: {
       get() {
         if (!this.$v.data.name?.$dirty) {
@@ -312,6 +322,9 @@ export default {
     },
   },
   methods: {
+    ...mapActions({
+      removeItem: 'categoriesAd/removeItem',
+    }),
     submitted() {
       if (this.$v.$invalid) {
         this.$v.$touch();
