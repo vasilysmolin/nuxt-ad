@@ -211,6 +211,10 @@ export default {
             }
 
         },
+        issetCheckbox(parameterId,item) {
+            console.log(this.parameters[`params-${item.alias}-${parameterId}`]);
+            return !_.isEmpty(this.parameters[`params-${item.alias}-${parameterId}`]);
+        },
         getFilter(cat) {
             return cat?.filters;
         },
@@ -294,15 +298,13 @@ export default {
                 });
             });
         },
-        setSelectParamsFilter(cat) {
+        setSelectParamsFilter() {
             const filter = this.filters.filters;
             const selects = _.filter(filter, (item) => item.type === 'select');
-            const ranges = _.filter(filter, (item) => item.type === 'range');
             _.each(selects, (select) => {
                 Vue.set(this.parameters, `params-${select.alias}`, parseInt(0));
 
             });
-            return cat.filters;
-        }
+        },
     },
 };

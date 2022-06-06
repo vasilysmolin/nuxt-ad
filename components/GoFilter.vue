@@ -5,7 +5,7 @@
         <div @click.prevent="submitted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
           <button :disabled="isDisabled">Применить</button>
         </div>
-        <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in setSelectParamsFilter(filters)" :key="item.id">
+        <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
           <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
           <select
               @change="changeSelect($event, item)"
@@ -21,19 +21,16 @@
             </option>
           </select>
           <template v-if="isRange(item)" class="form-select form-select-lg mt-2 forms-select">
-            <div class="relative">
-              <div class="absolute top-0 left-0">{{min(item)}}</div>
-            </div>
-            <div class="relative">
-              <div class="absolute top-0 right-0">{{max(item)}}</div>
-            </div>
             <input @change="changeRange($event, item)"
                    :id="item.id" type="range"
                    :min="min(item)"
                    :max="max(item)"
-                   :value="valueRange(item)"
+                   :value="rangeSort[`params-${item.alias}`]"
                    class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
             >
+            <div class="relative">
+              <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>
+            </div>
           </template>
           <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
             <div class="form-check" v-for="parameter in item.parameters">
@@ -43,8 +40,9 @@
                   mt-1 align-top bg-no-repeat bg-center bg-contain float-left
                   mr-2 cursor-pointer"
                      type="checkbox"
-                     :value="parameter.id"
+                     :value="parameters[`params-${item.alias}-${parameter.id}`]"
                      :id="parameter.id"
+                     :checked="parameters[`params-${item.alias}-${parameter.id}`] === parameter.id"
                      @change="changeCheckbox($event, parameter.id, item)"
               >
               <label class="form-check-label inline-block text-gray-800" :for="parameter.id">
@@ -80,8 +78,6 @@ export default {
       data: {
       },
       files: [],
-      parameters: {},
-      rangeValue: {},
     }
   },
   computed: {

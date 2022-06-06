@@ -116,14 +116,32 @@
             </span>
             </div>
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
-<!--              <yandex-map v-if="showMap" :coords="coords">-->
-<!--                              <ymap-marker-->
-<!--                                  marker-id="123"-->
-<!--                                  :coords="coords"-->
-<!--                                  :icon="markerIcon"-->
-<!--                              />-->
+
+
+<!--              <yandex-map-->
+<!--                  v-if="showMap"-->
+<!--                  ymap-class="ymap-class"-->
+<!--                  :zoom="10"-->
+<!--                  :coords="coords"-->
+<!--                  :settings="mapSettings"-->
+<!--                  :cluster-options="{-->
+<!--                        1: {-->
+<!--                            groupByCoordinates: false,-->
+<!--                            clusterDisableClickZoom: false,-->
+<!--                            clusterHideIconOnBalloonOpen: false,-->
+<!--                            geoObjectHideIconOnBalloonOpen: false,-->
+<!--                        },-->
+<!--                    }"-->
+<!--                  :behaviors="['default', 'scrollZoom']"-->
+<!--                  @map-was-initialized="onMapInit"-->
+<!--                  @boundschange="onBoundsChange"-->
+<!--              >-->
+<!--&lt;!&ndash;                <ymap-marker&ndash;&gt;-->
+<!--&lt;!&ndash;                      marker-id="123"&ndash;&gt;-->
+<!--&lt;!&ndash;                      :coords="coords"&ndash;&gt;-->
+<!--&lt;!&ndash;                      :icon="markerIcon">&ndash;&gt;-->
+<!--&lt;!&ndash;                </ymap-marker>&ndash;&gt;-->
 <!--              </yandex-map>-->
-<!--            </div>-->
 
 
 
@@ -188,7 +206,7 @@
 import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 // import {mapGetters} from "vuex";
-import  {yandexMap, ymapMarker} from 'vue-yandex-maps';
+import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
@@ -209,8 +227,15 @@ export default {
   mixins: [CategoriesMixin],
   data() {
     return {
+      zoom: 10,
       coords: [47.79491, 52.011795],
       showMap: false,
+      mapSettings: {
+        apiKey: process.env.YANDEX_MAP,
+        lang: 'ru_RU',
+        coordorder: 'latlong',
+        version: '2.1',
+      },
       markerIcon: {
         layout: 'default#imageWithContent',
         // imageHref: 'https://image.flaticon.com/icons/png/512/33/33447.png',
@@ -428,12 +453,22 @@ export default {
         $this.data.photos.push(URL.createObjectURL(file))
       });
     },
+    onMapInit(event) {
+      this.zoom = event.getZoom();
+    },
+    onBoundsChange(event) {
+      this.zoom = event.originalEvent.map.getZoom();
+    },
   },
 }
 </script>
 
 <style>
 .ymap-container {
+  height: 100%;
+}
+.ymap-class {
+  width: 100vw;
   height: 100%;
 }
 </style>
