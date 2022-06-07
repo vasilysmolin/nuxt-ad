@@ -106,6 +106,61 @@
             {{ priceErrors }}
             </span>
             </div>
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="text" v-on:input="debounceInput" v-model="query" class="form-control
+        block
+        w-full
+        px-3
+        py-1.5
+        text-base
+        font-normal
+        text-black
+        bg-[#EFF0F6] bg-clip-padding
+        border border-solid border-[#EFF0F6]
+        rounded-lg
+        transition
+        ease-in-out
+        m-0
+        focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
+                     placeholder="Ваш город">
+              <label for="floatingInput" class="text-[#6E7191]">Город</label>
+              <span v-if="cityErrors" class="form-errors w-full mb-2">
+                {{ cityErrors }}
+              </span>
+              <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
+                <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
+                  <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id" >
+                    <nuxt-link to="#" class="text-blue-700 hover:text-black">
+                      {{ city.name }}
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </article>
+            </div>
+            <div v-if="data.city_id" class="form-floating mb-6 w-full sm:w-[27rem]">
+              <yandex-map
+                  @click="onClick"
+                  v-if="showMap"
+                  ref="map"
+                  :coords="coords"
+                  zoom="10"
+                  style="width: 100%; height: 250px;"
+                  :controls="[]"
+                  :settings="mapSettings"
+                  :behaviors="['default', 'scrollZoom']"
+                  @map-was-initialized="onMapInit"
+                  @boundschange="onBoundsChange"
+
+              >
+                <ymap-marker
+                    :key="1"
+                    :marker-id="1"
+                    marker-type="placemark"
+                    :coords="coordsBal"
+                    :balloon="{ body: 'title' }"
+                ></ymap-marker>
+              </yandex-map>
+            </div>
             <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
               <div class="mb-4 w-full" v-for="photo in data.photos">
                 <img :src="photo" class="w-full h-auto rounded" alt="">
@@ -132,6 +187,7 @@ import * as _ from 'lodash';
 import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import {mapActions, mapGetters} from "vuex";
+import {yandexMap, ymapMarker} from "vue-yandex-maps";
 
 export default {
   name: "VObject",
@@ -147,15 +203,27 @@ export default {
     ]
   },
   mixins: [CategoriesMixin],
+  components: {yandexMap, ymapMarker},
   data() {
     return {
+      query: '',
       data: {
         name: '',
         price: null,
         sale_price: 500,
         category_id: null,
+        city_id: null,
         description: '',
         photos: [],
+      },
+      coords: [55.7540471, 37.620405],
+      coordsBal: [55.7540471, 37.620405],
+      showMap: false,
+      mapSettings: {
+        apiKey: process.env.YANDEX_MAP,
+        lang: 'ru_RU',
+        coordorder: 'latlong',
+        version: '2.1',
       },
       files: [],
       isDisabled: false,
@@ -179,6 +247,11 @@ export default {
         required,
         numeric,
       },
+      city_id: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
       description: {
         required,
         maxLength: maxLength(1000),
@@ -201,12 +274,13 @@ export default {
       title: 'Категории',
       categories: this.category
     });
-    // setTimeout(() => {
-    //   this.setSelectParams();
-    // },2700);
+    this.showMap = true;
 
   },
   computed: {
+    ...mapGetters({
+      cities: 'cities/citiesFull',
+    }),
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
@@ -255,6 +329,22 @@ export default {
 
         if (!this.$v.data.photos.required) {
           return 'Покажите ваш товар лицом, людям это нужно';
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    cityErrors: {
+      get() {
+        if (!this.$v.data.city_id?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.city_id.required) {
+          return 'Ой, вы забыли указать город';
         }
 
         return '';
@@ -345,6 +435,9 @@ export default {
       data.append('price', this.data.price);
       data.append('sale_price', this.data.sale_price);
       data.append('category_id', this.data.category_id);
+      data.append('city_id', this.data.city_id);
+      data.append('latitude', this.coordsBal[0]);
+      data.append('longitude', this.coordsBal[1]);
       this.$axios.$post(`declarations`, data).then(() => {
         this.$router.push({name: 'catalog'});
         console.log('успех')
@@ -363,6 +456,43 @@ export default {
         $this.data.photos.push(URL.createObjectURL(file))
       });
     },
+    onMapInit(event) {
+      this.zoom = event.getZoom();
+    },
+    onBoundsChange(event) {
+      this.zoom = event.originalEvent.map.getZoom();
+    },
+    checkCity(){
+      return this.user?.city;
+    },
+    ...mapActions({
+      getItems: 'cities/getItemsFull',
+      removeItemsFull: 'cities/removeItemsFull',
+    }),
+    getCity(city){
+      this.query = city.name;
+      this.data.city_id = city.id;
+      this.coords = [city.latitude, city.longitude];
+      this.coordsBal = [city.latitude, city.longitude];
+      this.removeItemsFull();
+    },
+    onClick(e) {
+      this.coordsBal = e.get('coords');
+    },
+    debounceInput: _.debounce(function (e) {
+      if(this.query === '') {
+        this.error = true;
+        this.removeItemsFull();
+      } else {
+        this.error = false;
+        this.getItems({query: this.query}).then((res) => {
+        }).catch((error) => {
+          // console.log(error.response.data.errors);
+          // this.$v.nameErrors = 'какой-то текст';
+        });
+      }
+
+    }, 500)
   },
 }
 </script>

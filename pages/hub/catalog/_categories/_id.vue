@@ -345,19 +345,12 @@ export default {
     },
     cityErrors: {
       get() {
-        if (!this.$v.data.name?.$dirty) {
+        if (!this.$v.data.city_id?.$dirty) {
           return '';
         }
 
-        if (!this.$v.query.required) {
+        if (!this.$v.data.city_id.required) {
           return 'Ой, вы забыли указать город';
-        }
-
-        if (!this.$v.query.maxLength) {
-          return 'Слишком длинное название города';
-        }
-        if (!this.$v.query.minLength) {
-          return 'Как вы думаете, вас поймут?';
         }
 
         return '';
