@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     linkHub() {
+      // consol.log(1234);
       var host = window.location.host
       if(this.$auth.loggedIn) {
         document.location.href = `${process.env.HUB_URL}/profile`;

@@ -201,6 +201,12 @@ export default {
                 tailwindcss: {},
                 autoprefixer: {},
             },
-        }
+        },
+       extend(config, { isClient, isDev }) {
+        // Extend only webpack config for client-bundle
+           if (isClient) {
+               config.devtool = isDev ? 'source-map' : false;
+           }
+       }
     }
 }

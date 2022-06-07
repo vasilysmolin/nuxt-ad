@@ -56,6 +56,29 @@
       </table>
     </section>
 
+    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="ad.city_id">
+      <h2 class="text-sm font-bold text-black mb-3">Карта</h2>
+        <yandex-map
+            v-if="showMap"
+            ref="map"
+            :coords="coords"
+            zoom="10"
+            style="width: 100%; height: 350px;"
+            :controls="[]"
+            :settings="mapSettings"
+            :behaviors="['default', 'scrollZoom']"
+
+        >
+          <ymap-marker
+              :key="1"
+              :marker-id="1"
+              marker-type="placemark"
+              :coords="coordsBal"
+              :balloon="{ body: 'title' }"
+          ></ymap-marker>
+        </yandex-map>
+    </section>
+
     <section v-if="checkPhotos(ad)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
       <section class="mt-4 grid grid-cols-2 gap-4 w-full">
@@ -72,16 +95,37 @@
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
+import { yandexMap, ymapMarker } from 'vue-yandex-maps';
 
 export default {
   name: "CObject",
   layout: 'default',
   mixins: [CategoriesMixin],
+  components: {yandexMap, ymapMarker},
+  data() {
+    return {
+      coords: [55.7540471, 37.620405],
+      coordsBal: [55.7540471, 37.620405],
+      showMap: false,
+      mapSettings: {
+        apiKey: process.env.YANDEX_MAP,
+        lang: 'ru_RU',
+        coordorder: 'latlong',
+        version: '2.1',
+      },
+    }
+  },
   async mounted() {
+    this.showMap = true;
     await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  })
         .then(() => {
         this.getItem({id: this.ad.category_id });
     });
+    if(this.checkCity) {
+      this.query = this.ad?.city?.name;
+      this.coords = [this.ad?.city?.latitude, this.ad?.city?.longitude];
+      this.coordsBal = [this.ad?.latitude, this.ad?.longitude];
+    }
   },
   methods: {
     ...mapActions({
@@ -92,6 +136,9 @@ export default {
         return catalog?.profile?.person?.name;
       }
       return catalog?.profile?.user?.name;
+    },
+    checkCity(){
+      return this.user?.city;
     },
     getUserPhone(catalog) {
       return catalog?.profile?.user?.phone;
