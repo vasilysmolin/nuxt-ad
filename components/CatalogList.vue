@@ -13,6 +13,15 @@
         Разместить бесплатно
       </button>
       -->
+      <div class="flex flex-wrap justify-left space-x-2 mb-5">
+        <nuxt-link :to="path(item)" class="px-4 py-2 rounded-full text-gray-500 bg-gray-200
+            font-semibold text-sm flex align-center w-max cursor-pointer
+            active:bg-gray-300 transition duration-300  mb-2" v-for="item in category.categories">
+          {{ item.name }}
+        </nuxt-link>
+
+      </div>
+      <p class="first-letter:uppercase text-slate-400"><span class="font-bold">{{ amount }}</span> объявлений </p>
       <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(ad)">
           <section class="grid grid-cols-[25%,_1fr]">
@@ -130,6 +139,9 @@ export default {
       }
 
       return _.join(arrayAddress);
+    },
+    path(item){
+      return item.alias;
     },
     linkHub() {
       if(this.$auth.loggedIn) {
