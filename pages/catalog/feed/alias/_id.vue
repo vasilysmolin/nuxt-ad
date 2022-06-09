@@ -109,11 +109,14 @@ export default {
   layout: 'default',
   mixins: [CategoriesMixin],
   components: {yandexMap, ymapMarker, AuthModal},
-  data() {
+  async asyncData({store, route}) {
+    await store.dispatch('ads/getItem', { id: route.params.id, expand: 'profile.user,profile.person'});
+    await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });
     return {
       coords: [55.7540471, 37.620405],
       coordsBal: [55.7540471, 37.620405],
       showMap: false,
+      ad: store.state.ads.ad,
       mapSettings: {
         apiKey: process.env.YANDEX_MAP,
         lang: 'ru_RU',
@@ -124,10 +127,6 @@ export default {
   },
   async mounted() {
     this.showMap = true;
-    await this.$store.dispatch('ads/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  })
-        .then(() => {
-        this.getItem({id: this.ad.category_id });
-    });
     if(this.checkCity) {
       this.query = this.ad?.city?.name;
       this.coords = [this.ad?.city?.latitude, this.ad?.city?.longitude];
@@ -135,9 +134,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions({
-      getItem: 'categoriesAd/getItem',
-    }),
     getUsername(catalog) {
       if(catalog?.profile?.isPerson === true) {
         return catalog?.profile?.person?.name;
@@ -158,9 +154,6 @@ export default {
     }
   },
   computed: {
-    ad() {
-      return this.$store.getters['ads/ad']
-    },
     adWithCategory() {
       return {
           'name' : this.ad.name,
@@ -173,14 +166,15 @@ export default {
       category: 'categoriesAd/categoryAds',
     }),
   },
-
   head() {
+    const title = `${this.ad.title} | Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог`;
     return {
-      title: `${this.ad.title} | Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог`,
+      title: title,
       meta: [
         {hid: 'description', name: 'description', content: 'Обьект'}
       ]
     }
   },
+
 }
 </script>
