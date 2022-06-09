@@ -20,8 +20,16 @@
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Контакт:</span>{{ getUsername(ad)}}</p>
-      <p class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Телефон:</span>{{ getUserPhone(ad)}}</p>
+
+      <p v-if="$auth.loggedIn" class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg">
+        <span  class="pr-2 font-bold text-sm text-gray-500">
+          Телефон:</span>{{ getUserPhone(ad)}}
+      </p>
+      <div v-else class=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer">
+      <button @click.prevent="showModalAuth">Посмотреть телефон</button>
+      </div>
     </section>
+    <AuthModal/>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Описание</h2>
@@ -96,12 +104,13 @@ import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import AuthModal from "../../../../components/AuthModal";
 
 export default {
   name: "CObject",
   layout: 'default',
   mixins: [CategoriesMixin],
-  components: {yandexMap, ymapMarker},
+  components: {yandexMap, ymapMarker, AuthModal},
   data() {
     return {
       coords: [55.7540471, 37.620405],
@@ -146,6 +155,9 @@ export default {
     checkPhotos(catalog) {
       return !_.isEmpty(catalog.photos);
     },
+    showModalAuth() {
+      this.$modal.show('AuthModal');
+    }
   },
   computed: {
     ad() {
