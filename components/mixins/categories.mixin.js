@@ -225,6 +225,20 @@ export default {
         getFilter(cat) {
             return cat?.filters;
         },
+        getParamsSelect(ad) {
+            return _.sortBy(_.filter(ad?.ad_parameters, (item) => {
+                return this.isSelect(item.filter);
+            }), (item) => {
+                return item.filter.sort;
+            });
+        },
+        getParamsRange(ad) {
+            return _.sortBy(_.filter(ad?.ad_parameters, (item) => {
+                return this.isRange(item.filter);
+            }), (item) => {
+                return item.filter.sort;
+            });
+        },
         isFilter(cat) {
             return !_.isEmpty(cat?.filters);
         },

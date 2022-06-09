@@ -21,8 +21,24 @@
             </section>
             <section class="flex flex-col justify-between pl-4">
               <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">{{ ad.name }}</h2>
-              <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ ad.price }}<span
-                  class="pl-1 text-xs">руб.</span></h3>
+              <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad)}}</p>
+              <table class="table-auto mb-2 mt-2">
+                <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
+                <tr v-if="index <= 1">
+                  <td>{{ item.filter.name }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+                </tbody>
+                <tbody v-for="(item, index) in getParamsRange(ad)" :key="item.id">
+                <tr v-if="index <= 1">
+                  <td>{{ item.filter.name }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+                </tbody>
+              </table>
+              <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}
+<!--                <span class="pl-1 text-xs">руб.</span>-->
+              </h3>
             </section>
           </section>
         </NuxtLink>
@@ -39,10 +55,12 @@
 import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
 import Breadcrumbs from "./Breadcrumbs";
 import * as _ from "lodash";
+import CategoriesMixin from '~/components/mixins/categories.mixin';
 
 export default {
   name: "CatalogList",
   components: {Breadcrumbs},
+  mixins: [CategoriesMixin],
   props: {
     type: String,
   },
@@ -97,6 +115,21 @@ export default {
     },
     getPhoto(ad) {
       return ad.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
+    },
+    formatPrice(price) {
+      return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'RUB', minimumFractionDigits: 0 }).format(price);
+    },
+    getAddress(ad) {
+      let arrayAddress = [];
+      if(ad.street && ad.house) {
+        arrayAddress = [ad.street, ad.house];
+      } else if(ad.house) {
+        arrayAddress = [ad.street];
+      } else {
+        arrayAddress = [];
+      }
+
+      return _.join(arrayAddress);
     },
     linkHub() {
       if(this.$auth.loggedIn) {
