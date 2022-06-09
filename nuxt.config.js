@@ -10,6 +10,7 @@ if (isDev) {
 export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-heads
+    ssr: true,
     head: {
         title: 'Тапиго | Бесплатный каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание своего ресторана',
         meta: [
@@ -40,7 +41,7 @@ export default {
             USLUGI_URL: 'http://' + process.env.USLUGI + ':' + process.env.NUXT_PORT ,
         }),
         ...(!isDev && {
-            AUTH_URL: 'https://' + c + '/auth/sign-in',
+            AUTH_URL: 'https://' + process.env.DOMAIN_HOME + '/auth/sign-in',
             HOME_URL: 'https://' + process.env.DOMAIN_HOME,
             HUB_URL: 'https://' + process.env.HUB,
             JOBS_URL: 'https://' + process.env.JOBS,
