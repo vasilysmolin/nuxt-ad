@@ -171,6 +171,11 @@ export default {
       if (this.hasCompany === false) {
         return;
       }
+      for (const key in this.user) {
+        if (this.user[key] === null) {
+          delete this.user[key];
+        }
+      }
       this.$axios.$put(`users/${this.user.id}`, this.user).then(() => {
         const user = this.$auth.fetchUser().then((res) => {
           this.$auth.setUser(res.data);
