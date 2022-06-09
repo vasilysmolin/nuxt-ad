@@ -10,7 +10,6 @@ if (isDev) {
 export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-heads
-    ssr: true,
     head: {
         title: 'Тапиго | Бесплатный каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание своего ресторана',
         meta: [
