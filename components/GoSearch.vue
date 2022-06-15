@@ -15,7 +15,7 @@
       <ul class="pl-6 py-2 w-[100%] list-disc list-inside" v-if="ads.length > 0">
         <!--<li @click="hide" style="list-style-type: none;" v-for="category in categories" class="search-line"><nuxt-link :to="categoryLink(category)" class="text-blue-700 hover:text-black">{{ category.name }}</nuxt-link></li>-->
         <template v-if="ads.length > 0">
-          <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line"><nuxt-link :to="getUrl(ad)" class="text-blue-700 hover:text-black">{{ ad.name }}, цена: {{ ad.price }} руб, адрес: {{ ad.street }} {{ ad.house }}</nuxt-link></li>
+          <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line"><a :href="getUrl(ad)" class="text-blue-700 hover:text-black">{{ ad.name }}, цена: {{ ad.price }} руб, адрес: {{ ad.street }} {{ ad.house }}</a></li>
         </template>
       </ul>
 
@@ -67,7 +67,7 @@ export default {
       return `/feed${result}`;
     },
     getUrl(ad) {
-      return `/feed/alias/${ad.alias}`
+      return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}`
     },
     hide() {
       this.$modal.hide('GoSearch');
