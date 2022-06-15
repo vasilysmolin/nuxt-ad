@@ -1,21 +1,28 @@
 <template>
   <modal name="AuthModal" :min-width="620" :max-width="1024" width="95%" height="auto" :adaptive="true">
-    <h1>Для просмотра телефона, необходимо авторизоваться</h1>
-    <button type="button" @click.prevent="hide"
-            class="inline-block px-5 py-4
-            bg-blue-600 text-white font-bold text-base leading-snug
-            rounded-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700
-            focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+    <section class="flex justify-center items-center w-full">
+
+      <h1>Для просмотра телефона, необходимо авторизоваться</h1>
+      <section class="input-group relative flex flex-wrap items-stretch w-full">
+        <button type="button" @click.prevent="hide"
+            class="form-control relative flex-auto min-w-0 block w-full
+               px-6 py-4 text-base font-bold bg-white bg-clip-padding border
+                border-solid border-gray-300 rounded transition
+                ease-in-out m-0 focus:font-bold focus:outline-none focus:ring-0"
+    >
       Закрыть
     </button>
 
     <button type="button" @click.prevent="goAuth"
-            class="inline-block px-5 py-4 bg-blue-600 text-white
-            font-bold text-base leading-snug rounded-lg hover:bg-blue-700
-            hover:shadow-lg focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800
-            transition duration-150 ease-in-out">
+            class="form-control relative flex-auto min-w-0 block w-full
+               px-6 py-4 text-base font-bold bg-white bg-clip-padding border
+                border-solid border-gray-300 rounded transition
+                ease-in-out m-0 focus:font-bold focus:outline-none focus:ring-0"
+    >
       Войти в аккаунт
     </button>
+      </section>
+    </section>
   </modal>
 </template>
 
