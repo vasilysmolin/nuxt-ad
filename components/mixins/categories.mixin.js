@@ -153,7 +153,7 @@ export default {
                 },1700);
             }
         },
-        checkSelectParams(filterId, parameterId, parameters, alias) {
+        checkSelectParams(filterId, parameterId) {
             const parameter = _.find(this.data.ad_parameters, function(o) {
                 return (o.filter_id === filterId && o.id === parameterId);
             });
