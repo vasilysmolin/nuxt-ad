@@ -178,7 +178,7 @@ export default {
         this.removeItemsFull();
       } else {
         this.error = false;
-        this.getItems({query: this.query}).then((res) => {
+        this.getItems({querySearch: this.query}).then((res) => {
         }).catch((error) => {
           // console.log(error.response.data.errors);
           // this.$v.nameErrors = 'какой-то текст';

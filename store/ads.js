@@ -48,8 +48,9 @@ export const actions = {
 		name = null,
 		alias = null,
 		filtersArray = null,
+		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,alias,filtersArray});
+		const getParams = params({user_id,state,expand,from,name,alias,filtersArray,querySearch});
 		const ads = await this.$axios.$get(`declarations?skip=0&take=25${getParams}`);
 
 		if(state === 'new'){
@@ -61,9 +62,9 @@ export const actions = {
 		}
 	},
 	async getItemsFull({commit},{
-		query = null,
+		querySearch = null,
 	}) {
-		const getParams = params({query});
+		const getParams = params({querySearch});
 		const adsFull = await this.$axios.$get(`declarations-full?take=10${getParams}`);
 		commit('setAdsFull', adsFull.catalog_ads);
 	},
@@ -75,8 +76,9 @@ export const actions = {
 		expand = null,
 		name = null,
 		alias = null,
+		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,skip,name,alias});
+		const getParams = params({user_id,state,expand,from,skip,name,alias,querySearch});
 		const ads = await this.$axios.$get(`declarations?take=25${getParams}`);
 		if(state === 'new'){
 			commit('addadsNew', ads.catalog_ads);

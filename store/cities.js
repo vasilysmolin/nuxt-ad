@@ -47,9 +47,9 @@ export const actions = {
 
 	},
 	async getItemsFull({commit},{
-		query = null,
+		querySearch = null,
 	}) {
-		const getParams = params({query});
+		const getParams = params({querySearch});
 		const citiesFull = await this.$axios.$get(`cities-full?take=10${getParams}`);
 		commit('setCitiesFull', citiesFull.cities);
 	},

@@ -37,9 +37,9 @@ export const actions = {
 	},
 	async getItemsFull({commit},{
 		from = null,
-		query = null
+		querySearch = null
 	}) {
-		const getParams = params({ from,query });
+		const getParams = params({ from,querySearch });
 		const categoriesAdsFull = await this.$axios.$get(`category-declarations-full?take=5${getParams}`);
 		commit('setcategoriesAdsFull', categoriesAdsFull.catalog_ad_categories);
 	},

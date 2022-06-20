@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      query: null,
+      querySearch: null,
       isDisabled: false,
       data: {
       },

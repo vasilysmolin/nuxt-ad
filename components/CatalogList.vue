@@ -7,12 +7,16 @@
           :depth="1"
           :link="category"
       />
+
       <!--
       <button @click="linkHub" type="button"
               class="fixed btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
         Разместить бесплатно
       </button>
       -->
+      <div class="flex w-[95%] mb-4 pl-4 sm:max-w-screen-sm">
+        <h1>{{getH1()}}</h1>
+      </div>
       <div class="flex flex-wrap justify-left space-x-2 mb-5">
         <nuxt-link :to="path(item)" class="px-4 py-2 rounded-full text-gray-500 bg-gray-200
             font-semibold text-sm flex align-center w-max cursor-pointer
@@ -52,7 +56,14 @@
           </section>
         </NuxtLink>
       </article>
-      <button v-if="checkAmount" @click="addItems({skip: ads.length, state: 'active', expand: 'profile.user', alias: alias, from: 'catalog' })" type="button"
+      <button v-if="checkAmount" @click="addItems({
+        skip: ads.length,
+        state: 'active',
+        expand: 'profile.user',
+        alias: alias,
+        from: 'catalog',
+        querySearch: querySearch.querySearch
+      })" type="button"
               class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Смотреть дальше
       </button>
@@ -73,22 +84,48 @@ export default {
   props: {
     type: String,
   },
+  // async asyncData({store, route}) {
+  //   const sub = route.fullPath.split('/').pop();
+  //   let obj = {};
+  //   obj.query = route.query;
+  //   obj.alias = null;
+  //   if(route.path !== '/feed') {
+  //     obj.alias = sub !== 'feed' ? sub : null;
+  //     await store.dispatch('categoriesAd/getItem', {id: this.alias });
+  //   } else {
+  //     await store.dispatch('categoriesAd/removeItem');
+  //   }
+  //   await store.dispatch('ads/getItems', {
+  //     state: 'active',
+  //     expand: 'profile.user',
+  //     alias: this.alias,
+  //     from: 'catalog',
+  //     query: this.query?.query
+  //   });
+  //   return obj;
+  // },
   data() {
     return {
-      alias: null
+      alias: null,
+      querySearch: null,
     }
   },
   async mounted() {
     const sub = this.$route.fullPath.split('/').pop();
-    this.alias = sub !== 'feed' ? sub : null;
-    if(this.alias !== null) {
+    this.querySearch = this.$route.query?.querySearch;
+    if(this.$route.path !== '/feed') {
+      this.alias = sub !== 'feed' ? sub : null;
       await this.getItem({id: this.alias });
     } else {
       this.removeItem();
     }
-    // if (this.ads.length === 0) {
-      await this.getItems({state: 'active', expand: 'profile.user', alias: this.alias, from: 'catalog'});
-    // }
+    await this.getItems({
+      state: 'active',
+      expand: 'profile.user',
+      alias: this.alias,
+      from: 'catalog',
+      querySearch: this.$route.query?.querySearch
+    });
   },
   computed: {
     ...mapGetters({
@@ -142,6 +179,9 @@ export default {
     },
     path(item){
       return item.alias;
+    },
+    getH1(){
+      return this.category.name ?? 'Поиск по: ' + this.querySearch;
     },
     linkHub() {
       if(this.$auth.loggedIn) {
