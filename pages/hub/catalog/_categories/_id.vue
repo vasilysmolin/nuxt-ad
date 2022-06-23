@@ -441,7 +441,7 @@ export default {
       data.append('name', this.data.name);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
-      data.append('sale_price', this.data.sale_price);
+      data.append('sale_price', this.data.price);
       data.append('category_id', this.data.category_id);
       data.append('city_id', this.data.city_id);
       data.append('latitude', this.coordsBal[0]);
