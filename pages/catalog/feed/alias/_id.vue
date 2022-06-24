@@ -18,13 +18,16 @@
       <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg">
         <span class="pr-2 font-bold text-sm text-gray-500">Контакт:</span>{{ getUsername(ad)}}
       </p>
-
-      <p v-if="$auth.loggedIn" class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg">
+      <div class="flex w-[75%] mt-5">
+        <p v-if="$auth.loggedIn" class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg">
         <span  class="pr-2 font-bold text-sm text-gray-500">
           Телефон:</span>{{ getUserPhone(ad)}}
-      </p>
-      <div v-else class=" bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer">
-      <button @click.prevent="showModalAuth">Посмотреть телефон</button>
+        </p>
+
+        <div type="button" v-else class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer">
+          <button  @click.prevent="showModalAuth">Посмотреть телефон</button>
+        </div>
+
       </div>
     </section>
     <AuthModal/>
