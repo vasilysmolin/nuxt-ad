@@ -2,6 +2,7 @@
   <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-[100px]">
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <p class="mt-1 mb-2.5">{{types[resume.type]}}</p>
       <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ resume.name }}</h1>
       <p class="mt-2 text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ resume.price }}<span class="pl-2 text-sm">руб.</span></p>
     </section>
@@ -47,10 +48,19 @@ export default {
     if(Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
       await this.$store.dispatch('schedules/getItems');
     }
+    await this.$store.dispatch('typeJobs/getItems');
   },
   computed: {
     resume() {
       return this.$store.getters['resumes/resume']
+    },
+    types: {
+      get() {
+        return _.cloneDeep(this.$store.getters['typeJobs/types']);
+      },
+      set(types) {
+        return types
+      }
     },
     ...mapGetters({
       resumes: 'resumes/resumes'

@@ -4,6 +4,8 @@
       <article v-for="resume in resumes" :key="resume.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(resume)">
           <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ resume.name }}</h2>
+
+          <p class="mt-1 mb-2.5">{{types[resume.type]}}</p>
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ resume.price }}<span class="pl-1 text-xs">руб.</span></h3>
           <div class="flex justify-between w-full">
             <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>
@@ -26,6 +28,7 @@
 
 <script>
 import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import * as _ from "lodash";
 
 export default {
   name: "RList",
@@ -36,11 +39,20 @@ export default {
     if (this.resumes.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
+    await this.$store.dispatch('typeJobs/getItems');
   },
   computed: {
     ...mapGetters({
       resumes: 'resumes/resumes'
     }),
+    types: {
+      get() {
+        return _.cloneDeep(this.$store.getters['typeJobs/types']);
+      },
+      set(types) {
+        return types
+      }
+    },
 
   },
   methods: {
