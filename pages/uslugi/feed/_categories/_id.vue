@@ -2,10 +2,8 @@
   <article class="container flex flex-col items-center mt-[100px] pb-10">
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <!--
+      <p class="mt-1 mb-2.5">{{types[service.type]}}</p>
       <h1 class="first-letter:uppercase text-[0.9375rem] leading-5 sm:text-xl">{{ service.name }}</h1>
-      -->
-      <!--<h2>Имя соискателя</h2>-->
       <p class="text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ service.price }}<span class="pl-2 text-sm">руб.</span></p>
     </section>
 
@@ -40,6 +38,7 @@ export default {
   name: "SObject",
   layout: 'default',
   async mounted() {
+    await this.$store.dispatch('typeServices/getItems');
     await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  });
   },
   methods: {
@@ -60,6 +59,14 @@ export default {
     ...mapGetters({
       services: 'services/services'
     }),
+    types: {
+      get() {
+        return _.cloneDeep(this.$store.getters['typeServices/types']);
+      },
+      set(types) {
+        return types
+      }
+    },
   },
 
   head() {

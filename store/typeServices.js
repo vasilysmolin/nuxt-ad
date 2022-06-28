@@ -13,7 +13,7 @@ export const mutations = {
 
 export const actions = {
 	async getItems({commit}) {
-		const types = await this.$axios.$get('select/type-jobs');
+		const types = await this.$axios.$get('select/type-services');
 		commit('setTypes', types);
 	},
 	async removeItems({commit}) {

@@ -3,6 +3,7 @@
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="service in services" :key="service.id" class="flex flex-col mt-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(service)">
+          <p class="mt-1 mb-2.5">{{types[service.type]}}</p>
           <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ service.name }}</h2>
           <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ service.price }}<span class="pl-1 text-xs">руб.</span></h3>
           <div class="flex justify-between w-full">
@@ -18,6 +19,7 @@
 
 <script>
 import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import * as _ from "lodash";
 export default {
   name: "CatalogList",
   props: {
@@ -27,11 +29,20 @@ export default {
     if(this.services.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
+    await this.$store.dispatch('typeServices/getItems');
   },
   computed: {
     ...mapGetters({
       services: 'services/services'
     }),
+    types: {
+      get() {
+        return _.cloneDeep(this.$store.getters['typeServices/types']);
+      },
+      set(types) {
+        return types
+      }
+    },
 
   },
   methods: {

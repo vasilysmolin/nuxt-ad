@@ -12,6 +12,17 @@
           <div class="flex flex-col items-center w-full">
 
             <div class="mb-4 w-full sm:w-[27rem]">
+              <label for="name" class="pl-4 text-gray-500">Тип</label>
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.type">
+                <option v-for="[key, value] in Object.entries(types)" :value="key" :key="key"
+                        :selected="key === data.type">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
+            <div class="mb-4 w-full sm:w-[27rem]">
               <label for="name" class="pl-4 text-gray-500">Категории</label>
               <select class="form-select form-select-lg mt-2 forms-select"
                       v-model="data.category_id">
@@ -137,8 +148,17 @@ export default {
     await this.$store.dispatch('services/getItem', {id: this.$route.params.id});
     this.data = _.cloneDeep(this.$store.getters['services/service']);
     await this.$store.dispatch('categoriesService/getItems');
+    await this.$store.dispatch('typeServices/getItems');
   },
   computed: {
+    types: {
+      get() {
+        return _.cloneDeep(this.$store.getters['typeServices/types']);
+      },
+      set(types) {
+        return types
+      }
+    },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesService/categoriesServices']);
