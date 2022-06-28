@@ -20,7 +20,7 @@
       <div class="flex flex-wrap justify-left space-x-2 mb-5">
         <nuxt-link :to="path(item)" class="px-4 py-2 rounded-full text-gray-500 bg-gray-200
             font-semibold text-sm flex align-center w-max cursor-pointer
-            active:bg-gray-300 transition duration-300  mb-2" v-for="item in category.categories">
+            active:bg-gray-300 transition duration-300  mb-2" v-for="item in category.categories" :key="item.id">
           {{ item.name }}
         </nuxt-link>
 

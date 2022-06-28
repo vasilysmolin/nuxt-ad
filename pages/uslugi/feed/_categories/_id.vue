@@ -1,31 +1,23 @@
 <template>
   <article class="container flex flex-col items-center mt-[100px] pb-10">
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <p class="mt-1 mb-2.5">{{types[service.type]}}</p>
-      <h1 class="first-letter:uppercase text-[0.9375rem] leading-5 sm:text-xl">{{ service.name }}</h1>
-      <p class="text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ service.price }}<span class="pl-2 text-sm">руб.</span></p>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Описание услуги</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ service.description }}</p>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Имя:</span>{{ getUserName(service)}}</p>
-      <p class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Телефон:</span>{{ getUserPhone(service)}}</p>
-    </section>
-<!--
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Дополнительно</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">Гарантия: {{ service.guarantee }}</p>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">Договор: {{ service.contract }}</p>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">Консультации: {{ service.consultation }}</p>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">Почасовая оплата: {{ service.hourly_payment }}</p>
-    </section>
--->
-
+    <BHead
+        :name="service.name"
+        :price="service.price"
+        :type="types[service.type]"
+        :price-from="true"
+    />
+    <BDescription
+        :title="`Описание услуги`"
+        :description="service.description"
+    />
+    <BContact
+        :name="getUserName(service)"
+        :phone="getUserPhone(service)"
+    />
+    <BList
+        :title="`Дополнительно`"
+        :lists="generateList(service)"
+    />
   </article>
 
 </template>
@@ -33,10 +25,15 @@
 <script>
 import * as _ from 'lodash';
 import {mapGetters} from "vuex";
+import BHead from "../../../../components/blocks/BHead";
+import BDescription from "../../../../components/blocks/BDescription";
+import BContact from "../../../../components/blocks/BContact";
+import BList from "../../../../components/blocks/BList";
 
 export default {
   name: "SObject",
   layout: 'default',
+  components: { BHead, BDescription, BContact, BList },
   async mounted() {
     await this.$store.dispatch('typeServices/getItems');
     await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  });
@@ -51,6 +48,14 @@ export default {
     getUserPhone(service) {
       return service?.profile?.user?.phone
     },
+    generateList(service) {
+      let params = [];
+      params.push({name: 'Гарантия', value: service?.guarantee ? 'Да' : 'Нет' });
+      params.push({name: 'Договор', value: service?.contract ? 'Да' : 'Нет' });
+      params.push({name: 'Консультации', value: service?.consultation ? 'Да' : 'Нет' });
+      params.push({name: 'Почасовая оплата', value: service?.hourly_payment ? 'Да' : 'Нет' });
+      return params;
+    }
   },
   computed: {
     service() {
