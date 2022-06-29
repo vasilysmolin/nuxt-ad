@@ -1,6 +1,6 @@
 <template>
   <section v-if="isLoading" >
-    <p class="first-letter:uppercase text-[12px] text-gray-500  mb-[10px]">
+    <p class="first-letter:uppercase text-[12px] text-gray-500 mb-[4px]">
       <span class="font-bold">{{ amount }}
       </span>
       {{ title }}</p>

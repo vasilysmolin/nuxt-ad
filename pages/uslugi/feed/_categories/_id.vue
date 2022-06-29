@@ -31,10 +31,10 @@
 <script>
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
-import BHead from "../../../../components/blocks/BHead";
-import BDescription from "../../../../components/blocks/BDescription";
-import BContact from "../../../../components/blocks/BContact";
-import BList from "../../../../components/blocks/BList";
+import BHead from "~/components/blocks/BHead";
+import BDescription from "~/components/blocks/BDescription";
+import BContact from "~/components/blocks/BContact";
+import BList from "~/components/blocks/BList";
 import Breadcrumbs from "~/components/Breadcrumbs";
 
 export default {
