@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex w-[95%] mb-4 pl-4 sm:max-w-screen-sm">
+    <nav class="flex mb-4 sm:max-w-screen-sm">
       <ul class="flex justify-start items-center flex-wrap text-[12px] list-reset">
         <template  v-for="item of links">
           <li class="leading-6" v-if="!item.last">

@@ -7,25 +7,15 @@
           :depth="1"
           :link="category"
       />
+      <BCategoriesNav
+          :title="getH1()"
+          :category="category"
+      />
 
-      <!--
-      <button @click="linkHub" type="button"
-              class="fixed btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
-        Разместить бесплатно
-      </button>
-      -->
-      <div class="flex w-[95%] mb-4 pl-4 sm:max-w-screen-sm">
-        <h1>{{getH1()}}</h1>
-      </div>
-      <div class="flex flex-wrap justify-left space-x-2 mb-5">
-        <nuxt-link :to="path(item)" class="px-4 py-2 rounded-full text-gray-500 bg-gray-200
-            font-semibold text-sm flex align-center w-max cursor-pointer
-            active:bg-gray-300 transition duration-300  mb-2" v-for="item in category.categories" :key="item.id">
-          {{ item.name }}
-        </nuxt-link>
-
-      </div>
-      <p class="first-letter:uppercase text-slate-400"><span class="font-bold">{{ amount }}</span> объявлений </p>
+      <BAmount
+          :title="`объявлений`"
+          :amount="amount"
+      />
       <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
         <NuxtLink :to="getUrl(ad)">
           <section class="grid grid-cols-[25%,_1fr]">
@@ -76,10 +66,12 @@ import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
 import Breadcrumbs from "./Breadcrumbs";
 import * as _ from "lodash";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
+import BCategoriesNav from "~/components/blocks/BCategoriesNav";
+import BAmount from "~/components/blocks/BAmount";
 
 export default {
   name: "CatalogList",
-  components: {Breadcrumbs},
+  components: {Breadcrumbs, BCategoriesNav, BAmount},
   mixins: [CategoriesMixin],
   props: {
     type: String,
@@ -117,7 +109,7 @@ export default {
       this.alias = sub !== 'feed' ? sub : null;
       await this.getItem({id: this.alias });
     } else {
-      this.removeItem();
+      await this.removeItem();
     }
     await this.getItems({
       state: 'active',
@@ -176,9 +168,6 @@ export default {
       }
 
       return _.join(arrayAddress);
-    },
-    path(item){
-      return item.alias;
     },
     getH1(){
       return this.category.name ?? 'Поиск по: ' + this.querySearch;

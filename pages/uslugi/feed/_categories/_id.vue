@@ -1,5 +1,11 @@
 <template>
   <article class="container flex flex-col items-center mt-[100px] pb-10">
+    <Breadcrumbs
+        :baseName="`Главная`"
+        :basePath="`/`"
+        :depth="1"
+        :link="category"
+    />
     <BHead
         :name="service.name"
         :price="service.price"
@@ -24,21 +30,30 @@
 
 <script>
 import * as _ from 'lodash';
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import BHead from "../../../../components/blocks/BHead";
 import BDescription from "../../../../components/blocks/BDescription";
 import BContact from "../../../../components/blocks/BContact";
 import BList from "../../../../components/blocks/BList";
+import Breadcrumbs from "~/components/Breadcrumbs";
 
 export default {
   name: "SObject",
   layout: 'default',
-  components: { BHead, BDescription, BContact, BList },
-  async mounted() {
-    await this.$store.dispatch('typeServices/getItems');
-    await this.$store.dispatch('services/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person'  });
+  components: { BHead, BDescription, BContact, BList, Breadcrumbs },
+  async asyncData({store, route}) {
+    await store.dispatch('typeServices/getItems');
+    await store.dispatch('services/getItem', { id: route.params.id, expand: 'profile.user,profile.person'  });
+    await store.dispatch('categoriesService/getItem', {id: store.state.services.service.category_id });
+    return {
+      service: store.state.services.service,
+    }
   },
   methods: {
+    ...mapActions({
+      getItem: 'categoriesService/getItem',
+      removeItem: 'categoriesService/removeItem',
+    }),
     getUserName(service) {
       if(service?.profile?.isPerson === true) {
         return service?.profile?.person?.name;
@@ -58,11 +73,9 @@ export default {
     }
   },
   computed: {
-    service() {
-      return this.$store.getters['services/service']
-    },
     ...mapGetters({
-      services: 'services/services'
+      services: 'services/services',
+      category: 'categoriesService/category',
     }),
     types: {
       get() {
