@@ -298,7 +298,12 @@ export default {
     if(this.checkCity) {
       this.query = this.data?.city?.name;
       this.coords = [this.data?.city?.latitude, this.data?.city?.longitude];
-      this.coordsBal = [this.data?.latitude, this.data?.longitude];
+      if (_.isEmpty(this.data?.latitude) || _.isEmpty(this.data?.longitude)) {
+        this.coordsBal = this.coords;
+      }  else {
+        this.coordsBal = [this.data?.latitude, this.data?.longitude];
+      }
+
     } else {
       this.error = true;
       this.coords = [55.7540471, 37.620405];
