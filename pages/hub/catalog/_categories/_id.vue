@@ -238,7 +238,7 @@ export default {
   mixins: [CategoriesMixin],
   data() {
     return {
-      query: null,
+      query: '',
       zoom: 10,
       coords: [55.7540471, 37.620405],
       coordsBal: [55.7540471, 37.620405],
