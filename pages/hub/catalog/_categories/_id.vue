@@ -48,17 +48,27 @@
 <!--                <div class="relative">-->
 <!--                  <div class="absolute top-0 right-0">{{maxValue(item)}}</div>-->
 <!--                </div>-->
-                  <input @change="changeRange($event, item)"
-                         :id="item.id"
-                         type="range"
-                         :min="min(item)"
-                         :max="max(item)"
-                         :value="rangeSort[`params-${item.alias}`]"
-                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
-                  >
-                <div class="relative">
-                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>
-                </div>
+
+                <input
+                       @change="changeRange($event, item)"
+                       :id="item.id"
+                       type="number"
+                       class="form-control forms-input w-20"
+                       placeholder="Зарплата"
+                       :value="rangeSort[`params-${item.alias}`]">
+
+<!--                  <input @change="changeRange($event, item)"-->
+<!--                         :id="item.id"-->
+<!--                         type="range"-->
+<!--                         :step="1"-->
+<!--                         :min="min(item)"-->
+<!--                         :max="max(item)"-->
+<!--                         :value="rangeSort[`params-${item.alias}`]"-->
+<!--                         class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"-->
+<!--                  >-->
+<!--                <div class="relative">-->
+<!--                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>-->
+<!--                </div>-->
               </template>
               <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
                 <div class="form-check" v-for="parameter in item.parameters">
