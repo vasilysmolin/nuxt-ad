@@ -89,8 +89,8 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeads');
 	},
-	async getItem({commit},{id,expand = null}) {
-		const getParams = params({expand});
+	async getItem({commit},{id,expand = null, querySearch = null}) {
+		const getParams = params({expand, querySearch});
 		const ad = await this.$axios.$get( `declarations/${id}?${getParams}`);
 		commit('setad', ad);
 	}

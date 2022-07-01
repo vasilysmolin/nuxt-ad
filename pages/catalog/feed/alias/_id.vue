@@ -113,7 +113,7 @@ export default {
   mixins: [CategoriesMixin],
   components: {yandexMap, ymapMarker, AuthModal},
   async asyncData({store, route}) {
-    await store.dispatch('ads/getItem', { id: route.params.id, expand: 'profile.user,profile.person'});
+    await store.dispatch('ads/getItem', { id: route.params.id, querySearch: route.query?.querySearch,  expand: 'profile.user,profile.person'});
     await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });
     return {
       coords: [55.7540471, 37.620405],

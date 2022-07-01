@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 export function params(obj) {
-    return Object.keys(obj).reduce(function(acc, key) {
+    return encodeURI(Object.keys(obj).reduce(function(acc, key) {
         if(obj[key]!== null) {
             if(key.includes('Array')) {
                 let multiString = '';
@@ -13,7 +13,7 @@ export function params(obj) {
             }
         }
         return acc;
-    }, '');
+    }, ''));
 }
 
 export default {

@@ -67,7 +67,7 @@ export default {
       return `/feed${result}`;
     },
     getUrl(ad) {
-      return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}`
+      return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`
     },
     hide() {
       this.$modal.hide('GoSearch');
