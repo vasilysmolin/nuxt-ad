@@ -54,7 +54,7 @@
                        :id="item.id"
                        type="number"
                        class="form-control forms-input w-20"
-                       placeholder="Зарплата"
+                       placeholder=""
                        :value="rangeSort[`params-${item.alias}`]">
 
 <!--                  <input @change="changeRange($event, item)"-->
