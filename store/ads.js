@@ -41,6 +41,9 @@ export const mutations = {
 
 export const actions = {
 	async getItems({commit},{
+		skip = 0,
+		skipFromFull = 0,
+		take = 25,
 		user_id = null,
 		state = null,
 		from = null,
@@ -50,8 +53,8 @@ export const actions = {
 		filtersArray = null,
 		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,alias,filtersArray,querySearch});
-		const ads = await this.$axios.$get(`declarations?skip=0&take=25${getParams}`);
+		const getParams = params({user_id,state,expand,from,name,alias,filtersArray,querySearch,skipFromFull,skip,take});
+		const ads = await this.$axios.$get(`declarations?${getParams}`);
 
 		if(state === 'new'){
 			commit('setadsNew', ads.catalog_ads);
@@ -61,13 +64,13 @@ export const actions = {
 			commit('setAmount', ads.meta.total);
 		}
 	},
-	async getItemsFull({commit},{
-		querySearch = null,
-	}) {
-		const getParams = params({querySearch});
-		const adsFull = await this.$axios.$get(`declarations-full?take=10${getParams}`);
-		commit('setAdsFull', adsFull.catalog_ads);
-	},
+	// async getItemsFull({commit},{
+	// 	querySearch = null,
+	// }) {
+	// 	const getParams = params({querySearch});
+	// 	const adsFull = await this.$axios.$get(`declarations-full?take=10${getParams}`);
+	// 	commit('setAdsFull', adsFull.catalog_ads);
+	// },
 	async addItems({commit},{
 		skip = 0,
 		user_id = null,

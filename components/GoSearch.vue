@@ -12,25 +12,69 @@
       </section>
     </section>
     <article class="mt-0 flex justify-start items-start">
-      <ul class="pl-6 py-2 w-[100%] list-disc list-inside" v-if="ads.length > 0">
-        <!--<li @click="hide" style="list-style-type: none;" v-for="category in categories" class="search-line"><nuxt-link :to="categoryLink(category)" class="text-blue-700 hover:text-black">{{ category.name }}</nuxt-link></li>-->
+
+      <ul class="pl-6 py-2 w-[100%] list-disc list-inside">
         <template v-if="ads.length > 0">
-          <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line"><a :href="getUrl(ad)" class="text-blue-700 hover:text-black">{{ ad.name }}, цена: {{ ad.price }} руб, адрес: {{ ad.street }} {{ ad.house }}</a></li>
+          <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line">
+            <a :href="getUrl(ad)" class="text-blue-700 hover:text-black">
+              {{ ad.name }}, цена: {{ ad.price }} руб, адрес: {{ ad.street }} {{ ad.house }}
+            </a>
+          </li>
+        </template>
+        <template v-if="services.length > 0">
+          <li @click="hide" v-for="service in services" :key="service.id" class="search-line">
+            <a :href="getUrl(service)" class="text-blue-700 hover:text-black">
+              {{ service.name }}, цена: {{ service.price }}
+            </a>
+          </li>
+        </template>
+        <template v-if="resumes.length > 0">
+          <li @click="hide" v-for="resume in resumes" :key="resume.id" class="search-line">
+            <a :href="getUrl(resume)" class="text-blue-700 hover:text-black">
+              {{ resume.name }}, цена: {{ resume.price }}
+            </a>
+          </li>
+        </template>
+        <template v-if="vacancies.length > 0">
+          <li @click="hide" v-for="vacancy in vacancies" :key="vacancy.id" class="search-line">
+            <a :href="getUrl(vacancy)" class="text-blue-700 hover:text-black">
+              {{ vacancy.name }}, цена: {{ vacancy.price }}
+            </a>
+          </li>
+        </template>
+
+      </ul>
+      <ul class="pr-6 py-2 w-[50%]">
+        <template v-if="ads.length > 0">
+          <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line">
+            <a :href="getUrl(ad)" class="search-tags">
+              {{ getNameCat(ad) }}
+            </a>
+          </li>
+        </template>
+        <template v-if="services.length > 0">
+          <li @click="hide" v-for="service in services" :key="service.id" class="search-line">
+            <a :href="getUrl(service)" class="search-tags">
+              {{ getNameCat(service) }}
+            </a>
+          </li>
+        </template>
+        <template v-if="resumes.length > 0">
+          <li @click="hide" v-for="resume in resumes" :key="resume.id" class="search-line">
+            <a :href="getUrl(resume)" class="search-tags">
+              {{ getNameCat(resume) }}
+            </a>
+          </li>
+        </template>
+        <template v-if="vacancies.length > 0">
+          <li @click="hide" v-for="vacancy in vacancies" :key="vacancy.id" class="search-line">
+            <a :href="getUrl(vacancy)" class="search-tags">
+              {{ getNameCat(vacancy) }}
+            </a>
+          </li>
         </template>
       </ul>
 
-<!--      <ul class="pr-6 py-2 w-[50%]">-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Недвижимость</span></nuxt-link><nuxt-link to=""><span class="search-tags">Квартиры</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Недвижимость</span></nuxt-link><nuxt-link to=""><span class="search-tags">Квартиры</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Недвижимость</span></nuxt-link><nuxt-link to=""><span class="search-tags">Квартиры</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Недвижимость</span></nuxt-link><nuxt-link to=""><span class="search-tags">Комнаты</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Недвижимость</span></nuxt-link><nuxt-link to=""><span class="search-tags">Комнаты</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Услуги</span></nuxt-link><nuxt-link to=""><span class="search-tags">Уборка</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Услуги</span></nuxt-link><nuxt-link to=""><span class="search-tags">Уборка</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Работа</span></nuxt-link><nuxt-link to=""><span class="search-tags">Вакансии</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Отдых и спорт</span></nuxt-link><nuxt-link to=""><span class="search-tags">Спортивная экипировка и инвентарь</span></nuxt-link></li>-->
-<!--        <li class="search-line"><nuxt-link to=""><span class="search-tags">Недвижимость</span></nuxt-link><nuxt-link to=""><span class="search-tags">Квартиры</span></nuxt-link></li>-->
-<!--      </ul>-->
     </article>
   </modal>
 </template>
@@ -53,18 +97,27 @@ export default {
   },
   computed: {
     ...mapGetters({
-      categories: 'categoriesAd/categoriesAdsFull',
-      ads: 'ads/adsFull',
+      // categories: 'categoriesAd/categoriesAds',
+      ads: 'ads/ads',
+      services: 'services/services',
+      resumes: 'resumes/resumes',
+      vacancies: 'vacancies/vacancies',
     }),
   },
   methods: {
     ...mapActions({
-      getItems: 'categoriesAd/getItemsFull',
-      getItemsAds: 'ads/getItemsFull',
+      // getItems: 'categoriesAd/getItemsFull',
+      getItemsAds: 'ads/getItems',
+      getItemsResumes: 'resumes/getItems',
+      getItemsServices: 'services/getItems',
+      getItemsVacancies: 'vacancies/getItems',
     }),
     categoryLink(category) {
       const result = this.parentIter(category, category.alias);
       return `/feed${result}`;
+    },
+    getNameCat(item){
+        return item?.categories?.name;
     },
     getUrl(ad) {
       return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`
@@ -80,7 +133,28 @@ export default {
       }
     },
     debounceInput: _.debounce(function (e) {
-      this.getItemsAds({querySearch: this.querySearch}).then((res) => {
+      this.getItemsAds({
+        querySearch: this.querySearch,
+        take: 3,
+      }).then((res) => {
+      }).catch((error) => {
+      });
+      this.getItemsResumes({
+        querySearch: this.querySearch,
+        take: 3,
+      }).then((res) => {
+      }).catch((error) => {
+      });
+      this.getItemsVacancies({
+        querySearch: this.querySearch,
+        take: 3,
+      }).then((res) => {
+      }).catch((error) => {
+      });
+      this.getItemsServices({
+        querySearch: this.querySearch,
+        take: 3,
+      }).then((res) => {
       }).catch((error) => {
       });
     }, 500)
