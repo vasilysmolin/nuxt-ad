@@ -36,8 +36,18 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{user_id = null, state = null, expand = null, from = null, name = null}) {
-		const getParams = params({user_id,state,expand,from,name});
+	async getItems({commit},{
+		skip = 0,
+		skipFromFull = 0,
+		take = 25,
+		user_id = null,
+		state = null,
+		expand = null,
+		from = null,
+		name = null,
+		querySearch = null,
+	}) {
+		const getParams = params({user_id,state,expand,from,name,skipFromFull,skip,take,querySearch});
 		const vacancies = await this.$axios.$get(`vacancies?skip=0&take=25${getParams}`);
 
 		if(state === 'new'){

@@ -11,7 +11,7 @@
         </button>
       </section>
     </section>
-    <article class="mt-0 flex justify-start items-start">
+    <article class="mt-0 flex justify-start items-start"   v-if="hasItems">
 
       <ul class="pl-6 py-2 w-[100%] list-disc list-inside">
         <template v-if="ads.length > 0">
@@ -23,21 +23,21 @@
         </template>
         <template v-if="services.length > 0">
           <li @click="hide" v-for="service in services" :key="service.id" class="search-line">
-            <a :href="getUrl(service)" class="text-blue-700 hover:text-black">
+            <a :href="getUrlServices(service)" class="text-blue-700 hover:text-black">
               {{ service.name }}, цена: {{ service.price }}
             </a>
           </li>
         </template>
         <template v-if="resumes.length > 0">
           <li @click="hide" v-for="resume in resumes" :key="resume.id" class="search-line">
-            <a :href="getUrl(resume)" class="text-blue-700 hover:text-black">
+            <a :href="getUrlResume(resume)" class="text-blue-700 hover:text-black">
               {{ resume.name }}, цена: {{ resume.price }}
             </a>
           </li>
         </template>
         <template v-if="vacancies.length > 0">
           <li @click="hide" v-for="vacancy in vacancies" :key="vacancy.id" class="search-line">
-            <a :href="getUrl(vacancy)" class="text-blue-700 hover:text-black">
+            <a :href="getUrlVacancy(vacancy)" class="text-blue-700 hover:text-black">
               {{ vacancy.name }}, цена: {{ vacancy.price }}
             </a>
           </li>
@@ -93,6 +93,7 @@ export default {
   data() {
     return {
       querySearch: null,
+      hasItems: false,
     }
   },
   computed: {
@@ -117,10 +118,19 @@ export default {
       return `/feed${result}`;
     },
     getNameCat(item){
-        return item?.categories?.name;
+      return item?.categories?.name;
     },
     getUrl(ad) {
       return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`
+    },
+    getUrlVacancy(item) {
+      return `${process.env.JOBS_URL}/vacancies/alias/${item.alias}?querySearch=${item.name}`
+    },
+    getUrlResume(item) {
+      return `${process.env.JOBS_URL}/resume/alias/${item.alias}?querySearch=${item.name}`
+    },
+    getUrlServices(item) {
+      return `${process.env.USLUGI_URL}/feed/alias/${item.alias}?querySearch=${item.name}`
     },
     hide() {
       this.$modal.hide('GoSearch');
@@ -133,6 +143,9 @@ export default {
       }
     },
     debounceInput: _.debounce(function (e) {
+      // if(_.isEmpty(this.querySearch)) {
+      //
+      // }
       this.getItemsAds({
         querySearch: this.querySearch,
         take: 3,
@@ -157,6 +170,11 @@ export default {
       }).then((res) => {
       }).catch((error) => {
       });
+      if(this.ads.length > 0 || this.services.length > 0  || this.vacancies.length > 0  || this.resumes.length > 0) {
+        this.hasItems = true;
+      } else {
+        this.hasItems = false;
+      }
     }, 500)
   },
 }

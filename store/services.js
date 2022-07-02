@@ -45,9 +45,10 @@ export const actions = {
 		from = null,
 		expand = null,
 		alias = null,
-		name = null
+		name = null,
+		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,alias,skipFromFull,skip,take});
+		const getParams = params({user_id,state,expand,from,name,alias,skipFromFull,skip,take,querySearch});
 		const services = await this.$axios.$get(`services?${getParams}`);
 
 		if(state === 'new'){
