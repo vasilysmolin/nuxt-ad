@@ -80,102 +80,11 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import * as _ from "lodash";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
+import SearchMixin from "~/components/mixins/search.mixin"
 
 export default {
   name: 'GoSearch',
-  mixins: [CategoriesMixin],
-  async mounted() {
-
-  },
-  data() {
-    return {
-      querySearch: null,
-      hasItems: false,
-    }
-  },
-  computed: {
-    ...mapGetters({
-      // categories: 'categoriesAd/categoriesAds',
-      ads: 'ads/ads',
-      services: 'services/services',
-      resumes: 'resumes/resumes',
-      vacancies: 'vacancies/vacancies',
-    }),
-  },
-  methods: {
-    ...mapActions({
-      // getItems: 'categoriesAd/getItemsFull',
-      getItemsAds: 'ads/getItems',
-      getItemsResumes: 'resumes/getItems',
-      getItemsServices: 'services/getItems',
-      getItemsVacancies: 'vacancies/getItems',
-    }),
-    categoryLink(category) {
-      const result = this.parentIter(category, category.alias);
-      return `/feed${result}`;
-    },
-    getNameCat(item){
-      return item?.categories?.name;
-    },
-    getUrl(ad) {
-      return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`
-    },
-    getUrlVacancy(item) {
-      return `${process.env.JOBS_URL}/vacancies/alias/${item.alias}?querySearch=${item.name}`
-    },
-    getUrlResume(item) {
-      return `${process.env.JOBS_URL}/resume/alias/${item.alias}?querySearch=${item.name}`
-    },
-    getUrlServices(item) {
-      return `${process.env.USLUGI_URL}/feed/alias/${item.alias}?querySearch=${item.name}`
-    },
-    hide() {
-      this.$modal.hide('GoSearch');
-    },
-    getSearchQuery() {
-      // this.$router.push({ path: '/feed', query: { query: this.query } })
-      // this.hide();
-      if(this.querySearch) {
-        window.location.href = `${process.env.CATALOG_URL}/feed?querySearch=${this.querySearch}`;
-      }
-    },
-    debounceInput: _.debounce(function (e) {
-      // if(_.isEmpty(this.querySearch)) {
-      //
-      // }
-      this.getItemsAds({
-        querySearch: this.querySearch,
-        take: 3,
-      }).then((res) => {
-      }).catch((error) => {
-      });
-      this.getItemsResumes({
-        querySearch: this.querySearch,
-        take: 3,
-      }).then((res) => {
-      }).catch((error) => {
-      });
-      this.getItemsVacancies({
-        querySearch: this.querySearch,
-        take: 3,
-      }).then((res) => {
-      }).catch((error) => {
-      });
-      this.getItemsServices({
-        querySearch: this.querySearch,
-        take: 3,
-      }).then((res) => {
-      }).catch((error) => {
-      });
-      if(this.ads.length > 0 || this.services.length > 0  || this.vacancies.length > 0  || this.resumes.length > 0) {
-        this.hasItems = true;
-      } else {
-        this.hasItems = false;
-      }
-    }, 500)
-  },
+  mixins: [CategoriesMixin,SearchMixin],
 }
 </script>
