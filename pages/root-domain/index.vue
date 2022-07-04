@@ -11,7 +11,7 @@
         <section class="input-group relative flex flex-wrap items-stretch w-full">
           <input v-on:input="debounceInput"  v-model="querySearch" type="text"
                  class="form-control relative flex-auto min-w-0 block w-full px-6 py-4 text-base font-bold bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:font-bold focus:outline-none focus:ring-0"
-                 placeholder="Поиск" aria-label="Поиск" aria-describedby="button-addon2">
+                 placeholder="Найти обьявление, вакансию или резюме, услугу" aria-label="Поиск" aria-describedby="button-addon2">
           <button @click="getSearchQuery"
                   class="btn inline-block px-10 py-1 bg-blue-900 text-white font-bold text-base tracking-wider rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
                   type="button" id="button-addon2">Найти
@@ -155,18 +155,18 @@ export default {
           document.location.href = process.env.AUTH_URL;
         }
       },
-      vacancies() {
-        document.location.href = process.env.JOBS_URL + '/vacancies';
-      },
-      resume() {
-        document.location.href = process.env.JOBS_URL + '/resume';
-      },
-      uslugi() {
-        document.location.href = process.env.USLUGI_URL;
-      },
-      catalog() {
-        document.location.href = process.env.CATALOG_URL;
-      },
+      // vacancies() {
+      //   document.location.href = process.env.JOBS_URL + '/vacancies';
+      // },
+      // resume() {
+      //   document.location.href = process.env.JOBS_URL + '/resume';
+      // },
+      // uslugi() {
+      //   document.location.href = process.env.USLUGI_URL;
+      // },
+      // catalog() {
+      //   document.location.href = process.env.CATALOG_URL;
+      // },
     categoryLink(category) {
       const result = this.parentIter(category, category.alias);
       return `/feed${result}`;
