@@ -54,21 +54,21 @@
         </template>
         <template v-if="services.length > 0">
           <li @click="hide" v-for="service in services" :key="service.id" class="search-line">
-            <a :href="getUrl(service)" class="search-tags">
+            <a :href="getUrlServices(service)" class="search-tags">
               {{ getNameCat(service) }}
             </a>
           </li>
         </template>
         <template v-if="resumes.length > 0">
           <li @click="hide" v-for="resume in resumes" :key="resume.id" class="search-line">
-            <a :href="getUrl(resume)" class="search-tags">
+            <a :href="getUrlResume(resume)" class="search-tags">
               {{ getNameCat(resume) }}
             </a>
           </li>
         </template>
         <template v-if="vacancies.length > 0">
           <li @click="hide" v-for="vacancy in vacancies" :key="vacancy.id" class="search-line">
-            <a :href="getUrl(vacancy)" class="search-tags">
+            <a :href="getUrlVacancy(vacancy)" class="search-tags">
               {{ getNameCat(vacancy) }}
             </a>
           </li>

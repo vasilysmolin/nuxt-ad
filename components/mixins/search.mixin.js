@@ -28,7 +28,7 @@ export default {
            return `/feed${result}`;
        },
        getNameCat(item){
-           return item?.categories?.name;
+           return item?.categories?.name ?? 'Без категории';
        },
        getUrl(ad) {
            return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`
