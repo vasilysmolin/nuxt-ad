@@ -95,7 +95,11 @@ export default {
         ],
         '@nuxtjs/tailwindcss',
         '@nuxt/postcss8',
+        '@nuxtjs/device'
     ],
+    device: {
+        refreshOnResize: true
+    },
 
     basic: {
         name: process.env.BASIC_NAME,

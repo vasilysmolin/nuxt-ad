@@ -1,5 +1,6 @@
 <template>
   <section class="container flex flex-col justify-center items-center mt-[80px] pb-[20px]">
+    <div v-if="$device.isDesktop">
     <h1 class="px-5 text-3xl text-center font-black">Привет &mdash; это Тапиго<span class="mt-2 block font-normal text-gray-600 text-xl">Каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание ресторана.</span></h1>
 
     <p @click="linkHub">
@@ -113,7 +114,13 @@
 <!--      <p class="mt-3 text-sm sm:text-base text-gray-700">Создавайте свои рестораны и оформляйте заказы или доставку еды без зависимости от внешних платформ и ненужных комиссий.</p>-->
 <!--      <p class="mt-3 text-gray-400">Скоро для компаний и заказов</p>-->
 <!--    </article>-->
-
+    </div>
+    <div v-else-if="$device.isTablet">
+      <h1>Tablet</h1>
+    </div>
+    <div v-else>
+      <h1>Mobile</h1>
+    </div>
   </section>
 </template>
 
