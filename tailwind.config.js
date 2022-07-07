@@ -15,9 +15,10 @@ module.exports = {
 		container: {
 			center: true,
 		},
-		extend: {},
+		extend: {
+		},
 	},
 	plugins: [
-		require('tw-elements/dist/plugin')
+		require('tw-elements/dist/plugin'),
 	],
 };

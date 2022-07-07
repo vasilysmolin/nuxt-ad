@@ -1,6 +1,6 @@
 <template>
-  <section class="container flex flex-col justify-center items-center mt-[80px] pb-[20px]">
-    <div v-if="$device.isDesktop">
+  <section class="container flex flex-col">
+    <div v-if="$device.isDesktop" class="">
     <h1 class="px-5 text-3xl text-center font-black">Привет &mdash; это Тапиго<span class="mt-2 block font-normal text-gray-600 text-xl">Каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание ресторана.</span></h1>
 
     <p @click="linkHub">
@@ -115,12 +115,13 @@
 <!--      <p class="mt-3 text-gray-400">Скоро для компаний и заказов</p>-->
 <!--    </article>-->
     </div>
-    <div v-else-if="$device.isTablet">
-      <h1>Tablet</h1>
+
+    <div v-if="$device.isMobile" class="mt-[70px] px-[20px] flex flex-col items-center">
+        <h1 class="text-center text-sm">Каталог объявлений, вакансии и резюме, поиск исполнителя и размещение услуг</h1>
+        <SearchColorGlobalMobile/>
+        <ListServicesIndex/>
     </div>
-    <div v-else>
-      <h1>Mobile</h1>
-    </div>
+
   </section>
 </template>
 
@@ -128,8 +129,11 @@
 import {mapActions, mapGetters} from "vuex";
 import * as _ from "lodash";
 import SearchMixin from "~/components/mixins/search.mixin"
+import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
+import ListServicesIndex from "../../components/ListServicesIndex";
 
 export default {
+  components: {ListServicesIndex, SearchColorGlobalMobile},
   mixins: [SearchMixin],
   methods:
       {
