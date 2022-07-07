@@ -1,7 +1,7 @@
 <template>
   <main>
     <div v-if="$device.isDesktop">
-    <header class="fixed flex justify-between items-center top-0 w-full bg-[#F7F7FC] px-5 py-3 z-50">
+    <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50">
       <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
         <GlobalNav />
         <GlobalNavWin :toggleG="isHiddenG"/>
@@ -17,7 +17,7 @@
     <GoSearch/>
     <GoFilter/>
     <Nuxt/>
-    <footer class="fixed flex justify-between items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
+    <footer class="fixed flex justify-between items-center bottom-0 w-full px-5 py-1">
       <div class="flex justify-center items-center cursor-pointer" @click="showGoSearch">
         <GlobalSearch/>
         <span class="pl-2 font-bold">Поиск</span>

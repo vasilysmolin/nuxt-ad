@@ -1,9 +1,9 @@
 <template>
-  <section class="container flex flex-col">
+  <section class="container flex flex-col mt-[80px]">
     <div v-if="$device.isDesktop" class="">
     <h1 class="px-5 text-3xl text-center font-black">Привет &mdash; это Тапиго<span class="mt-2 block font-normal text-gray-600 text-xl">Каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание ресторана.</span></h1>
 
-    <p @click="linkHub">
+    <p @click="linkHub" class="text-center">
       <nuxt-link to="" class="btn btn-primary inline-block my-8 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Создать аккаунт
       </nuxt-link>
     </p>
