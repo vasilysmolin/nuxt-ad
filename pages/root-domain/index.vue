@@ -84,42 +84,17 @@
         </ul>
 
       </article>
-
-<!--    <article class="flex flex-col items-start px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">-->
-<!--      <h2 class="font-black text-lg leading-5 sm:text-2xl">Вакансии для компаний</h2>-->
-<!--      <p class="mt-3 text-sm sm:text-base text-gray-700">Создавайте неограниченное количество бесплатных вакансий для своей компании. Делегируйте контроль или размещение своему представителю.</p>-->
-<!--      <p class="mt-3 font-bold" @click="vacancies"><nuxt-link to="" class="text-blue-600">Смотреть вакансии</nuxt-link></p>-->
-<!--    </article>-->
-
-<!--    <article class="flex flex-col items-start mt-4 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">-->
-<!--      <h2 class="font-black text-lg leading-5 sm:text-2xl">Резюме для поиска работы</h2>-->
-<!--      <p class="mt-3 text-sm sm:text-base text-gray-700">Размещайте без ограничений бесплатные резюме для поиска работы. Получайте приглашения на собеседования сразу на Тапиго.</p>-->
-<!--      <p class="mt-3 font-bold" @click="resume"><nuxt-link to="" class="text-blue-600">Смотреть резюме</nuxt-link></p>-->
-<!--    </article>-->
-
-<!--    <article class="flex flex-col items-start mt-6 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">-->
-<!--      <h2 class="font-black text-lg leading-5 sm:text-2xl">Поиск исполнителя</h2>-->
-<!--      <p class="mt-3 text-sm sm:text-base text-gray-700">Забить гвоздь, помыть и убрать помещение, отремонтировать бытовую технику, починить электронику, муж на час и многое другое.</p>-->
-<!--      <p class="mt-3 font-bold" @click="uslugi"><nuxt-link to="" class="text-blue-600">Найти исполнителя</nuxt-link></p>-->
-<!--    </article>-->
-
-<!--    <article class="flex flex-col items-start mt-4 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">-->
-<!--      <h2 class="font-black text-lg leading-5 sm:text-2xl">Каталог обьявлений</h2>-->
-<!--      <p class="mt-3 text-sm sm:text-base text-gray-700">Бесплатный каталог почти по всем направлениям &mdash; продать или купить, найти работу или подработку, хэндмэй и барахолка.</p>-->
-<!--      <p class="mt-3 font-bold" @click="catalog"><nuxt-link to="" class="text-blue-600">Смотреть обьявления</nuxt-link></p>-->
-<!--    </article>-->
-
-<!--    <article class="flex flex-col items-start mt-4 px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">-->
-<!--      <h2 class="font-black text-lg leading-5 sm:text-2xl">Доставка еды</h2>-->
-<!--      <p class="mt-3 text-sm sm:text-base text-gray-700">Создавайте свои рестораны и оформляйте заказы или доставку еды без зависимости от внешних платформ и ненужных комиссий.</p>-->
-<!--      <p class="mt-3 text-gray-400">Скоро для компаний и заказов</p>-->
-<!--    </article>-->
     </div>
 
-    <div v-if="$device.isMobile" class="px-[20px] flex flex-col items-center">
+    <div v-if="$device.isMobile" class="px-[20px] pb-[80px] w-full flex flex-col items-center">
         <h1 class="text-center text-sm font-bold">Каталог объявлений, вакансии и резюме, поиск исполнителя и размещение услуг</h1>
         <SearchColorGlobalMobile/>
         <ListServicesIndex/>
+      <p @click="linkHub" class="text-center">
+        <nuxt-link to="" class="btn btn-primary inline-block mt-7 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0">Создать аккаунт
+        </nuxt-link>
+      </p>
+      <WhatsTapigo/>
     </div>
 
   </section>
@@ -131,9 +106,10 @@ import * as _ from "lodash";
 import SearchMixin from "~/components/mixins/search.mixin"
 import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
 import ListServicesIndex from "../../components/ListServicesIndex";
+import WhatsTapigo from "../../components/WhatsTapigo";
 
 export default {
-  components: {ListServicesIndex, SearchColorGlobalMobile},
+  components: {WhatsTapigo, ListServicesIndex, SearchColorGlobalMobile},
   mixins: [SearchMixin],
   methods:
       {

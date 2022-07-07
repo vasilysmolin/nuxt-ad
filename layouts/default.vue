@@ -48,7 +48,7 @@
       <Nuxt/>
       <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1">
         <button @click="linkHub" type="button"
-                class="btn btn-primary inline-block mt-1 px-6 py-2 bg-[#00A05D] text-white font-bold text-sm tracking-wider leading-snug rounded  focus:outline-none focus:ring-0  transition duration-150 ease-in-out">
+                class="btn btn-primary inline-block mt-1 px-9 py-3 bg-[#00A05D] text-white font-bold text-sm tracking-wider leading-snug rounded  focus:outline-none focus:ring-0  transition duration-150 ease-in-out">
           Разместить
         </button>
       </footer>
