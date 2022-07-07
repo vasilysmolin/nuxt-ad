@@ -116,8 +116,8 @@
 <!--    </article>-->
     </div>
 
-    <div v-if="$device.isMobile" class="mt-[70px] px-[20px] flex flex-col items-center">
-        <h1 class="text-center text-sm">Каталог объявлений, вакансии и резюме, поиск исполнителя и размещение услуг</h1>
+    <div v-if="$device.isMobile" class="px-[20px] flex flex-col items-center">
+        <h1 class="text-center text-sm font-bold">Каталог объявлений, вакансии и резюме, поиск исполнителя и размещение услуг</h1>
         <SearchColorGlobalMobile/>
         <ListServicesIndex/>
     </div>
