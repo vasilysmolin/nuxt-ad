@@ -1,20 +1,20 @@
 <template>
   <section class="mt-7 grid grid-cols-2 gap-6">
-    <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFF4D2]">
+    <article @click="catalog" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFF4D2]">
       <IconListServicesIndexCatalog/>
       <div>
         <h2 class="text-sm font-black">Объявления</h2>
         <h3 class="mt-1 text-[11px] leading-snug">Продать, купить и многое другое.</h3>
       </div>
     </article>
-    <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFE2E0]">
+    <article @click="jobs" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFE2E0]">
       <IconListServicesIndexJobs/>
       <div>
         <h2 class="text-sm font-black">Работа</h2>
         <h3 class="mt-1 text-[11px] leading-snug">Бесплатно создавайте вакансии и резюме.</h3>
       </div>
     </article>
-    <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
+    <article @click="uslugi" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
       <IconListServicesIndexUslugi/>
       <div>
         <h2 class="text-sm font-black">Услуги</h2>
@@ -40,6 +40,17 @@ import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
 export default {
   components: {
     IconListServicesIndexFood,
-    IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog}
+    IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog},
+  methods: {
+    jobs() {
+      document.location.href = process.env.JOBS_URL;
+    },
+    uslugi() {
+      document.location.href = process.env.USLUGI_URL;
+    },
+    catalog() {
+      document.location.href = process.env.CATALOG_URL;
+    },
+  }
 }
 </script>
