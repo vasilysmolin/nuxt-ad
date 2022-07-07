@@ -34,7 +34,7 @@
     </div>
 
     <div v-if="$device.isMobile">
-      <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50">
+      <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50 bg-white">
         <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
           <GlobalNav />
           <GlobalNavWin :toggleG="isHiddenG"/>
@@ -48,7 +48,7 @@
       <Nuxt/>
       <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1">
         <button @click="linkHub" type="button"
-                class="btn btn-primary inline-block mt-1 px-10 py-3 bg-[#00A05D] text-white font-bold text-normal tracking-wider leading-snug rounded  focus:outline-none focus:ring-0  transition duration-150 ease-in-out">
+                class="btn btn-primary inline-block mt-1 px-6 py-2 bg-[#00A05D] text-white font-bold text-sm tracking-wider leading-snug rounded  focus:outline-none focus:ring-0  transition duration-150 ease-in-out">
           Разместить
         </button>
       </footer>

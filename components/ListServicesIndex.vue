@@ -18,14 +18,14 @@
       <IconListServicesIndexUslugi/>
       <div>
         <h2 class="text-sm font-black">Услуги</h2>
-        <h3 class="mt-1 text-[11px] leading-snug">Найти исполнителя или предложить услугу.</h3>
+        <h3 class="mt-1 text-[11px] leading-snug">Найти исполнителя или создать услугу.</h3>
       </div>
     </article>
     <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
       <IconListServicesIndexFood/>
       <div>
         <h2 class="text-sm font-black">Еда</h2>
-        <h3 class="mt-1 text-[11px] leading-snug">Скоро доставка еды и  создание ресторана.</h3>
+        <h3 class="mt-1 text-[11px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
       </div>
     </article>
 

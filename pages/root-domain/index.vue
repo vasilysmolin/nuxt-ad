@@ -1,5 +1,5 @@
 <template>
-  <section class="container flex flex-col mt-[80px]">
+  <section class="container flex flex-col mt-[70px]">
     <div v-if="$device.isDesktop" class="">
     <h1 class="px-5 text-3xl text-center font-black">Привет &mdash; это Тапиго<span class="mt-2 block font-normal text-gray-600 text-xl">Каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание ресторана.</span></h1>
 
