@@ -88,8 +88,10 @@
 
     <div v-if="$device.isMobile" class="px-[20px] pb-[80px] w-full flex flex-col items-center">
         <h1 class="text-center text-sm font-bold">Каталог объявлений, вакансии и резюме, поиск исполнителя и размещение услуг</h1>
-        <SearchColorGlobalMobile/>
-        <ListServicesIndex/>
+        <div @click="showGoSearch">
+          <SearchColorGlobalMobile/>
+        </div>
+      <ListServicesIndex/>
       <p @click="linkHub" class="text-center">
         <nuxt-link to="" class="btn btn-primary inline-block mt-7 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0">Создать аккаунт
         </nuxt-link>
@@ -120,6 +122,9 @@ export default {
         } else {
           document.location.href = process.env.AUTH_URL;
         }
+      },
+      showGoSearch () {
+        this.$modal.show('GoSearch');
       },
       // vacancies() {
       //   document.location.href = process.env.JOBS_URL + '/vacancies';

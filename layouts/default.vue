@@ -45,6 +45,7 @@
           <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
         </div>
       </header>
+      <GoSearch/>
       <Nuxt/>
       <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1">
         <button @click="linkHub" type="button"
