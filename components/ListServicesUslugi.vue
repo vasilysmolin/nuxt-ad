@@ -19,7 +19,7 @@
         :title="`Ищу`"
         :color="`#FFF1C8`"
         :description="`Поиск исполнителя для выполения заказа`"
-        :link="linkToMy()"
+        :link="linkToNeed()"
     >
       <IconListServicesUslugiSeek/>
     </BArticlePromo>
@@ -27,7 +27,7 @@
         :title="`Предлагаю`"
         :color="`#FFE3BA`"
         :description="`Размещение услуг для поиска клиента`"
-        :link="linkToNeed()"
+        :link="linkToMy()"
     >
       <IconListServicesUslugiSuggest/>
     </BArticlePromo>

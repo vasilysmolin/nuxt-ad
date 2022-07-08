@@ -28,7 +28,7 @@
 
     <section class="mt-7 grid grid-cols-2 gap-6">
       <BArticle
-          v-for="category in firstChunkCategories"
+          v-for="category in secondChunkCategories"
           :category="category"
           :key="category.id"
       />
@@ -60,9 +60,8 @@ export default {
   async mounted() {
     if(this.categories.length === 0) {
       await this.$store.dispatch('categoriesAd/getItems', {from: 'catalog'}).then(() => {
-        const chunks = _.chunk(this.categories, this.categories.length / 2);
-        this.firstChunkCategories = chunks[0];
-        this.secondChunkCategories = chunks[1];
+        this.firstChunkCategories = _.take(this.categories, 6);
+        this.secondChunkCategories = _.slice(this.categories, 6);
       });
     }
   },
