@@ -1,6 +1,7 @@
 <template>
 
-  <section class="container flex flex-col justify-center items-center mt-[80px] pb-[100px]">
+  <section class="container flex flex-col justify-center items-center mt-[70px] pb-[80px]">
+    <div v-if="$device.isDesktop" class="">
     <h1 class="px-5 text-3xl text-center font-black">Вакансии и резюме<span class="mt-2 block font-normal text-gray-600 text-xl">Бесплатно создавайте вакансии и резюме без ограничений.</span></h1>
 
     <p @click="linkHub">
@@ -42,12 +43,31 @@
         </section>
       </article>
     </section>
+    </div>
+
+    <div v-if="$device.isMobile" class="px-[20px] w-full flex flex-col items-center">
+      <h1 class="text-center text-base font-black">Работа</h1>
+      <h2 class="text-center text-sm">Бесплатно создавайте вакансии или резюме без ограничений</h2>
+      <div @click="showGoSearch">
+        <SearchColorGlobalMobile/>
+      </div>
+      <ListServicesJobs/>
+      <p @click="linkHub" class="text-center">
+        <nuxt-link to="" class="btn btn-primary inline-block mt-7 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0">Создать аккаунт
+        </nuxt-link>
+      </p>
+      <WhatsTapigo/>
+    </div>
 
   </section>
 </template>
 
 <script>
+import WhatsTapigo from "../../components/WhatsTapigo";
+import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
+import ListServicesJobs from "../../components/ListServicesJobs";
 export default {
+  components: {SearchColorGlobalMobile, ListServicesJobs, WhatsTapigo},
   head: {
     title: "Бесплатно создавайте вакансии и резюме без ограничений на Tapigo.ru | Работа",
     meta: [
@@ -62,6 +82,9 @@ export default {
       } else {
         document.location.href = process.env.AUTH_URL;
       }
+    },
+    showGoSearch () {
+      this.$modal.show('GoSearch');
     },
   }
 }
