@@ -1,5 +1,6 @@
 <template>
-  <section class="container flex flex-col justify-center items-center mt-[80px] pb-[100px]">
+  <section class="container flex flex-col justify-center items-center mt-[70px] pb-[80px]">
+    <div v-if="$device.isDesktop" class="">
     <h1 class="px-5 text-3xl text-center font-black">Бесплатный каталог<span class="mt-2 block font-normal text-gray-600 text-xl">Продать или купить, найти работу или услуги, большая барахолка и многое другое.</span></h1>
 
     <p @click="linkHub">
@@ -15,6 +16,23 @@
           :depth="1"
       />
     </section>
+    </div>
+
+    <div v-if="$device.isMobile" class="px-[20px] w-full flex flex-col items-center">
+      <h1 class="text-center text-base font-black">Объявления</h1>
+      <h2 class="text-center text-sm">Продать или купить, найти работу или услуги, большая барахолка и многое другое</h2>
+      <div @click="showGoSearch">
+        <SearchColorGlobalMobile/>
+      </div>
+      <p @click="linkHub" class="text-center">
+        <nuxt-link to="" class="btn btn-primary inline-block mt-7 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0">Создать аккаунт
+        </nuxt-link>
+      </p>
+
+      <ListServicesCatalogCategories/>
+
+      <WhatsTapigo/>
+    </div>
 
   </section>
 </template>
@@ -23,6 +41,9 @@
 import * as _ from "lodash";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import ListCategories from "../../components/ListCategories";
+import WhatsTapigo from "../../components/WhatsTapigo";
+import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
+import ListServicesCatalogCategories from "../../components/ListServicesCatalogCategories";
 
 export default {
   head: {
@@ -32,7 +53,12 @@ export default {
     ]
   },
   mixins: [CategoriesMixin],
-  components:{ListCategories},
+  components:{
+    ListCategories,
+    WhatsTapigo,
+    SearchColorGlobalMobile,
+    ListServicesCatalogCategories
+  },
   async mounted() {
     if(this.categories.length === 0) {
       await this.$store.dispatch('categoriesAd/getItems', {from: 'catalog'});
@@ -57,6 +83,9 @@ export default {
       } else {
         document.location.href = process.env.AUTH_URL;
       }
+    },
+    showGoSearch () {
+      this.$modal.show('GoSearch');
     },
   }
 }
