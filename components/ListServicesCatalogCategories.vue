@@ -1,30 +1,11 @@
 <template>
   <section>
     <section class="mt-7 grid grid-cols-2 gap-6">
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Недвижимость</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Транспорт</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Животные</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Услуги</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Мода и стиль</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Детский мир</h2>
-      </article>
+      <BArticle
+          v-for="category in firstChunkCategories"
+          :category="category"
+          :key="category.id"
+      />
     </section>
     <!-- вставка для перелинка сервисов -->
     <section class="mt-7 grid grid-cols-2 gap-6">
@@ -46,29 +27,12 @@
     <!-- -->
 
     <section class="mt-7 grid grid-cols-2 gap-6">
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Бизнес</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Отдых и спорт</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Дом и сад</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Электроника</h2>
-      </article>
-      <article @click="" class="px-2 py-4 flex flex-col justify-start rounded-lg w-[140px] bg-[#FFFFFF]">
-        <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
-        <h2 class="mt-6 text-xs font-bold">Работа</h2>
-      </article>
+      <BArticle
+          v-for="category in firstChunkCategories"
+          :category="category"
+          :key="category.id"
+      />
     </section>
-
-
 
   </section>
 </template>
@@ -76,12 +40,41 @@
 <script>
 import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
 import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
+import BArticle from "~/components/blocks/BArticle";
+
+import * as _ from "lodash";
 
 export default {
   name: "ListServicesCatalogCategories",
   components: {
     IconListServicesIndexJobs,
-    IconListServicesIndexUslugi
+    IconListServicesIndexUslugi,
+    BArticle,
+  },
+  data() {
+    return {
+      firstChunkCategories: [],
+      secondChunkCategories: [],
+    }
+  },
+  async mounted() {
+    if(this.categories.length === 0) {
+      await this.$store.dispatch('categoriesAd/getItems', {from: 'catalog'}).then(() => {
+        const chunks = _.chunk(this.categories, this.categories.length / 2);
+        this.firstChunkCategories = chunks[0];
+        this.secondChunkCategories = chunks[1];
+      });
+    }
+  },
+  computed: {
+    categories: {
+      get() {
+        return _.cloneDeep(this.$store.getters['categoriesAd/categoriesAds']);
+      },
+      set(category) {
+        return category
+      }
+    },
   },
   methods: {
     jobs() {
