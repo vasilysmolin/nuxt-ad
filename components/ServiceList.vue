@@ -30,7 +30,8 @@
         skip: services.length,
         state: 'active',
         expand: 'profile.user',
-        alias: alias ,
+        alias: alias,
+        type: type,
         from: 'catalog'
       }
       )" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
@@ -49,18 +50,16 @@ import BHead from "~/components/blocks/BHead";
 export default {
   name: "CatalogList",
   components: {Breadcrumbs, BCategoriesNav, BAmount, BHead},
-  props: {
-    type: String,
-  },
   data() {
     return {
-      alias: null
+      alias: null,
+      type: null,
     }
   },
   async mounted() {
 
     this.alias = this.$route.fullPath.split('/').pop();
-
+    this.type = this.$route.query.type;
     if(this.$route.path !== '/feed') {
       await this.getItem({id: this.alias });
     } else {
@@ -72,6 +71,7 @@ export default {
       state: 'active',
       expand: 'profile.user',
       from: 'catalog',
+      type: this.type,
       alias: this.alias
     });
   },

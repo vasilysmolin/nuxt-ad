@@ -46,9 +46,10 @@ export const actions = {
 		expand = null,
 		alias = null,
 		name = null,
+		type = null,
 		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,alias,skipFromFull,skip,take,querySearch});
+		const getParams = params({user_id,type,state,expand,from,name,alias,skipFromFull,skip,take,querySearch});
 		const services = await this.$axios.$get(`services?${getParams}`);
 
 		if(state === 'new'){
@@ -66,9 +67,10 @@ export const actions = {
 		from = null,
 		expand = null,
 		alias = null,
+		type = null,
 		name = null
 	}) {
-		const getParams = params({user_id,state,expand,from,skip,name,alias});
+		const getParams = params({user_id,type,state,expand,from,skip,name,alias});
 		const services = await this.$axios.$get(`services?take=25${getParams}`);
 		if(state === 'new'){
 			commit('addServicesNew', services.services);
