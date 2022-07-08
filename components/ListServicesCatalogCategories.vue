@@ -58,12 +58,15 @@ export default {
     }
   },
   async mounted() {
-    // if(this.categories.length === 0) {
+    if(this.categories.length === 0) {
       await this.$store.dispatch('categoriesAd/getItems', {from: 'catalog'}).then(() => {
         this.firstChunkCategories = _.take(this.categories, 6);
         this.secondChunkCategories = _.slice(this.categories, 6);
       });
-    // }
+    } else {
+      this.firstChunkCategories = _.take(this.categories, 6);
+      this.secondChunkCategories = _.slice(this.categories, 6);
+    }
   },
   computed: {
     categories: {
