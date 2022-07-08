@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        background-color: #f6f6f6;
+        background-color: #F7F7FC;
         font-family: 'Roboto', sans-serif;
     }
     textarea::-webkit-input-placeholder {

@@ -34,7 +34,7 @@
     </div>
 
     <div v-if="$device.isMobile">
-      <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50 bg-white">
+      <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50 bg-[#F7F7FC]">
         <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
           <GlobalNav />
           <GlobalNavWin :toggleG="isHiddenG"/>
