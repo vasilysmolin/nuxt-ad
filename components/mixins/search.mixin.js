@@ -58,28 +58,28 @@ export default {
        debounceInput: _.debounce(function (e) {
            this.getItemsAds({
                querySearch: this.querySearch,
-               take: 3,
+               take: 6,
            }).then((res) => {
                this.checkEmptyItem();
            }).catch((error) => {
            });
            this.getItemsResumes({
                querySearch: this.querySearch,
-               take: 3,
+               take: 6,
            }).then((res) => {
                this.checkEmptyItem();
            }).catch((error) => {
            });
            this.getItemsVacancies({
                querySearch: this.querySearch,
-               take: 3,
+               take: 6,
            }).then((res) => {
                this.checkEmptyItem();
            }).catch((error) => {
            });
            this.getItemsServices({
                querySearch: this.querySearch,
-               take: 3,
+               take: 6,
            }).then((res) => {
                this.checkEmptyItem();
            }).catch((error) => {

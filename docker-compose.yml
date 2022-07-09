@@ -12,6 +12,7 @@ services:
         - OFFICE=${OFFICE}
         - CATALOG=${CATALOG}
         - USLUGI=${USLUGI}
+        - FOOD=${FOOD}
         - UID=${UID}
         - USER=${USER}
         - ENV=${APP_ENV}

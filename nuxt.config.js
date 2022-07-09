@@ -39,6 +39,7 @@ export default {
             OFFICE_URL: 'http://' + process.env.OFFICE + ':' + process.env.NUXT_PORT ,
             CATALOG_URL: 'http://' + process.env.CATALOG + ':' + process.env.NUXT_PORT ,
             USLUGI_URL: 'http://' + process.env.USLUGI + ':' + process.env.NUXT_PORT ,
+            FOOD_URL: 'http://' + process.env.FOOD + ':' + process.env.NUXT_PORT ,
         }),
         ...(!isDev && {
             AUTH_URL: 'https://' + process.env.DOMAIN_HOME + '/auth/sign-in',
@@ -48,6 +49,7 @@ export default {
             OFFICE_URL: 'https://' + process.env.OFFICE,
             CATALOG_URL: 'https://' + process.env.CATALOG,
             USLUGI_URL: 'https://' + process.env.USLUGI,
+            FOOD_URL: 'https://' + process.env.FOOD,
         }),
         YANDEX_MAP: process.env.YANDEX_MAP
     },
@@ -85,7 +87,7 @@ export default {
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         [ "k-domains", {
-            subDomains: ['jobs','hub', 'office', 'catalog', 'uslugi'], // List of directories to hold te pages for your subdomains
+            subDomains: ['jobs','hub', 'office', 'catalog', 'uslugi', 'food'], // List of directories to hold te pages for your subdomains
             rootDomain: "root-domain" //  directory to hold the pages for root domain
         }
         ],

@@ -7,6 +7,7 @@ HUBCONF=/etc/nginx/conf.d/hub.conf;
 OFFICECONF=/etc/nginx/conf.d/office.conf;
 CATALOGCONF=/etc/nginx/conf.d/catalog.conf;
 USLUGICONF=/etc/nginx/conf.d/uslugi.conf;
+FOODCONF=/etc/nginx/conf.d/food.conf;
 DEFAULTCONF=/etc/nginx/conf.d/default.conf;
 
 if test -f "$HOMECONF"; then
@@ -55,6 +56,14 @@ if test -f "$USLUGICONF"; then
     sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$USLUGICONF";
     sed -i "s#%ENV%#${ENV}#g" "$USLUGICONF";
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$USLUGICONF";
+fi
+
+if test -f "$FOODCONF"; then
+    sed -i "s#%FOOD%#${FOOD}#g" "$FOODCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$FOODCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$FOODCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$FOODCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$FOODCONF";
 fi
 
 if test -f "$DEFAULTCONF"; then
