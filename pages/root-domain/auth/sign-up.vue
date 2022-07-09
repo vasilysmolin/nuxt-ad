@@ -13,7 +13,7 @@
         </div>
         <div class="flex flex-col items-center w-full">
           <div class="form-floating mb-5 w-full sm:w-[27rem]">
-            <input v-model="email" type="email" class="form-control
+            <input v-on:keyup.enter="submitted" v-model="email" type="email" class="form-control
     block
     w-full
     px-3
@@ -35,7 +35,7 @@
             </span>
           </div>
           <div class="form-floating mb-5 w-full sm:w-[27rem]">
-            <input type="password" v-model="password" class="form-control
+            <input v-on:keyup.enter="submitted" type="password" v-model="password" class="form-control
     block
     w-full
     px-3

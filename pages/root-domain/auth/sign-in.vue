@@ -5,7 +5,7 @@
       <form class=" w-[95%]">
         <div class="flex flex-col items-center w-full">
           <div class="form-floating mb-4 w-full sm:w-[27rem]">
-            <input v-model="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control
+            <input v-on:keyup.enter="submitted" v-model="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control
         block
         w-full
         px-3
@@ -28,7 +28,7 @@
           </div>
 
           <div class="form-floating mb-5 w-full sm:w-[27rem]">
-            <input type="password" v-model="password" class="form-control
+            <input v-on:keyup.enter="submitted" type="password" v-model="password" class="form-control
     block
     w-full
     px-3
