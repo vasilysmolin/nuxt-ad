@@ -14,23 +14,10 @@
       </p>
     </section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg">
-        <span class="pr-2 font-bold text-sm text-gray-500">Контакт:</span>{{ getUsername(ad)}}
-      </p>
-      <div class="flex w-[75%] mt-5">
-        <p v-if="$auth.loggedIn" class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg">
-        <span  class="pr-2 font-bold text-sm text-gray-500">
-          Телефон:</span>{{ getUserPhone(ad)}}
-        </p>
-
-        <div type="button" v-else class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer">
-          <button  @click.prevent="showModalAuth">Посмотреть телефон</button>
-        </div>
-
-      </div>
-    </section>
-    <AuthModal/>
+    <BContact
+        :name="getUserName(ad)"
+        :phone="getUserPhone(ad)"
+    />
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Описание</h2>
@@ -105,13 +92,13 @@ import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
-import AuthModal from "../../../../components/AuthModal";
+import BContact from "~/components/blocks/BContact";
 
 export default {
   name: "CObject",
   layout: 'default',
   mixins: [CategoriesMixin],
-  components: {yandexMap, ymapMarker, AuthModal},
+  components: {yandexMap, ymapMarker, BContact},
   async asyncData({store, route}) {
     await store.dispatch('ads/getItem', { id: route.params.id, querySearch: route.query?.querySearch,  expand: 'profile.user,profile.person'});
     await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });
@@ -137,7 +124,7 @@ export default {
     }
   },
   methods: {
-    getUsername(catalog) {
+    getUserName(catalog) {
       if(catalog?.profile?.isPerson === true) {
         return catalog?.profile?.person?.name;
       }

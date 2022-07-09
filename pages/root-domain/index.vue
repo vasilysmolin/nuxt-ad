@@ -113,6 +113,9 @@ import WhatsTapigo from "../../components/WhatsTapigo";
 export default {
   components: {WhatsTapigo, ListServicesIndex, SearchColorGlobalMobile},
   mixins: [SearchMixin],
+  // mounted() {
+  //   this.querySearch = null;
+  // },
   methods:
       {
       linkHub() {
