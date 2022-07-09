@@ -218,7 +218,13 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$put(`services/${this.$route.params.id}`, this.data).then(() => {
+      const obj = this.data;
+      Object.keys(obj).forEach(key => {
+        if (obj[key] === null) {
+          delete obj[key];
+        }
+      });
+      this.$axios.$put(`services/${this.$route.params.id}`, obj).then(() => {
           this.$router.push({name: 'uslugi'});
         console.log('успех')
       }).catch((error) => {
