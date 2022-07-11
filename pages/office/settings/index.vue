@@ -4,6 +4,12 @@
       <NuxtLink to="settings/colors">Цвета</NuxtLink>
     </li>
     <li class="pl-4 sm:pl-6">
+      <NuxtLink to="/">Логи</NuxtLink>
+    </li>
+    <li class="pl-4 sm:pl-6">
+      <NuxtLink to="settings/newsletters">Подписка на рассылки</NuxtLink>
+    </li>
+    <li class="pl-4 sm:pl-6">
       <NuxtLink to="settings/categories/ads">Категории объявлений</NuxtLink>
     </li>
   </section>

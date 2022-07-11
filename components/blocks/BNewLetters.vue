@@ -75,7 +75,7 @@ export default {
         this.$v.$touch();
         return;
       }
-      this.$axios.$post(`newletters`, this.data).then(() => {
+      this.$axios.$post(`newsletters`, this.data).then(() => {
         // this.$router.push({name: 'uslugi'});
         console.log('успех');
         this.success = true;
