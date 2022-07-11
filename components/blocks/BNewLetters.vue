@@ -47,6 +47,7 @@ export default {
       success: false,
       data: {
         email: null,
+        refer: 'catalog', // job catalog service Это значение надо будет пропсом прокидывать
       }
     }
   },
