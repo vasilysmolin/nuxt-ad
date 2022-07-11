@@ -97,6 +97,7 @@
         </nuxt-link>
       </p>
       <WhatsTapigo/>
+      <BNewLetters/>
     </div>
 
   </section>
@@ -109,9 +110,10 @@ import SearchMixin from "~/components/mixins/search.mixin"
 import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
 import ListServicesIndex from "../../components/ListServicesIndex";
 import WhatsTapigo from "../../components/WhatsTapigo";
+import BNewLetters from "~/components/blocks/BNewLetters";
 
 export default {
-  components: {WhatsTapigo, ListServicesIndex, SearchColorGlobalMobile},
+  components: {WhatsTapigo, ListServicesIndex, SearchColorGlobalMobile,BNewLetters},
   mixins: [SearchMixin],
   // mounted() {
   //   this.querySearch = null;

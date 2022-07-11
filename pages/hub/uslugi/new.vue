@@ -43,11 +43,12 @@
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <input type="text"
-                     class="form-control forms-input" id="phone"
-                     placeholder="Телефон"
-                     v-model="data.phone">
-              <label for="phone" class="text-[#6E7191]">Телефон</label>
+              <the-mask :mask="['+7 (###) ###-##-##']" v-model="data.phone"
+                        id="floatingPassword"
+                        type="text"
+                        class="form-control forms-input"
+                        placeholder="Ваш телефон" />
+              <label class="text-[#6E7191]">Tелефон</label>
               <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
             {{ phoneErrors }}
             </span>
