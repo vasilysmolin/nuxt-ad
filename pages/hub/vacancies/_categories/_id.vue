@@ -75,6 +75,17 @@
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
+                  <textarea
+                      class="form-control forms-textarea"
+                      rows="5"
+                      name="additionally"
+                      id="additionally"
+                      placeholder="Дополнительные условия"
+                      v-model="data.additionally"
+                  >{{ data.additionally }}</textarea>
+            </div>
+
+            <div class="mb-4 w-full sm:w-[27rem]">
               <label for="name" class="pl-4 text-gray-500">Опыт работы</label>
               <select class="form-select form-select-lg mt-2 forms-select"
                       v-model="data.experience">
