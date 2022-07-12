@@ -9,6 +9,7 @@
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ ad.name }}</h1>
+      <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad)}}</p>
       <p class="mt-2 text-xl sm:text-2xl font-bold">{{ ad.price }}
         <span class="pl-2 text-sm">руб.</span>
       </p>
@@ -129,6 +130,18 @@ export default {
         return catalog?.profile?.person?.name;
       }
       return catalog?.profile?.user?.name;
+    },
+    getAddress(ad) {
+      let arrayAddress = [];
+      if(ad.street && ad.house) {
+        arrayAddress = [ad.street, ad.house];
+      } else if(ad.house) {
+        arrayAddress = [ad.street];
+      } else {
+        arrayAddress = [];
+      }
+
+      return _.join(arrayAddress);
     },
     checkCity(){
       return this.user?.city;
