@@ -1,34 +1,66 @@
 <template>
-  <section class="mt-7 grid grid-cols-2 gap-6">
-    <article @click="catalog" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFF4D2]">
-      <IconListServicesIndexCatalog/>
-      <div>
-        <h2 class="text-sm font-black">Объявления</h2>
-        <h3 class="mt-1 text-[11px] leading-snug">Продать, купить и многое другое.</h3>
-      </div>
-    </article>
-    <article @click="jobs" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFE2E0]">
-      <IconListServicesIndexJobs/>
-      <div>
-        <h2 class="text-sm font-black">Работа</h2>
-        <h3 class="mt-1 text-[11px] leading-snug">Бесплатно создавайте вакансии и резюме.</h3>
-      </div>
-    </article>
-    <article @click="uslugi" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
-      <IconListServicesIndexUslugi/>
-      <div>
-        <h2 class="text-sm font-black">Услуги</h2>
-        <h3 class="mt-1 text-[11px] leading-snug">Найти исполнителя или создать услугу.</h3>
-      </div>
-    </article>
-    <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
-      <IconListServicesIndexFood/>
-      <div>
-        <h2 class="text-sm font-black">Еда</h2>
-        <h3 class="mt-1 text-[11px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
-      </div>
-    </article>
+  <section>
+    <div v-if="$device.isDesktop" class="mt-12 flex flex-row w-full justify-between items-center">
+      <article @click="catalog" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFF4D2] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
+        <IconListServicesIndexCatalog/>
+        <div>
+          <h2 class="text-base font-black">Объявления</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Продать, купить и многое другое.</h3>
+        </div>
+      </article>
+      <article @click="jobs" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFE2E0] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFC7C3]">
+        <IconListServicesIndexJobs/>
+        <div>
+          <h2 class="text-base font-black">Работа</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Бесплатно создавайте вакансии и резюме.</h3>
+        </div>
+      </article>
+      <article @click="uslugi" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFEBCD] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD598]">
+        <IconListServicesIndexUslugi/>
+        <div>
+          <h2 class="text-base font-black">Услуги</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Найти исполнителя или создать услугу.</h3>
+        </div>
+      </article>
+      <article class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFFDCB]">
+        <IconListServicesIndexFood/>
+        <div>
+          <h2 class="text-base font-black">Еда</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
+        </div>
+      </article>
+    </div>
 
+    <div v-if="$device.isMobile" class="mt-7 grid grid-cols-2 gap-6">
+      <article @click="catalog" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFF4D2]">
+        <IconListServicesIndexCatalog/>
+        <div>
+          <h2 class="text-sm font-black">Объявления</h2>
+          <h3 class="mt-1 text-[11px] leading-snug">Продать, купить и многое другое.</h3>
+        </div>
+      </article>
+      <article @click="jobs" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFE2E0]">
+        <IconListServicesIndexJobs/>
+        <div>
+          <h2 class="text-sm font-black">Работа</h2>
+          <h3 class="mt-1 text-[11px] leading-snug">Бесплатно создавайте вакансии и резюме.</h3>
+        </div>
+      </article>
+      <article @click="uslugi" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
+        <IconListServicesIndexUslugi/>
+        <div>
+          <h2 class="text-sm font-black">Услуги</h2>
+          <h3 class="mt-1 text-[11px] leading-snug">Найти исполнителя или создать услугу.</h3>
+        </div>
+      </article>
+      <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
+        <IconListServicesIndexFood/>
+        <div>
+          <h2 class="text-sm font-black">Еда</h2>
+          <h3 class="mt-1 text-[11px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
+        </div>
+      </article>
+    </div>
   </section>
 </template>
 

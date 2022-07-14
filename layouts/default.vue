@@ -1,7 +1,7 @@
 <template>
   <main>
     <div v-if="$device.isDesktop">
-    <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50">
+    <header class="fixed flex justify-between items-center top-0 w-full px-5 py-3 z-50 bg-[#F7F7FC]">
       <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
         <GlobalNav />
         <GlobalNavWin :toggleG="isHiddenG"/>
@@ -17,20 +17,12 @@
     <GoSearch/>
     <GoFilter/>
     <Nuxt/>
-    <footer class="fixed flex justify-between items-center bottom-0 w-full px-5 py-1">
-      <div class="flex justify-center items-center cursor-pointer" @click="showGoSearch">
-        <GlobalSearch/>
-        <span class="pl-2 font-bold">Поиск</span>
-      </div>
-      <button @click="linkHub" type="button"
-              class="btn btn-primary inline-block mt-1 px-7 py-4 bg-green-700 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-green-600 focus:bg-green-600 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
-        Разместить
-      </button>
-      <div class="flex justify-center items-center cursor-pointer"  @click="showFilter">
-        <GlobalConfigure/>
-        <span class="pl-2 font-bold">Фильтр</span>
-      </div>
-    </footer>
+      <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
+        <button @click="linkHub" type="button"
+                class="btn btn-primary inline-block mt-1 px-9 py-3 bg-[#00A05D] text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0  transition duration-150 ease-in-out hover:bg-[#049055]">
+          Разместить
+        </button>
+      </footer>
     </div>
 
     <div v-if="$device.isMobile">
@@ -47,7 +39,7 @@
       </header>
       <GoSearch/>
       <Nuxt/>
-      <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1">
+      <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
         <button @click="linkHub" type="button"
                 class="btn btn-primary inline-block mt-1 px-9 py-3 bg-[#00A05D] text-white font-bold text-sm tracking-wider leading-snug rounded  focus:outline-none focus:ring-0  transition duration-150 ease-in-out">
           Разместить

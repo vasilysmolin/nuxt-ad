@@ -1,18 +1,40 @@
 <template>
-  <div class="mt-7 w-[90%] border-2 border-solid border-[#D9DBE9] rounded-lg">
-    <label for="state" class="px-2 flex justify-between items-center">
-      <div class="button text-sm py-4">Что такое Тапиго</div>
-      <div class="rotate-180">
-        <ArrowClick/>
+  <section>
+    <div v-if="$device.isDesktop">
+      <span class="block mx-auto my-12 w-[10px] h-[10px] rounded-full bg-gray-300"></span>
+      <div class="w-[100%] border border-solid border-[#D9DBE9] rounded-lg">
+        <label for="state" class="px-4 flex justify-between items-center">
+          <div class="button text-base py-4">Что такое Тапиго</div>
+          <div class="rotate-180">
+            <ArrowClick/>
+          </div>
+        </label>
+        <input type="checkbox" id="state" hidden>
+        <div class="content">
+          <div class="inner">
+            <p class="text-[15px] leading-normal">Тапиго — это платформа, которая позволяет вам из одного места решать разные задачи используя все преимущества единого аккаунта. Для людей и для компаний.</p>
+          </div>
+        </div>
       </div>
-    </label>
-    <input type="checkbox" id="state" hidden>
-    <div class="content">
-      <div class="inner">
-        <p class="text-sm leading-snug">Тапиго — это платформа, которая позволяет вам из одного места решать разные задачи используя все преимущества единого аккаунта. Для людей и для компаний.</p>
+      <span class="block mx-auto mt-12 w-[10px] h-[10px] rounded-full bg-gray-300"></span>
+    </div>
+
+
+    <div v-if="$device.isMobile" class="mt-7 w-[100%] border-2 border-solid border-[#D9DBE9] rounded-lg">
+      <label for="state" class="px-2 flex justify-between items-center">
+        <div class="button text-sm py-4">Что такое Тапиго</div>
+        <div class="rotate-180">
+          <ArrowClick/>
+        </div>
+      </label>
+      <input type="checkbox" id="state" hidden>
+      <div class="content">
+        <div class="inner">
+          <p class="text-sm leading-snug">Тапиго — это платформа, которая позволяет вам из одного места решать разные задачи используя все преимущества единого аккаунта. Для людей и для компаний.</p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
