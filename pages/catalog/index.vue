@@ -25,10 +25,9 @@
         <nuxt-link to="" class="btn btn-primary inline-block mt-7 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0">Создать аккаунт
         </nuxt-link>
       </p>
-
       <ListServicesCatalogCategories/>
-
       <WhatsTapigo/>
+      <BNewLetters/>
     </div>
 
   </section>

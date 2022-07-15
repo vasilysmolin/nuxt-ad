@@ -13,7 +13,6 @@
       </p>
       <WhatsTapigo/>
       <BNewLetters/>
-
     </div>
 
     <div v-if="$device.isMobile" class="container mt-[70px] px-[20px] pb-[80px] w-full flex flex-col items-center">
@@ -28,6 +27,7 @@
         </nuxt-link>
       </p>
       <WhatsTapigo/>
+      <BNewLetters/>
     </div>
 
   </section>
