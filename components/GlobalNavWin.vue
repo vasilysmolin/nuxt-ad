@@ -1,18 +1,46 @@
 <template>
-  <div v-show="toggleG" class="absolute top-4 left-4 w-[230px] pl-12 py-2 bg-white rounded-lg shadow-lg z-60">
-    <ul class="pb-5 w-full text-sm font-black text-[18px] list-disc text-gray-300">
-      <li class="pt-6" @click="jobs"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600 text-black">Работа</nuxt-link></li>
-      <li class="pt-6" @click="uslugi"><nuxt-link to="" class="flex justify-start items-center hover:text-blue-600 text-black" >Услуги</nuxt-link></li>
-      <li class="pt-6" @click="catalog"><nuxt-link to="#" class="flex justify-start items-center hover:text-blue-600 text-black">Каталог</nuxt-link></li>
-      <li class="pt-6">Еда</li>
-      <li class="pt-6">Журнал</li>
+  <div v-show="toggleG" class="absolute top-4 left-4 w-[230px] py-4 px-3 bg-white rounded-lg shadow-lg z-60">
+    <ul class="px-2.5 w-full font-black text-base text-gray-300">
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-gray-200 rounded cursor-pointer" @click="catalog">
+        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+          <IconListServicesIndexCatalog/>
+        </div>
+        <p class="pl-2.5 flex justify-start items-center text-black">Каталог</p>
+      </li>
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-gray-200 rounded cursor-pointer" @click="jobs">
+        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+          <IconListServicesIndexJobs/>
+        </div>
+        <p class="pl-2.5 flex justify-start items-center text-black">Работа</p>
+      </li>
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-gray-200 rounded cursor-pointer" @click="uslugi">
+        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+          <IconListServicesIndexUslugi/>
+        </div>
+        <p class="pl-2.5 flex justify-start items-center text-black">Услуги</p>
+      </li>
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-white rounded cursor-default" @click="">
+        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+          <IconListServicesIndexFood/>
+        </div>
+        <p class="pl-2.5 flex justify-start items-center text-black">Еда</p>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import IconListServicesIndexCatalog from "./icons/IconListServicesIndexCatalog";
+import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
+import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
+import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
+
 export default {
   name: "GlobalNavWin",
+  components: {
+    IconListServicesIndexFood,
+    IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog
+  },
   props: {
     toggleG: {
       type: Boolean,
