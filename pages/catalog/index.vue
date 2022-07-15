@@ -1,24 +1,21 @@
 <template>
-  <section class="container flex flex-col justify-center items-center mt-[70px] pb-[80px]">
-    <div v-if="$device.isDesktop" class="">
-    <h1 class="px-5 text-3xl text-center font-black">Бесплатный каталог<span class="mt-2 block font-normal text-gray-600 text-xl">Продать или купить, найти работу или услуги, большая барахолка и многое другое.</span></h1>
-
-    <p @click="linkHub">
-      <nuxt-link to="" class="btn btn-primary inline-block mt-8 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Создать аккаунт
-      </nuxt-link>
-    </p>
-
-    <section class="masonry-2-col gap-6 space-y-6 mt-10 w-full">
-      <ListCategories
-          v-for="category in categories"
-          :category="category"
-          :key="category.id"
-          :depth="1"
-      />
-    </section>
+  <section>
+    <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
+      <h1 class="px-12 text-xl text-center font-black">Объявления</h1>
+      <h2 class="mt-5 px-12 text-base text-center font-regular">Продать или купить, найти работу или услуги, большая барахолка и многое другое</h2>
+      <p @click="linkHub" class="text-center">
+        <nuxt-link to=""
+                   class="btn btn-primary inline-block mt-12 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
+          Создать аккаунт
+        </nuxt-link>
+      </p>
+      <GoSearchDesktop/>
+      <ListServicesCatalogCategories/>
+      <WhatsTapigo/>
+      <BNewLetters/>
     </div>
 
-    <div v-if="$device.isMobile" class="px-[20px] w-full flex flex-col items-center">
+    <div v-if="$device.isMobile" class="container mt-[70px] px-[20px] pb-[80px] w-full flex flex-col items-center">
       <h1 class="text-center text-base font-black">Объявления</h1>
       <h2 class="text-center text-sm">Продать или купить, найти работу или услуги, большая барахолка и многое другое</h2>
       <div @click="showGoSearch">
@@ -44,6 +41,8 @@ import ListCategories from "../../components/ListCategories";
 import WhatsTapigo from "../../components/WhatsTapigo";
 import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
 import ListServicesCatalogCategories from "../../components/ListServicesCatalogCategories";
+import GoSearchDesktop from "../../components/GoSearchDesktop";
+import BNewLetters from "../../components/blocks/BNewLetters";
 
 export default {
   head: {
@@ -57,7 +56,9 @@ export default {
     ListCategories,
     WhatsTapigo,
     SearchColorGlobalMobile,
-    ListServicesCatalogCategories
+    ListServicesCatalogCategories,
+    BNewLetters,
+    GoSearchDesktop
   },
   async mounted() {
     if(this.categories.length === 0) {
