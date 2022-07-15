@@ -1,29 +1,22 @@
 <template>
-  <section class="container flex flex-col justify-center items-center mt-[70px] pb-[80px]">
-    <div v-if="$device.isDesktop" class="">
-    <article class="flex flex-col items-start px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="font-black text-lg leading-5 sm:text-2xl">Поиск исполнителя</h2>
-      <p class="mt-3 text-sm sm:text-base text-gray-700">Забить гвоздь, помыть и убрать помещение, отремонтировать бытовую технику, починить электронику, муж на час и многое другое.</p>
-      <p class="mt-3 font-bold"><nuxt-link to="/feed" class="text-blue-600">Найти исполнителя</nuxt-link></p>
-    </article>
-
-    <section class="masonry-2-col gap-6 space-y-6 mt-10 w-full">
-      <ListCategories
-          v-for="category in categories"
-          :category="category"
-          :key="category.id"
-          :depth="1"
-      />
-    </section>
-
-
-    <p @click="signup">
-    <nuxt-link to="" class="btn btn-primary inline-block mt-6 px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Создать аккаунт
-    </nuxt-link>
-    </p>
+  <section>
+    <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
+      <h1 class="px-12 text-xl text-center font-black">Услуги</h1>
+      <h2 class="mt-5 px-12 text-base text-center font-regular">Забить гвоздь, помыть и убрать помещение, отремонтировать бытовую технику, починить электронику, муж на час и многое другое</h2>
+      <ListServicesUslugi/>
+      <GoSearchDesktop/>
+      <p @click="linkHub" class="text-center">
+        <nuxt-link to=""
+                   class="btn btn-primary inline-block mt-12 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
+          Создать аккаунт
+        </nuxt-link>
+      </p>
+      <ListServicesUslugiCategories/>
+      <WhatsTapigo/>
+      <BNewLetters/>
     </div>
 
-    <div v-if="$device.isMobile" class="px-[20px] w-full flex flex-col items-center">
+    <div v-if="$device.isMobile" class="container mt-[70px] px-[20px] pb-[80px] w-full flex flex-col items-center">
       <h1 class="text-center text-base font-black">Услуги</h1>
       <h2 class="text-center text-sm">Забить гвоздь, помыть и убрать помещение, отремонтировать бытовую технику, починить электронику, муж на час и многое другое</h2>
       <div @click="showGoSearch">
@@ -45,21 +38,23 @@
 
 <script>
 import CategoriesMixin from '~/components/mixins/categories.mixin';
-import ListCategories from "../../components/ListCategories";
 import * as _ from "lodash";
 import WhatsTapigo from "../../components/WhatsTapigo";
 import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
 import ListServicesUslugi from "../../components/ListServicesUslugi";
 import ListServicesUslugiCategories from "../../components/ListServicesUslugiCategories";
+import GoSearchDesktop from "../../components/GoSearchDesktop";
+import BNewLetters from "../../components/blocks/BNewLetters";
 
 export default {
   mixins: [CategoriesMixin],
   components:{
     ListServicesUslugi,
-    ListCategories,
     SearchColorGlobalMobile,
     WhatsTapigo,
-    ListServicesUslugiCategories
+    ListServicesUslugiCategories,
+    BNewLetters,
+    GoSearchDesktop
   },
   async mounted() {
     if(this.categories.length === 0) {
@@ -77,7 +72,7 @@ export default {
     },
   },
   head: {
-    title: "Бесплатно создавайте вакансии и резюме без ограничений на Tapigo.ru | Работа",
+    title: "Найдите исполнителя для выполнения задачи или разместите свои услуги на Tapigo.ru | Услуги",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]

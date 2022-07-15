@@ -1,14 +1,30 @@
 <template>
   <section>
-    <section class="mt-7 grid grid-cols-2 gap-6">
-      <BArticle
-          v-for="category in firstChunkCategories"
-          :category="category"
-          :key="category.id"
-      />
-    </section>
-    <div v-if="isShow" @click="addCategories()" class="flex justify-center items-center mt-7 w-full rotate-180">
-      <ArrowClick/>
+    <div v-if="$device.isDesktop">
+      <section class="mt-12 grid grid-cols-4 gap-6">
+        <BArticle
+            v-for="category in firstChunkCategories"
+            :category="category"
+            :key="category.id"
+        />
+      </section>
+      <div v-if="isShow" @click="addCategories()" class="flex justify-center items-center mt-7 w-full rotate-180">
+        <ArrowClick/>
+      </div>
+    </div>
+
+
+    <div v-if="$device.isMobile">
+      <section class="mt-7 grid grid-cols-2 gap-6">
+        <BArticle
+            v-for="category in firstChunkCategories"
+            :category="category"
+            :key="category.id"
+        />
+      </section>
+      <div v-if="isShow" @click="addCategories()" class="flex justify-center items-center mt-7 w-full rotate-180">
+        <ArrowClick/>
+      </div>
     </div>
 
   </section>
@@ -33,12 +49,12 @@ export default {
   async mounted() {
     if(this.categories.length === 0) {
       await this.$store.dispatch('categoriesService/getItems', {from: 'catalog'}).then(() => {
-        this.firstChunkCategories = _.take(this.categories, 6);
-        this.secondChunkCategories = _.slice(this.categories, 6);
+        this.firstChunkCategories = _.take(this.categories, 8);
+        this.secondChunkCategories = _.slice(this.categories, 8);
       });
     } else {
-      this.firstChunkCategories = _.take(this.categories, 6);
-      this.secondChunkCategories = _.slice(this.categories, 6);
+      this.firstChunkCategories = _.take(this.categories, 8);
+      this.secondChunkCategories = _.slice(this.categories, 8);
     };
   },
   methods: {
