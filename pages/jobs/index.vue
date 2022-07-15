@@ -2,7 +2,7 @@
   <section>
     <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
       <h1 class="px-12 text-xl text-center font-black">Работа</h1>
-      <h2 class="mt-5 px-12 text-base text-center font-regular">Бесплатно создавайте вакансии или резюме без ограничений</h2>
+      <h2 class="mt-5 px-12 text-base text-center font-medium">Бесплатно создавайте вакансии или резюме без ограничений</h2>
       <ListServicesJobs/>
       <GoSearchDesktop/>
       <p @click="linkHub" class="text-center">

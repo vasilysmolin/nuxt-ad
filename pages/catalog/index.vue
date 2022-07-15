@@ -2,14 +2,14 @@
   <section>
     <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
       <h1 class="px-12 text-xl text-center font-black">Объявления</h1>
-      <h2 class="mt-5 px-12 text-base text-center font-regular">Продать или купить, найти работу или услуги, большая барахолка и многое другое</h2>
+      <h2 class="mt-5 px-12 text-base text-center font-medium">Продать или купить, найти работу или услуги, большая барахолка и многое другое</h2>
+      <GoSearchDesktop/>
       <p @click="linkHub" class="text-center">
         <nuxt-link to=""
                    class="btn btn-primary inline-block mt-12 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
           Создать аккаунт
         </nuxt-link>
       </p>
-      <GoSearchDesktop/>
       <ListServicesCatalogCategories/>
       <WhatsTapigo/>
       <BNewLetters/>
