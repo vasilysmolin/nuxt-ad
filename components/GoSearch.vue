@@ -159,16 +159,16 @@
              </ul>
    -->
           </article>
-          <footer class="absolute bottom-0 left-0 right-0 p-2.5 flex justify-center items-center bg-gray-200 w-full z-50">
+          <footer class="absolute bottom-0 left-0 right-0 p-2.5 flex justify-between items-center bg-gray-200 w-full z-50">
             <p @click="linkHub" class="text-center">
               <nuxt-link to=""
                          class="btn btn-primary inline-block px-2.5 py-2.5 bg-blue-900 text-white font-bold text-xs tracking-wider leading-snug rounded focus:outline-none focus:ring-0">
                 Создать аккаунт
               </nuxt-link>
             </p>
-            <!--
-            <IconClose/>
-            -->
+            <div @click.prevent="hide">
+              <IconClose/>
+            </div>
           </footer>
         </section>
       </modal>
@@ -193,6 +193,9 @@ export default {
       } else {
         document.location.href = process.env.AUTH_URL;
       }
+    },
+    hide() {
+      this.$modal.hide('GoSearch');
     },
   }
 }

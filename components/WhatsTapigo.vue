@@ -20,7 +20,7 @@
     </div>
 
 
-    <div v-if="$device.isMobile" class="mt-7 w-[100%] border-2 border-solid border-[#D9DBE9] rounded-lg">
+    <div v-if="$device.isMobile" class="mt-7 w-[100%] border border-solid border-[#D9DBE9] rounded-lg">
       <label for="state" class="px-2 flex justify-between items-center">
         <div class="button text-sm py-4">Что такое Тапиго</div>
         <div class="rotate-180">
