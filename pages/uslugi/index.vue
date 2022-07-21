@@ -54,7 +54,7 @@
 
       <!-- вставка для перелинка сервисов -->
       <div class="mt-7">
-        <h3 class="mb-5 text-center font-medium text-sm font-bold">Другие сервисы</h3>
+        <h3 class="mb-5 text-center text-sm font-bold">Другие сервисы</h3>
         <section class="grid grid-cols-2 gap-6">
           <article @click="jobs"
                    class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
