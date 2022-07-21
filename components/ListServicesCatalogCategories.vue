@@ -15,24 +15,29 @@
           Лента объявлений
         </nuxt-link>
       </p>
+
       <!-- вставка для перелинка сервисов -->
-      <div class="mt-12 flex flex-row justify-between items-center w-full">
-        <article @click="jobs" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFF2CB] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
-          <IconListServicesIndexJobs/>
-          <div>
-            <h2 class="mt-4 text-base font-black">Работа</h2>
-            <h3 class="mt-1 text-[12px] leading-normal">Бесплатно создавайте вакансии и резюме.</h3>
-          </div>
-        </article>
-        <article @click="uslugi" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFECD1] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD9A1]">
-          <IconListServicesIndexUslugi/>
-          <div>
-            <h2 class="mt-4 text-base font-black">Услуги</h2>
-            <h3 class="mt-1 text-[12px] leading-normal">Найти исполнителя или создать услугу.</h3>
-          </div>
-        </article>
+      <div class="mt-12">
+        <h3 class="mb-7 text-center font-medium">Другие сервисы</h3>
+        <div class="flex flex-row justify-between items-center w-full">
+          <article @click="jobs" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFF2CB] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
+            <IconListServicesIndexJobs/>
+            <div>
+              <h2 class="mt-4 text-base font-black">Работа</h2>
+              <h3 class="mt-1 text-[12px] leading-normal">Бесплатно создавайте вакансии и резюме.</h3>
+            </div>
+          </article>
+          <article @click="uslugi" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFECD1] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD9A1]">
+            <IconListServicesIndexUslugi/>
+            <div>
+              <h2 class="mt-4 text-base font-black">Услуги</h2>
+              <h3 class="mt-1 text-[12px] leading-normal">Найти исполнителя или создать услугу.</h3>
+            </div>
+          </article>
+        </div>
       </div>
       <!-- -->
+
     </div>
 
 
