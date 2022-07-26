@@ -1,6 +1,6 @@
 <template>
   <div class="mt-7 mx-auto py-4 px-2.5 w-full h-auto grid grid-cols-[1fr_24px] place-content-start place-items-center rounded bg-white border-solid border-[#EEEEEE] border">
-    <span class="pr-10 text-xs">Найти объявление, работу или услугу</span>
+    <span class="pr-10 text-[13px]">Найти объявление, работу или услугу</span>
     <GlobalSearch/>
   </div>
 </template>
