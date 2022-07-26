@@ -20,7 +20,7 @@
             <IconListServicesIndexJobs/>
             <div>
               <h2 class="mt-4 text-base font-black">Работа</h2>
-              <h3 class="mt-1 text-[13px] leading-normal">Бесплатно создавайте вакансии и резюме.</h3>
+              <h3 class="mt-1 text-[13px] leading-normal">Быстрый поиск работы или соискателя.</h3>
             </div>
           </article>
           <article @click="uslugi" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFECD1] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD9A1]">
@@ -59,7 +59,7 @@
             <IconListServicesIndexJobs/>
             <div>
               <h2 class="text-sm font-black">Работа</h2>
-              <h3 class="mt-1 text-[11px] leading-snug">Бесплатно создавайте вакансии и резюме.</h3>
+              <h3 class="mt-1 text-[11px] leading-snug">Быстрый поиск работы или соискателя.</h3>
             </div>
           </article>
           <article @click="catalog"

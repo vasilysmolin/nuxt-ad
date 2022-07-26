@@ -5,32 +5,32 @@
         <IconListServicesJobsVacancies/>
         <div>
           <h2 class="mt-4 text-xl font-black">Смотреть вакансии</h2>
-          <h3 class="mt-1 text-[13px] leading-normal">Найдите свою работу или как компания создавайте бесплатные вакансии.</h3>
+          <h3 class="mt-1 text-[13px] leading-normal">Найдите свою работу по вакансиям от компаний.</h3>
         </div>
       </article>
       <article @click="resume" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFECD1] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD9A1]">
         <IconListServicesJobsResume/>
         <div>
           <h2 class="mt-4 text-xl font-black">Найти резюме</h2>
-          <h3 class="mt-1 text-[13px] leading-normal">Находите соискателя на должность или размещайте резюме для поиска работы.</h3>
+          <h3 class="mt-1 text-[13px] leading-normal">Отберите соискателя на должность по его резюме.</h3>
         </div>
       </article>
     </div>
 
 
     <div v-if="$device.isMobile" class="mt-7 flex flex-col justify-start items-start w-full">
-      <article @click="vacancies" class="p-3 flex flex-col rounded-lg w-full bg-[#FFF2CB]">
+      <article @click="vacancies" class="p-3 flex flex-col rounded-lg bg-[#FFF2CB]">
         <IconListServicesJobsVacancies/>
         <div>
           <h2 class="mt-4 text-base font-black">Смотреть вакансии</h2>
-          <h3 class="mt-1 text-[11px] leading-snug">Найдите свою работу или как компания создавайте бесплатные вакансий.</h3>
+          <h3 class="mt-1 text-[11px] leading-snug">Быстрый поиск необходимой работы по вакансиям от компаний.</h3>
         </div>
       </article>
-      <article @click="resume" class="mt-4 p-3 flex flex-col rounded-lg w-full bg-[#FFECD1]">
+      <article @click="resume" class="mt-4 p-3 flex flex-col rounded-lg bg-[#FFECD1]">
         <IconListServicesJobsResume/>
         <div>
           <h2 class="mt-4 text-base font-black">Найти резюме</h2>
-          <h3 class="mt-1 text-[11px] leading-snug">Находите соискателя на должность или размещайте резюме для поиска работы.</h3>
+          <h3 class="mt-1 text-[11px] leading-snug">Отберите правильного соискателя на должность по его резюме.</h3>
         </div>
       </article>
     </div>
