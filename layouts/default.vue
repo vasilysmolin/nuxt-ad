@@ -5,13 +5,13 @@
       <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
         <GlobalNav />
         <GlobalNavWin :toggleG="isHiddenG"/>
-        <span class="pl-2 font-bold">Меню</span>
+        <span class="pl-2 font-bold text-sm">Меню</span>
       </div>
       <TLogo/>
       <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center cursor-pointer usernav">
         <UserNav/>
         <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
-        <span class="pl-2 font-bold">Вход</span>
+        <span class="pl-2 font-bold text-sm">Вход</span>
       </div>
     </header>
     <GoSearch/>

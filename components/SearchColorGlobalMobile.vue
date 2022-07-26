@@ -1,15 +1,17 @@
 <template>
-  <div class="mt-7 py-6 w-[150px] flex flex-col justify-center items-center rounded-lg border-solid border-[#D9DBE9] border">
-    <SearchColor/>
-    <span class="pt-2 text-sm font-bold">Быстрый поиск</span>
+  <div class="mt-7 mx-auto py-4 px-2.5 w-full h-auto grid grid-cols-[1fr_24px] place-content-start place-items-center rounded bg-white border-solid border-[#EEEEEE] border">
+    <span class="pr-10 text-[14px]">Найти объявление, работу или услугу</span>
+    <GlobalSearch/>
   </div>
 </template>
 
 <script>
 
 import SearchColor from "./icons/SearchColor";
+import GlobalSearch from "./icons/GlobalSearch";
+
 export default {
   name: "SearchColorGlobalMobile",
-  components: {SearchColor},
+  components: {GlobalSearch},
 }
 </script>

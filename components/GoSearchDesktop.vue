@@ -1,9 +1,9 @@
 <template>
-  <section class="mt-12 flex flex-col justify-center items-center w-full">
-    <h2 class="text-base font-medium">Найти объявление, работу или исполнителя</h2>
-    <section class="mt-7 p-1.5 relative flex flex-wrap items-stretch w-full bg-[#F7F7FC] border border-solid rounded border-gray-300">
+  <section class="mt-12 py-5 px-3 flex flex-col justify-center items-center w-full rounded bg-[#eeeeee]">
+    <h2 class="text-base font-bold">Найти объявление, работу или исполнителя</h2>
+    <section class="mt-4 p-1.5 relative flex flex-wrap items-stretch w-full bg-white border border-solid rounded border-gray-300">
       <input v-on:input="debounceInput"  v-model="querySearch" type="text"
-             class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-[#F7F7FC] bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
+             class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
              placeholder="Например, квартира, вакансии, подработка" aria-label="Поиск" aria-describedby="button-addon2">
       <button @click="getSearchQuery"
               class="btn inline-block px-10 py-1 bg-blue-900 text-white font-bold text-sm tracking-wider rounded hover:bg-black focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"

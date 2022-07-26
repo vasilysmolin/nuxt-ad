@@ -1,6 +1,8 @@
 <template>
   <section>
     <div v-if="$device.isDesktop">
+      <span class="mt-12 block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
+      <h3 class="mt-10 mb-7 text-center font-bold">Каталог услуг</h3>
       <section class="mt-12 grid grid-cols-4 gap-6">
         <BArticle
             v-for="category in firstChunkCategories"
@@ -15,6 +17,8 @@
 
 
     <div v-if="$device.isMobile">
+      <span class="mt-7 block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
+      <h3 class="my-5 text-center text-sm font-bold">Каталог услуг</h3>
       <section class="mt-7 grid grid-cols-2 gap-6">
         <BArticle
             v-for="category in firstChunkCategories"

@@ -2,6 +2,8 @@
   <section>
 
     <div v-if="$device.isDesktop">
+      <span class="mt-12 block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
+      <h3 class="mt-10 mb-7 text-center font-bold">Каталог объявлений</h3>
       <section class="mt-12 grid grid-cols-4 gap-6">
         <BArticle
             v-for="category in allChunkCategories"
@@ -15,33 +17,12 @@
           Лента объявлений
         </nuxt-link>
       </p>
-
-      <!-- вставка для перелинка сервисов -->
-      <div class="mt-12">
-        <h3 class="mb-7 text-center font-medium">Другие сервисы</h3>
-        <div class="flex flex-row justify-between items-center w-full">
-          <article @click="jobs" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFF2CB] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
-            <IconListServicesIndexJobs/>
-            <div>
-              <h2 class="mt-4 text-base font-black">Работа</h2>
-              <h3 class="mt-1 text-[12px] leading-normal">Бесплатно создавайте вакансии и резюме.</h3>
-            </div>
-          </article>
-          <article @click="uslugi" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFECD1] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD9A1]">
-            <IconListServicesIndexUslugi/>
-            <div>
-              <h2 class="mt-4 text-base font-black">Услуги</h2>
-              <h3 class="mt-1 text-[12px] leading-normal">Найти исполнителя или создать услугу.</h3>
-            </div>
-          </article>
-        </div>
-      </div>
-      <!-- -->
-
     </div>
 
 
     <div v-if="$device.isMobile">
+      <span class="mt-7 block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
+      <h3 class="my-5 text-center text-sm font-bold">Каталог объявлений</h3>
       <section class="mt-7 grid grid-cols-2 gap-6">
         <BArticle
             v-for="category in firstChunkCategories"
@@ -49,27 +30,6 @@
             :key="category.id"
         />
       </section>
-      <!-- вставка для перелинка сервисов -->
-      <section class="mt-7 grid grid-cols-2 gap-6">
-        <article @click="jobs"
-                 class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFE2E0]">
-          <IconListServicesIndexJobs/>
-          <div>
-            <h2 class="text-sm font-black">Работа</h2>
-            <h3 class="mt-1 text-[11px] leading-snug">Бесплатно создавайте вакансии и резюме.</h3>
-          </div>
-        </article>
-        <article @click="uslugi"
-                 class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
-          <IconListServicesIndexUslugi/>
-          <div>
-            <h2 class="text-sm font-black">Услуги</h2>
-            <h3 class="mt-1 text-[11px] leading-snug">Найти исполнителя или создать услугу.</h3>
-          </div>
-        </article>
-      </section>
-      <!-- -->
-
       <section class="mt-7 grid grid-cols-2 gap-6">
         <BArticle
             v-for="category in secondChunkCategories"
@@ -89,8 +49,6 @@
 </template>
 
 <script>
-import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
-import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import BArticle from "../components/blocks/BArticle";
 
 import * as _ from "lodash";
@@ -98,8 +56,6 @@ import * as _ from "lodash";
 export default {
   name: "ListServicesCatalogCategories",
   components: {
-    IconListServicesIndexJobs,
-    IconListServicesIndexUslugi,
     BArticle,
   },
   data() {
@@ -133,12 +89,6 @@ export default {
     },
   },
   methods: {
-    jobs() {
-      document.location.href = process.env.JOBS_URL;
-    },
-    uslugi() {
-      document.location.href = process.env.USLUGI_URL;
-    },
     feed() {
       document.location.href = `${process.env.CATALOG_URL}/feed`;
     }

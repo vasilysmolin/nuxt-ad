@@ -1,8 +1,7 @@
 <template>
   <section>
     <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
-      <h1 class="px-12 text-xl text-center font-black">Работа</h1>
-      <h2 class="mt-5 px-12 text-base text-center font-medium">Бесплатно создавайте вакансии или резюме без ограничений</h2>
+      <h1 class="px-12 text-xl text-center font-black">Бесплатные вакансии и резюме. Находите работу или размещайте вакансии и резюме без ограничений</h1>
       <ListServicesJobs/>
       <GoSearchDesktop/>
       <p @click="linkHub" class="text-center">
@@ -14,20 +13,21 @@
 
       <!-- вставка для перелинка сервисов -->
       <div class="mt-12">
-        <h3 class="mb-7 text-center font-medium">Другие сервисы</h3>
+        <span class="block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
+        <h2 class="mt-10 mb-7 text-center font-bold">Другие сервисы</h2>
         <div class="flex flex-row justify-between items-center w-full">
           <article @click="uslugi" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFECD1] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFD9A1]">
             <IconListServicesIndexUslugi/>
             <div>
               <h2 class="mt-4 text-base font-black">Услуги</h2>
-              <h3 class="mt-1 text-[12px] leading-normal">Найти исполнителя или создать услугу.</h3>
+              <h3 class="mt-1 text-[13px] leading-normal">Найти исполнителя или создать услугу.</h3>
             </div>
           </article>
           <article @click="catalog" class="p-3 flex flex-col rounded-lg w-[366px] bg-[#FFF4D2] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
             <IconListServicesIndexCatalog/>
             <div>
               <h2 class="mt-4 text-base font-black">Объявления</h2>
-              <h3 class="mt-1 text-[12px] leading-normal">Продать, купить и многое другое.</h3>
+              <h3 class="mt-1 text-[13px] leading-normal">Продать, купить и многое другое.</h3>
             </div>
           </article>
         </div>
@@ -39,12 +39,11 @@
     </div>
 
     <div v-if="$device.isMobile" class="container mt-[70px] px-[20px] pb-[80px] w-full flex flex-col items-center">
-      <h1 class="text-center text-base font-black">Работа</h1>
-      <h2 class="text-center text-sm">Бесплатно создавайте вакансии или резюме без ограничений</h2>
+      <h1 class="text-center text-sm font-bold">Бесплатные вакансии и резюме. Находите работу или размещайте вакансии и резюме</h1>
+      <ListServicesJobs/>
       <div @click="showGoSearch">
         <SearchColorGlobalMobile/>
       </div>
-      <ListServicesJobs/>
       <p @click="linkHub" class="text-center">
         <nuxt-link to="" class="btn btn-primary inline-block mt-7 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0">Создать аккаунт
         </nuxt-link>
@@ -52,7 +51,8 @@
 
       <!-- вставка для перелинка сервисов -->
       <div class="mt-7">
-        <h3 class="mb-5 text-center text-sm font-bold">Другие сервисы</h3>
+        <span class="block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
+        <h3 class="my-5 text-center text-sm font-black">Другие сервисы</h3>
         <section class="grid grid-cols-2 gap-6">
           <article @click="uslugi"
                    class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFEBCD]">
