@@ -3,7 +3,7 @@
 
     <div v-if="$device.isDesktop">
       <section class="mt-12 py-5 px-3 flex flex-col justify-center items-center w-full rounded bg-[#eeeeee]">
-        <h2 class="max-w-[650px] text-base text-center">Тапиго обновляется каждый день — новые инструменты, новые сервисы, полезные лайфхаки и многое другое. Два раза в неделю анонсы без спама.</h2>
+        <h2 class="max-w-[650px] text-base text-center">Тапиго обновляется каждый день — новые инструменты и сервисы, грамотные и полезные советы. Раз в неделю без спама.</h2>
         <section class="mt-7 p-1.5 relative flex flex-wrap items-stretch w-full bg-white border border-solid rounded border-gray-300">
           <input v-model="data.email" type="email"
                  class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
@@ -21,7 +21,7 @@
 
     <div v-if="$device.isMobile">
       <section class="mt-7 py-4 px-2 flex flex-col justify-center items-center w-full rounded bg-[#eeeeee]">
-        <h2 class="max-w-[100%] text-xs text-center">Тапиго обновляется каждый день — новые инструменты, сервисы, полезные советы.<span class="block mt-2">Два раза в неделю анонсы без спама.</span></h2>
+        <h2 class="max-w-[100%] text-xs text-center">Тапиго обновляется каждый день — новые инструменты и сервисы, грамотные и полезные советы. Раз в неделю без спама.</h2>
         <section class="mt-5 p-1.5 relative flex flex-wrap items-stretch w-full bg-white rounded">
           <input v-model="data.email" type="email"
                  class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-sm font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
