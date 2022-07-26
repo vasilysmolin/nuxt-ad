@@ -62,7 +62,7 @@
               <h3 class="mt-1 text-[11px] leading-snug">Быстрый поиск работы или соискателя.</h3>
             </div>
           </article>
-          <article @click="catalog"
+          <article @click="uslugi"
                    class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFF4D2]">
             <IconListServicesIndexUslugi/>
             <div>
