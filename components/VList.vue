@@ -1,11 +1,12 @@
 <template>
 
   <section>
+
     <div v-if="$device.isDesktop" class="mx-auto flex flex-col w-[500px]">
         <h1 class="mb-3 text-xl text-center font-black">Вакансии от компаний</h1>
         <article v-for="vacancy in vacancies" :key="vacancy.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
           <NuxtLink :to="getUrl(vacancy)" class="px-4 py-6">
-            <h2 class="first-letter:uppercase font-medium leading-4 text-lg group-hover:text-blue-600">{{ vacancy.name }}</h2>
+            <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">{{ vacancy.name }}</h2>
             <h3 class="mt-2 text-base"><span class=" pr-1 text-xs">от</span>{{ vacancy.min_price }}<span
                 class="pl-1 text-xs">руб.</span></h3>
             <div class="flex justify-between w-full">
@@ -27,7 +28,7 @@
       <NavLocJobs/>
       <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[15px] rounded-lg bg-white">
         <NuxtLink :to="getUrl(vacancy)" class="px-2 py-4">
-          <h2 class="first-letter:uppercase font-bold leading-4 text-sm">{{ vacancy.name }}</h2>
+          <h2 class="first-letter:uppercase lowercase font-bold leading-4 text-sm">{{ vacancy.name }}</h2>
           <h3 class="mt-2 text-sm"><span class=" pr-1 text-xs">от</span>{{ vacancy.min_price }}<span
               class="pl-1 text-xs">руб.</span></h3>
           <div class="flex justify-between w-full">

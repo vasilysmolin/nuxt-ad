@@ -1,19 +1,19 @@
 <template>
   <div v-show="toggleG" class="absolute top-4 left-4 w-[230px] py-4 px-3 bg-white rounded-lg shadow-lg z-60">
     <ul class="px-2.5 w-full font-black text-base text-gray-300">
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-gray-200 rounded cursor-pointer" @click="catalog">
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="catalog">
         <div class="ml-2.5 flex justify-center items-center w-[20px]">
           <IconListServicesIndexCatalog/>
         </div>
         <p class="pl-2.5 flex justify-start items-center text-black">Каталог</p>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-gray-200 rounded cursor-pointer" @click="jobs">
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="jobs">
         <div class="ml-2.5 flex justify-center items-center w-[20px]">
           <IconListServicesIndexJobs/>
         </div>
         <p class="pl-2.5 flex justify-start items-center text-black">Работа</p>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-gray-200 rounded cursor-pointer" @click="uslugi">
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="uslugi">
         <div class="ml-2.5 flex justify-center items-center w-[20px]">
           <IconListServicesIndexUslugi/>
         </div>
