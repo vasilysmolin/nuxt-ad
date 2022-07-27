@@ -1,8 +1,7 @@
 <template>
   <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-[100px]">
-
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ vacancy.name }}</h1>
+      <h1 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-xl">{{ vacancy.name }}</h1>
       <p class="mt-2 text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span class="pl-2 text-sm">руб.</span></p>
       <p class="mt-2 font-bold text-sm text-gray-500 lowercase">{{ getSalary(vacancy) }}</p>
     </section>
@@ -42,7 +41,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "VObject",
-  layout: 'jobs',
+  layout: 'default',
   async mounted() {
     await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person' });
     if(Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0)  {

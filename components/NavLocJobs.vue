@@ -1,20 +1,39 @@
 <template>
-  <nav class="container flex flex-col items-center mt-[80px]">
-    <ul class="flex justify-start w-[95%] sm:max-w-screen-sm">
-      <NuxtLink to="/vacancies">
-      <li class="inline-block px-3 py-1.5 border-2 border-blue-600 text-blue-600 font-bold text-sm rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Вакансии</li>
-      </NuxtLink>
-      <NuxtLink to="/resume">
-      <li class="inline-block ml-3 px-3 py-1.5 border-2 border-blue-600 text-blue-600 font-bold text-sm rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Резюме</li>
-      </NuxtLink>
-    </ul>
-  </nav>
+  <section>
+
+    <div v-if="$device.isDesktop">
+      <nav class="fixed top-[125px] left-5">
+        <ul class="flex flex-col w-full sm:max-w-screen-sm">
+          <NuxtLink to="/vacancies">
+          <li class="block px-3 py-1 border-2 border-blue-600 text-blue-600 font-bold text-sm text-center rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Вакансии</li>
+          </NuxtLink>
+          <NuxtLink to="/resume">
+          <li class="block mt-2.5 px-3 py-1 border-2 border-blue-600 text-blue-600 font-bold text-sm text-center rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Резюме</li>
+          </NuxtLink>
+        </ul>
+      </nav>
+    </div>
+
+    <div v-if="$device.isMobile">
+      <nav class="mt-3 flex">
+        <ul class="flex justify-start items-center w-full">
+          <NuxtLink to="/vacancies">
+            <li class="block px-3 py-1 border-2 border-blue-600 text-blue-600 font-bold text-sm text-center rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Вакансии</li>
+          </NuxtLink>
+          <NuxtLink to="/resume">
+            <li class="block ml-3 px-3 py-1 border-2 border-blue-600 text-blue-600 font-bold text-sm text-center rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Резюме</li>
+          </NuxtLink>
+        </ul>
+      </nav>
+    </div>
+
+  </section>
+
 </template>
 
 
 <script>
-export default {
-  name: "NavLoc",
-}
-
+  export default {
+    name: "NavLoc",
+  }
 </script>
