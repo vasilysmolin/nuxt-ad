@@ -15,7 +15,7 @@
     </div>
 
     <div v-if="$device.isMobile">
-      <nav class="mt-3 flex">
+      <nav class="flex">
         <ul class="flex justify-start items-center w-full">
           <NuxtLink to="/vacancies">
             <li class="block px-3 py-1 border-2 border-blue-600 text-blue-600 font-bold text-sm text-center rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Вакансии</li>

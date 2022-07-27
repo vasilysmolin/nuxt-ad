@@ -24,7 +24,6 @@
     </div>
 
     <div v-if="$device.isMobile" class="mx-auto flex flex-col w-full">
-      <h1 class="text-left text-sm font-bold">Быстрый поиск работы с вакансиями от компаний</h1>
       <NavLocJobs/>
       <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[15px] rounded-lg bg-white">
         <NuxtLink :to="getUrl(vacancy)" class="px-2 py-4">
