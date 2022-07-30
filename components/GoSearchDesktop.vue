@@ -14,28 +14,28 @@
         <ul class="px-2 py-2.5 w-full text-[15px]">
           <template v-if="ads.length > 0">
             <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line">
-              <a :href="getUrl(ad)" class="block px-2 py-2 rounded hover:bg-blue-200">
+              <a :href="getUrl(ad)" class="block px-2 py-2 rounded hover:bg-sky-100">
                 {{ ad.name }}, цена: {{ ad.price }} руб, адрес: {{ ad.street }} {{ ad.house }}
               </a>
             </li>
           </template>
           <template v-if="services.length > 0">
             <li @click="hide" v-for="service in services" :key="service.id" class="search-line">
-              <a :href="getUrlServices(service)" class="block px-2 py-2 rounded hover:bg-blue-200">
+              <a :href="getUrlServices(service)" class="block px-2 py-2 rounded hover:bg-sky-100">
                 {{ service.name }}, цена: {{ service.price }}
               </a>
             </li>
           </template>
           <template v-if="resumes.length > 0">
             <li @click="hide" v-for="resume in resumes" :key="resume.id" class="search-line">
-              <a :href="getUrlResume(resume)" class="block px-2 py-2 rounded hover:bg-blue-200">
+              <a :href="getUrlResume(resume)" class="block px-2 py-2 rounded hover:bg-sky-100">
                 {{ resume.name }}, цена: {{ resume.price }}
               </a>
             </li>
           </template>
           <template v-if="vacancies.length > 0">
             <li @click="hide" v-for="vacancy in vacancies" :key="vacancy.id" class="search-line">
-              <a :href="getUrlVacancy(vacancy)" class="block px-2 py-2 rounded hover:bg-blue-200">
+              <a :href="getUrlVacancy(vacancy)" class="block px-2 py-2 rounded hover:bg-sky-100">
                 {{ vacancy.name }}, цена: {{ vacancy.price }}
               </a>
             </li>

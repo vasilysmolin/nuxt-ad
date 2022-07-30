@@ -1,20 +1,22 @@
 <template>
-  <section v-if="isLoading" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-    <h2 class="text-lg font-bold text-black">
-      Контактное лицо
-    </h2>
-    <p class="text-[0.9375rem] leading-5 sm:text-lg">
-      {{ name }}
-    </p>
-    <div class="flex w-[75%]">
-      <a :href="`tel:${phone}`" v-if="$auth.loggedIn" class="mt-1 text-[0.9375rem] leading-5 sm:text-lg">
-        {{ phone}}
-      </a>
-      <div type="button" v-else class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer">
-        <button  @click.prevent="showModalAuth">Посмотреть телефон</button>
-      </div>
+  <section v-if="isLoading" class="flex flex-col px-5 w-[100%]">
+
+    <p class="leading-5 font-medium">Компания:<span class="pl-2 font-normal text-gray-800">{{ name }}</span></p>
+
+    <div class="mt-4 pt-1 pb-1.5 flex justify-start items-center">
+      <a :href="`tel:${phone}`" v-if="$auth.loggedIn" class="font-medium leading-none">Телефон:<span
+          class="pl-2 font-black text-lg">{{ phone }}</span><span
+          class="block mt-2 py-2 text-center text-sm font-bold bg-transparent border-2 border-solid border-blue-600 text-blue-600 rounded hover:border-black hover:text-black transition duration-150 ease-in-out">Позвонить</span></a>
+      <button v-else type="button"
+              class="btn btn-primary inline-block px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black"
+              @click.prevent="showModalAuth">Показать телефон
+      </button>
     </div>
+
+    <p class="mt-4 leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{ address }}</span></p>
+
     <AuthModal/>
+
   </section>
 </template>
 
@@ -35,14 +37,14 @@ export default {
       let formatter = new VMask('+7 (000) 000-00-00');
       this.phone = formatter.apply(this.phone);
       this.isLoading = true;
-    },800);
+    }, 800);
   },
   props: {
     name: String,
     phone: String,
+    address: String,
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     showModalAuth() {
       this.$modal.show('AuthModal');

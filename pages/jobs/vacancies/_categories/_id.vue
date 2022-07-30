@@ -1,86 +1,108 @@
 <template>
-  <article class="container flex flex-col items-center mt-[10px] sm:mt-[20px] pb-[100px]">
-    <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h1 class="first-letter:uppercase font-bold text-[0.9375rem] leading-5 sm:text-xl">{{ vacancy.name }}</h1>
-      <p class="mt-2 text-xl sm:text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span class="pl-2 text-sm">руб.</span></p>
-      <p class="mt-2 font-bold text-sm text-gray-500 lowercase">{{ getSalary(vacancy) }}</p>
-    </section>
+  <section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <p class="font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Компания:</span>{{ getUsername(vacancy)}}</p>
-      <p class="mt-1 font-bold text-[0.9375rem] leading-5 sm:text-lg"><span class="pr-2 font-bold text-sm text-gray-500">Телефон:</span>{{ vacancy.phone }}</p>
-    </section>
+    <div v-if="$device.isDesktop" class="container mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
+      <NavLocJobs/>
 
+      <article class="mx-auto py-6 flex flex-col w-[500px] border border-solid border-white rounded-lg bg-white">
+        <section class="px-5 flex flex-col w-full">
+          <h1 class="first-letter:uppercase font-bold text-xl leading-6">{{ vacancy.name }}</h1>
+        </section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Обязанности</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ vacancy.duties }}</p>
-      <h2 class="mt-4 text-sm font-bold text-black">Требования</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ vacancy.demands }}</p>
-      <h2 class="mt-4 text-sm font-bold text-black">Дополнительные условия</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ vacancy.additionally }}</p>
-    </section>
+        <section class = "mt-3 flex flex-col px-5 w-full">
+          <p class="text-xl text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span
+              class="pl-2 text-sm">руб.</span></p>
+        </section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Опыт работы</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getExperiences(vacancy) }}</p>
-      <h2 class="mt-4 text-sm font-bold text-black">Образование</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getEducations(vacancy) }}</p>
-      <h2 class="mt-4 text-sm font-bold text-black">График работы</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ getSchedules(vacancy) }}</p>
-    </section>
+        <hr class="my-5 mx-auto w-11/12 border-gray-300">
 
+        <BContact
+            :name="getUserName(vacancy)"
+            :phone="getUserPhone(vacancy)"
+            :address="getUserAddress(vacancy)"
+        />
 
-  </article>
+        <hr class="my-5 mx-auto w-11/12 border-gray-300">
 
+        <section class="flex flex-col px-5 w-full">
+          <h2 class="font-medium">Обязанности:</h2>
+          <p class="mt-1 text-gray-800 leading-relaxed">{{ vacancy.duties }}</p>
+          <hr class="my-5 mx-auto w-full border-gray-300">
+          <h2 class="font-medium">Требования:</h2>
+          <p class="mt-1 text-gray-800 leading-relaxed">{{ vacancy.demands }}</p>
+          <hr class="my-5 mx-auto w-full border-gray-300">
+          <h2 class="font-medium">Дополнительные условия:</h2>
+          <p class="mt-1 text-gray-800 leading-relaxed">{{ vacancy.additionally }}</p>
+          <hr class="my-5 mx-auto w-full border-gray-300">
+          <h3 class="font-medium">Вид оплаты:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getSalary(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-medium">Опыт работы:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-medium">Образование:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-medium">График работы:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
+        </section>
+
+      </article>
+
+    </div>
+
+  </section>
 </template>
 
 <script>
 import * as _ from 'lodash';
 import {mapGetters} from "vuex";
+import NavLocJobs from "~/components/NavLocJobs";
+import BContact from "~/components/blocks/BContact";
+import HeaderContentList from "~/components/HeaderContentList";
 
 export default {
   name: "VObject",
   layout: 'default',
+  components: {HeaderContentList, BContact, NavLocJobs},
   async mounted() {
-    await this.$store.dispatch('vacancies/getItem', { id: this.$route.params.id, expand: 'profile.user,profile.person' });
-    if(Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0)  {
+    await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
+    if (Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0) {
       await this.$store.dispatch('categoriesVacancy/getItems');
     }
-    if(Object.keys(this.$store.getters['experiences/experience']).length === 0) {
+    if (Object.keys(this.$store.getters['experiences/experience']).length === 0) {
       await this.$store.dispatch('experiences/getItems');
     }
-    if(Object.keys(this.$store.getters['educations/education']).length === 0) {
+    if (Object.keys(this.$store.getters['educations/education']).length === 0) {
       await this.$store.dispatch('educations/getItems');
     }
-    if(Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
+    if (Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
       await this.$store.dispatch('schedules/getItems');
     }
-    if(Object.keys(this.$store.getters['salaries/salary_type']).length === 0) {
+    if (Object.keys(this.$store.getters['salaries/salary_type']).length === 0) {
       await this.$store.dispatch('salaries/getItems');
     }
   },
   methods: {
-    getUsername(vacancy) {
-      if(vacancy?.profile?.isPerson === true) {
+    getUserName(vacancy) {
+      if (vacancy?.profile?.isPerson === true) {
         return vacancy?.profile?.person?.name;
       }
       return vacancy?.profile?.user?.name;
+    },
+    getUserPhone(vacancy) {
+      return vacancy?.profile?.user?.phone
+    },
+    getUserAddress(vacancy) {
+      return this.vacancy?.address ?? 'не указан';
     },
     getCategory(vacancy) {
       return this.category[vacancy.category_id]?.name ?? 'Не указана';
     },
     getEducations(vacancy) {
-      return this.education[vacancy.education] ?? 'Не указан';
+      return this.education[vacancy.education] ?? 'Не указано';
     },
     getExperiences(vacancy) {
-      return this.experiences[vacancy.experience] ?? 'Не указан';
+      return this.experiences[vacancy.experience] ?? 'Не указано';
     },
     getSchedules(vacancy) {
-      return this.schedule[vacancy.schedule] ?? 'Не указан';
+      return this.schedule[vacancy.schedule] ?? 'Не указано';
     },
     getSalary(vacancy) {
-      return this.salary_type[vacancy.salary_type] ?? 'Не указан';
+      return this.salary_type[vacancy.salary_type] ?? 'Не указано';
     },
   },
   computed: {
@@ -130,52 +152,7 @@ export default {
         return category
       }
     },
-    nameErrors: {
-      get() {
-        if (!this.$v.data.name.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.name.required) {
-          return 'Введите название';
-        }
-
-        if (!this.$v.data.name.maxLength) {
-          return 'Превышена допустимая длина названия';
-        }
-        if (!this.$v.data.name.minLength) {
-          return 'Ошибка, минимальное значение';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    phoneErrors() {
-      if (!this.$v.data.phone.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.phone.required) {
-        return 'Введите телефон';
-      }
-
-      if (!this.$v.data.phone.maxLength) {
-        return 'Превышена допустимая длина названия';
-      }
-      if (!this.$v.data.phone.minLength) {
-        return 'Ошибка, минимальное значение';
-      }
-      if (!this.$v.data.phone.numeric) {
-        return 'Укажите только числа, без других символов';
-      }
-
-      return '';
-    },
   },
-
   head() {
     return {
       title: `${this.vacancy.title} | Вакансии без ограничений на Tapigo.ru | Работа`,
