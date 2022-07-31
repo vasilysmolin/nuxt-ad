@@ -41,7 +41,7 @@ import AuthModal from "../../components/AuthModal";
 import VMask from 'string-mask'
 
 export default {
-  name: "BContact",
+  name: "BContactV",
   data() {
     return {
       isLoading: false,

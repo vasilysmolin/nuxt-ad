@@ -16,7 +16,7 @@
         :title="`Описание услуги`"
         :description="service.description"
     />
-    <BContact
+    <BContactU
         :name="getUserName(service)"
         :phone="getUserPhone(service)"
     />
@@ -33,14 +33,14 @@ import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import BHead from "~/components/blocks/BHead";
 import BDescription from "~/components/blocks/BDescription";
-import BContact from "~/components/blocks/BContact";
+import BContactU from "~/components/blocks/BContactU";
 import BList from "~/components/blocks/BList";
 import Breadcrumbs from "~/components/Breadcrumbs";
 
 export default {
   name: "SObject",
   layout: 'default',
-  components: { BHead, BDescription, BContact, BList, Breadcrumbs },
+  components: { BHead, BDescription, BContactU, BList, Breadcrumbs },
   async asyncData({store, route}) {
     await store.dispatch('typeServices/getItems');
     await store.dispatch('services/getItem', { id: route.params.id, expand: 'profile.user,profile.person'  });

@@ -15,7 +15,7 @@
       </p>
     </section>
 
-    <BContact
+    <BContactC
         :name="getUserName(ad)"
         :phone="getUserPhone(ad)"
     />
@@ -93,13 +93,13 @@ import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import { yandexMap, ymapMarker } from 'vue-yandex-maps';
-import BContact from "~/components/blocks/BContact";
+import BContactC from "~/components/blocks/BContactC";
 
 export default {
   name: "CObject",
   layout: 'default',
   mixins: [CategoriesMixin],
-  components: {yandexMap, ymapMarker, BContact},
+  components: {yandexMap, ymapMarker, BContactC},
   async asyncData({store, route}) {
     await store.dispatch('ads/getItem', { id: route.params.id, querySearch: route.query?.querySearch,  expand: 'profile.user,profile.person'});
     await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });

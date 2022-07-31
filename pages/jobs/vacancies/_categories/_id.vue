@@ -15,7 +15,7 @@
 
         <hr class="my-5 mx-auto w-11/12 border-gray-300">
 
-        <BContact
+        <BContactV
             :name="getUserName(vacancy)"
             :phone="getUserPhone(vacancy)"
             :address="getUserAddress(vacancy)"
@@ -50,14 +50,14 @@
           <h1 class="first-letter:uppercase font-bold leading-5">{{ vacancy.name }}</h1>
         </section>
 
-        <section class = "mt-2 flex flex-col px-5 w-full">
+        <section class="mt-2 flex flex-col px-5 w-full">
           <p class="text-xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span
               class="pl-2 text-sm">руб.</span></p>
         </section>
 
         <hr class="my-5 mx-auto w-11/12 border-gray-300">
 
-        <BContact
+        <BContactV
             :name="getUserName(vacancy)"
             :phone="getUserPhone(vacancy)"
             :address="getUserAddress(vacancy)"
@@ -77,7 +77,7 @@
           <p class="mt-1 leading-5 text-sm">{{ vacancy.additionally }}</p>
           <hr class="my-5 mx-auto w-full border-gray-300">
           <h3 class="font-bold text-sm">Вид оплаты:<span class="font-normal pl-2 lowercase">{{ getSalary(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-bold text-sm">Опыт работы:<span class=" font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-bold text-sm">Опыт работы:<span class="font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
           <h3 class="mt-2 font-bold text-sm">Образование:<span class="font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
           <h3 class="mt-2 font-bold text-sm">График работы:<span class="font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
         </section>
@@ -92,13 +92,13 @@
 import * as _ from 'lodash';
 import {mapGetters} from "vuex";
 import NavLocJobs from "~/components/NavLocJobs";
-import BContact from "~/components/blocks/BContact";
+import BContactV from "~/components/blocks/BContactV";
 import HeaderContentList from "~/components/HeaderContentList";
 
 export default {
   name: "VObject",
   layout: 'default',
-  components: {HeaderContentList, BContact, NavLocJobs},
+  components: {HeaderContentList, BContactV, NavLocJobs},
   async mounted() {
     await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
     if (Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0) {
