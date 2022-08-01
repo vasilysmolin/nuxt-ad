@@ -1,9 +1,9 @@
 <template>
-  <CatalogList />
+    <CatalogList />
 </template>
 
 <script>
-import CatalogList from "../../../components/CatalogList";
+import CatalogList from "~/components/CatalogList";
 export default {
   components: {CatalogList},
   layout: 'default',

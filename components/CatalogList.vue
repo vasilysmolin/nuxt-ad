@@ -1,30 +1,33 @@
 <template>
-  <section class="container flex flex-col items-center mt-[80px] pb-[100px]">
-    <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
+  <section>
+    <BCategoriesNav
+        :category="category"
+    />
+    <div v-if="$device.isDesktop" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
+
+    <div class="mx-auto flex flex-col w-[500px]">
+      <h1 class="text-xl text-center font-black leading-none">
+        {{ getH1() }}
+      </h1>
       <Breadcrumbs
           :baseName="`Все категории`"
           :basePath="`/`"
           :depth="1"
           :link="category"
       />
-      <BCategoriesNav
-          :title="getH1()"
-          :category="category"
-      />
-
-      <BAmount
-          :title="`объявлений`"
-          :amount="amount"
-      />
-      <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
+      <article v-for="ad in ads" :key="ad.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
         <NuxtLink :to="getUrl(ad)">
           <section class="grid grid-cols-[25%,_1fr]">
+
             <section>
               <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
             </section>
-            <section class="flex flex-col justify-between pl-4">
-              <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">{{ ad.name }}</h2>
-              <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad)}}</p>
+
+            <section class="flex flex-col px-4">
+              <h2 class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">{{ ad.name }}</h2>
+              <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}</h3>
+              <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(ad)}}</p>
+              <!--
               <table class="table-auto mb-2 mt-2">
                 <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
                 <tr v-if="index <= 1">
@@ -39,10 +42,9 @@
                 </tr>
                 </tbody>
               </table>
-              <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}
-<!--                <span class="pl-1 text-xs">руб.</span>-->
-              </h3>
+              -->
             </section>
+
           </section>
         </NuxtLink>
       </article>
@@ -54,10 +56,12 @@
         from: 'catalog',
         querySearch: querySearch
       })" type="button"
-              class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+              class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Смотреть дальше
       </button>
-    </section>
+    </div>
+    </div>
+
   </section>
 </template>
 
@@ -76,26 +80,6 @@ export default {
   props: {
     type: String,
   },
-  // async asyncData({store, route}) {
-  //   const sub = route.fullPath.split('/').pop();
-  //   let obj = {};
-  //   obj.query = route.query;
-  //   obj.alias = null;
-  //   if(route.path !== '/feed') {
-  //     obj.alias = sub !== 'feed' ? sub : null;
-  //     await store.dispatch('categoriesAd/getItem', {id: this.alias });
-  //   } else {
-  //     await store.dispatch('categoriesAd/removeItem');
-  //   }
-  //   await store.dispatch('ads/getItems', {
-  //     state: 'active',
-  //     expand: 'profile.user',
-  //     alias: this.alias,
-  //     from: 'catalog',
-  //     query: this.query?.query
-  //   });
-  //   return obj;
-  // },
   data() {
     return {
       alias: null,
@@ -170,7 +154,8 @@ export default {
       return _.join(arrayAddress);
     },
     getH1(){
-      return this.category.name ?? 'Поиск по: ' + this.querySearch;
+      return this.category.name ?? 'Лента объявлений';
+      //return this.category.name ?? 'Поиск по: ' + this.querySearch;
     },
     linkHub() {
       if(this.$auth.loggedIn) {
