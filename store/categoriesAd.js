@@ -57,6 +57,9 @@ export const actions = {
 		const getParams = params({expand});
 		const catAd = await this.$axios.$get( `category-declarations/${id}?${getParams}`);
 		commit('setcategoryAds', catAd);
+	},
+	async setItem({commit},{cat}) {
+		commit('setcategoryAds', cat);
 	}
 };
 

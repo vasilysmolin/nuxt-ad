@@ -94,6 +94,14 @@ export default {
       await this.getItem({id: this.alias });
     } else {
       await this.removeItem();
+      await this.getItemsCategories({}).then(() => {
+        this.setItemCategory({ cat: {
+            name: '',
+            alias: 'root',
+            categories: this.categories
+          }
+        });
+      });
     }
     await this.getItems({
       state: 'active',
@@ -102,11 +110,12 @@ export default {
       from: 'catalog',
       querySearch: this.$route.query?.querySearch
     });
+
   },
   computed: {
     ...mapGetters({
       ads: 'ads/ads',
-      // category: 'categoriesAd/categoryAds',
+      categories: 'categoriesAd/categoriesAds',
       amount: 'ads/amount'
     }),
     category: {
@@ -127,6 +136,8 @@ export default {
       getItems: 'ads/getItems',
       addItems: 'ads/addItems',
       getItem: 'categoriesAd/getItem',
+      setItemCategory: 'categoriesAd/setItem',
+      getItemsCategories: 'categoriesAd/getItems',
       removeItem: 'categoriesAd/removeItem',
     }),
     getUrl(ad) {
