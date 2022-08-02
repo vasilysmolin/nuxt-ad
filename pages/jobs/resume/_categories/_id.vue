@@ -79,7 +79,7 @@ import BContactR from "~/components/blocks/BContactR";
 
 export default {
   name: "RObject",
-  layout: 'default',
+  layout: 'default-search',
   components: {
     NavLocJobs,
     BContactR

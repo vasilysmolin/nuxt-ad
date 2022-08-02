@@ -39,7 +39,7 @@ import Breadcrumbs from "~/components/Breadcrumbs";
 
 export default {
   name: "SObject",
-  layout: 'default',
+  layout: 'default-search',
   components: { BHead, BDescription, BContactU, BList, Breadcrumbs },
   async asyncData({store, route}) {
     await store.dispatch('typeServices/getItems');

@@ -19,7 +19,7 @@ import NavLocJobs from "../../../components/NavLocJobs";
 
 export default {
   components: {VList, NavLocJobs},
-  layout: 'default',
+  layout: 'default-search',
   head: {
     title: "Быстрый поиск работы по вакансиям от компаний на Tapigo.ru | Работа",
     meta: [

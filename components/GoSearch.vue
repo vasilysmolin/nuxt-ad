@@ -1,12 +1,12 @@
 <template>
   <section>
-    <!--
+
     <div v-if="$device.isDesktop">
       <modal name="GoSearch" :min-width="320" :max-width="1024" width="95%" height="auto" :adaptive="true">
         <section class="flex justify-center items-center w-full">
           <section class="input-group relative flex flex-wrap items-stretch w-full">
             <input v-on:input="debounceInput" v-model="querySearch" type="text"
-                   class="form-control relative flex-auto min-w-0 block w-full px-6 py-4 text-base font-bold bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:font-bold focus:outline-none focus:ring-0"
+                   class="form-control relative flex-auto min-w-0 block w-full px-6 py-4 text-base bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:outline-none focus:ring-0"
                    placeholder="Поиск" aria-label="Поиск" aria-describedby="button-addon2">
             <button @click="getSearchQuery"
                     class="btn inline-block px-10 py-1 bg-blue-900 text-white font-bold text-base tracking-wider rounded shadow-md hover:bg-black hover:shadow-lg focus:bg-black  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
@@ -81,7 +81,8 @@
         </article>
       </modal>
     </div>
-    -->
+
+
     <div v-if="$device.isMobile">
       <modal name="GoSearch" width="100%" height="100%">
         <section class="flex flex-col justify-center items-center w-full">

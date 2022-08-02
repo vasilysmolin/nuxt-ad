@@ -97,7 +97,7 @@ import HeaderContentList from "~/components/HeaderContentList";
 
 export default {
   name: "VObject",
-  layout: 'default',
+  layout: 'default-search',
   components: {HeaderContentList, BContactV, NavLocJobs},
   async mounted() {
     await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});

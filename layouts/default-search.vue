@@ -1,24 +1,36 @@
 <template>
   <main>
     <div v-if="$device.isDesktop">
-    <header class="fixed grid grid-cols-[80px_1fr_80px] gap-x-9 justify-items-stretch top-0 w-full px-5 py-3 z-50 bg-[#F7F7FC]">
-      <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-center items-center cursor-pointer globalnav">
-        <GlobalNav />
-        <GlobalNavWin :toggleG="isHiddenG"/>
-        <span class="pl-2 font-bold text-sm">Меню</span>
-      </div>
-      <div class="grid justify-items-center">
-        <TLogo/>
-      </div>
-      <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center cursor-pointer usernav">
-        <UserNav/>
-        <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
-        <span class="pl-2 font-bold text-sm">Войти</span>
-      </div>
-    </header>
-    <GoSearch/>
-    <GoFilter/>
-    <Nuxt/>
+      <header class="fixed grid grid-cols-[80px_100px_1fr_100px_80px] gap-x-9 justify-items-stretch top-0 w-full px-5 py-3 z-50 bg-[#F7F7FC]">
+        <div @click.prevent="toggleGBlock" v-click-outside="closeG" class="flex justify-start items-center cursor-pointer globalnav">
+          <GlobalNav />
+          <GlobalNavWin :toggleG="isHiddenG"/>
+          <span class="pl-2 font-bold text-sm">Меню</span>
+        </div>
+        <section class="grid grid-cols-1 cursor-pointer">
+          <div class="flex justify-start items-center w-full">
+            <GlobalConfigure/>
+            <span class="pl-2 font-bold text-sm">Фильтры</span>
+          </div>
+        </section>
+        <div class="grid justify-items-center">
+          <TLogo/>
+        </div>
+        <section class="grid grid-cols-1 cursor-pointer">
+          <div @click="showGoSearch" class="flex justify-start items-center w-full">
+            <GlobalSearch/>
+            <span class="pl-2 font-bold text-sm">Поиск</span>
+          </div>
+        </section>
+        <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center cursor-pointer usernav">
+          <UserNav/>
+          <UserNavWin :toggle="isHidden" @toggleBlocks="toggleBlocks" />
+          <span class="pl-2 font-bold text-sm">Войти</span>
+        </div>
+      </header>
+      <GoSearch/>
+      <GoFilter/>
+      <Nuxt/>
       <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
         <button @click="linkHub" type="button"
                 class="btn btn-primary inline-block mt-1 px-9 py-3 bg-[#00A05D] text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0  transition duration-150 ease-in-out hover:bg-[#049055]">

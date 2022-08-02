@@ -97,7 +97,7 @@ import BContactC from "~/components/blocks/BContactC";
 
 export default {
   name: "CObject",
-  layout: 'default',
+  layout: 'default-search',
   mixins: [CategoriesMixin],
   components: {yandexMap, ymapMarker, BContactC},
   async asyncData({store, route}) {
