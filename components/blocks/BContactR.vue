@@ -5,7 +5,7 @@
       <p class="leading-5 font-medium">Имя:<span class="inline-block first-letter:uppercase pl-2 font-normal text-gray-800">{{ name }}</span></p>
       <div class="mt-6 flex justify-start items-center">
         <p v-if="$auth.loggedIn" class="font-medium leading-none">Телефон:<span
-            class="pl-2 font-black text-lg leading-none">{{ phone }}</span>
+            class="pl-2 font-black text-lg leading-none">{{ number }}</span>
           <a class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]" :href="`mailto:${email}`">Пригласить</a>
         </p>
         <button v-else type="button"
@@ -20,7 +20,7 @@
       <p class="leading-5 text-sm font-bold">Имя:<span class="inline-block first-letter:uppercase pl-1 font-normal text-black">{{ name }}</span></p>
       <div class="mt-5 flex justify-start items-center">
         <p v-if="$auth.loggedIn" class="font-bold text-sm leading-none">Телефон:<span
-            class="pl-1 font-black text-base leading-none"><a class="text-blue-600" :href="`tel:${phone}`">{{ phone }}</a></span>
+            class="pl-1 font-black text-base leading-none"><a class="text-blue-600" :href="`tel:${number}`">{{ number }}</a></span>
           <a class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]" :href="`mailto:${email}`">Пригласить</a>
         </p>
         <button v-else type="button"
@@ -43,13 +43,14 @@ export default {
   data() {
     return {
       isLoading: false,
+      number: null,
     }
   },
   components: {AuthModal},
   mounted() {
     setTimeout(() => {
       let formatter = new VMask('+7 (000) 000-00-00');
-      this.phone = formatter.apply(this.phone);
+      this.number = formatter.apply(this.phone);
       this.isLoading = true;
     }, 800);
   },

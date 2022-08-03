@@ -9,8 +9,11 @@
         </section>
 
         <section class = "mt-3 flex flex-col px-5 w-full">
-          <p class="text-2xl font-bold"><span class="pr-2 text-sm">от</span>{{ vacancy.min_price }}<span
-              class="pl-2 text-sm">руб.</span></p>
+          <p class="text-2xl font-bold">
+            <span class="pr-2 text-sm">от
+            </span>{{ vacancy.min_price }}
+            <span class="pl-2 text-sm">руб.</span>
+          </p>
         </section>
 
         <hr class="my-5 mx-auto w-11/12 border-gray-300">
