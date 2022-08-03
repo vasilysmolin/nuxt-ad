@@ -96,7 +96,7 @@ export default {
       await this.removeItem();
       await this.getItemsCategories({}).then(() => {
         this.setItemCategory({ cat: {
-            name: '',
+            name: 'Лента объявлений',
             alias: 'root',
             categories: this.categories
           }
@@ -165,7 +165,7 @@ export default {
       return _.join(arrayAddress);
     },
     getH1(){
-      return this.category.name ?? 'Лента объявлений';
+      return this.category.name;
       //return this.category.name ?? 'Поиск по: ' + this.querySearch;
     },
     linkHub() {
