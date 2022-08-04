@@ -87,7 +87,7 @@ export default {
     }
   },
   async mounted() {
-    const sub = this.$route.fullPath.split('/').pop();
+    const sub = this.$route.path.split('/').pop();
     this.querySearch = this.$route.query?.querySearch;
     if(this.$route.path !== '/feed') {
       this.alias = sub !== 'feed' ? sub : null;

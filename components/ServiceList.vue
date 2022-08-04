@@ -58,7 +58,7 @@ export default {
   },
   async mounted() {
 
-    this.alias = this.$route.fullPath.split('/').pop();
+    this.alias = this.$route.path.split('/').pop();
     this.type = this.$route.query.type;
     if(this.$route.path !== '/feed') {
       await this.getItem({id: this.alias });
