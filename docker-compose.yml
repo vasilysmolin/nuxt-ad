@@ -13,6 +13,9 @@ services:
         - CATALOG=${CATALOG}
         - USLUGI=${USLUGI}
         - FOOD=${FOOD}
+        - TRAVEL=${TRAVEL}
+        - MED=${MED}
+        - PET=${PET}
         - UID=${UID}
         - USER=${USER}
         - ENV=${APP_ENV}

@@ -7,6 +7,9 @@ ARG OFFICE
 ARG USLUGI
 ARG CATALOG
 ARG FOOD
+ARG TRAVEL
+ARG MED
+ARG PET
 ARG ENV
 ARG NGINX_WORKDIR
 ARG FRONT_WORKDIR
@@ -15,6 +18,9 @@ ARG NUXT_PORT
 COPY /home.conf /etc/nginx/conf.d/
 COPY /jobs.conf /etc/nginx/conf.d/
 COPY /food.conf /etc/nginx/conf.d/
+COPY /travel.conf /etc/nginx/conf.d/
+COPY /med.conf /etc/nginx/conf.d/
+COPY /pet.conf /etc/nginx/conf.d/
 COPY /hub.conf /etc/nginx/conf.d/
 COPY /office.conf /etc/nginx/conf.d/
 COPY /catalog.conf /etc/nginx/conf.d/
@@ -24,6 +30,9 @@ COPY /default.conf /etc/nginx/conf.d/
 ENV DOMAIN_HOME=${DOMAIN_HOME}
 ENV JOBS=${JOBS}
 ENV FOOD=${FOOD}
+ENV TRAVEL=${TRAVEL}
+ENV MED=${MED}
+ENV PET=${PET}
 ENV USLUGI=${USLUGI}
 ENV OFFICE=${OFFICE}
 ENV CATALOG=${CATALOG}
