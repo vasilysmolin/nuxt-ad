@@ -123,7 +123,7 @@ export default {
       return _.join(arrayAddress);
     },
     checkCity(){
-      return this.user?.city;
+      return this.ad?.city_id;
     },
     getUserPhone(catalog) {
       return catalog?.profile?.user?.phone;

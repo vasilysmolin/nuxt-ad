@@ -43,6 +43,13 @@
           <h3 class="mt-2 font-medium">График работы:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
         </section>
 
+        <BYandexMap
+            :city_id="vacancy.city_id"
+            :showMap="showMap"
+            :coords="coords"
+            :coordsBal="coordsBal"
+        />
+
       </article>
     </div>
 
@@ -83,6 +90,7 @@
           <h3 class="mt-2 font-bold text-sm">Опыт работы:<span class="font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
           <h3 class="mt-2 font-bold text-sm">Образование:<span class="font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
           <h3 class="mt-2 font-bold text-sm">График работы:<span class="font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
+
         </section>
 
       </article>
@@ -97,11 +105,18 @@ import {mapGetters} from "vuex";
 import NavLocJobs from "~/components/NavLocJobs";
 import BContactV from "~/components/blocks/BContactV";
 import HeaderContentList from "~/components/HeaderContentList";
-
+import BYandexMap from "~/components/blocks/BYandexMap";
 export default {
   name: "VObject",
   layout: 'default-search',
-  components: {HeaderContentList, BContactV, NavLocJobs},
+  components: {HeaderContentList, BContactV, NavLocJobs, BYandexMap},
+  data() {
+    return {
+      coords: [55.7540471, 37.620405],
+      coordsBal: [55.7540471, 37.620405],
+      showMap: false,
+    }
+  },
   async mounted() {
     await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
     if (Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0) {
@@ -119,6 +134,16 @@ export default {
     if (Object.keys(this.$store.getters['salaries/salary_type']).length === 0) {
       await this.$store.dispatch('salaries/getItems');
     }
+    this.showMap = true;
+    if(this.checkCity) {
+      this.coords = [this.vacancy?.city?.latitude, this.vacancy?.city?.longitude];
+      if (_.isEmpty(this.data?.latitude) || _.isEmpty(this.data?.longitude)) {
+        this.coordsBal = this.coords;
+      }  else {
+        this.coordsBal = [this.vacancy?.latitude, this.vacancy?.longitude];
+      }
+
+    }
   },
   methods: {
     getUserName(vacancy) {
@@ -129,6 +154,9 @@ export default {
     },
     getUserPhone(vacancy) {
       return vacancy?.profile?.user?.phone
+    },
+    checkCity(){
+      return this.vacancy?.city_id;
     },
     getUserEmail(vacancy) {
       return vacancy?.profile?.user?.email
