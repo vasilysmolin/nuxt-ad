@@ -53,28 +53,12 @@
       </table>
     </section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="ad.city_id">
-      <h2 class="text-sm font-bold text-black mb-3">Карта</h2>
-        <yandex-map
-            v-if="showMap"
-            ref="map"
-            :coords="coords"
-            zoom="10"
-            style="width: 100%; height: 350px;"
-            :controls="[]"
-            :settings="mapSettings"
-            :behaviors="['default', 'scrollZoom']"
-
-        >
-          <ymap-marker
-              :key="1"
-              :marker-id="1"
-              marker-type="placemark"
-              :coords="coordsBal"
-              :balloon="{ body: 'title' }"
-          ></ymap-marker>
-        </yandex-map>
-    </section>
+    <BYandexMap
+        :city_id="ad.city_id"
+        :showMap="showMap"
+        :coords="coords"
+        :coordsBal="coordsBal"
+    />
 
     <section v-if="checkPhotos(ad)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
@@ -92,14 +76,15 @@
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
-import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+
 import BContactC from "~/components/blocks/BContactC";
+import BYandexMap from "~/components/blocks/BYandexMap";
 
 export default {
   name: "CObject",
   layout: 'default-search',
   mixins: [CategoriesMixin],
-  components: {yandexMap, ymapMarker, BContactC},
+  components: {BContactC, BYandexMap},
   async asyncData({store, route}) {
     await store.dispatch('ads/getItem', { id: route.params.id, querySearch: route.query?.querySearch,  expand: 'profile.user,profile.person'});
     await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });
@@ -108,12 +93,6 @@ export default {
       coordsBal: [55.7540471, 37.620405],
       showMap: false,
       ad: store.state.ads.ad,
-      mapSettings: {
-        apiKey: process.env.YANDEX_MAP,
-        lang: 'ru_RU',
-        coordorder: 'latlong',
-        version: '2.1',
-      },
     }
   },
   async mounted() {
