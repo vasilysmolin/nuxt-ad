@@ -21,6 +21,9 @@ export const mutations = {
 	removeCategoriesServices(state){
 		state.categoriesServices = [];
 	},
+	setCategoryServices(state, categories) {
+		state.category = categories;
+	},
 };
 
 export const actions = {
@@ -42,6 +45,9 @@ export const actions = {
 		const getParams = params({expand});
 		const cat = await this.$axios.$get( `category-services/${id}?${getParams}`);
 		commit('setCategory', cat);
+	},
+	async setItem({commit},{cat}) {
+		commit('setCategoryServices', cat);
 	}
 };
 
