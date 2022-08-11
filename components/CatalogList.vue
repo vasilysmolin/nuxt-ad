@@ -61,7 +61,51 @@
       </button>
     </div>
     </div>
-
+    <section v-if="$device.isMobile" class="container flex flex-col items-center mt-[80px] pb-[100px]">
+    <section  class="flex flex-col w-[95%] sm:max-w-screen-sm">
+      <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
+        <NuxtLink :to="getUrl(ad)">
+          <section class="grid grid-cols-[25%,_1fr]">
+            <section>
+              <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
+            </section>
+            <section class="flex flex-col justify-between pl-4">
+              <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">{{ ad.name }}</h2>
+              <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad)}}</p>
+              <table class="table-auto mb-2 mt-2">
+                <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
+                <tr v-if="index <= 1">
+                  <td>{{ item.filter.name }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+                </tbody>
+                <tbody v-for="(item, index) in getParamsRange(ad)" :key="item.id">
+                <tr v-if="index <= 1">
+                  <td>{{ item.filter.name }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+                </tbody>
+              </table>
+              <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}
+                <!--                <span class="pl-1 text-xs">руб.</span>-->
+              </h3>
+            </section>
+          </section>
+        </NuxtLink>
+      </article>
+      <button v-if="checkAmount" @click="addItems({
+          skip: ads.length,
+          state: 'active',
+          expand: 'profile.user',
+          alias: alias,
+          from: 'catalog',
+          querySearch: querySearch
+        })" type="button"
+              class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+        Смотреть дальше
+      </button>
+    </section>
+    </section>
   </section>
 </template>
 
