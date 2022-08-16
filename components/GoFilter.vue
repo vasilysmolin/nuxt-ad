@@ -85,12 +85,13 @@ export default {
   },
   computed: {
     ...mapGetters({
-      filters: 'categoriesAd/categoryAds',
+      filters: 'filters/filter',
+      type: 'filters/type',
     }),
   },
   methods: {
     ...mapActions({
-      getItems: 'categoriesAd/getItemsFull',
+      // getItems: 'categoriesAd/getItemsFull',
       getItemsAds: 'ads/getItems',
     }),
     submitted() {
@@ -101,9 +102,12 @@ export default {
           filtersData.push(value);
         }
       });
-      this.getItemsAds({alias: this.filters.alias, filtersArray: filtersData }).then(() => {
-        this.$modal.hide('GoFilter');
-      });
+      if(this.type === 'ads') {
+        this.getItemsAds({alias: this.filters.alias, filtersArray: filtersData }).then(() => {
+          this.$modal.hide('GoFilter');
+        });
+      }
+
       // this.$axios.$get(`declarations/`, data).then(() => {
       //   this.$modal.hide('GoFilter');
       // }).catch((error) => {

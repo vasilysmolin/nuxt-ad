@@ -135,7 +135,12 @@ export default {
     this.querySearch = this.$route.query?.querySearch;
     if(this.$route.path !== '/feed') {
       this.alias = sub !== 'feed' ? sub : null;
-      await this.getItem({id: this.alias });
+      await this.getItem({id: this.alias }).then(() => {
+        this.setItems({
+          filter: this.categoryFilter,
+          type: 'ads'
+        });
+      });
     } else {
       await this.removeItem();
       await this.getItemsCategories({}).then(() => {
@@ -147,6 +152,7 @@ export default {
         });
       });
     }
+
     await this.getItems({
       state: 'active',
       expand: 'profile.user',
@@ -160,6 +166,7 @@ export default {
     ...mapGetters({
       ads: 'ads/ads',
       categories: 'categoriesAd/categoriesAds',
+      categoryFilter: 'categoriesAd/categoryAds',
       amount: 'ads/amount'
     }),
     category: {
@@ -178,6 +185,7 @@ export default {
   methods: {
     ...mapActions({
       getItems: 'ads/getItems',
+      setItems: 'filters/setItems',
       addItems: 'ads/addItems',
       getItem: 'categoriesAd/getItem',
       setItemCategory: 'categoriesAd/setItem',

@@ -8,7 +8,7 @@
           <span class="pl-2 font-bold text-sm">Меню</span>
         </div>
         <section class="grid grid-cols-1 cursor-pointer">
-          <div class="flex justify-start items-center w-full">
+          <div @click="showFilter" class="flex justify-start items-center w-full">
             <GlobalConfigure/>
             <span class="pl-2 font-bold text-sm">Фильтры</span>
           </div>
