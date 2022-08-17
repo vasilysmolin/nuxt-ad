@@ -4,7 +4,15 @@
         :category="category"
     />
     <div v-if="$device.isDesktop" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
-
+      <!-- Yandex.RTB R-A-1779902-1 -->
+      <div id="yandex_rtb_R-A-1779902-1"></div>
+      <script>window.yaContextCb.push(()=>{
+        Ya.Context.AdvManager.render({
+          renderTo: 'yandex_rtb_R-A-1779902-1',
+          blockId: 'R-A-1779902-1'
+        })
+      })</script>
+      <!-- Yandex.RTB R-A-1779902-1 -->
     <div class="mx-auto flex flex-col w-[500px]">
       <h1 class="text-xl text-center font-black leading-none">
         {{ getH1() }}
