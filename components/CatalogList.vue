@@ -141,12 +141,14 @@ export default {
   async mounted() {
     const sub = this.$route.path.split('/').pop();
     this.querySearch = this.$route.query?.querySearch;
+    this.setItems({
+      type: 'ads'
+    });
     if(this.$route.path !== '/feed') {
       this.alias = sub !== 'feed' ? sub : null;
       await this.getItem({id: this.alias }).then(() => {
         this.setItems({
-          filter: this.categoryFilter,
-          type: 'ads'
+          filter: this.categoryFilter
         });
       });
     } else {

@@ -330,9 +330,9 @@ export default {
             _.each(ranges, (range) => {
                 const parameterFirst = _.first(range.parameters);
                 let parameterRange = parameterFirst;
-                Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(parameterFirst.value));
-                Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
-                Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
+                // Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(parameterFirst.value));
+                // Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
+                // Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
             });
         },
     },

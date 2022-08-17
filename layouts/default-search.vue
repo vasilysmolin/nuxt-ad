@@ -29,7 +29,6 @@
         </div>
       </header>
       <GoSearch/>
-      <GoFilter/>
       <Nuxt/>
       <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
         <button @click="linkHub" type="button"
@@ -45,6 +44,9 @@
           <GlobalNav />
           <GlobalNavWin :toggleG="isHiddenG"/>
         </div>
+        <div @click.prevent="showFilter" class="flex justify-center items-center cursor-pointer filter">
+          <GlobalConfigure/>
+        </div>
         <TLogo/>
         <div @click.prevent="toggleBlock" v-click-outside="close" class="flex justify-center items-center cursor-pointer usernav">
           <UserNav/>
@@ -59,6 +61,7 @@
           Разместить
         </button>
       </footer>
+      <GoFilter/>
     </div>
 
   </main>

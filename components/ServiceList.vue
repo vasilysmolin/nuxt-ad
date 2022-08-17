@@ -67,8 +67,15 @@ export default {
 
     this.alias = this.$route.path.split('/').pop();
     this.type = this.$route.query.type;
+    this.setItems({
+      type: 'service'
+    });
     if(this.$route.path !== '/feed') {
-      await this.getItem({id: this.alias });
+      await this.getItem({id: this.alias }).then(() => {
+        this.setItems({
+          filter: this.category
+        });
+      });;
     } else {
       await this.removeItem();
       await this.getItemsCategories({}).then(() => {
@@ -94,7 +101,8 @@ export default {
     ...mapGetters({
       services: 'services/services',
       amount: 'services/amount',
-      categories: 'categoriesService/categoriesServices'
+      categories: 'categoriesService/categoriesServices',
+      category: 'categoriesService/category'
     }),
     checkAmount(){
       return this.services.length < this.amount;
@@ -120,6 +128,7 @@ export default {
   methods: {
     ...mapActions({
         getItems: 'services/getItems',
+        setItems: 'filters/setItems',
         addItems: 'services/addItems',
         getItem: 'categoriesService/getItem',
         getItemsCategories: 'categoriesService/getItems',
