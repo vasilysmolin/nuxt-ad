@@ -64,6 +64,9 @@ export default {
     NavLocJobs,
   },
   async mounted() {
+    this.setItems({
+      type: 'resume'
+    });
     if (this.resumes.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
@@ -85,6 +88,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      setItems: 'filters/setItems',
       getItems: 'resumes/getItems',
       addItems: 'resumes/addItems',
     }),

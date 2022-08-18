@@ -120,11 +120,13 @@ export default {
       // getItems: 'categoriesAd/getItemsFull',
       getItemsAds: 'ads/getItems',
       getItemsService: 'services/getItems',
+      getItemsResumes: 'resumes/getItems',
+      getItemsVacancies: 'vacancies/getItems',
     }),
     submitted() {
       // this.isDisabled = true;
       let filtersData = [];
-      console.log(this.parameters);
+      // console.log(this.parameters);
       _.forIn(this.parameters, function(value, key) {
         if(value !== 0) {
           filtersData.push(value);
@@ -143,6 +145,28 @@ export default {
       }
       if(this.type === 'service') {
         this.getItemsService({
+              alias: this.filters?.alias,
+              filtersArray: filtersData,
+              priceFrom: this.priceFrom,
+              priceTo: this.priceTo
+            }
+        ).then(() => {
+          this.$modal.hide('GoFilter');
+        });
+      }
+      if(this.type === 'resume') {
+        this.getItemsResumes({
+              alias: this.filters?.alias,
+              filtersArray: filtersData,
+              priceFrom: this.priceFrom,
+              priceTo: this.priceTo
+            }
+        ).then(() => {
+          this.$modal.hide('GoFilter');
+        });
+      }
+      if(this.type === 'vacancy') {
+        this.getItemsVacancies({
               alias: this.filters?.alias,
               filtersArray: filtersData,
               priceFrom: this.priceFrom,

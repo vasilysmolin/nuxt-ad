@@ -46,8 +46,11 @@ export const actions = {
 		expand = null,
 		name = null,
 		querySearch = null,
+		filtersArray = null,
+		priceFrom = null,
+		priceTo = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,skipFromFull,skip,take,querySearch});
+		const getParams = params({user_id,state,expand,from,name,skipFromFull,skip,take,querySearch,priceFrom,priceTo,filtersArray});
 		const resumes = await this.$axios.$get(`resume?${getParams}`);
 		if(state === 'new'){
 			commit('setResumesNew', resumes.jobs_resumes);

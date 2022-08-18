@@ -46,8 +46,11 @@ export const actions = {
 		from = null,
 		name = null,
 		querySearch = null,
+		filtersArray = null,
+		priceFrom = null,
+		priceTo = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,skipFromFull,skip,take,querySearch});
+		const getParams = params({user_id,state,expand,from,name,skipFromFull,skip,take,querySearch,priceFrom,priceTo,filtersArray});
 		const vacancies = await this.$axios.$get(`vacancies?skip=0&take=25${getParams}`);
 
 		if(state === 'new'){

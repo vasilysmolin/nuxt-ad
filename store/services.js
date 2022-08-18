@@ -47,9 +47,9 @@ export const actions = {
 		alias = null,
 		name = null,
 		type = null,
-	   filtersArray = null,
-	   priceFrom = null,
-	   priceTo = null,
+		filtersArray = null,
+		priceFrom = null,
+		priceTo = null,
 		querySearch = null,
 	}) {
 		const getParams = params({user_id,type,state,expand,from,name,alias,skipFromFull,skip,take,querySearch,priceFrom,priceTo,filtersArray});

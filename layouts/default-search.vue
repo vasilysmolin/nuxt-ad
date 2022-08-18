@@ -61,9 +61,9 @@
           Разместить
         </button>
       </footer>
-      <GoFilter/>
-    </div>
 
+    </div>
+    <GoFilter/>
   </main>
 
 </template>

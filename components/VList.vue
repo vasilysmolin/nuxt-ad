@@ -60,6 +60,9 @@ export default {
     type: String,
   },
   async mounted() {
+    this.setItems({
+      type: 'vacancy'
+    });
     if (this.vacancies.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
@@ -75,6 +78,7 @@ export default {
   },
   methods: {
     ...mapActions({
+      setItems: 'filters/setItems',
       getItems: 'vacancies/getItems',
       addItems: 'vacancies/addItems',
     }),
