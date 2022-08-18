@@ -148,7 +148,8 @@ export default {
       this.alias = sub !== 'feed' ? sub : null;
       await this.getItem({id: this.alias }).then(() => {
         this.setItems({
-          filter: this.categoryFilter
+          filter: this.categoryFilter,
+          type: 'ads'
         });
       });
     } else {

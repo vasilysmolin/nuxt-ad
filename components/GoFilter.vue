@@ -1,26 +1,24 @@
 <template>
   <modal name="GoFilter" :min-width="320" :max-width="1024" width="95%" height="auto" :adaptive="true">
-    <div class="container flex flex-col items-center mt-[20px] scroll-smooth">
-      <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <div @click.prevent="submitted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
-          <button :disabled="isDisabled">Применить</button>
-        </div>
-        <label class="pl-4 text-gray-500">По цене</label>
-        от
+    <div class="container flex flex-col items-center mt-[20px] overflow-y-scroll">
+      <div class="flex flex-col items-center px-5 py-3 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+        <h1 class="flex text-center text-2xl mb-5">Фильтр</h1>
+        <div class="mb-4 w-full sm:w-[27rem]">
+        <label class="text-gray-500 mr-4">По цене</label>
         <input
             type="number"
-            class="form-control forms-input w-20"
-            placeholder=""
+            class="form-control forms-input-custom w-20"
+            placeholder="от"
             v-model="priceFrom">
-        до
         <input
             type="number"
-            class="form-control forms-input w-20"
-            placeholder=""
+            class="form-control forms-input-custom w-20"
+            placeholder="до"
             v-model="priceTo">
+        </div>
         <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in getFilter(filters)" :key="item.id">
 
-          <label :for="item.id" class="pl-4 text-gray-500">{{ item.name }}</label>
+          <label :for="item.id" class="text-gray-500 mr-4">{{ item.name }}</label>
           <select
               @change="changeSelect($event, item)"
               v-model="parameters[`params-${item.alias}`]"
@@ -42,7 +40,7 @@
               @change="changeRange($event, item)"
               :id="item.id"
               type="number"
-              class="form-control forms-input w-20"
+              class="form-control forms-input-custom w-20"
               placeholder=""
               :value="rangeSort[`params-${item.alias}`]">
 <!--            <input @change="changeRange($event, item)"-->
@@ -73,8 +71,21 @@
                 {{ parameter.value }}
               </label>
             </div>
+
           </template>
         </div>
+        <footer class="fixed flex justify-center items-center bottom-0 w-full px-5 py-1 bg-[#F7F7FC]">
+          <button @click.prevent="submitted" type="button" :disabled="isDisabled"
+                  class="btn btn-primary inline-block mt-1 px-9 py-3 bg-[#00A05D]
+                  text-white font-bold text-sm tracking-wider leading-snug
+                  rounded focus:outline-none focus:ring-0  transition duration-150
+                  ease-in-out hover:bg-[#049055]">
+            Применить
+          </button>
+        </footer>
+<!--        <div  class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">-->
+<!--          <button :disabled="isDisabled">Применить</button>-->
+<!--        </div>-->
 
       </div>
     </div>
@@ -91,11 +102,11 @@ export default {
   name: 'GoFilter',
   mixins: [CategoriesMixin],
   async mounted() {
-    setTimeout(() => {
+    // setTimeout(() => {
       if(this.filters){
         this.setSelectParamsFilter();
       }
-    },1700);
+    // },1700);
 
   },
   data() {
@@ -117,7 +128,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      // getItems: 'categoriesAd/getItemsFull',
       getItemsAds: 'ads/getItems',
       getItemsService: 'services/getItems',
       getItemsResumes: 'resumes/getItems',
@@ -132,6 +142,12 @@ export default {
           filtersData.push(value);
         }
       });
+      if(_.isEmpty(this.priceFrom)) {
+        this.priceFrom = null;
+      }
+      if(_.isEmpty(this.priceTo)) {
+        this.priceTo = null;
+      }
       if(this.type === 'ads') {
         this.getItemsAds({
           alias: this.filters?.alias,
@@ -190,3 +206,23 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.forms-input-custom {
+  @apply
+  /*block*/
+  w-20
+  px-3
+  py-1.5
+  text-base
+  font-normal
+  text-black
+  bg-[#EFF0F6] bg-clip-padding
+  border border-solid border-[#EFF0F6]
+  rounded-lg
+  transition
+  ease-in-out
+  m-0
+  focus:text-black focus:bg-white focus:border-black focus:outline-hidden
+}
+</style>
