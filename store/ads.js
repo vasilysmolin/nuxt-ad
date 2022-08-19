@@ -5,6 +5,7 @@ export const state = () => ({
 	adsFull: [],
 	amount: null,
 	amountNew: null,
+	categoryAlias: null,
 	adsNew: [],
 	ad: {},
 });
@@ -37,6 +38,9 @@ export const mutations = {
 	setAmount(state, amount) {
 		state.amount = amount;
 	},
+	setAdCategory(state, categoryAlias) {
+		state.categoryAlias = categoryAlias;
+	},
 };
 
 export const actions = {
@@ -66,13 +70,11 @@ export const actions = {
 			commit('setAmount', ads.meta.total);
 		}
 	},
-	// async getItemsFull({commit},{
-	// 	querySearch = null,
-	// }) {
-	// 	const getParams = params({querySearch});
-	// 	const adsFull = await this.$axios.$get(`declarations-full?take=10${getParams}`);
-	// 	commit('setAdsFull', adsFull.catalog_ads);
-	// },
+	async setAdCategory({commit},{
+		categoryAlias = null,
+	}) {
+		commit('setAdCategory', categoryAlias);
+	},
 	async addItems({commit},{
 		skip = 0,
 		user_id = null,
@@ -108,4 +110,5 @@ export const getters = {
 	ad: s => s.ad,
 	amount: s => s.amount,
 	amountNew: s => s.amountNew,
+	categoryAlias: s => s.categoryAlias,
 };

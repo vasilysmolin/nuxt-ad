@@ -163,22 +163,26 @@ export default {
         });
       });
     }
-
-    await this.getItems({
-      state: 'active',
-      expand: 'profile.user',
-      alias: this.alias,
-      from: 'catalog',
-      querySearch: this.$route.query?.querySearch
-    });
-
+    console.log(this.alias);
+    console.log(this.categoryAlias);
+    if (this.alias !== this.categoryAlias) {
+      await this.setAdCategory({ categoryAlias: this.alias});
+      await this.getItems({
+        state: 'active',
+        expand: 'profile.user',
+        alias: this.alias,
+        from: 'catalog',
+        querySearch: this.$route.query?.querySearch
+      });
+    }
   },
   computed: {
     ...mapGetters({
       ads: 'ads/ads',
       categories: 'categoriesAd/categoriesAds',
       categoryFilter: 'categoriesAd/categoryAds',
-      amount: 'ads/amount'
+      amount: 'ads/amount',
+      categoryAlias: 'ads/categoryAlias'
     }),
     category: {
       get() {
@@ -196,6 +200,7 @@ export default {
   methods: {
     ...mapActions({
       getItems: 'ads/getItems',
+      setAdCategory: 'ads/setAdCategory',
       setItems: 'filters/setItems',
       addItems: 'ads/addItems',
       getItem: 'categoriesAd/getItem',

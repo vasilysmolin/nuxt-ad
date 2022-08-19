@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import {mapActions} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import Vue from 'vue';
 
 export default {

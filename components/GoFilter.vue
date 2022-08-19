@@ -129,6 +129,7 @@ export default {
   methods: {
     ...mapActions({
       getItemsAds: 'ads/getItems',
+      setParameters: 'filters/setParameters',
       getItemsService: 'services/getItems',
       getItemsResumes: 'resumes/getItems',
       getItemsVacancies: 'vacancies/getItems',
@@ -142,6 +143,9 @@ export default {
           filtersData.push(value);
         }
       });
+      this.setParameters({
+          parameters: filtersData
+      })
       if(_.isEmpty(this.priceFrom)) {
         this.priceFrom = null;
       }
