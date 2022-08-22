@@ -163,9 +163,7 @@ export default {
         });
       });
     }
-    console.log(this.alias);
-    console.log(this.categoryAlias);
-    if (this.alias !== this.categoryAlias) {
+    if (_.isEmpty(this.alias) || this.alias !== this.categoryAlias) {
       await this.setAdCategory({ categoryAlias: this.alias});
       await this.getItems({
         state: 'active',
