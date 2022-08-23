@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from "vuex";
 import Vue from 'vue';
 
 export default {
@@ -323,17 +323,17 @@ export default {
         setSelectParamsFilter() {
             const filter = this.filters.filters;
             const selects = _.filter(filter, (item) => item.type === 'select');
-            const ranges = _.filter(filter, (item) => item.type === 'range');
+            // const ranges = _.filter(filter, (item) => item.type === 'range');
             _.each(selects, (select) => {
                 Vue.set(this.parameters, `params-${select.alias}`, parseInt(0));
             });
-            _.each(ranges, (range) => {
-                const parameterFirst = _.first(range.parameters);
-                let parameterRange = parameterFirst;
-                // Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(parameterFirst.value));
-                // Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
-                // Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
-            });
+            // _.each(ranges, (range) => {
+            // const parameterFirst = _.first(range.parameters);
+            // let parameterRange = parameterFirst;
+            // Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(parameterFirst.value));
+            // Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
+            // Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
+            // });
         },
     },
 };

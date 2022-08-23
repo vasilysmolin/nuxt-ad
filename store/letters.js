@@ -1,4 +1,4 @@
-import {params} from "../helper/requestParams";
+// import {params} from "../helper/requestParams";
 
 export const state = () => ({
 	letters: [],

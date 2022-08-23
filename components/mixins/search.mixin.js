@@ -55,34 +55,34 @@ export default {
        checkEmptyItem(){
            this.hasItems = this.ads.length > 0 || this.services.length > 0 || this.vacancies.length > 0 || this.resumes.length > 0;
        },
-       debounceInput: _.debounce(function (e) {
+       debounceInput: _.debounce(function () {
            this.getItemsAds({
                querySearch: this.querySearch,
                take: 6,
-           }).then((res) => {
+           }).then(() => {
                this.checkEmptyItem();
-           }).catch((error) => {
+           }).catch(() => {
            });
            this.getItemsResumes({
                querySearch: this.querySearch,
                take: 6,
-           }).then((res) => {
+           }).then(() => {
                this.checkEmptyItem();
-           }).catch((error) => {
+           }).catch(() => {
            });
            this.getItemsVacancies({
                querySearch: this.querySearch,
                take: 6,
-           }).then((res) => {
+           }).then(() => {
                this.checkEmptyItem();
-           }).catch((error) => {
+           }).catch(() => {
            });
            this.getItemsServices({
                querySearch: this.querySearch,
                take: 6,
-           }).then((res) => {
+           }).then(() => {
                this.checkEmptyItem();
-           }).catch((error) => {
+           }).catch(() => {
            });
        }, 500)
    }
