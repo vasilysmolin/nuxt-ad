@@ -5,7 +5,7 @@
       <modal name="GoSearch" :min-width="320" :max-width="1024" width="95%" height="auto" :adaptive="true">
         <section class="flex justify-center items-center w-full">
           <section class="input-group relative flex flex-wrap items-stretch w-full">
-            <input v-on:input="debounceInput" v-model="querySearch" type="text"
+            <input autofocus v-on:input="debounceInput" v-model="querySearch" type="text"
                    class="form-control relative flex-auto min-w-0 block w-full px-6 py-4 text-base bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:outline-none focus:ring-0"
                    placeholder="Поиск" aria-label="Поиск" aria-describedby="button-addon2">
             <button @click="getSearchQuery"

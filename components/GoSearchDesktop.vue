@@ -2,7 +2,7 @@
   <section class="mt-12 py-5 px-3 flex flex-col justify-center items-center w-full rounded bg-[#eeeeee]">
     <h2 class="text-base font-bold">Найти объявление, работу или исполнителя</h2>
     <section class="mt-4 p-1.5 relative flex flex-wrap items-stretch w-full bg-white border border-solid rounded border-gray-300">
-      <input v-on:input="debounceInput"  v-model="querySearch" type="text"
+      <input autofocus v-on:input="debounceInput" v-model="querySearch" type="text"
              class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
              placeholder="Например, квартира, вакансии, подработка" aria-label="Поиск" aria-describedby="button-addon2">
       <button @click="getSearchQuery"
@@ -81,8 +81,6 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import * as _ from "lodash";
 import SearchMixin from "~/components/mixins/search.mixin"
 
 export default {
