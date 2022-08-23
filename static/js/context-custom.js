@@ -1,1 +1,1 @@
-window.yaContextCb=window.yaContextCb||[];
+window.yaContextCb = window.yaContextCb || [];

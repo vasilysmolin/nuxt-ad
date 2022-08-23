@@ -1,4 +1,4 @@
-import { params } from '../helper/requestParams';
+import {params} from '../helper/requestParams';
 
 export const state = () => ({
 	ads: [],
@@ -20,7 +20,7 @@ export const mutations = {
 	addads(state, ads) {
 		state.ads.push(...ads);
 	},
-	removeads(state){
+	removeads(state) {
 		state.ads = [];
 	},
 	setad(state, ad) {
@@ -44,7 +44,7 @@ export const mutations = {
 };
 
 export const actions = {
-	async getItems({commit},{
+	async getItems({commit}, {
 		skip = 0,
 		skipFromFull = 0,
 		take = 25,
@@ -59,10 +59,24 @@ export const actions = {
 		priceTo = null,
 		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,name,alias,filtersArray,querySearch,skipFromFull,skip,take,priceFrom,priceTo});
+		const getParams = params({
+			user_id,
+			state,
+			expand,
+			from,
+			name,
+			alias,
+			filtersArray,
+			querySearch,
+			skipFromFull,
+			skip,
+			take,
+			priceFrom,
+			priceTo,
+		});
 		const ads = await this.$axios.$get(`declarations?${getParams}`);
 
-		if(state === 'new'){
+		if (state === 'new') {
 			commit('setadsNew', ads.catalog_ads);
 			commit('setAmountNew', ads.meta.total);
 		} else {
@@ -70,12 +84,12 @@ export const actions = {
 			commit('setAmount', ads.meta.total);
 		}
 	},
-	async setAdCategory({commit},{
+	async setAdCategory({commit}, {
 		categoryAlias = null,
 	}) {
 		commit('setAdCategory', categoryAlias);
 	},
-	async addItems({commit},{
+	async addItems({commit}, {
 		skip = 0,
 		user_id = null,
 		state = null,
@@ -85,9 +99,11 @@ export const actions = {
 		alias = null,
 		querySearch = null,
 	}) {
-		const getParams = params({user_id,state,expand,from,skip,name,alias,querySearch});
+		const getParams = params({
+			user_id, state, expand, from, skip, name, alias, querySearch,
+		});
 		const ads = await this.$axios.$get(`declarations?take=25${getParams}`);
-		if(state === 'new'){
+		if (state === 'new') {
 			commit('addadsNew', ads.catalog_ads);
 		} else {
 			commit('addads', ads.catalog_ads);
@@ -96,19 +112,19 @@ export const actions = {
 	async removeItems({commit}) {
 		commit('removeads');
 	},
-	async getItem({commit},{id,expand = null, querySearch = null}) {
+	async getItem({commit}, {id, expand = null, querySearch = null}) {
 		const getParams = params({expand, querySearch});
-		const ad = await this.$axios.$get( `declarations/${id}?${getParams}`);
+		const ad = await this.$axios.$get(`declarations/${id}?${getParams}`);
 		commit('setad', ad);
-	}
+	},
 };
 
 export const getters = {
-	ads: s => s.ads,
-	adsFull: s => s.adsFull,
-	adsNew: s => s.adsNew,
-	ad: s => s.ad,
-	amount: s => s.amount,
-	amountNew: s => s.amountNew,
-	categoryAlias: s => s.categoryAlias,
+	ads: (s) => s.ads,
+	adsFull: (s) => s.adsFull,
+	adsNew: (s) => s.adsNew,
+	ad: (s) => s.ad,
+	amount: (s) => s.amount,
+	amountNew: (s) => s.amountNew,
+	categoryAlias: (s) => s.categoryAlias,
 };

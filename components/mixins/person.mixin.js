@@ -1,9 +1,9 @@
 export default {
     methods: {
-        profile(){
+        profile() {
             return this.$auth.user?.profile;
         },
-        getInn(){
+        getInn() {
             return this.$auth.user?.profile?.person?.inn;
         },
         isPerson() {
@@ -18,7 +18,7 @@ export default {
         getEntityName(user) {
             return user?.profile?.person?.name;
         },
-        getEntityInn(user){
+        getEntityInn(user) {
             return user?.profile?.person?.inn;
         },
         checkStepPerson() {
@@ -29,6 +29,6 @@ export default {
         },
         checkSteps() {
             return this.checkStepPerson || this.checkStepIndividual;
-        }
-    }
+        },
+    },
 };

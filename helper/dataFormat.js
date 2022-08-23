@@ -1,6 +1,6 @@
 function dateFormat(date) {
-    if(date){
-        let dates = new Date(date);
+    if (date) {
+        const dates = new Date(date);
         const formatter = new Intl.DateTimeFormat('ru-RU', {
             day: 'numeric',
             month: 'long',
@@ -14,4 +14,3 @@ function dateFormat(date) {
 export {
     dateFormat,
 };
-

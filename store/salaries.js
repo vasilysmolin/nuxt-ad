@@ -6,7 +6,7 @@ export const mutations = {
     setSalary(state, salary_type) {
         state.salary_type = salary_type;
     },
-    removeSalary(state){
+    removeSalary(state) {
         state.salary_type = {};
     },
 };
@@ -22,5 +22,5 @@ export const actions = {
 };
 
 export const getters = {
-    salary_type: s => s.salary_type,
+    salary_type: (s) => s.salary_type,
 };
