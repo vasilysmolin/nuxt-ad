@@ -194,6 +194,7 @@ export default {
         'nuxt-basic-auth-module',
         'cookie-universal-nuxt',
         '@nuxtjs/proxy',
+        "vue2-editor/nuxt"
     ],
 
     // proxy: {

@@ -22,7 +22,7 @@
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Описание</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600">{{ ad.description }}</p>
+      <p class="mt-1 text-sm sm:text-base text-gray-600" v-html="ad.description"></p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
@@ -74,7 +74,7 @@
 
 <script>
 import * as _ from 'lodash';
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 
 import BContactC from "~/components/blocks/BContactC";

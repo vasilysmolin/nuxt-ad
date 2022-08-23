@@ -1,5 +1,5 @@
 {
-  "name": "jobs",
+  "name": "tapigo",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -32,6 +32,7 @@
     "vue-template-compiler": "^2.6.14",
     "vue-the-mask": "^0.11.1",
     "vue-yandex-maps": "^0.10.12",
+    "vue2-editor": "^2.10.3",
     "vuelidate": "^0.7.6",
     "webpack": "^4.46.0"
   },

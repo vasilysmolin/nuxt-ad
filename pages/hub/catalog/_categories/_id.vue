@@ -102,14 +102,15 @@
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
-                  <textarea
-                      class="form-control forms-textarea"
-                      rows="5"
-                      name="description"
-                      id="description"
-                      placeholder="Описание"
-                      v-model="data.description"
-                  >{{ data.description }}</textarea>
+              <vue-editor v-model="data.description" :editorToolbar="customToolbar"></vue-editor>
+              <!--                  <textarea-->
+              <!--                      class="form-control forms-textarea"-->
+              <!--                      rows="5"-->
+              <!--                      name="description"-->
+              <!--                      id="description"-->
+              <!--                      placeholder="Описание"-->
+              <!--                      v-model="data.description"-->
+              <!--                  >{{ data.description }}</textarea>-->
               <span v-if="descriptionErrors" class="form-errors">
             {{ descriptionErrors }}
             </span>
@@ -225,9 +226,8 @@
 
 <script>
 import * as _ from 'lodash';
-import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
-// import {mapGetters} from "vuex";
-import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
+import {yandexMap, ymapMarker} from 'vue-yandex-maps';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
@@ -250,6 +250,11 @@ export default {
     return {
       query: '',
       zoom: 10,
+      customToolbar: [
+        ["bold", "italic", "underline"],
+        [{list: "ordered"}, {list: "bullet"}],
+        ["code-block"]
+      ],
       coords: [55.7540471, 37.620405],
       coordsBal: [55.7540471, 37.620405],
       showMap: false,
