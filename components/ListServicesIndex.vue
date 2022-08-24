@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div v-if="$device.isDesktop" class="mt-12 flex flex-row w-full justify-between items-center">
+    <div v-if="$device.isDesktop" class="mt-12 flex flex-row flex-wrap w-full justify-between items-center">
       <article @click="catalog" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFF4D2] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
         <IconListServicesIndexCatalog/>
         <div>
@@ -22,7 +22,14 @@
           <h3 class="mt-1 text-[12px] leading-snug">Найти исполнителя или создать услугу.</h3>
         </div>
       </article>
-      <article class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFFDCB]">
+      <article @click="travel" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#F7C9FF] cursor-pointer transition duration-150 ease-in-out hover:bg-[#DF8CED]">
+        <IconListServicesIndexTravel/>
+        <div>
+          <h2 class="text-base font-black">Путешествия</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Самые дешёвые билеты на самолет и отели.</h3>
+        </div>
+      </article>
+      <article class="mt-8 px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFFDCB]">
         <IconListServicesIndexFood/>
         <div>
           <h2 class="text-base font-black">Еда</h2>
@@ -53,6 +60,13 @@
           <h3 class="mt-1 text-[11px] leading-snug">Найти исполнителя или создать услугу.</h3>
         </div>
       </article>
+      <article @click="travel" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#F7C9FF]">
+        <IconListServicesIndexTravel/>
+        <div>
+          <h2 class="text-base font-black">Путешествия</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Дешёвые билеты на самолет и отели.</h3>
+        </div>
+      </article>
       <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
         <IconListServicesIndexFood/>
         <div>
@@ -69,10 +83,11 @@ import IconListServicesIndexCatalog from "./icons/IconListServicesIndexCatalog";
 import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
 import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
+import IconListServicesIndexTravel from "./icons/IconListServicesIndexTravel";
 export default {
   components: {
     IconListServicesIndexFood,
-    IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog},
+    IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog, IconListServicesIndexTravel},
   methods: {
     jobs() {
       document.location.href = process.env.JOBS_URL;
@@ -82,6 +97,9 @@ export default {
     },
     catalog() {
       document.location.href = process.env.CATALOG_URL;
+    },
+    travel() {
+      document.location.href = process.env.TRAVEL_URL;
     },
   }
 }
