@@ -81,15 +81,14 @@
         </article>
       </modal>
     </div>
-
-
     <div v-if="$device.isMobile">
       <modal name="GoSearch" width="100%" height="100%">
         <section class="flex flex-col justify-center items-center w-full">
           <section class="p-2 relative flex flex-wrap items-stretch w-full border-b border-solid border-gray-300">
-            <input v-on:input="debounceInput" v-model="querySearch" type="text"
+            <input autofocus v-on:input="debounceInput" v-model="querySearch" type="text"
                    class="form-control relative flex-auto block px-1 py-2.5 text-xs font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
-                   placeholder="Например, квартира, резюме, забить гвоздь" aria-label="Поиск" aria-describedby="button-addon2">
+                   placeholder="Например, квартира, резюме, забить гвоздь" aria-label="Поиск"
+                   aria-describedby="button-addon2">
             <button @click="getSearchQuery"
                     class="btn inline-block px-2 bg-blue-900 text-white font-bold text-xs tracking-wider rounded focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 items-center"
                     type="button" id="button-addon2">Найти
