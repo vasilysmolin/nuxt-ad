@@ -15,6 +15,9 @@ export default {
         inviteReset: 'Ссылка для восстановления отправлена на почту',
         buttonInvite: 'Отправить ссылку на почту',
     },
+    profile: {
+        'confirmEmail': 'Подтвердить email',
+    },
     validation: {
         emailRequired: 'Кажется, вы забыли написать email',
         email: 'Это не похоже на адрес электронной почты',

@@ -12,24 +12,17 @@
         </section>
         <form class="w-[95%]">
           <div class="flex flex-col items-center w-full">
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <input type="email" v-model="user.email" class="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-black
-        bg-[#EFF0F6] bg-clip-padding
-        border border-solid border-[#EFF0F6]
-        rounded-lg
-        transition
-        ease-in-out
-        m-0
-        focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
-                     placeholder="Ваш телефон">
-              <label for="floatingInput" class="text-[#6E7191]">Ваша почта</label>
+            <BInput
+                :value="user.email"
+                :error="''"
+                :placeholder="$t('auth.youEmail')"
+                @input="onInputEmail"
+            />
+            <div v-if="!user.email_verified_at && confirm === false" class="form-floating mb-4 w-full sm:w-[27rem]">
+              <button type="button" @click.prevent="confirmEmail"
+                      class="inline-block px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+                {{ $t('profile.confirmEmail') }}
+              </button>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -100,12 +93,14 @@
 
 <script>
 import NavLocProfile from "../../components/NavLocProfile";
+import BInput from "~/components/blocks/BInput";
 import Person from "~/components/mixins/person.mixin";
 import * as _ from "lodash";
 import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: 'Profile',
-  components: {NavLocProfile},
+  components: {NavLocProfile, BInput},
   layout: 'hub',
   head: {
     title: "Профиль пользователя Тапиго",
@@ -117,6 +112,7 @@ export default {
   data() {
     return {
       query: null,
+      confirm: false,
       error: false,
       successChange: false,
       user: {
@@ -158,7 +154,17 @@ export default {
       getItems: 'cities/getItemsFull',
       removeItemsFull: 'cities/removeItemsFull',
     }),
-    saveCity(city){
+    onInputEmail(event) {
+      this.email = event;
+    },
+    confirmEmail() {
+      this.$axios.$post(`/auth/email/verification-notification`).then(() => {
+        this.confirm = true;
+      }).catch((error) => {
+
+      });
+    },
+    saveCity(city) {
       this.$axios.$put(`users/${this.user.id}`, {city_id: city.id}).then(() => {
         const user = this.$auth.fetchUser().then((res) => {
           this.$auth.setUser(res.data);

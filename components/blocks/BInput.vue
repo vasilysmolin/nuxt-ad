@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <div class="form-floating mb-4 w-full sm:w-[27rem]">
+
+<div class="form-floating mb-4 w-full sm:w-[27rem]">
       <input
           v-on="listeners"
           v-on:keyup.enter="submitted"
@@ -29,7 +29,6 @@
             {{ error }}
             </span>
     </div>
-  </section>
 </template>
 
 <script>
