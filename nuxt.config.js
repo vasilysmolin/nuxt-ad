@@ -193,7 +193,23 @@ export default {
     'cookie-universal-nuxt',
     '@nuxtjs/proxy',
     'vue2-editor/nuxt',
+    '@nuxtjs/i18n',
   ],
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        file: 'en.js'
+      },
+      {
+        code: 'ru',
+        file: 'ru.js'
+      },
+    ],
+    lazy: true,
+    langDir: 'lang/',
+    defaultLocale: 'ru'
+  },
 
   // proxy: {
   //     ...(isDev && {
