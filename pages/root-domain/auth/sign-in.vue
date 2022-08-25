@@ -28,9 +28,7 @@
         </div>
       </form>
       <NuxtLink :to="{path: linkSignUp}" class="mt-5 font-bold text-blue-600">{{ $t('auth.createAccount') }}</NuxtLink>
-      <NuxtLink :to="{path: linkForgotPasswd}" class="mt-5 font-bold text-blue-600">{{
-          $t('auth.forgotPassword')
-        }}
+      <NuxtLink :to="{path: linkForgotPasswd}" class="mt-5 font-bold text-blue-600">{{ $t('auth.forgotPassword') }}
       </NuxtLink>
     </div>
   </div>
@@ -38,13 +36,15 @@
 
 <script>
 import Person from "~/components/mixins/person.mixin";
-import {email, required} from "vuelidate/lib/validators";
+import {email, maxLength, minLength, required} from "vuelidate/lib/validators";
 import BInput from "~/components/blocks/BInput";
+import Validations from "~/components/mixins/validations.mixin"
 
 
 export default {
   name: 'SignIn',
   components: {BInput},
+  mixins: [Person, Validations],
   data() {
     return {
       errors: null,
@@ -60,6 +60,8 @@ export default {
       },
       password: {
         required,
+        maxLength: maxLength(25),
+        minLength: minLength(8),
       },
   },
   mounted() {
@@ -68,39 +70,6 @@ export default {
     }
   },
   computed: {
-    emailErrors: {
-      get() {
-        if (!this.$v.email?.$dirty) {
-          return '';
-        }
-        if (!this.$v.email.required) {
-          return this.$t('validation.emailRequired');
-        }
-        if (!this.$v.email.email) {
-          return this.$t('validation.email');
-        }
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    passwordErrors: {
-      get() {
-        if (!this.$v.password?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.password.required) {
-          return this.$t('validation.passwordRequired');
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
     linkSignUp() {
       if (this.from) {
         return `/auth/sign-up?from=${this.from}`;
@@ -117,19 +86,19 @@ export default {
     }
 
   },
-  mixins: [Person],
+
   methods: {
-      submitted() {
-        if (this.$v.$invalid) {
-          this.$v.$touch();
-          return;
-        }
-        this.$auth.loginWith('laravelJWT', {
-          data: {
-            email: this.email,
-            password: this.password
-          },
-        }).then(() => {
+    submitted() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
+      this.$auth.loginWith('laravelJWT', {
+        data: {
+          email: this.email,
+          password: this.password
+        },
+      }).then(() => {
           if(this.checkSteps){
             const url = this.from ?? process.env.HUB_URL + '/profile';
             document.location.href = url;
