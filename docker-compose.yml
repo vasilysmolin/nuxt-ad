@@ -30,8 +30,8 @@ services:
     working_dir: /var/www/${NGINX_WORKDIR}
     volumes:
       - .:/var/www/${NGINX_WORKDIR}
-    depends_on:
-      - front
+  #    depends_on:
+  #      - front
 
   front:
     build:
