@@ -52,6 +52,8 @@ export default {
       TRAVEL_URL: `http://${process.env.TRAVEL}:${process.env.NUXT_PORT}/travel`,
       MED_URL: `http://${process.env.MED}:${process.env.NUXT_PORT}`,
       PET_URL: `http://${process.env.PET}:${process.env.NUXT_PORT}`,
+      AVIA_URL: `http://${process.env.AVIA}:${process.env.NUXT_PORT}`,
+      HOSTELS_URL: `http://${process.env.HOSTELS}:${process.env.NUXT_PORT}`,
     }),
     ...(!isDev && {
       AUTH_URL: `https://${process.env.DOMAIN_HOME}/auth/sign-in`,
@@ -65,6 +67,8 @@ export default {
       TRAVEL_URL: `https://${process.env.TRAVEL}/travel`,
       MED_URL: `https://${process.env.MED}`,
       PET_URL: `https://${process.env.PET}`,
+      AVIA_URL: `https://${process.env.AVIA}`,
+      HOSTELS_URL: `https://${process.env.HOSTELS}`,
     }),
     YANDEX_MAP: process.env.YANDEX_MAP,
   },
@@ -101,7 +105,9 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     ['k-domains', {
-      subDomains: ['jobs', 'hub', 'office', 'catalog', 'uslugi', 'food', 'travel', 'med', 'pet'], // List of directories to hold te pages for your subdomains
+      subDomains: ['jobs', 'hub', 'office', 'catalog',
+        'uslugi', 'food', 'travel', 'med', 'pet', 'avia', 'hostels'
+      ], // List of directories to hold te pages for your subdomains
       rootDomain: 'root-domain', //  directory to hold the pages for root domain
     },
     ],

@@ -11,6 +11,8 @@ FOODCONF=/etc/nginx/conf.d/food.conf;
 TRAVELCONF=/etc/nginx/conf.d/travel.conf;
 MEDCONF=/etc/nginx/conf.d/med.conf;
 PETCONF=/etc/nginx/conf.d/pet.conf;
+AVIACONF=/etc/nginx/conf.d/avia.conf;
+HOSTELSCONF=/etc/nginx/conf.d/hostels.conf;
 DEFAULTCONF=/etc/nginx/conf.d/default.conf;
 
 if test -f "$HOMECONF"; then
@@ -91,6 +93,22 @@ if test -f "$TRAVELCONF"; then
     sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$TRAVELCONF";
     sed -i "s#%ENV%#${ENV}#g" "$TRAVELCONF";
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$TRAVELCONF";
+fi
+
+if test -f "$AVIACONF"; then
+    sed -i "s#%AVIA%#${AVIA}#g" "$AVIACONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$AVIACONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$AVIACONF";
+    sed -i "s#%ENV%#${ENV}#g" "$AVIACONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$AVIACONF";
+fi
+
+if test -f "$HOSTELSCONF"; then
+    sed -i "s#%HOSTELS%#${HOSTELS}#g" "$HOSTELSCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$HOSTELSCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$HOSTELSCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$HOSTELSCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$HOSTELSCONF";
 fi
 
 if test -f "$DEFAULTCONF"; then
