@@ -192,10 +192,11 @@
 
 <script>
 import * as _ from 'lodash';
-import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
+import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import {mapActions, mapGetters} from "vuex";
 import {yandexMap, ymapMarker} from "vue-yandex-maps";
+import Validations from "~/components/mixins/validations.mixin"
 
 export default {
   name: "VObject",
@@ -210,7 +211,7 @@ export default {
       }
     ]
   },
-  mixins: [CategoriesMixin],
+  mixins: [CategoriesMixin, Validations],
   components: {yandexMap, ymapMarker},
   data() {
     return {
@@ -305,118 +306,6 @@ export default {
         return category
       }
       // filters: 'categoriesAd/categoryAds',
-    },
-    nameErrors: {
-      get() {
-        if (!this.$v.data.name?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.name.required) {
-          return 'Ой, вы забыли написать название объявления';
-        }
-
-        if (!this.$v.data.name.maxLength) {
-          return 'Текст объявления вы можете написать в поле Описание';
-        }
-        if (!this.$v.data.name.minLength) {
-          return 'Как вы думаете, вас поймут?';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    photosErrors: {
-      get() {
-        if (!this.$v.data.photos?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.photos.required) {
-          return 'Покажите ваш товар лицом, людям это нужно';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    cityErrors: {
-      get() {
-        if (!this.$v.data.city_id?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.city_id.required) {
-          return 'Ой, вы забыли указать город';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    descriptionErrors: {
-      get() {
-        if (!this.$v.data.description?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.description.required) {
-          return 'Правильное описание даёт преимущество объявлению';
-        }
-
-        if (!this.$v.data.description.maxLength) {
-          return 'Давайте сделаем текст поменьше';
-        }
-        if (!this.$v.data.description.minLength) {
-          return 'Опишите более подробно и результат не заставит ждать';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    priceErrors() {
-      if (!this.$v.data.price?.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.price.required) {
-        return 'Напишите справедливую цену';
-      }
-      if (!this.$v.data.price.maxLength) {
-        return 'Кажется, вы указали заоблачную стоимость';
-      }
-      if (!this.$v.data.price.minLength) {
-        return 'Рекомендуем указать цену от 10 рублей';
-      }
-      if (!this.$v.data.price.numeric) {
-        return 'Вас не поймут, цена — это цифры';
-      }
-
-      return '';
-    },
-    category_idErrors() {
-      if (!this.$v.data.category_id?.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.category_id.required) {
-        return 'Выберите категорию для объявления';
-      }
-      if (!this.$v.data.category_id.numeric) {
-        return 'Что-то пошло не так, обратитесь в поддержку';
-      }
-
-      return '';
     },
   },
   methods: {

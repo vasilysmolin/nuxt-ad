@@ -2,8 +2,9 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-3 w-full text-xl text-black font-black text-center leading-none truncate">Редактировать
-          объявление</h1>
+        <h1 class="mb-3 w-full text-xl text-black font-black text-center leading-none truncate">{{
+            $t('catalog.edit')
+          }}</h1>
 
         <h2 class="mb-4 w-full text-base text-black font-bold text-center leading-none truncate">{{ data.name }}</h2>
 
@@ -93,9 +94,9 @@
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
-                     placeholder="Название вакансии"
+                     :placeholder="$t('catalog.name')"
                      v-model="data.name">
-              <label for="name" class="text-[#6E7191]">Название объявления</label>
+              <label for="name" class="text-[#6E7191]">{{ $t('catalog.name') }}</label>
               <span v-if="nameErrors" class="form-errors">
             {{ nameErrors }}
             </span>
@@ -103,14 +104,6 @@
 
             <div class="mb-4 w-full sm:w-[27rem]">
               <vue-editor v-model="data.description" :editorToolbar="customToolbar"></vue-editor>
-              <!--                  <textarea-->
-              <!--                      class="form-control forms-textarea"-->
-              <!--                      rows="5"-->
-              <!--                      name="description"-->
-              <!--                      id="description"-->
-              <!--                      placeholder="Описание"-->
-              <!--                      v-model="data.description"-->
-              <!--                  >{{ data.description }}</textarea>-->
               <span v-if="descriptionErrors" class="form-errors">
             {{ descriptionErrors }}
             </span>
@@ -119,9 +112,9 @@
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="price"
-                     placeholder="Зарплата"
+                     :placeholder="$t('catalog.price')"
                      v-model="data.price">
-              <label for="price" class="text-[#6E7191]">Стоимость</label>
+              <label for="price" class="text-[#6E7191]">{{ $t('catalog.price') }}</label>
               <span v-if="priceErrors" class="form-errors">
             {{ priceErrors }}
             </span>
@@ -142,14 +135,14 @@
         ease-in-out
         m-0
         focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
-                     placeholder="Ваш город">
-              <label for="floatingInput" class="text-[#6E7191]">Город</label>
+                     :placeholder="$t('catalog.city')">
+              <label for="floatingInput" class="text-[#6E7191]">{{ $t('catalog.city') }}</label>
               <span v-if="cityErrors" class="form-errors w-full mb-2">
                 {{ cityErrors }}
               </span>
               <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
                 <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
-                  <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id" >
+                  <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
                     <nuxt-link to="#" class="text-blue-700 hover:text-black">
                       {{ city.name }}
                     </nuxt-link>
@@ -194,28 +187,26 @@
 
               <div @click.prevent="submitted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
                 <RefreshWhite/>
-                <button :disabled="isDisabled">Сохранить</button>
+                <button :disabled="isDisabled">{{ $t('save') }}</button>
               </div>
 
               <div @click.prevent="up" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
                 <UpWhite/>
-                <button v-if="data.state === 'active'">Поднять</button>
+                <button v-if="data.state === 'active'">{{ $t('up') }}</button>
               </div>
 
-              <div v-if="checkState()" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
+              <div v-if="checkState()"
+                   class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
                 <PauseWhite/>
-                <button v-if="data.state !== 'active'" @click.prevent="active">Запустить</button>
-                <button v-else @click.prevent="pause">На паузу</button>
+                <button v-if="data.state !== 'active'" @click.prevent="active">{{ $t('start') }}</button>
+                <button v-else @click.prevent="pause">{{ $t('pause') }}</button>
               </div>
 
               <div @click.prevent="deleted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-red-600 cursor-pointer">
                 <DeleteWhite/>
-                <button>Удалить</button>
+                <button>{{ $t('delete') }}</button>
               </div>
-
             </div>
-
-
           </div>
           </div>
         </form>
@@ -233,6 +224,7 @@ import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
 import DeleteWhite from "../../../../components/icons/DeleteWhite";
 import RefreshWhite from "../../../../components/icons/RefreshWhite";
+import Validations from "~/components/mixins/validations.mixin"
 import {mapActions, mapGetters} from "vuex";
 
 export default {
@@ -245,7 +237,7 @@ export default {
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
-  mixins: [CategoriesMixin],
+  mixins: [CategoriesMixin, Validations],
   data() {
     return {
       query: '',
@@ -339,102 +331,6 @@ export default {
       set(category) {
         return category
       }
-    },
-    nameErrors: {
-      get() {
-        if (!this.$v.data.name?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.name.required) {
-          return 'Ой, вы забыли написать название объявления';
-        }
-
-        if (!this.$v.data.name.maxLength) {
-          return 'Текст объявления вы можете написать в поле Описание';
-        }
-        if (!this.$v.data.name.minLength) {
-          return 'Как вы думаете, вас поймут?';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    cityErrors: {
-      get() {
-        if (!this.$v.data.city_id?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.city_id.required) {
-          return 'Ой, вы забыли указать город';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    descriptionErrors: {
-      get() {
-        if (!this.$v.data.description?.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.description.required) {
-          return 'Правильное описание даёт преимущество объявлению';
-        }
-
-        if (!this.$v.data.description.maxLength) {
-          return 'Давайте сделаем текст поменьше';
-        }
-        if (!this.$v.data.description.minLength) {
-          return 'Опишите более подробно и результат не заставит ждать';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    priceErrors() {
-      if (!this.$v.data.price?.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.price.required) {
-        return 'Напишите справедливую цену';
-      }
-      if (!this.$v.data.price.maxLength) {
-        return 'Кажется, вы указали заоблачную стоимость';
-      }
-      if (!this.$v.data.price.minLength) {
-        return 'Рекомендуем указать цену от 10 рублей';
-      }
-      if (!this.$v.data.price.numeric) {
-        return 'Вас не поймут, цена — это цифры';
-      }
-
-      return '';
-    },
-    category_idErrors() {
-      if (!this.$v.data.category_id?.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.category_id.required) {
-        return 'Выберите категорию для объявления';
-      }
-      if (!this.$v.data.category_id.numeric) {
-        return 'Что-то пошло не так, обратитесь в поддержку';
-      }
-
-      return '';
     },
   },
   beforeDestroy() {
