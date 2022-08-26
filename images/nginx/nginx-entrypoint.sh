@@ -95,21 +95,21 @@ if test -f "$TRAVELCONF"; then
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$TRAVELCONF";
 fi
 
-#if test -f "$AVIACONF"; then
-#    sed -i "s#%AVIA%#${AVIA}#g" "$AVIACONF";
-#    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$AVIACONF";
-#    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$AVIACONF";
-#    sed -i "s#%ENV%#${ENV}#g" "$AVIACONF";
-#    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$AVIACONF";
-#fi
-#
-#if test -f "$HOSTELSCONF"; then
-#    sed -i "s#%HOSTELS%#${HOSTELS}#g" "$HOSTELSCONF";
-#    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$HOSTELSCONF";
-#    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$HOSTELSCONF";
-#    sed -i "s#%ENV%#${ENV}#g" "$HOSTELSCONF";
-#    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$HOSTELSCONF";
-#fi
+if test -f "$AVIACONF"; then
+    sed -i "s#%AVIA%#${AVIA}#g" "$AVIACONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$AVIACONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$AVIACONF";
+    sed -i "s#%ENV%#${ENV}#g" "$AVIACONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$AVIACONF";
+fi
+
+if test -f "$HOSTELSCONF"; then
+    sed -i "s#%HOSTELS%#${HOSTELS}#g" "$HOSTELSCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$HOSTELSCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$HOSTELSCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$HOSTELSCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$HOSTELSCONF";
+fi
 
 if test -f "$DEFAULTCONF"; then
     sed -i "s#%DOMAIN_HOME%#${DOMAIN_HOME}#g" "$DEFAULTCONF";
