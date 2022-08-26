@@ -19,6 +19,12 @@
         </div>
         <p class="pl-2.5 flex justify-start items-center text-black">Услуги</p>
       </li>
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="travel">
+        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+          <IconListServicesIndexTravel/>
+        </div>
+        <p class="pl-2.5 flex justify-start items-center text-black">Путешествия</p>
+      </li>
       <li class="py-2 flex flex-row items-center justify-start hover:bg-white rounded cursor-default" @click="">
         <div class="ml-2.5 flex justify-center items-center w-[20px]">
           <IconListServicesIndexFood/>
@@ -34,10 +40,12 @@ import IconListServicesIndexCatalog from "./icons/IconListServicesIndexCatalog";
 import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
 import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
+import IconListServicesIndexTravel from "./icons/IconListServicesIndexTravel";
 
 export default {
   name: "GlobalNavWin",
   components: {
+    IconListServicesIndexTravel,
     IconListServicesIndexFood,
     IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog
   },
@@ -61,6 +69,9 @@ export default {
     },
     catalog() {
       document.location.href = process.env.CATALOG_URL;
+    },
+    travel() {
+      document.location.href = process.env.TRAVEL_URL;
     },
   }
 }
