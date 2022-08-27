@@ -7,6 +7,7 @@
         <div class="flex flex-col items-center w-full">
           <BInput
               :value="email"
+              type="email"
               :placeholder="$t('auth.youEmail')"
               :error="emailErrors"
               :submitted="submitted"

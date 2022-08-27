@@ -5,7 +5,7 @@
           v-on="listeners"
           v-on:keyup.enter="submitted"
           :value="value"
-          type="email"
+          :type="type"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           class="form-control
         block
@@ -56,6 +56,10 @@ export default {
     value: {
       type: [String, Number],
       default: '',
+    },
+    type: {
+      type: String,
+      default: 'text',
     },
     placeholder: {
       type: String,

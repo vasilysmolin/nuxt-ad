@@ -6,6 +6,7 @@
         <div class="flex flex-col items-center w-full">
           <BInput
               :value="email"
+              type="email"
               :placeholder="$t('auth.youEmail')"
               :error="emailErrors"
               :submitted="submitted"
@@ -13,6 +14,7 @@
           />
           <BInput
               :value="password"
+              type="password"
               :placeholder="$t('auth.youPassword')"
               :error="passwordErrors"
               :submitted="submitted"

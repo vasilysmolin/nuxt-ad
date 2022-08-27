@@ -14,6 +14,7 @@
           <div class="flex flex-col items-center w-full">
             <BInput
                 :value="user.email"
+                type="email"
                 :error="''"
                 :placeholder="$t('auth.youEmail')"
                 @input="onInputEmail"
