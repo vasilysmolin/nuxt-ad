@@ -3,6 +3,17 @@
   <section>
 
     <div v-if="$device.isDesktop" class="mx-auto flex flex-col w-[500px]">
+
+      <!-- Yandex.RTB R-A-1779902-3 -->
+      <div id="yandex_rtb_R-A-1779902-3"></div>
+      <script>window.yaContextCb.push(()=>{
+        Ya.Context.AdvManager.render({
+          renderTo: 'yandex_rtb_R-A-1779902-3',
+          blockId: 'R-A-1779902-3'
+        })
+      })</script>
+      <!-- end Yandex -->
+
       <h1 class="mb-3 text-xl text-center font-black">Резюме от соискателей</h1>
       <article v-for="resume in resumes" :key="resume.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
         <NuxtLink :to="getUrl(resume)" class="px-4 py-6">

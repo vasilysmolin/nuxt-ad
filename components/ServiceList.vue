@@ -4,6 +4,17 @@
         :category="category"
     />
     <section class="container flex flex-col items-center mt-[100px] pb-10">
+
+      <!-- Yandex.RTB R-A-1779902-4 -->
+      <div id="yandex_rtb_R-A-1779902-4"></div>
+      <script>window.yaContextCb.push(()=>{
+        Ya.Context.AdvManager.render({
+          renderTo: 'yandex_rtb_R-A-1779902-4',
+          blockId: 'R-A-1779902-4'
+        })
+      })</script>
+      <!-- end Yandex -->
+
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <Breadcrumbs
             :baseName="`Главная`"
