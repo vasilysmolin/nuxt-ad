@@ -16,7 +16,7 @@ services:
         - TRAVEL=${TRAVEL}
         - MED=${MED}
         - AVIA=${AVIA}
-        - HOSTELS=${HOSTELS}
+        - HOTELS=${HOTELS}
         - PET=${PET}
         - UID=${UID}
         - USER=${USER}

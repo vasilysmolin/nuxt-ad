@@ -53,7 +53,7 @@ export default {
       MED_URL: `http://${process.env.MED}:${process.env.NUXT_PORT}`,
       PET_URL: `http://${process.env.PET}:${process.env.NUXT_PORT}`,
       AVIA_URL: `http://${process.env.AVIA}:${process.env.NUXT_PORT}`,
-      HOSTELS_URL: `http://${process.env.HOSTELS}:${process.env.NUXT_PORT}`,
+      HOTELS_URL: `http://${process.env.HOTELS}:${process.env.NUXT_PORT}`,
     }),
     ...(!isDev && {
       AUTH_URL: `https://${process.env.DOMAIN_HOME}/auth/sign-in`,
@@ -68,7 +68,7 @@ export default {
       MED_URL: `https://${process.env.MED}`,
       PET_URL: `https://${process.env.PET}`,
       AVIA_URL: `https://${process.env.AVIA}`,
-      HOSTELS_URL: `https://${process.env.HOSTELS}`,
+      HOTELS_URL: `https://${process.env.HOTELS}`,
     }),
     YANDEX_MAP: process.env.YANDEX_MAP,
   },
@@ -106,7 +106,7 @@ export default {
   buildModules: [
     ['k-domains', {
       subDomains: ['jobs', 'hub', 'office', 'catalog',
-        'uslugi', 'food', 'travel', 'med', 'pet', 'avia', 'hostels'
+        'uslugi', 'food', 'travel', 'med', 'pet', 'avia', 'hotels'
       ], // List of directories to hold te pages for your subdomains
       rootDomain: 'root-domain', //  directory to hold the pages for root domain
     },
