@@ -1,26 +1,32 @@
 <template>
   <section>
     <div class="form-floating mb-4 w-full sm:w-[27rem]">
-      <input type="text" v-on:input="debounceInput" v-model="query" class="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-black
-        bg-[#EFF0F6] bg-clip-padding
-        border border-solid border-[#EFF0F6]
-        rounded-lg
-        transition
-        ease-in-out
-        m-0
-        focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
-             :placeholder="$t('catalog.city')">
-      <label for="floatingInput" class="text-[#6E7191]">{{ $t('catalog.city') }}</label>
-      <span v-if="cityErrors" class="form-errors w-full mb-2">
-                {{ cityErrors }}
-              </span>
+      <BInput
+          :value="query"
+          type="text"
+          :placeholder="$t('catalog.city')"
+          :error="cityErrors"
+          v-on:input="debounceInput"
+          @input="onInputCity"
+      />
+      <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
+        <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
+          <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
+            <nuxt-link to="#" class="text-blue-700 hover:text-black">
+              {{ city.name }}
+            </nuxt-link>
+          </li>
+        </ul>
+      </article>
+    </div>
+    <div v-if="showAddress" class="form-floating mb-4 w-full sm:w-[27rem]">
+      <BInput
+          :value="``"
+          type="text"
+          :placeholder="$t('catalog.address')"
+          v-on:input="debounceInputAddress"
+          @input="onInputAddress"
+      />
       <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
         <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
           <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
@@ -61,11 +67,12 @@ import {mapActions, mapGetters} from "vuex";
 import * as _ from "lodash";
 import {yandexMap, ymapMarker} from "vue-yandex-maps";
 import {maxLength, minLength, required} from "vuelidate/lib/validators";
+import BInput from "~/components/blocks/BInput";
 
 export default {
   name: "BGeo",
   mixins: [Validations],
-  components: {yandexMap, ymapMarker},
+  components: {yandexMap, ymapMarker, BInput},
   validations: {
     result: {
       cityId: {
@@ -82,6 +89,7 @@ export default {
       coords: [55.7540471, 37.620405],
       coordsBal: [55.7540471, 37.620405],
       showMap: false,
+      showAddress: false,
       mapSettings: {
         apiKey: process.env.YANDEX_MAP,
         lang: 'ru_RU',
@@ -141,6 +149,12 @@ export default {
     checkCity() {
       return this.$auth.user?.city;
     },
+    onInputCity(event) {
+      this.query = event;
+    },
+    onInputAddress(event) {
+      this.result.address = event;
+    },
     getCity(city) {
       this.query = city.name;
       this.result.city_id = city.id;
@@ -149,9 +163,6 @@ export default {
       this.showMap = true;
       this.removeItemsFull();
     },
-    // onClick(e) {
-    //   this.coordsBal = e.get('coords');
-    // },
     debounceInput: _.debounce(function (e) {
       if (this.query === '') {
         this.error = true;
@@ -164,7 +175,19 @@ export default {
           // this.$v.nameErrors = 'какой-то текст';
         });
       }
-
+    }, 500),
+    debounceInputAddress: _.debounce(function (e) {
+      if (this.query === '') {
+        this.error = true;
+        this.removeItemsFull();
+      } else {
+        this.error = false;
+        this.getItems({querySearch: this.query}).then((res) => {
+        }).catch((error) => {
+          // console.log(error.response.data.errors);
+          // this.$v.nameErrors = 'какой-то текст';
+        });
+      }
     }, 500)
   },
 

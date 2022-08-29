@@ -21,6 +21,7 @@ export default {
         name: 'Название объявления',
         price: 'Стоимость',
         city: 'Город',
+        address: 'Адрес',
     },
     profile: {
         'confirmEmail': 'Подтвердить email',
