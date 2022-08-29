@@ -65,11 +65,11 @@ export default {
     },
     cityErrors: {
       get() {
-        if (!this.$v.data.city_id?.$dirty) {
+        if (!this.$v.result?.city_id?.$dirty) {
           return '';
         }
 
-        if (!this.$v.data.city_id.required) {
+        if (!this.$v.result?.city_id.required) {
           return this.$t('validation.cityRequired');
         }
 

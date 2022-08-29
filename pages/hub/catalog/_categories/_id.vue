@@ -119,70 +119,20 @@
             {{ priceErrors }}
             </span>
             </div>
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <input type="text" v-on:input="debounceInput" v-model="query" class="form-control
-        block
-        w-full
-        px-3
-        py-1.5
-        text-base
-        font-normal
-        text-black
-        bg-[#EFF0F6] bg-clip-padding
-        border border-solid border-[#EFF0F6]
-        rounded-lg
-        transition
-        ease-in-out
-        m-0
-        focus:text-black focus:bg-white focus:border-black focus:outline-hidden" id="floatingInput"
-                     :placeholder="$t('catalog.city')">
-              <label for="floatingInput" class="text-[#6E7191]">{{ $t('catalog.city') }}</label>
-              <span v-if="cityErrors" class="form-errors w-full mb-2">
-                {{ cityErrors }}
-              </span>
-              <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
-                <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
-                  <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
-                    <nuxt-link to="#" class="text-blue-700 hover:text-black">
-                      {{ city.name }}
-                    </nuxt-link>
-                  </li>
-                </ul>
-              </article>
-            </div>
-            <div v-if="data.city_id" class="form-floating mb-6 w-full sm:w-[27rem]">
-              <yandex-map
-                  @click="onClick"
-                  v-if="showMap"
-                  ref="map"
-                  :coords="coords"
-                  zoom="10"
-                  style="width: 100%; height: 250px;"
-                  :controls="[]"
-                  :settings="mapSettings"
-                  :behaviors="['default', 'scrollZoom']"
-                  @map-was-initialized="onMapInit"
-                  @boundschange="onBoundsChange"
 
-              >
-                <ymap-marker
-                    :key="1"
-                    :marker-id="1"
-                    marker-type="placemark"
-                    :coords="coordsBal"
-                    :balloon="{ body: 'title' }"
-                ></ymap-marker>
-              </yandex-map>
-            </div>
+            <BGeo
+                :obj="data"
+            />
+
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
-            <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
-              <div class="mb-4 w-full" v-for="photo in data.photos">
-                <img :src="photo" class="max-w-full h-auto rounded" alt="">
+              <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
+                <div class="mb-4 w-full" v-for="photo in data.photos">
+                  <img :src="photo" class="max-w-full h-auto rounded" alt="">
+                </div>
               </div>
-            </div>
-            <div class="form-floating mb-6 w-full sm:w-[27rem]">
-              <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
-            </div>
+              <div class="form-floating mb-6 w-full sm:w-[27rem]">
+                <input type="file" @change="onFileChange" name="files" multiple accept="image/*">
+              </div>
             <div class="mt-6 py-2 flex justify-around items-center w-full rounded-md bg-[#262338]">
 
               <div @click.prevent="submitted" class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
@@ -218,7 +168,7 @@
 <script>
 import * as _ from 'lodash';
 import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
-import {yandexMap, ymapMarker} from 'vue-yandex-maps';
+import BGeo from "~/components/blocks/BGeo";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
 import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
@@ -229,7 +179,7 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "VObject",
-  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite, yandexMap, ymapMarker},
+  components: {RefreshWhite, DeleteWhite, PauseWhite, UpWhite, BGeo},
   layout: 'hub',
   head: {
     title: "Редактировать объявление на Тапиго",
@@ -240,22 +190,11 @@ export default {
   mixins: [CategoriesMixin, Validations],
   data() {
     return {
-      query: '',
-      zoom: 10,
       customToolbar: [
         ["bold", "italic", "underline"],
         [{list: "ordered"}, {list: "bullet"}],
         ["code-block"]
       ],
-      coords: [55.7540471, 37.620405],
-      coordsBal: [55.7540471, 37.620405],
-      showMap: false,
-      mapSettings: {
-        apiKey: process.env.YANDEX_MAP,
-        lang: 'ru_RU',
-        coordorder: 'latlong',
-        version: '2.1',
-      },
       data: {
       },
       files: [],
@@ -268,11 +207,6 @@ export default {
         required,
         maxLength: maxLength(70),
         minLength: minLength(5)
-      },
-      city_id: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(2)
       },
       category_id: {
         required,
@@ -294,28 +228,15 @@ export default {
   },
   async mounted() {
     this.showMap = true;
-    await this.$store.dispatch('ads/getItem', {id: this.$route.params.id, expand: 'profile.user'});
-    this.data = _.cloneDeep(this.$store.getters['ads/ad']);
-    if(this.category.length === 0) {
+    await this.$store.dispatch('ads/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
+      this.data = _.cloneDeep(this.$store.getters['ads/ad']);
+    });
+    if (this.category.length === 0) {
       await this.$store.dispatch('categoriesAd/getItems', {from: 'cabinet'});
     }
     await this.$store.dispatch('categoriesAd/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);
-    if(this.checkCity) {
-      this.query = this.data?.city?.name;
-      this.coords = [this.data?.city?.latitude, this.data?.city?.longitude];
-      if (_.isEmpty(this.data?.latitude) || _.isEmpty(this.data?.longitude)) {
-        this.coordsBal = this.coords;
-      }  else {
-        this.coordsBal = [this.data?.latitude, this.data?.longitude];
-      }
-
-    } else {
-      this.error = true;
-      this.coords = [55.7540471, 37.620405];
-      this.coordsBal = [55.7540471, 37.620405];
-    }
     this.setSelectParams();
 
   },
@@ -359,7 +280,7 @@ export default {
       data.append('price', this.data.price);
       data.append('sale_price', this.data.price);
       data.append('category_id', this.data.category_id);
-      data.append('city_id', this.data.city_id);
+      // data.append('city_id', this.data.city_id);
       data.append('latitude', this.coordsBal[0]);
       data.append('longitude', this.coordsBal[1]);
       data.append('_method', 'put');
@@ -414,43 +335,6 @@ export default {
         $this.data.photos.push(URL.createObjectURL(file))
       });
     },
-    onMapInit(event) {
-      this.zoom = event.getZoom();
-    },
-    onBoundsChange(event) {
-      this.zoom = event.originalEvent.map.getZoom();
-    },
-    checkCity(){
-      return this.user?.city;
-    },
-    ...mapActions({
-      getItems: 'cities/getItemsFull',
-      removeItemsFull: 'cities/removeItemsFull',
-    }),
-    getCity(city){
-      this.query = city.name;
-      this.data.city_id = city.id;
-      this.coords = [city.latitude, city.longitude];
-      this.coordsBal = [city.latitude, city.longitude];
-      this.removeItemsFull();
-    },
-    onClick(e) {
-      this.coordsBal = e.get('coords');
-    },
-    debounceInput: _.debounce(function (e) {
-      if(this.query === '') {
-        this.error = true;
-        this.removeItemsFull();
-      } else {
-        this.error = false;
-        this.getItems({querySearch: this.query}).then((res) => {
-        }).catch((error) => {
-          // console.log(error.response.data.errors);
-          // this.$v.nameErrors = 'какой-то текст';
-        });
-      }
-
-    }, 500)
   },
 }
 </script>
