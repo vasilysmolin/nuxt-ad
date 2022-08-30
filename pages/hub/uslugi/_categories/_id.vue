@@ -112,8 +112,7 @@
 
 <script>
 import * as _ from 'lodash';
-import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
-import {mapGetters} from "vuex";
+import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 
 export default {
   name: "VObject",
@@ -226,7 +225,7 @@ export default {
         }
       });
       this.$axios.$put(`services/${this.$route.params.id}`, obj).then(() => {
-          this.$router.push({name: 'uslugi'});
+        this.$router.push({name: 'uslugi___ru'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);
@@ -236,7 +235,7 @@ export default {
     },
     deleted() {
       this.$axios.$delete(`services/${this.$route.params.id}`).then(() => {
-        this.$router.push({name: 'uslugi'});
+        this.$router.push({name: 'uslugi___ru'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -245,21 +244,21 @@ export default {
     },
     active() {
       this.$axios.$put(`services/${this.$route.params.id}/state`,{state: 'active'}).then(() => {
-        this.$router.push({name: 'uslugi'});
+        this.$router.push({name: 'uslugi___ru'});
       }).catch((error) => {
       });
 
     },
     pause() {
       this.$axios.$put(`services/${this.$route.params.id}/state`,{state: 'pause'}).then(() => {
-        this.$router.push({name: 'uslugi'});
+        this.$router.push({name: 'uslugi___ru'});
       }).catch((error) => {
       });
 
     },
     up() {
       this.$axios.$put(`services/${this.$route.params.id}/sort`,{}).then(() => {
-        this.$router.push({name: 'uslugi'});
+        this.$router.push({name: 'uslugi___ru'});
       }).catch((error) => {
       });
     },

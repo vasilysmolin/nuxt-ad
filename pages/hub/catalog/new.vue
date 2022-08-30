@@ -336,7 +336,7 @@ export default {
       data.append('latitude', this.coordsBal[0]);
       data.append('longitude', this.coordsBal[1]);
       this.$axios.$post(`declarations`, data).then(() => {
-        this.$router.push({name: 'catalog'});
+        this.$router.push({name: 'catalog___ru'});
         console.log('успех')
       }).catch((error) => {
 

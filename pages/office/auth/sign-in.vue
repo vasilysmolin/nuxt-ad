@@ -77,7 +77,7 @@ export default {
           }
         }).then(() => {
           // document.location.href = this.from;
-          this.$router.push({name: 'users'});
+          this.$router.push({name: 'users___ru'});
         });
       },
     },

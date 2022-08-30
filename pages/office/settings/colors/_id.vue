@@ -47,7 +47,7 @@
 <script>
 import * as _ from 'lodash';
 import {mapActions, mapGetters} from "vuex";
-import { dateFormat } from "../../../../helper/dataFormat";
+import {dateFormat} from "../../../../helper/dataFormat";
 
 export default {
   name: "officecolor",
@@ -79,7 +79,7 @@ export default {
       data.append('hash', this.color.hash);
       data.append('_method', 'put');
       this.$axios.$post(`colors/${this.color.id}`, data).then(() => {
-        this.$router.push({name: 'settings'});
+        this.$router.push({name: 'settings__ru'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';

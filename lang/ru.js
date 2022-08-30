@@ -29,6 +29,7 @@ export default {
     validation: {
         emailRequired: 'Кажется, вы забыли написать email',
         cityRequired: 'Ой, вы забыли указать город',
+        addressRequired: 'Ой, вы забыли адрес',
         catRequired: 'Выберите категорию для объявления',
         nameRequired: 'Ой, вы забыли написать название объявления',
         photoRequired: 'Покажите ваш товар лицом, людям это нужно',

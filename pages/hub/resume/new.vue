@@ -192,7 +192,7 @@ export default {
     submitted() {
       this.isDisabled = true;
       this.$axios.$post(`resume`, this.data).then(() => {
-        this.$router.push({name: 'resume'});
+        this.$router.push({name: 'resume___ru'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';

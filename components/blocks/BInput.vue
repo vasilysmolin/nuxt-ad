@@ -66,7 +66,7 @@ export default {
       default: '',
     },
     error: {
-      type: String,
+      type: [String, Boolean],
       default: false,
     },
     clear: {

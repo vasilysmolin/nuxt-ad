@@ -90,7 +90,7 @@
 import NavLocProfile from "../../components/NavLocProfile";
 import Person from "~/components/mixins/person.mixin";
 import * as _ from 'lodash';
-import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
+import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 
 export default {
   name: 'ProfileData',
@@ -179,7 +179,7 @@ export default {
       this.$axios.$put(`users/${this.user.id}`, this.user).then(() => {
         const user = this.$auth.fetchUser().then((res) => {
           this.$auth.setUser(res.data);
-            this.$router.push({name: 'profile'});
+          this.$router.push({name: 'profile___ru'});
         });
       }).catch((error) => {
         // console.log(error.response.data.errors);

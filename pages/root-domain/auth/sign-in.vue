@@ -60,11 +60,11 @@ export default {
         required,
         email
       },
-      password: {
-        required,
-        maxLength: maxLength(25),
-        minLength: minLength(8),
-      },
+    password: {
+      required,
+      maxLength: maxLength(25),
+      minLength: minLength(8),
+    },
   },
   mounted() {
     if(this.$route.query.from) {

@@ -59,7 +59,7 @@ export default {
       data.append('name', this.data.name);
       data.append('hash', this.data.hash);
       this.$axios.$post(`colors`, data).then(() => {
-        this.$router.push({name: 'settings'});
+        this.$router.push({name: 'settings___ru'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';

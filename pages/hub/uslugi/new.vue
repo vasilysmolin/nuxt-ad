@@ -100,8 +100,7 @@
 
 <script>
 import * as _ from 'lodash';
-import {maxLength, minLength, required, integer, numeric} from 'vuelidate/lib/validators';
-import {mapGetters} from "vuex";
+import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 
 export default {
   name: "VObject",
@@ -218,7 +217,7 @@ export default {
       }
       this.isDisabled = true;
       this.$axios.$post(`services`, this.data).then(() => {
-        this.$router.push({name: 'uslugi'});
+        this.$router.push({name: 'uslugi___ru'});
         console.log('успех')
       }).catch((error) => {
         // console.log(error.response.data.errors);

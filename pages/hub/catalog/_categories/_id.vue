@@ -122,6 +122,10 @@
 
             <BGeo
                 :obj="data"
+                :cityErrors="cityErrors"
+                :addressErrors="addressErrors"
+                @cityId="getCityId"
+                @address="getAddress"
             />
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -196,6 +200,8 @@ export default {
         ["code-block"]
       ],
       data: {
+        cityId: null,
+        address: null
       },
       files: [],
       isDisabled: false,
@@ -207,6 +213,16 @@ export default {
         required,
         maxLength: maxLength(70),
         minLength: minLength(5)
+      },
+      city_id: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      street: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
       },
       category_id: {
         required,
@@ -262,6 +278,19 @@ export default {
     ...mapActions({
       removeItem: 'categoriesAd/removeItem',
     }),
+    getCityId(event) {
+      this.data.city_id = event;
+    },
+    getAddress(event) {
+      if (!_.isEmpty(event)) {
+        this.data.street = event.data.street_with_type;
+        this.data.house = event.data.house;
+        this.data.latitude = event.data.geo_lat;
+        this.data.longitude = event.data.geo_lon;
+      } else {
+        this.data.street = null;
+      }
+    },
     submitted() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -272,7 +301,7 @@ export default {
       for (let i = 0; i < this.files.length; i++) {
         data.append('files[]', this.files[i]);
       }
-      _.forIn(this.parameters, function(value, key) {
+      _.forIn(this.parameters, function (value, key) {
         data.append('filter[]', value);
       });
       data.append('name', this.data.name);
@@ -280,12 +309,14 @@ export default {
       data.append('price', this.data.price);
       data.append('sale_price', this.data.price);
       data.append('category_id', this.data.category_id);
-      // data.append('city_id', this.data.city_id);
-      data.append('latitude', this.coordsBal[0]);
-      data.append('longitude', this.coordsBal[1]);
+      data.append('city_id', this.data.city_id);
+      data.append('latitude', this.data.latitude);
+      data.append('longitude', this.data.longitude);
+      data.append('street', this.data.street);
+      data.append('house', this.data.house);
       data.append('_method', 'put');
       this.$axios.$post(`declarations/${this.$route.params.id}`, data).then(() => {
-          this.$router.push({name: 'catalog'});
+        this.$router.push({name: 'catalog___ru'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -294,7 +325,7 @@ export default {
     },
     deleted() {
       this.$axios.$delete(`declarations/${this.$route.params.id}`).then(() => {
-        this.$router.push({name: 'catalog'});
+        this.$router.push({name: 'catalog___ru'});
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -303,21 +334,21 @@ export default {
     },
     active() {
       this.$axios.$put(`declarations/${this.$route.params.id}/state`,{state: 'active'}).then(() => {
-        this.$router.push({name: 'catalog'});
+        this.$router.push({name: 'catalog___ru'});
       }).catch((error) => {
       });
 
     },
     pause() {
       this.$axios.$put(`declarations/${this.$route.params.id}/state`,{state: 'pause'}).then(() => {
-        this.$router.push({name: 'catalog'});
+        this.$router.push({name: 'catalog___ru'});
       }).catch((error) => {
       });
 
     },
     up() {
       this.$axios.$put(`declarations/${this.$route.params.id}/sort`,{}).then(() => {
-        this.$router.push({name: 'catalog'});
+        this.$router.push({name: 'catalog___ru'});
       }).catch((error) => {
       });
     },
