@@ -11,9 +11,9 @@
     <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
       <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
         <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
-          <nuxt-link to="#" class="text-blue-700 hover:text-black">
+          <p class="text-blue-700 hover:text-black">
             {{ city.name }}
-          </nuxt-link>
+          </p>
         </li>
       </ul>
     </article>
@@ -30,9 +30,9 @@
       <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
         <ul class="pt-1 px-3 w-full leading-8" v-if="addresses.length > 0">
           <li @click="getAddress(address)" style="list-style-type: none;" v-for="address in addresses">
-            <nuxt-link to="#" class="text-blue-700 hover:text-black">
+            <p class="text-blue-700 hover:text-black">
               {{ address.value }}
-            </nuxt-link>
+            </p>
           </li>
         </ul>
       </article>
