@@ -2,6 +2,7 @@ import {params} from '../helper/requestParams';
 
 export const state = () => ({
   cities: [],
+  addresses: [],
   citiesFull: [],
   amount: null,
   city: {},
@@ -11,11 +12,17 @@ export const mutations = {
   setcities(state, cities) {
     state.cities = cities;
   },
+  setAddresses(state, addresses) {
+    state.addresses = addresses;
+  },
   setCitiesFull(state, citiesFull) {
     state.citiesFull = citiesFull;
   },
   removeCitiesFull(state) {
     state.citiesFull = [];
+  },
+  removeItemsAddresses(state) {
+    state.addresses = [];
   },
   citydcities(state, cities) {
     state.cities.push(...cities);
@@ -54,6 +61,13 @@ export const actions = {
     const citiesFull = await this.$axios.$get(`cities-full?take=10${getParams}`);
     commit('setCitiesFull', citiesFull.cities);
   },
+  async getItemsAddress({commit}, {
+    querySearch = null,
+  }) {
+    const getParams = params({querySearch});
+    const res = await this.$axios.$get(`external/find-address?${getParams}`);
+    commit('setAddresses', res.addresses);
+  },
   async citydItems({commit}, {
     skip = 0,
     user_id = null,
@@ -75,6 +89,9 @@ export const actions = {
   async removeItemsFull({commit}) {
     commit('removeCitiesFull');
   },
+  async removeItemsAddresses({commit}) {
+    commit('removeItemsAddresses');
+  },
   async getItem({commit}, {id, expand = null}) {
     const getParams = params({expand});
     const city = await this.$axios.$get(`cities/${id}?${getParams}`);
@@ -84,6 +101,7 @@ export const actions = {
 
 export const getters = {
   cities: (s) => s.cities,
+  addresses: (s) => s.addresses,
   citiesFull: (s) => s.citiesFull,
   citiesNew: (s) => s.citiesNew,
   city: (s) => s.city,

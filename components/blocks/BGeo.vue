@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <div>
     <div class="form-floating mb-4 w-full sm:w-[27rem]">
       <BInput
           :value="query"
@@ -21,17 +21,17 @@
     </div>
     <div v-if="showAddress" class="form-floating mb-4 w-full sm:w-[27rem]">
       <BInput
-          :value="``"
+          :value="addressQuery"
           type="text"
           :placeholder="$t('catalog.address')"
           v-on:input="debounceInputAddress"
           @input="onInputAddress"
       />
       <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
-        <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
-          <li @click="getCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
+        <ul class="pt-1 px-3 w-full leading-8" v-if="addresses.length > 0">
+          <li @click="getAddress(address)" style="list-style-type: none;" v-for="address in addresses">
             <nuxt-link to="#" class="text-blue-700 hover:text-black">
-              {{ city.name }}
+              {{ address.value }}
             </nuxt-link>
           </li>
         </ul>
@@ -58,7 +58,7 @@
         ></ymap-marker>
       </yandex-map>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -85,6 +85,7 @@ export default {
   data() {
     return {
       query: '',
+      addressQuery: '',
       zoom: 10,
       coords: [55.7540471, 37.620405],
       coordsBal: [55.7540471, 37.620405],
@@ -109,6 +110,7 @@ export default {
         } else {
           this.coordsBal = [this.obj?.latitude, this.obj?.longitude];
         }
+        this.showAddress = true;
       } else if (this.checkCity) {
         this.query = this.$auth.user?.city.name;
         this.coords = [this.$auth.user?.city?.latitude, this.$auth.user?.city?.longitude];
@@ -117,6 +119,7 @@ export default {
         } else {
           this.coordsBal = [this.$auth.user?.latitude, this.$auth.user?.longitude];
         }
+        this.showAddress = true;
       } else {
         this.error = true;
         this.coords = [55.7540471, 37.620405];
@@ -133,11 +136,14 @@ export default {
   computed: {
     ...mapGetters({
       cities: 'cities/citiesFull',
+      addresses: 'cities/addresses',
     }),
   },
   methods: {
     ...mapActions({
       getItems: 'cities/getItemsFull',
+      getItemsAddress: 'cities/getItemsAddress',
+      removeItemsAddress: 'cities/removeItemsAddresses',
       removeItemsFull: 'cities/removeItemsFull',
     }),
     onMapInit(event) {
@@ -153,15 +159,23 @@ export default {
       this.query = event;
     },
     onInputAddress(event) {
-      this.result.address = event;
+      this.addressQuery = event;
     },
     getCity(city) {
       this.query = city.name;
       this.result.city_id = city.id;
       this.coords = [city.latitude, city.longitude];
       this.coordsBal = [city.latitude, city.longitude];
-      this.showMap = true;
+      this.showAddress = true;
       this.removeItemsFull();
+    },
+    getAddress(address) {
+      this.addressQuery = `${address.data.street} ${address.data.house}`;
+      this.coords = [address.data.geo_lat, address.data.geo_lon];
+      this.coordsBal = [address.data.geo_lat, address.data.geo_lon];
+      this.showMap = true;
+      this.result.address = address;
+      this.removeItemsAddress();
     },
     debounceInput: _.debounce(function (e) {
       if (this.query === '') {
@@ -177,12 +191,12 @@ export default {
       }
     }, 500),
     debounceInputAddress: _.debounce(function (e) {
-      if (this.query === '') {
+      if (this.addressQuery === '') {
         this.error = true;
-        this.removeItemsFull();
+        this.removeItemsAddress();
       } else {
         this.error = false;
-        this.getItems({querySearch: this.query}).then((res) => {
+        this.getItemsAddress({querySearch: this.query + ' ' + this.addressQuery}).then((res) => {
         }).catch((error) => {
           // console.log(error.response.data.errors);
           // this.$v.nameErrors = 'какой-то текст';
