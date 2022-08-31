@@ -24,7 +24,7 @@
             :depth="1"
             :link="category"
         />
-        <template v-for="(ad, index) in ads">
+        <template v-for="(ad, ind) in ads">
           <article class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
             <NuxtLink :to="getUrl(ad)">
               <section class="grid grid-cols-[25%,_1fr]">
@@ -59,13 +59,13 @@
               </section>
             </NuxtLink>
           </article>
-          <div class="mt-5 mb-5" v-if="everySix(index + 1)">
-            <div v-bind:id="'yandex_rtb_R-A-1779902-1-' . index + 1"></div>
+          <div class="mt-5 mb-5" v-if="everySix(ind + 1)">
+            <div v-bind:id="'yandex_rtb_R-A-1779902-1-' . ind + 1"></div>
             <script>window.yaContextCb.push(() => {
               Ya.Context.AdvManager.render({
-                renderTo: `yandex_rtb_R-A-1779902-1-${index + 1}`,
+                renderTo: `yandex_rtb_R-A-1779902-1-${ind + 1}`,
                 blockId: 'R-A-1779902-1',
-                pageNumber: index + 1,
+                pageNumber: ind + 1,
               })
             })</script>
             <!-- Yandex.RTB R-A-1779902-1 -->
