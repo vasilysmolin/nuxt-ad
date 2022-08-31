@@ -17,14 +17,20 @@
         <h1 class="mb-3 text-xl text-center font-black">Вакансии от компаний</h1>
         <article v-for="vacancy in vacancies" :key="vacancy.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
           <NuxtLink :to="getUrl(vacancy)" class="px-4 py-6">
-            <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">{{ vacancy.name }}</h2>
+            <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+              {{ vacancy.name }}</h2>
             <h3 class="mt-2 text-base"><span class="pr-1 text-xs">от</span>{{ vacancy.min_price }}<span
                 class="pl-1 text-xs">руб.</span></h3>
+            <hr class="mt-2 mb-2">
+            <p class="font-medium">Вид оплаты:<span
+                class="text-gray-800 font-normal pl-2 lowercase">{{ getSalary(vacancy) }}</span></p>
+            <p class="mt-2 font-medium">Опыт работы:<span
+                class="text-gray-800 font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></p>
+            <p class="mt-2 font-medium">Образование:<span
+                class="text-gray-800 font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></p>
+            <p class="mt-2 font-medium">График работы:<span
+                class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></p>
             <div class="flex justify-between w-full">
-              <!--
-              <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>
-              <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Убрать</button>
-              -->
             </div>
           </NuxtLink>
         </article>
@@ -62,8 +68,10 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import NavLocJobs from "./NavLocJobs";
+import PauseWhite from "./icons/PauseWhite";
+import * as _ from "lodash";
 
 export default {
   name: "VList",
@@ -77,14 +85,59 @@ export default {
     if (this.vacancies.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
+    if (Object.keys(this.$store.getters['experiences/experience']).length === 0) {
+      await this.$store.dispatch('experiences/getItems');
+    }
+    if (Object.keys(this.$store.getters['educations/education']).length === 0) {
+      await this.$store.dispatch('educations/getItems');
+    }
+    if (Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
+      await this.$store.dispatch('schedules/getItems');
+    }
+    if (Object.keys(this.$store.getters['salaries/salary_type']).length === 0) {
+      await this.$store.dispatch('salaries/getItems');
+    }
   },
   components: {
+    PauseWhite,
     NavLocJobs,
   },
   computed: {
     ...mapGetters({
       vacancies: 'vacancies/vacancies'
     }),
+    experiences: {
+      get() {
+        return _.cloneDeep(this.$store.getters['experiences/experience']);
+      },
+      set(experience) {
+        return experience
+      }
+    },
+    education: {
+      get() {
+        return _.cloneDeep(this.$store.getters['educations/education']);
+      },
+      set(education) {
+        return education
+      }
+    },
+    schedule: {
+      get() {
+        return _.cloneDeep(this.$store.getters['schedules/schedule']);
+      },
+      set(schedule) {
+        return schedule
+      }
+    },
+    salary_type: {
+      get() {
+        return _.cloneDeep(this.$store.getters['salaries/salary_type']);
+      },
+      set(salary_type) {
+        return salary_type
+      }
+    },
 
   },
   methods: {
@@ -96,6 +149,18 @@ export default {
     getUrl(vacancy) {
       let cat = `/vacancies/${vacancy.categories ? vacancy.categories.alias : 'none'}`;
       return cat + '/' + `${vacancy.alias}`
+    },
+    getEducations(vacancy) {
+      return this.education[vacancy.education] ?? 'Не указано';
+    },
+    getExperiences(vacancy) {
+      return this.experiences[vacancy.experience] ?? 'Не указано';
+    },
+    getSchedules(vacancy) {
+      return this.schedule[vacancy.schedule] ?? 'Не указано';
+    },
+    getSalary(vacancy) {
+      return this.salary_type[vacancy.salary_type] ?? 'Не указано';
     },
   },
 

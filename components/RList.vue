@@ -17,14 +17,18 @@
       <h1 class="mb-3 text-xl text-center font-black">Резюме от соискателей</h1>
       <article v-for="resume in resumes" :key="resume.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
         <NuxtLink :to="getUrl(resume)" class="px-4 py-6">
-          <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">{{ resume.name }}</h2>
+          <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+            {{ resume.name }}</h2>
           <h3 class="mt-2 text-base"><span class=" pr-1 text-xs">от</span>{{ resume.price }}<span
               class="pl-1 text-xs">руб.</span></h3>
+          <hr class="mt-2 mb-2">
+          <p class="font-medium">Опыт работы:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getExperiences(resume) }}</span></p>
+          <p class="mt-2 font-medium">Образование:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getEducations(resume) }}</span></p>
+          <p class="mt-2 font-medium">График работы:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(resume) }}</span></p>
           <div class="flex justify-between w-full">
-            <!--
-            <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>
-            <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Убрать</button>
-            -->
           </div>
         </NuxtLink>
       </article>
@@ -62,7 +66,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import * as _ from "lodash";
 import NavLocJobs from "./NavLocJobs";
 
@@ -81,6 +85,15 @@ export default {
     if (this.resumes.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }
+    if (Object.keys(this.$store.getters['experiences/experience']).length === 0) {
+      await this.$store.dispatch('experiences/getItems');
+    }
+    if (Object.keys(this.$store.getters['educations/education']).length === 0) {
+      await this.$store.dispatch('educations/getItems');
+    }
+    if (Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
+      await this.$store.dispatch('schedules/getItems');
+    }
     // await this.$store.dispatch('typeJobs/getItems');
   },
   computed: {
@@ -95,6 +108,30 @@ export default {
         return types
       }
     },
+    experiences: {
+      get() {
+        return _.cloneDeep(this.$store.getters['experiences/experience']);
+      },
+      set(experience) {
+        return experience
+      }
+    },
+    education: {
+      get() {
+        return _.cloneDeep(this.$store.getters['educations/education']);
+      },
+      set(education) {
+        return education
+      }
+    },
+    schedule: {
+      get() {
+        return _.cloneDeep(this.$store.getters['schedules/schedule']);
+      },
+      set(schedule) {
+        return schedule
+      }
+    },
 
   },
   methods: {
@@ -107,7 +144,23 @@ export default {
       let cat = `/resume/${resume.categories ? resume.categories.alias : 'none'}`;
       return cat + '/' + `${resume.alias}`
     },
-  },
+    getUserPhone(resume) {
+      return resume?.profile?.user?.phone
+    },
+    getUserEmail(resume) {
+      return resume?.profile?.user?.email
+    },
+    getEducations(resume) {
+      return this.education[resume.education] ?? 'Не указан';
+    },
+    getExperiences(resume) {
+      return this.experiences[resume.experience] ?? 'Не указан';
+    },
+    getSchedules(resume) {
+      return this.schedule[resume.schedule] ?? 'Не указан';
+    },
 
+
+  }
 }
 </script>
