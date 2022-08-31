@@ -59,8 +59,8 @@
               </section>
             </NuxtLink>
           </article>
-          <div v-if="everySix(index + 1)">
-            <div v-bind:id="`yandex_rtb_R-A-1779902-1-${index + 1}`"></div>
+          <div class="mt-5 mb-5" v-if="everySix(index + 1)">
+            <div v-bind:id="'yandex_rtb_R-A-1779902-1-' . index + 1"></div>
             <script>window.yaContextCb.push(() => {
               Ya.Context.AdvManager.render({
                 renderTo: `yandex_rtb_R-A-1779902-1-${index + 1}`,
