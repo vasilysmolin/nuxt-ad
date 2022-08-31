@@ -61,14 +61,21 @@
           </article>
           <div class="mt-5 mb-5" v-if="everySix(ind + 1)">
             <div v-bind:id="`yandex_rtb_R-A-1779902-1-${ind+1}`"></div>
-            <script>window.yaContextCb.push(() => {
-              Ya.Context.AdvManager.render({
-                renderTo: `yandex_rtb_R-A-1779902-1-${ind + 1}`,
-                blockId: 'R-A-1779902-1',
-                pageNumber: ind + 1,
-              })
-            })</script>
-            <!-- Yandex.RTB R-A-1779902-1 -->
+            <!--            div-->
+            <!--            <script>-->
+            <!--              // let index = ind;-->
+            <!--              // console.log(index);-->
+            <!--              window.yaContextCb.push(() => {-->
+            <!--              let index = ind;-->
+            <!--              console.log(index);-->
+            <!--              console.log(ind);-->
+            <!--              Ya.Context.AdvManager.render({-->
+            <!--                renderTo: `yandex_rtb_R-A-1779902-1-${index + 1}`,-->
+            <!--                blockId: 'R-A-1779902-1',-->
+            <!--                pageNumber: ind + 1,-->
+            <!--              })-->
+            <!--            })-->
+            <!--            </script>-->
           </div>
         </template>
 
@@ -223,6 +230,15 @@ export default {
       removeItem: 'categoriesAd/removeItem',
     }),
     everySix(count) {
+      if (count % 6 === 0) {
+        window.yaContextCb.push(() => {
+          Ya.Context.AdvManager.render({
+            renderTo: `yandex_rtb_R-A-1779902-1-${count}`,
+            blockId: 'R-A-1779902-1',
+            pageNumber: count + 1,
+          })
+        })
+      }
       return count % 6 === 0;
     },
     getUrl(ad) {
