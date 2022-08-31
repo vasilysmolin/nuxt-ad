@@ -60,14 +60,15 @@
             </NuxtLink>
           </article>
           <div v-if="everySix(index + 1)">
-            <div id="yandex_rtb_R-A-1779902-1-6"></div>
+            <div v-bind:id="`yandex_rtb_R-A-1779902-1-${index + 1}`"></div>
             <script>window.yaContextCb.push(() => {
               Ya.Context.AdvManager.render({
-                renderTo: 'yandex_rtb_R-A-1779902-1-6',
+                renderTo: `yandex_rtb_R-A-1779902-1-${index + 1}`,
                 blockId: 'R-A-1779902-1',
-                pageNumber: 6,
+                pageNumber: index + 1,
               })
             })</script>
+            <!-- Yandex.RTB R-A-1779902-1 -->
           </div>
         </template>
 
@@ -222,8 +223,7 @@ export default {
       removeItem: 'categoriesAd/removeItem',
     }),
     everySix(count) {
-      // return count % 6 === 0;
-      return count === 6;
+      return count % 6 === 0;
     },
     getUrl(ad) {
       return `/feed/alias/${ad.alias}`
