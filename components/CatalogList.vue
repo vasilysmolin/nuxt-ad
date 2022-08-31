@@ -9,54 +9,71 @@
       <script>window.yaContextCb.push(()=>{
         Ya.Context.AdvManager.render({
           renderTo: 'yandex_rtb_R-A-1779902-1',
-          blockId: 'R-A-1779902-1'
+          blockId: 'R-A-1779902-1',
+          pageNumber: 1,
         })
       })</script>
       <!-- Yandex.RTB R-A-1779902-1 -->
-    <div class="mx-auto flex flex-col w-[500px]">
-      <h1 class="text-xl text-center font-black leading-none">
-        {{ getH1() }}
-      </h1>
-      <Breadcrumbs
-          :baseName="`Все категории`"
-          :basePath="`/`"
-          :depth="1"
-          :link="category"
-      />
-      <article v-for="ad in ads" :key="ad.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
-        <NuxtLink :to="getUrl(ad)">
-          <section class="grid grid-cols-[25%,_1fr]">
+      <div class="mx-auto flex flex-col w-[500px]">
+        <h1 class="text-xl text-center font-black leading-none">
+          {{ getH1() }}
+        </h1>
+        <Breadcrumbs
+            :baseName="`Все категории`"
+            :basePath="`/`"
+            :depth="1"
+            :link="category"
+        />
+        <template v-for="(ad, index) in ads">
+          <article class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
+            <NuxtLink :to="getUrl(ad)">
+              <section class="grid grid-cols-[25%,_1fr]">
 
-            <section>
-              <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
-            </section>
+                <section>
+                  <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
+                </section>
 
-            <section class="flex flex-col px-4">
-              <h2 class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">{{ ad.name }}</h2>
-              <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}</h3>
-              <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(ad)}}</p>
+                <section class="flex flex-col px-4">
+                  <h2 class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+                    {{ ad.name }}</h2>
+                  <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}</h3>
+                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(ad) }}</p>
 
-              <table class="table-auto mb-2 mt-2">
-                <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
-                <tr v-if="index <= 1">
-                  <td>{{ item.filter.name }}</td>
-                  <td>{{ item.value }}</td>
-                </tr>
-                </tbody>
-                <tbody v-for="(item, index) in getParamsRange(ad)" :key="item.id">
-                <tr v-if="index <= 1">
-                  <td>{{ item.filter.name }}</td>
-                  <td>{{ item.value }}</td>
-                </tr>
-                </tbody>
-              </table>
+                  <table class="table-auto mb-2 mt-2">
+                    <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
+                    <tr v-if="index <= 1">
+                      <td>{{ item.filter.name }}</td>
+                      <td>{{ item.value }}</td>
+                    </tr>
+                    </tbody>
+                    <tbody v-for="(item, index) in getParamsRange(ad)" :key="item.id">
+                    <tr v-if="index <= 1">
+                      <td>{{ item.filter.name }}</td>
+                      <td>{{ item.value }}</td>
+                    </tr>
+                    </tbody>
+                  </table>
 
-            </section>
+                </section>
 
-          </section>
-        </NuxtLink>
-      </article>
-      <button v-if="checkAmount" @click="addItems({
+              </section>
+            </NuxtLink>
+          </article>
+          <div v-if="everySix(index + 1)">
+            <h1>Блок рекламы</h1>
+            <div :id="`yandex_rtb_R-A-1779902-1-${index+1}`"></div>
+            <script>window.yaContextCb.push(() => {
+              Ya.Context.AdvManager.render({
+                renderTo: `yandex_rtb_R-A-1779902-1-${index + 1}`,
+                blockId: 'R-A-1779902-1',
+                pageNumber: index + 1,
+              })
+            })</script>
+            <!-- Yandex.RTB R-A-1779902-1 -->
+          </div>
+        </template>
+
+        <button v-if="checkAmount" @click="addItems({
         skip: ads.length,
         state: 'active',
         expand: 'profile.user',
@@ -64,7 +81,7 @@
         from: 'catalog',
         querySearch: querySearch
       })" type="button"
-              class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Смотреть дальше
       </button>
     </div>
@@ -118,7 +135,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import Breadcrumbs from "./Breadcrumbs";
 import * as _ from "lodash";
 import CategoriesMixin from '~/components/mixins/categories.mixin';
@@ -206,6 +223,9 @@ export default {
       getItemsCategories: 'categoriesAd/getItems',
       removeItem: 'categoriesAd/removeItem',
     }),
+    everySix(count) {
+      return count % 6 === 0;
+    },
     getUrl(ad) {
       return `/feed/alias/${ad.alias}`
     },
