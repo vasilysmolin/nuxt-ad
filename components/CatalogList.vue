@@ -4,16 +4,6 @@
         :category="category"
     />
     <div v-if="$device.isDesktop" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
-      <!-- Yandex.RTB R-A-1779902-1 -->
-      <div id="yandex_rtb_R-A-1779902-1"></div>
-      <script>window.yaContextCb.push(()=>{
-        Ya.Context.AdvManager.render({
-          renderTo: 'yandex_rtb_R-A-1779902-1',
-          blockId: 'R-A-1779902-1',
-          pageNumber: 1,
-        })
-      })</script>
-      <!-- Yandex.RTB R-A-1779902-1 -->
       <div class="mx-auto flex flex-col w-[500px]">
         <h1 class="text-xl text-center font-black leading-none">
           {{ getH1() }}
@@ -59,23 +49,8 @@
               </section>
             </NuxtLink>
           </article>
-          <div class="mt-5 mb-5" v-if="everySix(ind + 1)">
+          <div class="mt-5" v-if="everySix(ind + 1)">
             <div v-bind:id="`yandex_rtb_R-A-1779902-1-${ind+1}`"></div>
-            <!--            div-->
-            <!--            <script>-->
-            <!--              // let index = ind;-->
-            <!--              // console.log(index);-->
-            <!--              window.yaContextCb.push(() => {-->
-            <!--              let index = ind;-->
-            <!--              console.log(index);-->
-            <!--              console.log(ind);-->
-            <!--              Ya.Context.AdvManager.render({-->
-            <!--                renderTo: `yandex_rtb_R-A-1779902-1-${index + 1}`,-->
-            <!--                blockId: 'R-A-1779902-1',-->
-            <!--                pageNumber: ind + 1,-->
-            <!--              })-->
-            <!--            })-->
-            <!--            </script>-->
           </div>
         </template>
 
