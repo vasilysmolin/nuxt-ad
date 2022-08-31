@@ -223,7 +223,8 @@ export default {
       removeItem: 'categoriesAd/removeItem',
     }),
     everySix(count) {
-      return count % 6 === 0;
+      // return count % 6 === 0;
+      return count === 6;
     },
     getUrl(ad) {
       return `/feed/alias/${ad.alias}`
