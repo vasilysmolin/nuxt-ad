@@ -60,7 +60,6 @@
             </NuxtLink>
           </article>
           <div v-if="everySix(index + 1)">
-            <h1>Блок рекламы</h1>
             <div :id="`yandex_rtb_R-A-1779902-1-${index+1}`"></div>
             <script>window.yaContextCb.push(() => {
               Ya.Context.AdvManager.render({
