@@ -63,12 +63,11 @@
             <div id="yandex_rtb_R-A-1779902-1-6"></div>
             <script>window.yaContextCb.push(() => {
               Ya.Context.AdvManager.render({
-                renderTo: `yandex_rtb_R-A-1779902-1-6`,
+                renderTo: 'yandex_rtb_R-A-1779902-1-6',
                 blockId: 'R-A-1779902-1',
                 pageNumber: 6,
               })
             })</script>
-            <!-- Yandex.RTB R-A-1779902-1 -->
           </div>
         </template>
 
