@@ -41,7 +41,7 @@
       <yandex-map
           ref="map"
           :coords="coords"
-          zoom="10"
+          :zoom="zoom"
           style="width: 100%; height: 250px;"
           :controls="[]"
           :settings="mapSettings"
@@ -74,7 +74,7 @@ export default {
     return {
       query: '',
       addressQuery: '',
-      zoom: 10,
+      zoom: 16,
       coords: [55.7540471, 37.620405],
       showMap: false,
       showAddress: false,

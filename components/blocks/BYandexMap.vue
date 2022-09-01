@@ -4,8 +4,8 @@
     <yandex-map
         v-if="showMap"
         ref="map"
-        :coords="coords"
-        zoom="10"
+        :coords="coordsBal"
+        :zoom="zoom"
         style="width: 100%; height: 350px;"
         :controls="[]"
         :behaviors="['default', 'scrollZoom']"
@@ -23,11 +23,13 @@
 </template>
 
 <script>
-import { yandexMap, ymapMarker } from 'vue-yandex-maps';
+import {yandexMap, ymapMarker} from 'vue-yandex-maps';
+
 export default {
   name: "BYandexMap",
   data() {
     return {
+      zoom: 16,
     }
   },
   mounted() {
