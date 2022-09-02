@@ -4,17 +4,6 @@
         :category="category"
     />
     <section class="container flex flex-col items-center mt-[100px] pb-10">
-
-      <!-- Yandex.RTB R-A-1779902-4 -->
-      <div id="yandex_rtb_R-A-1779902-4"></div>
-      <script>window.yaContextCb.push(()=>{
-        Ya.Context.AdvManager.render({
-          renderTo: 'yandex_rtb_R-A-1779902-4',
-          blockId: 'R-A-1779902-4'
-        })
-      })</script>
-      <!-- end Yandex -->
-
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <Breadcrumbs
             :baseName="`Главная`"
@@ -30,17 +19,27 @@
             :title="`объявлений`"
             :amount="amount"
         />
-        <article v-for="service in services" :key="service.id" class="flex mb-[10px] flex-col p-3 rounded-lg bg-white">
-          <NuxtLink :to="getUrl(service)">
-            <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg"><span class="mt-1 mb-2.5">{{types[service.type]}}: </span>{{ service.name }}</h2>
-            <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ service.price }}<span class="pl-1 text-xs">руб.</span></h3>
-            <div class="flex justify-between w-full">
-              <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>
-            </div>
-          </NuxtLink>
+        <template v-for="(service, ind)  in services">
+          <article class="flex mb-[10px] flex-col p-3 rounded-lg bg-white">
+            <NuxtLink :to="getUrl(service)">
+              <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg"><span
+                  class="mt-1 mb-2.5">{{ types[service.type] }}: </span>{{ service.name }}</h2>
+              <h3 class="mt-1 mb-2.5 text-lg"><span class=" pr-1 text-xs">от</span>{{ service.price }}<span
+                  class="pl-1 text-xs">руб.</span></h3>
+              <div class="flex justify-between w-full">
+                <button
+                    class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                  Добавить в мой список
+                </button>
+              </div>
+            </NuxtLink>
 
-        </article>
-        <button v-if="checkAmount"  @click="addItems(
+          </article>
+          <div class="mt-5" v-if="everySix(ind + 1)">
+            <div v-bind:id="`yandex_rtb_R-A-1779902-4-${ind+1}`"></div>
+          </div>
+        </template>
+        <button v-if="checkAmount" @click="addItems(
           {
         skip: services.length,
         state: 'active',
@@ -56,7 +55,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import * as _ from "lodash";
 import Breadcrumbs from "./Breadcrumbs";
 import BAmount from "~/components/blocks/BAmount";
@@ -138,17 +137,29 @@ export default {
   },
   methods: {
     ...mapActions({
-        getItems: 'services/getItems',
-        setItems: 'filters/setItems',
-        addItems: 'services/addItems',
-        getItem: 'categoriesService/getItem',
-        getItemsCategories: 'categoriesService/getItems',
-        setItemCategory: 'categoriesService/setItem',
-        removeItem: 'categoriesService/removeItem',
-      }),
+      getItems: 'services/getItems',
+      setItems: 'filters/setItems',
+      addItems: 'services/addItems',
+      getItem: 'categoriesService/getItem',
+      getItemsCategories: 'categoriesService/getItems',
+      setItemCategory: 'categoriesService/setItem',
+      removeItem: 'categoriesService/removeItem',
+    }),
+    everySix(count) {
+      if (count % 6 === 0) {
+        window.yaContextCb.push(() => {
+          Ya.Context.AdvManager.render({
+            renderTo: `yandex_rtb_R-A-1779902-4-${count}`,
+            blockId: 'R-A-1779902-4',
+            pageNumber: count + 1,
+          })
+        })
+      }
+      return count % 6 === 0;
+    },
     getUrl(service) {
-      let cat = `/feed/${ service.categories ? service.categories.alias : 'none'}`;
-      return  cat + '/' + `${ service.alias}`
+      let cat = `/feed/${service.categories ? service.categories.alias : 'none'}`;
+      return cat + '/' + `${service.alias}`
     },
     getUsername(vacancy) {
       return vacancy?.profile?.user?.name

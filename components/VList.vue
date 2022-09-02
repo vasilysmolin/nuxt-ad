@@ -3,19 +3,9 @@
   <section>
 
     <div v-if="$device.isDesktop" class="mx-auto flex flex-col w-[500px]">
-
-      <!-- Yandex.RTB R-A-1779902-2 -->
-      <div id="yandex_rtb_R-A-1779902-2"></div>
-      <script>window.yaContextCb.push(()=>{
-        Ya.Context.AdvManager.render({
-          renderTo: 'yandex_rtb_R-A-1779902-2',
-          blockId: 'R-A-1779902-2'
-        })
-      })</script>
-      <!-- end Yandex -->
-
-        <h1 class="mb-3 text-xl text-center font-black">Вакансии от компаний</h1>
-        <article v-for="vacancy in vacancies" :key="vacancy.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
+      <h1 class="mb-3 text-xl text-center font-black">Вакансии от компаний</h1>
+      <template v-for="(vacancy, ind)  in vacancies">
+        <article class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
           <NuxtLink :to="getUrl(vacancy)" class="px-4 py-6">
             <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
               {{ vacancy.name }}</h2>
@@ -34,11 +24,15 @@
             </div>
           </NuxtLink>
         </article>
-        <button @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user', from: 'catalog'})"
-                type="button"
-                class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-          Смотреть дальше
-        </button>
+        <div class="mt-5" v-if="everySix(ind + 1)">
+          <div v-bind:id="`yandex_rtb_R-A-1779902-2-${ind+1}`"></div>
+        </div>
+      </template>
+      <button @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user', from: 'catalog'})"
+              type="button"
+              class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+        Смотреть дальше
+      </button>
     </div>
 
     <div v-if="$device.isMobile" class="mx-auto flex flex-col w-full">
@@ -146,6 +140,18 @@ export default {
       getItems: 'vacancies/getItems',
       addItems: 'vacancies/addItems',
     }),
+    everySix(count) {
+      if (count % 6 === 0) {
+        window.yaContextCb.push(() => {
+          Ya.Context.AdvManager.render({
+            renderTo: `yandex_rtb_R-A-1779902-2-${count}`,
+            blockId: 'R-A-1779902-2',
+            pageNumber: count + 1,
+          })
+        })
+      }
+      return count % 6 === 0;
+    },
     getUrl(vacancy) {
       let cat = `/vacancies/${vacancy.categories ? vacancy.categories.alias : 'none'}`;
       return cat + '/' + `${vacancy.alias}`
