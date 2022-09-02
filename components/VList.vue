@@ -25,7 +25,7 @@
           </NuxtLink>
         </article>
         <div class="mt-5" v-if="everySix(ind + 1)">
-          <div v-bind:id="`yandex_rtb_R-A-1779902-2-${ind+1}`"></div>
+          <div v-bind:id="`yandex_rtb_R-A-1779902-7-${ind+1}`"></div>
         </div>
       </template>
       <button @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user', from: 'catalog'})"
@@ -144,8 +144,8 @@ export default {
       if (count % 6 === 0) {
         window.yaContextCb.push(() => {
           Ya.Context.AdvManager.render({
-            renderTo: `yandex_rtb_R-A-1779902-2-${count}`,
-            blockId: 'R-A-1779902-2',
+            renderTo: `yandex_rtb_R-A-1779902-7-${count}`,
+            blockId: 'R-A-1779902-7',
             pageNumber: count + 1,
           })
         })
