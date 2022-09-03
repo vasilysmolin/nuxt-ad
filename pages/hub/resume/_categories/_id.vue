@@ -262,50 +262,6 @@ export default {
         return category
       }
     },
-    nameErrors: {
-      get() {
-        if (!this.$v.data.name.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.name.required) {
-          return 'Введите название';
-        }
-
-        if (!this.$v.data.name.maxLength) {
-          return 'Превышена допустимая длина названия';
-        }
-        if (!this.$v.data.name.minLength) {
-          return 'Ошибка, минимальное значение';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    // phoneErrors() {
-    //   if (!this.$v.data.phone.$dirty) {
-    //     return '';
-    //   }
-    //
-    //   if (!this.$v.data.phone.required) {
-    //     return 'Введите телефон';
-    //   }
-    //
-    //   if (!this.$v.data.phone.maxLength) {
-    //     return 'Превышена допустимая длина названия';
-    //   }
-    //   if (!this.$v.data.phone.minLength) {
-    //     return 'Ошибка, минимальное значение';
-    //   }
-    //   if (!this.$v.data.phone.numeric) {
-    //     return 'Укажите только числа, без других символов';
-    //   }
-    //
-    //   return '';
-    // },
   },
   methods: {
     getCityId(event) {

@@ -29,6 +29,9 @@
                   {{ item.name }}
                 </option>
               </select>
+              <span v-if="category_idErrors" class="form-errors">
+              {{ category_idErrors }}
+              </span>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -37,7 +40,7 @@
                      placeholder="Название вакансии"
                      v-model="data.name">
               <label for="name" class="text-[#6E7191]">Название услуги</label>
-              <span v-if="nameErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="nameErrors" class="form-errors">
             {{ nameErrors }}
             </span>
             </div>
@@ -49,7 +52,7 @@
                         class="form-control forms-input"
                         placeholder="Ваш телефон" />
               <label class="text-[#6E7191]">Tелефон</label>
-              <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="phoneErrors" class="form-errors">
             {{ phoneErrors }}
             </span>
             </div>
@@ -63,6 +66,9 @@
                       placeholder="Описание"
                       v-model="data.description"
                   >{{ data.description }}</textarea>
+              <span v-if="descriptionErrors" class="form-errors">
+              {{ descriptionErrors }}
+              </span>
             </div>
             <div class="mb-4 w-full sm:w-[27rem]">
               <input type="checkbox" id="contract" value="data.contract" v-model="data.contract">
@@ -86,9 +92,22 @@
                      placeholder="Зарплата"
                      v-model="data.price">
               <label for="min_price" class="text-[#6E7191]">Стоимость</label>
+              <span v-if="priceErrors" class="form-errors">
+              {{ priceErrors }}
+              </span>
             </div>
 
-            <button :disabled="isDisabled" class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            <BGeo
+                :obj="data"
+                :cityErrors="cityErrors"
+                :addressErrors="addressErrors"
+                @cityId="getCityId"
+                @address="getAddress"
+            />
+
+
+            <button :disabled="isDisabled"
+                    class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Разместить
             </button>
           </div>
@@ -101,6 +120,8 @@
 <script>
 import * as _ from 'lodash';
 import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
+import BGeo from "~/components/blocks/BGeo";
+import Validations from "~/components/mixins/validations.mixin"
 
 export default {
   name: "VObject",
@@ -111,6 +132,8 @@ export default {
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
+  components: {BGeo},
+  mixins: [Validations],
   data() {
     return {
       data: {
@@ -118,6 +141,9 @@ export default {
         price: 500,
         category_id: null,
         description: '',
+        city_id: null,
+        street: null,
+        house: null,
         contract: false,
         guarantee: false,
         hourly_payment: false,
@@ -139,6 +165,26 @@ export default {
         numeric,
         maxLength: maxLength(20),
         minLength: minLength(9)
+      },
+      city_id: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      street: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      category_id: {
+        required,
+        numeric,
+      },
+      price: {
+        required,
+        numeric,
+        maxLength: maxLength(10),
+        minLength: minLength(2)
       },
     },
 
@@ -164,52 +210,21 @@ export default {
         return category
       }
     },
-    nameErrors: {
-      get() {
-        if (!this.$v.data.name.$dirty) {
-          return '';
-        }
-
-        if (!this.$v.data.name.required) {
-          return 'Введите название';
-        }
-
-        if (!this.$v.data.name.maxLength) {
-          return 'Превышена допустимая длина названия';
-        }
-        if (!this.$v.data.name.minLength) {
-          return 'Ошибка, минимальное значение';
-        }
-
-        return '';
-      },
-      set(text) {
-        return text;
-      }
-    },
-    phoneErrors() {
-      if (!this.$v.data.phone.$dirty) {
-        return '';
-      }
-
-      if (!this.$v.data.phone.required) {
-        return 'Введите телефон';
-      }
-
-      if (!this.$v.data.phone.maxLength) {
-        return 'Превышена допустимая длина названия';
-      }
-      if (!this.$v.data.phone.minLength) {
-        return 'Ошибка, минимальное значение';
-      }
-      if (!this.$v.data.phone.numeric) {
-        return 'Укажите только числа, без других символов';
-      }
-
-      return '';
-    },
   },
   methods: {
+    getCityId(event) {
+      this.data.city_id = event;
+    },
+    getAddress(event) {
+      if (!_.isEmpty(event)) {
+        this.data.street = event.data.street_with_type;
+        this.data.house = event.data.house;
+        this.data.latitude = event.data.geo_lat;
+        this.data.longitude = event.data.geo_lon;
+      } else {
+        this.data.street = null;
+      }
+    },
     submitted() {
       if (this.$v.$invalid) {
         this.$v.$touch();
