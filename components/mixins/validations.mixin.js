@@ -63,6 +63,29 @@ export default {
         return text;
       }
     },
+    phoneErrors: {
+      get() {
+        if (!this.$v.data.phone?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.phone.required) {
+          return this.$t('validation.phoneRequired');
+        }
+
+        if (!this.$v.data.phone.maxLength) {
+          return this.$t('validation.phoneMax');
+        }
+        if (!this.$v.data.phone.minLength) {
+          return this.$t('validation.phoneMin');
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
     cityErrors: {
       get() {
         if (!this.$v.data?.city_id.$dirty) {
@@ -133,6 +156,26 @@ export default {
         return this.$t('validation.priceMin');
       }
       if (!this.$v.data.price.numeric) {
+        return this.$t('validation.priceNum');
+      }
+
+      return '';
+    },
+    minPriceErrors() {
+      if (!this.$v.data.min_price?.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.data.min_price.required) {
+        return this.$t('validation.priceRequired');
+      }
+      if (!this.$v.data.min_price.maxLength) {
+        return this.$t('validation.priceMax');
+      }
+      if (!this.$v.data.min_price.minLength) {
+        return this.$t('validation.priceMin');
+      }
+      if (!this.$v.data.min_price.numeric) {
         return this.$t('validation.priceNum');
       }
 
