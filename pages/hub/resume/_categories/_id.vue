@@ -11,17 +11,6 @@
 
           <div class="flex flex-col items-center w-full">
 
-<!--            <div class="mb-4 w-full sm:w-[27rem]">-->
-<!--              <label for="name" class="pl-4 text-gray-500">Тип</label>-->
-<!--              <select class="form-select form-select-lg mt-2 forms-select"-->
-<!--                      v-model="data.type">-->
-<!--                <option v-for="[key, value] in Object.entries(types)" :value="key" :key="key"-->
-<!--                        :selected="key === data.type">-->
-<!--                  {{ value }}-->
-<!--                </option>-->
-<!--              </select>-->
-<!--            </div>-->
-
             <div class="mb-4 w-full sm:w-[27rem]">
               <label for="name" class="pl-4 text-gray-500">Выберите направление</label>
               <select class="form-select form-select-lg mt-2 forms-select"
@@ -39,7 +28,7 @@
                      placeholder="Название вакансии"
                      v-model="data.name">
               <label for="name" class="text-[#6E7191]">Заголовок резюме</label>
-              <span v-if="nameErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="nameErrors" class="form-errors">
             {{ nameErrors }}
             </span>
             </div>
@@ -58,7 +47,7 @@
                      placeholder="Телефон"
                      v-model="data.phone">
               <label for="phone" class="text-[#6E7191]">Телефон</label>
-              <span v-if="phoneErrors" class="caption-2 px-1 pt-s c-error">
+              <span v-if="phoneErrors" class="form-errors">
             {{ phoneErrors }}
             </span>
             </div>
@@ -72,6 +61,9 @@
                       placeholder="Презентация"
                       v-model="data.description"
                   >{{ data.duties }}</textarea>
+              <span v-if="descriptionErrors" class="form-errors">
+            {{ descriptionErrors }}
+            </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -115,15 +107,33 @@
                      placeholder="Зарплата"
                      v-model="data.price">
               <label for="min_price" class="text-[#6E7191]">Зарплата</label>
+              <span v-if="priceErrors" class="form-errors">
+              {{ priceErrors }}
+              </span>
             </div>
 
-            <button class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
-                    @click.prevent="submitted">Сохранить
+            <BGeo
+                :obj="data"
+                :cityErrors="cityErrors"
+                :addressErrors="addressErrors"
+                @cityId="getCityId"
+                @address="getAddress"
+            />
+
+            <button
+                class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+                @click.prevent="submitted">Сохранить
             </button>
 
-            <button v-if="data.state === 'active'" @click.prevent="up" class="h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800">Поднять</button>
+            <button v-if="data.state === 'active'" @click.prevent="up"
+                    class="h-10 px-5 m-2 text-green-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800">
+              Поднять
+            </button>
 
-            <button @click.prevent="deleted" class="h-10 px-5 m-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Удалить</button>
+            <button @click.prevent="deleted"
+                    class="h-10 px-5 m-2 text-red-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">
+              Удалить
+            </button>
 
             <div v-if="checkState()">
               <button v-if="data.state !== 'active'" @click.prevent="active" class="h-10 px-5 m-2 text-gray-100 transition-colors duration-150 bg-gray-700 rounded-lg focus:shadow-outline hover:bg-gray-800">Активировать</button>
@@ -138,10 +148,14 @@
 
 <script>
 import * as _ from 'lodash';
-import {maxLength, minLength, required} from 'vuelidate/lib/validators';
+import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
+import BGeo from "~/components/blocks/BGeo";
+import Validations from "~/components/mixins/validations.mixin"
 
 export default {
   name: "VObject",
+  components: {BGeo},
+  mixins: [Validations],
   layout: 'hub',
   head: {
     title: "Редактировать резюме на Тапиго",
@@ -151,7 +165,10 @@ export default {
   },
   data() {
     return {
-      data: {},
+      data: {
+        cityId: null,
+        address: null
+      },
     }
   },
   validations: {
@@ -159,6 +176,31 @@ export default {
       name: {
         required,
         maxLength: maxLength(255),
+        minLength: minLength(2)
+      },
+      city_id: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      street: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      category_id: {
+        required,
+        numeric,
+      },
+      description: {
+        required,
+        maxLength: maxLength(1000),
+        minLength: minLength(5)
+      },
+      price: {
+        required,
+        numeric,
+        maxLength: maxLength(10),
         minLength: minLength(2)
       },
       // phone: {
@@ -266,6 +308,19 @@ export default {
     // },
   },
   methods: {
+    getCityId(event) {
+      this.data.city_id = event;
+    },
+    getAddress(event) {
+      if (!_.isEmpty(event)) {
+        this.data.street = event.data.street_with_type;
+        this.data.house = event.data.house;
+        this.data.latitude = event.data.geo_lat;
+        this.data.longitude = event.data.geo_lon;
+      } else {
+        this.data.street = null;
+      }
+    },
     submitted() {
       if (this.$v.$invalid) {
         this.$v.$touch();

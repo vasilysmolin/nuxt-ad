@@ -86,7 +86,7 @@ export default {
         }
 
         if (!this.$v.data?.street.required) {
-          return this.$t('validation.cityRequired');
+          return this.$t('validation.addressRequired');
         }
 
         return '';

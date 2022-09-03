@@ -28,6 +28,9 @@
                   {{ item.name }}
                 </option>
               </select>
+              <span v-if="category_idErrors" class="form-errors">
+              {{ category_idErrors }}
+              </span>
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -36,6 +39,9 @@
                      placeholder="Название вакансии"
                      v-model="data.name">
               <label for="name" class="text-[#6E7191]">Заголовок резюме</label>
+              <span v-if="nameErrors" class="form-errors">
+            {{ nameErrors }}
+            </span>
             </div>
 <!--
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -63,6 +69,9 @@
                       placeholder="Презентация"
                       v-model="data.description"
                   >{{ data.duties }}</textarea>
+              <span v-if="descriptionErrors" class="form-errors">
+              {{ descriptionErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -104,9 +113,21 @@
                      placeholder="Зарплата"
                      v-model="data.price">
               <label for="min_price" class="text-[#6E7191]">Зарплата</label>
+              <span v-if="priceErrors" class="form-errors">
+              {{ priceErrors }}
+              </span>
             </div>
 
-            <button :disabled="isDisabled" class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            <BGeo
+                :obj="data"
+                :cityErrors="cityErrors"
+                :addressErrors="addressErrors"
+                @cityId="getCityId"
+                @address="getAddress"
+            />
+
+            <button :disabled="isDisabled"
+                    class="btn btn-primary inline-block px-7 py-4 bg-blue-600 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
                     @click.prevent="submitted">Разместить
             </button>
           </div>
@@ -118,6 +139,9 @@
 
 <script>
 import * as _ from "lodash";
+import BGeo from "~/components/blocks/BGeo";
+import Validations from "~/components/mixins/validations.mixin"
+import {maxLength, minLength, numeric, required} from "vuelidate/lib/validators";
 
 export default {
   layout: 'hub',
@@ -127,14 +151,58 @@ export default {
       {hid: 'description', name: 'description', content: 'Список'}
     ]
   },
+  components: {BGeo},
+  mixins: [Validations],
+  validations: {
+    data: {
+      name: {
+        required,
+        maxLength: maxLength(255),
+        minLength: minLength(2)
+      },
+      city_id: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      street: {
+        required,
+        maxLength: maxLength(70),
+        minLength: minLength(2)
+      },
+      category_id: {
+        required,
+        numeric,
+      },
+      description: {
+        required,
+        maxLength: maxLength(1000),
+        minLength: minLength(5)
+      },
+      price: {
+        required,
+        numeric,
+        maxLength: maxLength(10),
+        minLength: minLength(2)
+      },
+      // phone: {
+      //   required,
+      //   numeric,
+      //   maxLength: maxLength(20),
+      //   minLength: minLength(9)
+      // },
+    },
+
+  },
   data() {
     return {
       data: {
-        name: '',
-        price: '',
+        name: null,
+        price: null,
         category_id: null,
-        address: '',
-        phone: '',
+        cityId: null,
+        address: null,
+        phone: null,
       },
       isDisabled: false,
     }
@@ -189,11 +257,30 @@ export default {
     },
   },
   methods: {
+    getCityId(event) {
+      this.data.city_id = event;
+    },
+    getAddress(event) {
+      if (!_.isEmpty(event)) {
+        this.data.street = event.data.street_with_type;
+        this.data.house = event.data.house;
+        this.data.latitude = event.data.geo_lat;
+        this.data.longitude = event.data.geo_lon;
+      } else {
+        this.data.street = null;
+      }
+    },
     submitted() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
       this.isDisabled = true;
       this.$axios.$post(`resume`, this.data).then(() => {
         this.$router.push({name: 'resume___ru'});
+        this.isDisabled = false;
       }).catch((error) => {
+        this.isDisabled = false;
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
       });
