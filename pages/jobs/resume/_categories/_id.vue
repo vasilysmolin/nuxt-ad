@@ -29,6 +29,13 @@
           <h3 class="mt-2 font-medium">График работы:<span
               class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(resume) }}</span></h3>
         </section>
+
+        <BYandexMap
+            :city_id="resume.city_id"
+            :showMap="showMap"
+            :coords="coords"
+            :coordsBal="coordsBal"
+        />
       </article>
     </div>
 
@@ -65,6 +72,13 @@
           <h3 class="mt-2 font-bold text-sm">График работы:<span
               class="font-normal pl-2 lowercase">{{ getSchedules(resume) }}</span></h3>
         </section>
+
+        <BYandexMap
+            :city_id="resume.city_id"
+            :showMap="showMap"
+            :coords="coords"
+            :coordsBal="coordsBal"
+        />
       </article>
     </div>
 
@@ -76,13 +90,22 @@ import * as _ from 'lodash';
 import {mapGetters} from "vuex";
 import NavLocJobs from "~/components/NavLocJobs";
 import BContactR from "~/components/blocks/BContactR";
+import BYandexMap from "~/components/blocks/BYandexMap";
 
 export default {
   name: "RObject",
   layout: 'default-search',
   components: {
     NavLocJobs,
-    BContactR
+    BContactR,
+    BYandexMap
+  },
+  data() {
+    return {
+      coords: [55.7540471, 37.620405],
+      coordsBal: [55.7540471, 37.620405],
+      showMap: false,
+    }
   },
   async mounted() {
     await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
