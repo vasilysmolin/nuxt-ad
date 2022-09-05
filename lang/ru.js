@@ -32,6 +32,7 @@ export default {
         cityRequired: 'Ой, вы забыли указать город',
         addressRequired: 'Ой, вы забыли адрес',
         catRequired: 'Выберите категорию для объявления',
+        selectRequired: 'Поле обязательное для заполнения',
         nameRequired: 'Ой, вы забыли написать название объявления',
         photoRequired: 'Покажите ваш товар лицом, людям это нужно',
         priceRequired: 'Напишите справедливую цену',

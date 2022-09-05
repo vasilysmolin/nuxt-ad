@@ -194,6 +194,33 @@ export default {
       }
       return '';
     },
+    experienceErrors() {
+      if (!this.$v.data.experience?.$dirty) {
+        return '';
+      }
+      if (!this.$v.data.experience.required) {
+        return this.$t('validation.selectRequired');
+      }
+      return '';
+    },
+    educationErrors() {
+      if (!this.$v.data.education?.$dirty) {
+        return '';
+      }
+      if (!this.$v.data.education.required) {
+        return this.$t('validation.selectRequired');
+      }
+      return '';
+    },
+    scheduleErrors() {
+      if (!this.$v.data.schedule?.$dirty) {
+        return '';
+      }
+      if (!this.$v.data.schedule.required) {
+        return this.$t('validation.selectRequired');
+      }
+      return '';
+    },
     photosErrors: {
       get() {
         if (!this.$v.data.photos?.$dirty) {

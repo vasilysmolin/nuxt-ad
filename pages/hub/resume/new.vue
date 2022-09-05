@@ -83,6 +83,9 @@
                   {{ value }}
                 </option>
               </select>
+              <span v-if="experienceErrors" class="form-errors">
+              {{ experienceErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -94,6 +97,9 @@
                   {{ value }}
                 </option>
               </select>
+              <span v-if="educationErrors" class="form-errors">
+              {{ educationErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -105,6 +111,9 @@
                   {{ value }}
                 </option>
               </select>
+              <span v-if="scheduleErrors" class="form-errors">
+              {{ scheduleErrors }}
+              </span>
             </div>
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -171,8 +180,16 @@ export default {
         minLength: minLength(2)
       },
       category_id: {
-        required,
-        numeric,
+        required
+      },
+      experience: {
+        required
+      },
+      schedule: {
+        required
+      },
+      education: {
+        required
       },
       description: {
         required,
@@ -185,12 +202,6 @@ export default {
         maxLength: maxLength(10),
         minLength: minLength(2)
       },
-      // phone: {
-      //   required,
-      //   numeric,
-      //   maxLength: maxLength(20),
-      //   minLength: minLength(9)
-      // },
     },
 
   },

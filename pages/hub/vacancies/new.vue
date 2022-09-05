@@ -87,6 +87,9 @@
                   {{ value }}
                 </option>
               </select>
+              <span v-if="experienceErrors" class="form-errors">
+              {{ experienceErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -98,6 +101,9 @@
                   {{ value }}
                 </option>
               </select>
+              <span v-if="educationErrors" class="form-errors">
+              {{ educationErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -109,6 +115,9 @@
                   {{ value }}
                 </option>
               </select>
+              <span v-if="scheduleErrors" class="form-errors">
+              {{ scheduleErrors }}
+              </span>
             </div>
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -183,6 +192,15 @@ export default {
       category_id: {
         required,
         numeric,
+      },
+      experience: {
+        required
+      },
+      schedule: {
+        required
+      },
+      education: {
+        required
       },
       min_price: {
         required,
@@ -270,7 +288,9 @@ export default {
       this.isDisabled = true;
       this.$axios.$post(`vacancies`, this.data).then(() => {
         this.$router.push({name: 'vacancies___ru'});
+        this.isDisabled = false;
       }).catch((error) => {
+        this.isDisabled = false;
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
       });
