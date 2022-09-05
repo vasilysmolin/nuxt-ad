@@ -106,6 +106,7 @@ import NavLocJobs from "~/components/NavLocJobs";
 import BContactV from "~/components/blocks/BContactV";
 import HeaderContentList from "~/components/HeaderContentList";
 import BYandexMap from "~/components/blocks/BYandexMap";
+
 export default {
   name: "VObject",
   layout: 'default-search',
@@ -118,6 +119,7 @@ export default {
     }
   },
   async mounted() {
+    this.showMap = true;
     await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
     if (Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0) {
       await this.$store.dispatch('categoriesVacancy/getItems');

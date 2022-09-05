@@ -24,6 +24,14 @@
         :title="`Дополнительно`"
         :lists="generateList(service)"
     />
+
+    <BYandexMap
+        :city_id="service.city_id"
+        :showMap="showMap"
+        :coords="coords"
+        :coordsBal="coordsBal"
+    />
+
   </article>
 
 </template>
@@ -36,17 +44,21 @@ import BDescription from "~/components/blocks/BDescription";
 import BContactU from "~/components/blocks/BContactU";
 import BList from "~/components/blocks/BList";
 import Breadcrumbs from "~/components/Breadcrumbs";
+import BYandexMap from "~/components/blocks/BYandexMap";
 
 export default {
   name: "SObject",
   layout: 'default-search',
-  components: { BHead, BDescription, BContactU, BList, Breadcrumbs },
+  components: {BHead, BDescription, BContactU, BList, Breadcrumbs, BYandexMap},
   async asyncData({store, route}) {
     await store.dispatch('typeServices/getItems');
-    await store.dispatch('services/getItem', { id: route.params.id, expand: 'profile.user,profile.person'  });
-    await store.dispatch('categoriesService/getItem', {id: store.state.services.service.category_id });
+    await store.dispatch('services/getItem', {id: route.params.id, expand: 'profile.user,profile.person'});
+    await store.dispatch('categoriesService/getItem', {id: store.state.services.service.category_id});
     return {
       service: store.state.services.service,
+      coords: [55.7540471, 37.620405],
+      coordsBal: [55.7540471, 37.620405],
+      showMap: true,
     }
   },
   methods: {
