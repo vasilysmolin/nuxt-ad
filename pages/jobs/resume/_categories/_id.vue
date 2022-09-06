@@ -120,6 +120,16 @@ export default {
       await this.$store.dispatch('schedules/getItems');
     }
     // await this.$store.dispatch('typeJobs/getItems');
+    if (this.checkCity) {
+      this.coords = [this.resume?.city?.latitude, this.resume?.city?.longitude];
+      if (_.isEmpty(this.resume?.latitude) || _.isEmpty(this.resume?.longitude)) {
+        this.coordsBal = this.coords;
+      } else {
+        console.log([this.resume?.latitude, this.resume?.longitude]);
+        this.coordsBal = [this.resume?.latitude, this.resume?.longitude];
+      }
+
+    }
   },
   computed: {
     resume() {

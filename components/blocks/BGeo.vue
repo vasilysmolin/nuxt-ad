@@ -94,12 +94,14 @@ export default {
   async mounted() {
     setTimeout(() => {
       if (this.checkCityObj) {
-        this.fullData(this.obj?.city);
+        this.query = this.obj.city.name;
+        this.fullData(this.obj);
         if (!_.isEmpty(this.obj.street) && !_.isEmpty(this.obj.house)) {
           this.addressQuery = `${this.obj.street}, ${this.obj.house}`
           this.showMap = true;
         }
       } else if (this.checkCity) {
+        this.query = this.$auth.user?.city.name;
         this.fullData(this.$auth.user?.city);
       }
     }, 1000);
@@ -153,7 +155,6 @@ export default {
       }
     },
     fullData(obj) {
-      this.query = obj.name;
       this.coords = [obj.latitude, obj.longitude];
       if (_.isEmpty(obj.latitude) || _.isEmpty(obj.longitude)) {
         this.result.coordsBal = this.coords;

@@ -53,6 +53,9 @@
                       placeholder="Обязанности"
                       v-model="data.duties"
                   >{{ data.duties }}</textarea>
+              <span v-if="dutiesErrors" class="form-errors">
+              {{ dutiesErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -64,6 +67,9 @@
                       placeholder="Требования"
                       v-model="data.demands"
                   >{{ data.demands }}</textarea>
+              <span v-if="demandsErrors" class="form-errors">
+              {{ demandsErrors }}
+              </span>
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
@@ -75,6 +81,9 @@
                       placeholder="Дополнительные условия"
                       v-model="data.additionally"
                   >{{ data.additionally }}</textarea>
+              <span v-if="additionallyErrors" class="form-errors">
+              {{ additionallyErrors }}
+              </span>
             </div>
 
 
@@ -172,6 +181,21 @@ export default {
         required,
         maxLength: maxLength(255),
         minLength: minLength(2)
+      },
+      additionally: {
+        required,
+        maxLength: maxLength(2550),
+        minLength: minLength(10)
+      },
+      demands: {
+        required,
+        maxLength: maxLength(2550),
+        minLength: minLength(10)
+      },
+      duties: {
+        required,
+        maxLength: maxLength(2550),
+        minLength: minLength(10)
       },
       phone: {
         required,

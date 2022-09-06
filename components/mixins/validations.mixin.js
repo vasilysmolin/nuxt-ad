@@ -141,6 +141,76 @@ export default {
         return text;
       }
     },
+    additionallyErrors: {
+      get() {
+        if (!this.$v.data.additionally?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.additionally.required) {
+          return this.$t('validation.descriptionRequired');
+        }
+
+        if (!this.$v.data.additionally.maxLength) {
+          return this.$t('validation.descriptionMax');
+        }
+        if (!this.$v.data.additionally.minLength) {
+          return this.$t('validation.descriptionMin');
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    demandsErrors: {
+      get() {
+        if (!this.$v.data.demands?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.demands.required) {
+          return this.$t('validation.descriptionRequired');
+        }
+
+        if (!this.$v.data.demands.maxLength) {
+          return this.$t('validation.descriptionMax');
+        }
+        if (!this.$v.data.demands.minLength) {
+          return this.$t('validation.descriptionMin');
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    dutiesErrors: {
+      get() {
+        if (!this.$v.data.duties?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.duties.required) {
+          return this.$t('validation.descriptionRequired');
+        }
+
+        if (!this.$v.data.duties.maxLength) {
+          return this.$t('validation.descriptionMax');
+        }
+        if (!this.$v.data.duties.minLength) {
+          return this.$t('validation.descriptionMin');
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+
     priceErrors() {
       if (!this.$v.data.price?.$dirty) {
         return '';

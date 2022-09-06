@@ -139,9 +139,10 @@ export default {
     this.showMap = true;
     if(this.checkCity) {
       this.coords = [this.vacancy?.city?.latitude, this.vacancy?.city?.longitude];
-      if (_.isEmpty(this.data?.latitude) || _.isEmpty(this.data?.longitude)) {
+      if (_.isEmpty(this.vacancy?.latitude) || _.isEmpty(this.vacancy?.longitude)) {
         this.coordsBal = this.coords;
-      }  else {
+      } else {
+        console.log([this.vacancy?.latitude, this.vacancy?.longitude]);
         this.coordsBal = [this.vacancy?.latitude, this.vacancy?.longitude];
       }
 
