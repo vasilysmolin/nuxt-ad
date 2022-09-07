@@ -25,12 +25,11 @@
         :lists="generateList(service)"
     />
 
-    <BYandexMap
-        :city_id="service.city_id"
-        :showMap="showMap"
-        :coords="coords"
-        :coordsBal="coordsBal"
-    />
+    <template v-if="service !== null">
+      <BYandexMap
+          :obj="service"
+      />
+    </template>
 
   </article>
 
@@ -56,9 +55,6 @@ export default {
     await store.dispatch('categoriesService/getItem', {id: store.state.services.service.category_id});
     return {
       service: store.state.services.service,
-      coords: [55.7540471, 37.620405],
-      coordsBal: [55.7540471, 37.620405],
-      showMap: true,
     }
   },
   methods: {

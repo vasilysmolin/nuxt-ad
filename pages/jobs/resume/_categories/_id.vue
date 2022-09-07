@@ -30,12 +30,11 @@
               class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(resume) }}</span></h3>
         </section>
 
-        <BYandexMap
-            :city_id="resume.city_id"
-            :showMap="showMap"
-            :coords="coords"
-            :coordsBal="coordsBal"
-        />
+        <template v-if="resume !== null">
+          <BYandexMap
+              :obj="resume"
+          />
+        </template>
       </article>
     </div>
 
@@ -72,13 +71,11 @@
           <h3 class="mt-2 font-bold text-sm">График работы:<span
               class="font-normal pl-2 lowercase">{{ getSchedules(resume) }}</span></h3>
         </section>
-
-        <BYandexMap
-            :city_id="resume.city_id"
-            :showMap="showMap"
-            :coords="coords"
-            :coordsBal="coordsBal"
-        />
+        <template v-if="resume !== null">
+          <BYandexMap
+              :obj="resume"
+          />
+        </template>
       </article>
     </div>
 
@@ -102,9 +99,6 @@ export default {
   },
   data() {
     return {
-      coords: [55.7540471, 37.620405],
-      coordsBal: [55.7540471, 37.620405],
-      showMap: false,
     }
   },
   async mounted() {
@@ -118,17 +112,6 @@ export default {
     }
     if (Object.keys(this.$store.getters['schedules/schedule']).length === 0) {
       await this.$store.dispatch('schedules/getItems');
-    }
-    // await this.$store.dispatch('typeJobs/getItems');
-    if (this.checkCity) {
-      this.coords = [this.resume?.city?.latitude, this.resume?.city?.longitude];
-      if (_.isEmpty(this.resume?.latitude) || _.isEmpty(this.resume?.longitude)) {
-        this.coordsBal = this.coords;
-      } else {
-        console.log([this.resume?.latitude, this.resume?.longitude]);
-        this.coordsBal = [this.resume?.latitude, this.resume?.longitude];
-      }
-
     }
   },
   computed: {

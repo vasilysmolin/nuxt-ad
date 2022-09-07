@@ -46,26 +46,25 @@
       <table class="table-auto">
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
         <tr v-if="isCheckbox(item)" v-for="(comfort, index) in item.parameters">
-            <td>{{ comfort.value }}</td>
-            <td>{{ getCheckboxParams(comfort, ad.ad_parameters) }}</td>
+          <td>{{ comfort.value }}</td>
+          <td>{{ getCheckboxParams(comfort, ad.ad_parameters) }}</td>
         </tr>
         </tbody>
       </table>
     </section>
 
-    <BYandexMap
-        :city_id="ad.city_id"
-        :showMap="showMap"
-        :coords="coords"
-        :coordsBal="coordsBal"
-    />
+    <template v-if="ad !== null">
+      <BYandexMap
+          :obj="ad"
+      />
+    </template>
 
     <section v-if="checkPhotos(ad)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
       <section class="mt-4 grid grid-cols-2 gap-4 w-full">
-      <div v-for="photo in ad.photos">
-        <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
-      </div>
+        <div v-for="photo in ad.photos">
+          <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
+        </div>
       </section>
     </section>
   </article>
@@ -89,19 +88,10 @@ export default {
     await store.dispatch('ads/getItem', { id: route.params.id, querySearch: route.query?.querySearch,  expand: 'profile.user,profile.person'});
     await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });
     return {
-      coords: [55.7540471, 37.620405],
-      coordsBal: [55.7540471, 37.620405],
-      showMap: false,
       ad: store.state.ads.ad,
     }
   },
   async mounted() {
-    this.showMap = true;
-    if(this.checkCity) {
-      this.query = this.ad?.city?.name;
-      this.coords = [this.ad?.city?.latitude, this.ad?.city?.longitude];
-      this.coordsBal = [this.ad?.latitude, this.ad?.longitude];
-    }
   },
   methods: {
     getUserName(catalog) {
@@ -121,9 +111,6 @@ export default {
       }
 
       return _.join(arrayAddress);
-    },
-    checkCity(){
-      return this.ad?.city_id;
     },
     getUserPhone(catalog) {
       return catalog?.profile?.user?.phone;

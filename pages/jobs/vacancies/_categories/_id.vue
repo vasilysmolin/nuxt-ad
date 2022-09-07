@@ -37,18 +37,21 @@
           <h2 class="font-medium">Дополнительные условия:</h2>
           <p class="mt-1 text-gray-800 leading-relaxed">{{ vacancy.additionally }}</p>
           <hr class="my-5 mx-auto w-full border-gray-300">
-          <h3 class="font-medium">Вид оплаты:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getSalary(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-medium">Опыт работы:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-medium">Образование:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-medium">График работы:<span class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
+          <h3 class="font-medium">Вид оплаты:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getSalary(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-medium">Опыт работы:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-medium">Образование:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-medium">График работы:<span
+              class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
         </section>
+        <template v-if="vacancy !== null">
+          <BYandexMap
+              :obj="vacancy"
+          />
+        </template>
 
-        <BYandexMap
-            :city_id="vacancy.city_id"
-            :showMap="showMap"
-            :coords="coords"
-            :coordsBal="coordsBal"
-        />
 
       </article>
     </div>
@@ -86,12 +89,22 @@
           <h2 class="font-bold text-sm">Дополнительные условия:</h2>
           <p class="mt-1 leading-5 text-sm">{{ vacancy.additionally }}</p>
           <hr class="my-5 mx-auto w-full border-gray-300">
-          <h3 class="font-bold text-sm">Вид оплаты:<span class="font-normal pl-2 lowercase">{{ getSalary(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-bold text-sm">Опыт работы:<span class="font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-bold text-sm">Образование:<span class="font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
-          <h3 class="mt-2 font-bold text-sm">График работы:<span class="font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
+          <h3 class="font-bold text-sm">Вид оплаты:<span class="font-normal pl-2 lowercase">{{
+              getSalary(vacancy)
+            }}</span></h3>
+          <h3 class="mt-2 font-bold text-sm">Опыт работы:<span
+              class="font-normal pl-2 lowercase">{{ getExperiences(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-bold text-sm">Образование:<span
+              class="font-normal pl-2 lowercase">{{ getEducations(vacancy) }}</span></h3>
+          <h3 class="mt-2 font-bold text-sm">График работы:<span
+              class="font-normal pl-2 lowercase">{{ getSchedules(vacancy) }}</span></h3>
 
         </section>
+        <template v-if="vacancy !== null">
+          <BYandexMap
+              :obj="vacancy"
+          />
+        </template>
 
       </article>
     </div>
@@ -113,9 +126,6 @@ export default {
   components: {HeaderContentList, BContactV, NavLocJobs, BYandexMap},
   data() {
     return {
-      coords: [55.7540471, 37.620405],
-      coordsBal: [55.7540471, 37.620405],
-      showMap: false,
     }
   },
   async mounted() {
@@ -136,17 +146,6 @@ export default {
     if (Object.keys(this.$store.getters['salaries/salary_type']).length === 0) {
       await this.$store.dispatch('salaries/getItems');
     }
-    this.showMap = true;
-    if(this.checkCity) {
-      this.coords = [this.vacancy?.city?.latitude, this.vacancy?.city?.longitude];
-      if (_.isEmpty(this.vacancy?.latitude) || _.isEmpty(this.vacancy?.longitude)) {
-        this.coordsBal = this.coords;
-      } else {
-        console.log([this.vacancy?.latitude, this.vacancy?.longitude]);
-        this.coordsBal = [this.vacancy?.latitude, this.vacancy?.longitude];
-      }
-
-    }
   },
   methods: {
     getUserName(vacancy) {
@@ -157,9 +156,6 @@ export default {
     },
     getUserPhone(vacancy) {
       return vacancy?.profile?.user?.phone
-    },
-    checkCity(){
-      return this.vacancy?.city_id;
     },
     getUserEmail(vacancy) {
       return vacancy?.profile?.user?.email

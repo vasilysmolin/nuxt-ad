@@ -1,6 +1,6 @@
 <template>
-  <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="city_id">
-    <h2 class="text-sm font-bold text-black mb-3">Карта</h2>
+  <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+    <h2 class="text-sm font-bold text-black mb-3">{{ $t('map.name') }}</h2>
     <yandex-map
         v-if="showMap"
         ref="map"
@@ -24,25 +24,41 @@
 
 <script>
 import {yandexMap, ymapMarker} from 'vue-yandex-maps';
+import * as _ from "lodash";
 
 export default {
   name: "BYandexMap",
   data() {
     return {
       zoom: 16,
+      coords: [55.7540471, 37.620405],
+      coordsBal: [55.7540471, 37.620405],
+      showMap: false,
     }
   },
   mounted() {
+    setTimeout(() => {
+      this.showMap = true;
+      if (this.checkCity) {
+        this.coords = [this.obj?.city?.latitude, this.obj?.city?.longitude];
+        if (_.isEmpty(this.obj?.latitude) || _.isEmpty(this.obj?.longitude)) {
+          this.coordsBal = this.coords;
+        } else {
+          this.coordsBal = [this.obj?.latitude, this.obj?.longitude];
+        }
+      }
+    }, 1000);
   },
   components: {yandexMap, ymapMarker},
   props: {
-    city_id: Number,
-    showMap: Boolean,
-    coords: Array,
-    coordsBal: Array,
+    obj: Object,
   },
   computed: {},
-  methods: {},
+  methods: {
+    checkCity() {
+      return this.obj?.city_id;
+    },
+  },
 
 }
 </script>
