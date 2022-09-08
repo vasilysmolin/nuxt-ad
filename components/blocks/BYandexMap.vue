@@ -1,24 +1,29 @@
 <template>
   <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-    <h2 class="text-sm font-bold text-black mb-3">{{ $t('map.name') }}</h2>
-    <yandex-map
-        v-if="showMap"
-        ref="map"
-        :coords="coordsBal"
-        :zoom="zoom"
-        style="width: 100%; height: 350px;"
-        :controls="[]"
-        :behaviors="['default', 'scrollZoom']"
-
-    >
-      <ymap-marker
-          :key="1"
-          :marker-id="1"
-          marker-type="placemark"
+    <template v-if="checkCoords">
+      <h2 class="text-lg font-bold text-black mb-3">{{ $t('map.name') }}</h2>
+      <yandex-map
+          v-if="showMap"
+          ref="map"
           :coords="coordsBal"
-          :balloon="{ body: 'title' }"
-      ></ymap-marker>
-    </yandex-map>
+          :zoom="zoom"
+          style="width: 100%; height: 350px;"
+          :controls="[]"
+          :behaviors="['default', 'scrollZoom']"
+
+      >
+        <ymap-marker
+            :key="1"
+            :marker-id="1"
+            marker-type="placemark"
+            :coords="coordsBal"
+            :balloon="{ body: 'title' }"
+        ></ymap-marker>
+      </yandex-map>
+    </template>
+    <template v-else>
+      <h2 class="text-lg font-bold text-black mb-3">{{ $t('map.not_coords') }}</h2>
+    </template>
   </section>
 </template>
 
@@ -34,11 +39,13 @@ export default {
       coords: [55.7540471, 37.620405],
       coordsBal: [55.7540471, 37.620405],
       showMap: false,
+      checkCoords: false,
     }
   },
   mounted() {
     setTimeout(() => {
       this.showMap = true;
+      this.checkCoords = !_.isEmpty(this.obj?.latitude);
       if (this.checkCity) {
         this.coords = [this.obj?.city?.latitude, this.obj?.city?.longitude];
         if (_.isEmpty(this.obj?.latitude) || _.isEmpty(this.obj?.longitude)) {

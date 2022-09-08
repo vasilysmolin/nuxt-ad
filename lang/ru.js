@@ -16,7 +16,8 @@ export default {
         buttonInvite: 'Отправить ссылку на почту',
     },
     map: {
-        name: 'Карта'
+        name: 'Карта',
+        not_coords: 'Не указан адрес',
     },
     catalog: {
         edit: 'Редактировать объявление',
