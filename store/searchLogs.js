@@ -1,3 +1,5 @@
+import {params} from "../helper/requestParams";
+
 export const state = () => ({
     searchLogs: {},
 });
@@ -12,8 +14,9 @@ export const mutations = {
 };
 
 export const actions = {
-    async getItems({commit}) {
-        const searchLogs = await this.$axios.$get('search-logs');
+    async getItems({commit}, {dateTo = null, dateFrom = null}) {
+        const getParams = params({dateTo, dateFrom});
+        const searchLogs = await this.$axios.$get(`search-logs?${getParams}`);
         commit('setSearchLogs', searchLogs);
     },
     async removeItems({commit}) {
