@@ -61,4 +61,10 @@ export default {
     start: 'Запустить',
     pause: 'Пауза',
     delete: 'Удалить',
+    errors: {
+        not_fount: 'Страница не найдена',
+        permission_denied: 'Доступ запрещен',
+        ops: 'Возникла какая-то ошибка',
+        go_to_home: 'Перейти на главную',
+    }
 }
