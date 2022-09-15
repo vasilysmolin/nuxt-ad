@@ -210,7 +210,6 @@ export default {
         return text;
       }
     },
-
     priceErrors() {
       if (!this.$v.data.price?.$dirty) {
         return '';

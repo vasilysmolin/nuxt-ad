@@ -15,6 +15,9 @@ export default {
         inviteReset: 'Ссылка для восстановления отправлена на почту',
         buttonInvite: 'Отправить ссылку на почту',
     },
+    invite: {
+        button: 'Пригласить',
+    },
     map: {
         name: 'Карта',
         not_coords: 'Не указан адрес',
