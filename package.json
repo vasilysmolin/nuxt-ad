@@ -25,6 +25,7 @@
     "lodash": "^4.17.21",
     "nuxt": "^2.15.8",
     "nuxt-basic-auth-module": "^1.4.1",
+    "nuxt-tailvue": "^1.0.95",
     "string-mask": "^0.3.0",
     "tw-elements": "^1.0.0-alpha11",
     "vue": "^2.6.14",

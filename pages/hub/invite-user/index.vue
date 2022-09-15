@@ -68,7 +68,11 @@ export default {
       }
 
       this.$axios.$get(`check-user/${this.email}`).then(() => {
-        console.log(1);
+        this.$toast.show({
+          type: 'error',
+          title: 'Not found',
+          message: 'user not found',
+        })
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';

@@ -196,6 +196,18 @@ export default {
         },
       },
     ],
+    ['nuxt-tailvue',
+      {
+        all: true,
+        toast: {
+          defaultProps: {
+            timeout: 10,
+            progress: true,
+            classToast: ''
+          }
+        }
+      }
+    ],
     'nuxt-basic-auth-module',
     'cookie-universal-nuxt',
     '@nuxtjs/proxy',
