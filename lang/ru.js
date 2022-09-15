@@ -17,6 +17,8 @@ export default {
     },
     invite: {
         button: 'Пригласить',
+        user_not_found: 'Пользователь не найден',
+        user_added: 'Пользователь добавлен',
     },
     map: {
         name: 'Карта',
@@ -65,7 +67,7 @@ export default {
     pause: 'Пауза',
     delete: 'Удалить',
     errors: {
-        not_fount: 'Страница не найдена',
+        not_found: 'Страница не найдена',
         permission_denied: 'Доступ запрещен',
         ops: 'Возникла какая-то ошибка',
         go_to_home: 'Перейти на главную',

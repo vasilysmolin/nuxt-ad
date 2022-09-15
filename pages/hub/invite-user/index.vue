@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div class="container flex flex-col items-center mt-[20px]" v-if="isPerson()">
+    <div class="container flex flex-col items-center mt-[50px]" v-if="!isPerson()">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
 
         <form class=" w-[95%]">
@@ -22,6 +22,14 @@
           </div>
         </form>
       </div>
+      <table class="table-auto mb-2 mt-2">
+        <tbody v-for="(item, index) in users" :key="item.id">
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.email }}</td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 </template>
@@ -32,6 +40,7 @@ import Person from "~/components/mixins/person.mixin";
 import BInput from "~/components/blocks/BInput";
 import Validations from "~/components/mixins/validations.mixin"
 import {email, required} from 'vuelidate/lib/validators';
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'InviteUser',
@@ -54,10 +63,18 @@ export default {
       email
     },
   },
-
+  computed: {
+    ...mapGetters({
+      users: 'invitedUsers/users',
+    }),
+  },
   mounted() {
+    this.getUsers({});
   },
   methods: {
+    ...mapActions({
+      getUsers: 'invitedUsers/getItems',
+    }),
     onInputEmail(event) {
       this.email = event;
     },
@@ -67,12 +84,29 @@ export default {
         return;
       }
 
-      this.$axios.$get(`check-user/${this.email}`).then(() => {
-        this.$toast.show({
-          type: 'error',
-          title: 'Not found',
-          message: 'user not found',
-        })
+      this.$axios.$get(`check-user/${this.email}`).then((res) => {
+        if (res.success === false) {
+          this.$toast.show({
+            type: 'error',
+            title: this.$t('invite.user_not_found'),
+            message: this.$t('invite.user_not_found'),
+          })
+        }
+        if (res.success === true) {
+          this.$axios.$put(`add-user/${this.email}`).then((res) => {
+            this.getUsers({});
+            this.$toast.show({
+              type: 'success',
+              title: this.$t('invite.user_added'),
+              message: this.$t('invite.user_added'),
+            });
+          }).catch((error) => {
+            // console.log(error.response.data.errors);
+            // this.$v.nameErrors = 'какой-то текст';
+          });
+
+        }
+
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
