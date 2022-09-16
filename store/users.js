@@ -2,6 +2,7 @@ import {params} from '../helper/requestParams';
 
 export const state = () => ({
   users: [],
+  accounts: [],
   amount: null,
   amountNew: null,
   usersBlock: [],
@@ -12,6 +13,9 @@ export const state = () => ({
 export const mutations = {
   setusers(state, users) {
     state.users = users;
+  },
+  setAccounts(state, users) {
+    state.accounts = users;
   },
   setusersnew(state, users) {
     state.usersNew = users;
@@ -52,6 +56,15 @@ export const actions = {
       commit('setAmount', users.meta.total);
     }
   },
+  async getAccounts({commit}, {
+    state = null, type = null, name = null, phone = null,
+  }) {
+    // const getParams = params({
+    //   type, state, name, phone,
+    // });
+    const users = await this.$axios.$get(`users/accounts`);
+    commit('setAccounts', users.users);
+  },
   async addItems({commit}, {
     skip = 0, state = null, type = null, name = null, phone = null,
   }) {
@@ -76,6 +89,7 @@ export const actions = {
 
 export const getters = {
   users: (s) => s.users,
+  accounts: (s) => s.accounts,
   usersBlock: (s) => s.usersBlock,
   usersNew: (s) => s.usersNew,
   user: (s) => s.user,

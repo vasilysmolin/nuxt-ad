@@ -45,6 +45,7 @@ import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'InviteUser',
   components: {NavLocProfile, BInput},
+  layout: 'hub',
   head: {
     title: "Приглашение пользователя",
     meta: [
