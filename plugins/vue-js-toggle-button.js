@@ -1,2 +1,4 @@
-import ToggleButton from 'vue-js-toggle-button';
-Vue.use(ToggleButton);
+import Vue from 'vue';
+import Button from 'vue-js-toggle-button';
+
+Vue.use(Button);

@@ -1,45 +1,36 @@
 <template>
-  <section>
-    <div class="container flex flex-col items-center mt-[20px]" v-if="isPerson()">
-      <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-
-        <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
-          <article class="flex flex-col w-full">
-            <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 text-xl">{{ $t('invite.h1') }}</h1>
-            <p class="mt-3 text-sm text-black">{{ $t('invite.selectEmail') }}</p>
-            <p class="mt-3 text-sm text-black font-bold">{{ $t('invite.mustEmail') }}</p>
-          </article>
-        </section>
-
-        <form class=" w-[95%]">
-          <div class="flex flex-col items-center w-full">
-            <BInput
-                :value="email"
-                type="email"
-                :placeholder="$t('Email менеджера')"
-                :error="emailErrors"
-                :submitted="submitted"
-                @input="onInputEmail"
-            />
-            <div class="flex justify-center">
-              <button type="button" @click.prevent="submitted"
-                      class="btn btn-primary inline-block mt-3 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
-                {{ $t('invite.button') }}
-              </button>
-            </div>
-          </div>
-        </form>
+  <modal name="InviteUserModal" :min-width="320" :max-width="768" :max-height="400" width="100%" height="100%"
+         :adaptive="true">
+    <section class="flex flex-col justify-center items-center w-full">
+      <div class="mt-20 mb-20 w-[75%] text-center">
+        <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 text-lg">{{ $t('invite.h1') }}</h1>
+        <p class="mt-3 text-sm text-black">{{ $t('invite.selectEmail') }}</p>
+        <p class="text-sm text-black">{{ $t('invite.mustEmail') }}</p>
       </div>
-      <table class="table-auto mb-2 mt-2">
-        <tbody v-for="(item, index) in users" :key="item.id">
-        <tr>
-          <td>{{ item.name }}</td>
-          <td>{{ item.email }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+      <div>
+        <section class="input-group relative flex flex-wrap items-stretch w-full">
+          <form class="w-[95%]">
+            <div class="flex flex-col items-center w-full">
+              <BInput
+                  :value="email"
+                  type="email"
+                  :placeholder="$t('invite.email')"
+                  :error="emailErrors"
+                  :submitted="submitted"
+                  @input="onInputEmail"
+              />
+              <div class="flex justify-center">
+                <button type="button" @click.prevent="submitted"
+                        class="btn btn-primary inline-block mt-3 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
+                  {{ $t('invite.button') }}
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </modal>
 </template>
 
 <script>
@@ -51,7 +42,7 @@ import {email, required} from 'vuelidate/lib/validators';
 import {mapActions, mapGetters} from "vuex";
 
 export default {
-  name: 'InviteUser',
+  name: 'InviteUserModal',
   components: {NavLocProfile, BInput},
   layout: 'hub',
   head: {
@@ -109,6 +100,7 @@ export default {
               title: this.$t('invite.user_added'),
               message: this.$t('invite.user_added'),
             });
+            this.$modal.hide('InviteUserModal');
           }).catch((error) => {
             // console.log(error.response.data.errors);
             // this.$v.nameErrors = 'какой-то текст';
@@ -123,5 +115,4 @@ export default {
     },
   },
 }
-
 </script>

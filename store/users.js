@@ -8,6 +8,7 @@ export const state = () => ({
   usersBlock: [],
   usersNew: [],
   user: {},
+  currentAccount: {},
 });
 
 export const mutations = {
@@ -31,6 +32,9 @@ export const mutations = {
   },
   setuser(state, user) {
     state.user = user;
+  },
+  setCurrentAccount(state, user) {
+    state.currentAccount = user;
   },
   setAmountNew(state, amount) {
     state.amountNew = amount;
@@ -85,10 +89,15 @@ export const actions = {
     const user = await this.$axios.$get(`users/${id}`);
     commit('setuser', user);
   },
+  async getCurrentAccount({commit}) {
+    const user = await this.$axios.$get(`users/accounts/current`);
+    commit('setCurrentAccount', user);
+  },
 };
 
 export const getters = {
   users: (s) => s.users,
+  currentAccount: (s) => s.currentAccount,
   accounts: (s) => s.accounts,
   usersBlock: (s) => s.usersBlock,
   usersNew: (s) => s.usersNew,

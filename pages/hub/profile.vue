@@ -92,34 +92,23 @@
 
       <div v-if="isPerson()" class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <section class="flex flex-col mb-5 w-[95%] sm:w-[27rem]">
-          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">Менеджеры</h2>
-          <p class="mt-3 text-sm text-black">Вы можете добавить необходимое количество менеджеров для управления вашим аккаунтом. Менеджера в любой момент можно отключить от управления.</p>
+          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate"></h2>
+          <p class="mt-3 text-sm text-black">{{ $t('invite.text') }}</p>
 
           <section class="mt-3 flex-col w-full">
-            <article class="mt-3 flex justify-between items-center w-full">
-              <p class="text-base font-bold truncate">vasya@mail.ru</p>
-              <div class="cursor-pointer" title="Отключить менеджера">
-                <DelAcc/>
-              </div>
-            </article>
-            <article class="mt-3 flex justify-between items-center w-full">
-              <p class="text-base font-bold truncate">rozochka-svetik-turziyarozochka-svetik-turziyarozochka-svetik-turziya@mail.ru</p>
-              <div class="cursor-pointer" title="Отключить менеджера">
-                <DelAcc/>
-              </div>
-            </article>
-            <article class="mt-3 flex justify-between items-center w-full">
-              <p class="text-base font-bold">snova-vasya@mail.ru</p>
-              <div class="cursor-pointer" title="Отключить менеджера">
+            <article v-for="(item, index) in users" :key="item.id"
+                     class="mt-3 flex justify-between items-center w-full">
+              <p class="text-base font-bold truncate">{{ item.email }}</p>
+              <div class="cursor-pointer" :title="$t('invite.delete')" @click="deleteInvite(item.email)">
                 <DelAcc/>
               </div>
             </article>
           </section>
-
+          <AddInviteModal/>
           <div class="mt-10 flex justify-center">
-            <button type="button" @click.prevent=""
+            <button type="button" @click.prevent="showModal"
                     class="btn btn-primary inline-block px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
-              {{ $t('Добавить менеджера') }}
+              {{ $t('invite.button') }}
             </button>
           </div>
         </section>
@@ -127,15 +116,23 @@
 
       <div v-if="!isPerson()" class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <section class="flex flex-col mb-5 w-[95%] sm:w-[27rem]">
-          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">Выбор аккаунта</h2>
-          <p class="mt-3 text-sm text-black">Если у вас есть права менеджера компании вы можете размещать объявления от имени этой компании.</p>
+          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ $t('invite.account') }}</h2>
+          <p class="mt-3 text-sm text-black">{{ $t('invite.accountText') }}</p>
 
           <section class="mt-3 flex-col w-full">
             <article class="mt-3 flex justify-between items-center w-full">
-              <!--
-              <toggle-button @change=""/>
-              <toggle-button :value="false" color="#82C7EB" :sync="true" :labels="true"/>
-              -->
+              <input type="radio" v-model="currentProfile" :value="$auth.user.profile.id" :key="$auth.user.id"
+                     :checked="true" @change="changeAccount($event)">
+              <label :for="$auth.user.id">{{ $auth.user.name }}</label>
+              <br/>
+              <template v-for="item in accounts">
+                <input type="radio" v-model="currentProfile" :value="item.profile_id" :key="item.id"
+                       @change="changeAccount($event)">
+                <label :for="item.user_id">{{ getName(item) }}</label>
+                <br/>
+              </template>
+              <!--              <toggle-button :sync="true" :value="false"  @change="onChangeEventHandler"/>-->
+              <!--              <toggle-button :sync="true" :value="true"  @change="onChangeEventHandler"/>-->
             </article>
           </section>
 
@@ -150,14 +147,16 @@
 import NavLocProfile from "../../components/NavLocProfile";
 import BInput from "~/components/blocks/BInput";
 import Person from "~/components/mixins/person.mixin";
+import AddInviteModal from "~/components/AddInviteModal";
 import * as _ from "lodash";
 import {mapActions, mapGetters} from "vuex";
 import DelAcc from "../../components/icons/DelAcc";
+import {email, required} from "vuelidate/lib/validators";
 
 
 export default {
   name: 'Profile',
-  components: {DelAcc, NavLocProfile, BInput},
+  components: {DelAcc, NavLocProfile, BInput, AddInviteModal},
   layout: 'hub',
   head: {
     title: "Профиль пользователя Тапиго",
@@ -169,6 +168,8 @@ export default {
   data() {
     return {
       query: null,
+      currentProfile: null,
+      current: null,
       confirm: false,
       error: false,
       successChange: false,
@@ -185,19 +186,36 @@ export default {
       }
     }
   },
+  validations: {
+    email: {
+      required,
+      email
+    },
+  },
+
   middleware: ['redirect', 'person'],
   mounted() {
     this.user = _.cloneDeep(this.$auth.user);
-    if(this.checkCity) {
+
+    if (this.checkCity) {
       this.query = this.user?.city?.name;
     } else {
       this.error = true;
     }
     this.person.inn = _.clone(this.getInn());
+    this.getUsers({});
+    this.getAccounts({});
+    ;
+    this.getCurrentAccount().then(() => {
+      this.currentProfile = this.currentAccount.profile.id;
+    });
   },
   computed: {
     ...mapGetters({
+      users: 'invitedUsers/users',
       cities: 'cities/citiesFull',
+      accounts: 'users/accounts',
+      currentAccount: 'users/currentAccount',
     }),
     check(){
       return this.checkPerson(this.user);
@@ -208,9 +226,45 @@ export default {
   },
   methods: {
     ...mapActions({
+      getUsers: 'invitedUsers/getItems',
+      getAccounts: 'users/getAccounts',
+      getCurrentAccount: 'users/getCurrentAccount',
       getItems: 'cities/getItemsFull',
       removeItemsFull: 'cities/removeItemsFull',
     }),
+    showModal() {
+      this.$modal.show('InviteUserModal');
+    },
+    deleteInvite(email) {
+      this.$axios.$delete(`users/delete-user/${email}`).then((res) => {
+        this.getUsers({});
+      });
+    },
+    changeAccount(event) {
+      let user = _.find(this.accounts, function (o) {
+        return o.profile_id === parseInt(event.target.value);
+      });
+      if (_.isEmpty(user)) {
+        user = {'profile_id': this.$auth.user.profile.id, 'user_id': this.$auth.user.id};
+      }
+
+      this.$axios.$put(`users/change-profile?profile_id=${user.profile_id}&id=${user.user_id}`).then((res) => {
+        console.log(res.access_token);
+        this.$auth.setUserToken(res.access_token, res.access_token).then(() => {
+        });
+        // this.$nuxt.refresh();
+
+      }).catch((error) => {
+      });
+
+    },
+    getName(item) {
+      return item?.profile?.user?.name;
+    },
+    onChangeEventHandler(value) {
+      value.value = !value;
+      console.log(value);
+    },
     onInputEmail(event) {
       this.email = event;
     },

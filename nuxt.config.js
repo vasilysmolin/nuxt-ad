@@ -94,6 +94,7 @@ export default {
     {src: '~/plugins/vuelidate'},
     {src: '~/plugins/mask.js'},
     {src: '~/plugins/vue-js-modal.js'},
+    {src: '~/plugins/vue-js-toggle-button.js', ssr: false},
     {src: '~/plugins/vue-datepicker', ssr: false}
   ],
   // router: {
