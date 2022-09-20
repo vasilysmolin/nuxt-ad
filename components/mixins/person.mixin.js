@@ -1,5 +1,24 @@
+import {mapActions, mapGetters} from "vuex";
+
 export default {
+    mounted() {
+        this.getCurrentAccount();
+    },
+    computed: {
+        ...mapGetters({
+            currentAccount: 'users/currentAccount',
+        }),
+        check() {
+            return this.checkPerson(this.user);
+        },
+        checkCity() {
+            return this.user?.city;
+        },
+    },
     methods: {
+        ...mapActions({
+            getCurrentAccount: 'users/getCurrentAccount',
+        }),
         profile() {
             return this.$auth.user?.profile;
         },
@@ -8,6 +27,9 @@ export default {
         },
         isPerson() {
             return this.$auth.user?.profile?.isPerson;
+        },
+        isCurrentAccount() {
+            return this.currentAccount?.profile?.isPerson;
         },
         getType(user) {
             return user?.profile?.isPerson ? 'Юридическое лицо' : 'Физическое лицо';

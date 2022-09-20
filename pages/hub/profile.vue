@@ -251,6 +251,9 @@ export default {
       this.$axios.$put(`users/change-profile?profile_id=${user.profile_id}&id=${user.user_id}`).then((res) => {
         console.log(res.access_token);
         this.$auth.setUserToken(res.access_token, res.access_token).then(() => {
+          // this.getCurrentAccount().then((res) => {
+          //   this.$auth.user.profile = res.profile;
+          // });
         });
         // this.$nuxt.refresh();
 

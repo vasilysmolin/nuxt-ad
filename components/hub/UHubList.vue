@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {mapGetters, mapState, mapMutations, mapActions} from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 
 export default {
   name: "UHubList",
@@ -29,7 +29,7 @@ export default {
   },
   async mounted() {
     // if (this.services.length === 0) {
-      await this.getItems({ from: 'cabinet'});
+    await this.getItems({from: 'cabinet'});
     await this.getItemsState();
     // }
   },
