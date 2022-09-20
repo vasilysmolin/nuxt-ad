@@ -262,7 +262,7 @@ export default {
 
     },
     getName(item) {
-      return item?.profile?.user?.name;
+      return item?.profile?.person?.name;
     },
     onChangeEventHandler(value) {
       value.value = !value;
