@@ -1,6 +1,7 @@
 <template>
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
+
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
           <article class="flex justify-between w-full">
@@ -88,6 +89,59 @@
           </article>
         </form>
       </div>
+
+      <div v-if="isPerson()" class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+        <section class="flex flex-col mb-5 w-[95%] sm:w-[27rem]">
+          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">Менеджеры</h2>
+          <p class="mt-3 text-sm text-black">Вы можете добавить необходимое количество менеджеров для управления вашим аккаунтом. Менеджера в любой момент можно отключить от управления.</p>
+
+          <section class="mt-3 flex-col w-full">
+            <article class="mt-3 flex justify-between items-center w-full">
+              <p class="text-base font-bold truncate">vasya@mail.ru</p>
+              <div class="cursor-pointer" title="Отключить менеджера">
+                <DelAcc/>
+              </div>
+            </article>
+            <article class="mt-3 flex justify-between items-center w-full">
+              <p class="text-base font-bold truncate">rozochka-svetik-turziyarozochka-svetik-turziyarozochka-svetik-turziya@mail.ru</p>
+              <div class="cursor-pointer" title="Отключить менеджера">
+                <DelAcc/>
+              </div>
+            </article>
+            <article class="mt-3 flex justify-between items-center w-full">
+              <p class="text-base font-bold">snova-vasya@mail.ru</p>
+              <div class="cursor-pointer" title="Отключить менеджера">
+                <DelAcc/>
+              </div>
+            </article>
+          </section>
+
+          <div class="mt-10 flex justify-center">
+            <button type="button" @click.prevent=""
+                    class="btn btn-primary inline-block px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
+              {{ $t('Добавить менеджера') }}
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <div v-if="!isPerson()" class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+        <section class="flex flex-col mb-5 w-[95%] sm:w-[27rem]">
+          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">Выбор аккаунта</h2>
+          <p class="mt-3 text-sm text-black">Если у вас есть права менеджера компании вы можете размещать объявления от имени этой компании.</p>
+
+          <section class="mt-3 flex-col w-full">
+            <article class="mt-3 flex justify-between items-center w-full">
+              <!--
+              <toggle-button @change=""/>
+              <toggle-button :value="false" color="#82C7EB" :sync="true" :labels="true"/>
+              -->
+            </article>
+          </section>
+
+        </section>
+      </div>
+
     </div>
   </section>
 </template>
@@ -98,10 +152,12 @@ import BInput from "~/components/blocks/BInput";
 import Person from "~/components/mixins/person.mixin";
 import * as _ from "lodash";
 import {mapActions, mapGetters} from "vuex";
+import DelAcc from "../../components/icons/DelAcc";
+
 
 export default {
   name: 'Profile',
-  components: {NavLocProfile, BInput},
+  components: {DelAcc, NavLocProfile, BInput},
   layout: 'hub',
   head: {
     title: "Профиль пользователя Тапиго",

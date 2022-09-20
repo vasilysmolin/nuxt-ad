@@ -1,21 +1,29 @@
 <template>
   <section>
-    <div class="container flex flex-col items-center mt-[50px]" v-if="!isPerson()">
+    <div class="container flex flex-col items-center mt-[20px]" v-if="isPerson()">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+
+        <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
+          <article class="flex flex-col w-full">
+            <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">Добавить менеджера</h2>
+            <p class="mt-3 text-sm text-black">Укажите почту физического лица, которому вы предоставляете статус менеджера вашей компании.</p>
+            <p class="mt-3 text-sm text-black font-bold">Аккаунт физического лица должен быть зарегистрирован и активирован на Тапиго.</p>
+          </article>
+        </section>
 
         <form class=" w-[95%]">
           <div class="flex flex-col items-center w-full">
             <BInput
                 :value="email"
                 type="email"
-                :placeholder="$t('auth.youEmail')"
+                :placeholder="$t('Email менеджера')"
                 :error="emailErrors"
                 :submitted="submitted"
                 @input="onInputEmail"
             />
-            <div class="flex space-x-2 justify-center">
+            <div class="flex justify-center">
               <button type="button" @click.prevent="submitted"
-                      class="inline-block mt-4 px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+                      class="btn btn-primary inline-block mt-3 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
                 {{ $t('invite.button') }}
               </button>
             </div>
