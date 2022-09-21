@@ -9,30 +9,29 @@
           <NuxtLink :to="getUrl(vacancy)" class="px-4 py-6">
             <h2 class="first-letter:uppercase lowercase font-black leading-[22px] text-lg group-hover:text-blue-600">
               {{ vacancy.name }}</h2>
-            <h3 class="mt-2 text-base"><span class="pr-1 text-xs">от</span>{{ vacancy.min_price }}<span
-                class="pl-1 text-xs">руб.</span></h3>
+            <h3 class="mt-2 text-base"><span class="pr-1 text-xs">от</span>{{ formatPrice(vacancy.min_price) }}</h3>
             <h3 class="mt-2 text-xs text-gray-600">МУНИЦИПАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ ЦЕНТР БУХГАЛТЕРСКОГО УЧЕТА И ОТЧЕТНОСТИ В СФЕРЕ ОБРАЗОВАНИЯ ГОРОДА ПЕРМИ</h3>
             <hr class="mt-3 mb-3">
             <section class="grid grid-cols-2 gap-4 w-full py-2">
-              <div class="flex justify-start items-center" title="Вид оплаты">
+              <div class="flex justify-start items-center" title="Вид оплаты" v-if="getSalary(vacancy)">
                 <div class="flex justify-center items-center w-[20px] h-[20px]">
                   <IconVListArticleSalary/>
                 </div>
                 <p class="text-gray-800 text-sm pl-2 lowercase">{{ getSalary(vacancy) }}</p>
               </div>
-              <div class="flex justify-start items-center" title="Опыт работы">
+              <div class="flex justify-start items-center" title="Опыт работы" v-if="getExperiences(vacancy)">
                 <div class="flex justify-center items-center w-[20px] h-[20px]">
                   <IconVListArticleExperiences/>
                 </div>
                 <p class="text-gray-800 text-sm pl-2 lowercase">{{ getExperiences(vacancy) }}</p>
               </div>
-              <div class="flex justify-start items-center" title="Образование">
+              <div class="flex justify-start items-center" title="Образование" v-if="getEducations(vacancy)">
                 <div class="flex justify-center items-center w-[20px] h-[20px]">
                   <IconVListArticleEducations/>
                 </div>
                 <p class="text-gray-800 text-sm pl-2 lowercase">{{ getEducations(vacancy) }}</p>
               </div>
-              <div class="flex justify-start items-center" title="График работы">
+              <div class="flex justify-start items-center" title="График работы" v-if="getSchedules(vacancy)">
                 <div class="flex justify-center items-center w-[20px] h-[20px]">
                   <IconVListArticleSchedules/>
                 </div>
@@ -57,8 +56,7 @@
       <article v-for="vacancy in vacancies" :key="vacancy.id" class="flex flex-col mt-[15px] rounded-lg bg-white">
         <NuxtLink :to="getUrl(vacancy)" class="px-2 py-4">
           <h2 class="first-letter:uppercase lowercase font-bold leading-4 text-sm">{{ vacancy.name }}</h2>
-          <h3 class="mt-2 text-sm"><span class=" pr-1 text-xs">от</span>{{ vacancy.min_price }}<span
-              class="pl-1 text-xs">руб.</span></h3>
+          <h3 class="mt-2 text-sm"><span class=" pr-1 text-xs">от</span>{{ formatPrice(vacancy.min_price) }}</h3>
           <div class="flex justify-between w-full">
             <!--
             <button class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Добавить в мой список</button>
@@ -182,16 +180,25 @@ export default {
       return cat + '/' + `${vacancy.alias}`
     },
     getEducations(vacancy) {
-      return this.education[vacancy.education] ?? 'Не указано';
+      return this.education[vacancy.education] ?? null;
     },
     getExperiences(vacancy) {
-      return this.experiences[vacancy.experience] ?? 'Не указано';
+      return this.experiences[vacancy.experience] ?? null;
     },
     getSchedules(vacancy) {
-      return this.schedule[vacancy.schedule] ?? 'Не указано';
+      return this.schedule[vacancy.schedule] ?? null;
     },
     getSalary(vacancy) {
-      return this.salary_type[vacancy.salary_type] ?? 'Не указано';
+      return this.salary_type[vacancy.salary_type] ?? null;
+    },
+    formatPrice(price) {
+      if (price) {
+        return new Intl.NumberFormat('ru-RU', {
+          style: 'currency',
+          currency: 'RUB',
+          minimumFractionDigits: 0
+        }).format(price);
+      }
     },
   },
 
