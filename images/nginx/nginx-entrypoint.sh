@@ -13,6 +13,7 @@ MEDCONF=/etc/nginx/conf.d/med.conf;
 PETCONF=/etc/nginx/conf.d/pet.conf;
 AVIACONF=/etc/nginx/conf.d/avia.conf;
 HOTELSCONF=/etc/nginx/conf.d/hotels.conf;
+REALTYCONF=/etc/nginx/conf.d/realty.conf;
 DEFAULTCONF=/etc/nginx/conf.d/default.conf;
 
 if test -f "$HOMECONF"; then
@@ -109,6 +110,14 @@ if test -f "$HOTELSCONF"; then
     sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$HOTELSCONF";
     sed -i "s#%ENV%#${ENV}#g" "$HOTELSCONF";
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$HOTELSCONF";
+fi
+
+if test -f "$REALTYCONF"; then
+    sed -i "s#%REALTY%#${REALTY}#g" "$REALTYCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$REALTYCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$REALTYCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$REALTYCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$REALTYCONF";
 fi
 
 if test -f "$DEFAULTCONF"; then

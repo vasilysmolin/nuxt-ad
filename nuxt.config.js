@@ -54,6 +54,7 @@ export default {
       PET_URL: `http://${process.env.PET}:${process.env.NUXT_PORT}`,
       AVIA_URL: `http://${process.env.AVIA}:${process.env.NUXT_PORT}`,
       HOTELS_URL: `http://${process.env.HOTELS}:${process.env.NUXT_PORT}`,
+      REALTY_URL: `http://${process.env.REALTY}:${process.env.NUXT_PORT}`,
     }),
     ...(!isDev && {
       AUTH_URL: `https://${process.env.DOMAIN_HOME}/auth/sign-in`,
@@ -69,6 +70,7 @@ export default {
       PET_URL: `https://${process.env.PET}`,
       AVIA_URL: `https://${process.env.AVIA}`,
       HOTELS_URL: `https://${process.env.HOTELS}`,
+      REALTY_URL: `https://${process.env.REALTY}`,
     }),
     YANDEX_MAP: process.env.YANDEX_MAP,
   },
@@ -107,7 +109,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     ['k-domains', {
-      subDomains: ['jobs', 'hub', 'office', 'catalog',
+      subDomains: ['jobs', 'hub', 'office', 'catalog', 'realty',
         'uslugi', 'food', 'travel', 'med', 'pet', 'avia', 'hotels'
       ], // List of directories to hold te pages for your subdomains
       rootDomain: 'root-domain', //  directory to hold the pages for root domain

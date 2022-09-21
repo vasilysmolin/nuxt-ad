@@ -12,6 +12,7 @@ ARG MED
 ARG PET
 ARG AVIA
 ARG HOTELS
+ARG REALTY
 ARG ENV
 ARG NGINX_WORKDIR
 ARG FRONT_WORKDIR
@@ -29,6 +30,7 @@ COPY /catalog.conf /etc/nginx/conf.d/
 COPY /uslugi.conf /etc/nginx/conf.d/
 COPY /avia.conf /etc/nginx/conf.d/
 COPY /hotels.conf /etc/nginx/conf.d/
+COPY /realty.conf /etc/nginx/conf.d/
 COPY /default.conf /etc/nginx/conf.d/
 
 ENV DOMAIN_HOME=${DOMAIN_HOME}
@@ -36,6 +38,7 @@ ENV JOBS=${JOBS}
 ENV FOOD=${FOOD}
 ENV AVIA=${AVIA}
 ENV HOTELS=${HOTELS}
+ENV REALTY=${REALTY}
 ENV TRAVEL=${TRAVEL}
 ENV MED=${MED}
 ENV PET=${PET}
