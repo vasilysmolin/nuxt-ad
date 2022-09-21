@@ -7,19 +7,32 @@
       <template v-for="(resume, ind)  in resumes">
         <article class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
           <NuxtLink :to="getUrl(resume)" class="px-4 py-6">
-            <h2 class="first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+            <h2 class="first-letter:uppercase lowercase font-black leading-[22px] text-lg group-hover:text-blue-600">
               {{ resume.name }}</h2>
-            <h3 class="mt-2 text-base"><span class=" pr-1 text-xs">от</span>{{ resume.price }}<span
+            <h3 class="mt-2 text-base"><span class="pr-1 text-xs">от</span>{{ resume.price }}<span
                 class="pl-1 text-xs">руб.</span></h3>
-            <hr class="mt-2 mb-2">
-            <p class="font-medium">Опыт работы:<span
-                class="text-gray-800 font-normal pl-2 lowercase">{{ getExperiences(resume) }}</span></p>
-            <p class="mt-2 font-medium">Образование:<span
-                class="text-gray-800 font-normal pl-2 lowercase">{{ getEducations(resume) }}</span></p>
-            <p class="mt-2 font-medium">График работы:<span
-                class="text-gray-800 font-normal pl-2 lowercase">{{ getSchedules(resume) }}</span></p>
-            <div class="flex justify-between w-full">
-            </div>
+            <h3 class="mt-2 text-xs text-gray-600">Имя соискателя</h3>
+            <hr class="mt-3 mb-3">
+            <section class="grid grid-cols-2 gap-4 w-full py-2">
+              <div class="flex justify-start items-center" title="Опыт работы">
+                <div class="flex justify-center items-center w-[20px] h-[20px]">
+                  <IconVListArticleExperiences/>
+                </div>
+                <p class="text-gray-800 text-sm pl-2 lowercase">{{ getExperiences(resume) }}</p>
+              </div>
+              <div class="flex justify-start items-center" title="Образование">
+                <div class="flex justify-center items-center w-[20px] h-[20px]">
+                  <IconVListArticleEducations/>
+                </div>
+                <p class="text-gray-800 text-sm pl-2 lowercase">{{ getEducations(resume) }}</p>
+              </div>
+              <div class="flex justify-start items-center" title="График работы">
+                <div class="flex justify-center items-center w-[20px] h-[20px]">
+                  <IconVListArticleSchedules/>
+                </div>
+                <p class="text-gray-800 text-sm pl-2 lowercase">{{ getSchedules(resume) }}</p>
+              </div>
+            </section>
           </NuxtLink>
         </article>
         <div class="mt-5" v-if="everySix(ind + 1)">
@@ -63,6 +76,9 @@
 import {mapActions, mapGetters} from 'vuex';
 import * as _ from "lodash";
 import NavLocJobs from "./NavLocJobs";
+import IconVListArticleExperiences from "./icons/IconVListArticleExperiences";
+import IconVListArticleEducations from "./icons/IconVListArticleEducations";
+import IconVListArticleSchedules from "./icons/IconVListArticleSchedules";
 
 export default {
   name: "RList",
@@ -71,6 +87,9 @@ export default {
   },
   components: {
     NavLocJobs,
+    IconVListArticleSchedules,
+    IconVListArticleEducations,
+    IconVListArticleExperiences,
   },
   async mounted() {
     this.setItems({

@@ -1,34 +1,32 @@
 <template>
-  <modal name="InviteUserModal" :min-width="320" :max-width="768" :max-height="400" width="100%" height="100%"
+  <modal name="InviteUserModal" :min-width="320" :width="640" height="auto"
          :adaptive="true">
-    <section class="flex flex-col justify-center items-center w-full">
-      <div class="mt-20 mb-20 w-[75%] text-center">
-        <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 text-lg">{{ $t('invite.h1') }}</h1>
-        <p class="mt-3 text-sm text-black">{{ $t('invite.selectEmail') }}</p>
-        <p class="text-sm text-black">{{ $t('invite.mustEmail') }}</p>
+
+    <section class="p-10 flex flex-col justify-center items-center w-full">
+
+      <div class="flex flex-col w-full">
+        <p class="text-base leading-5">{{ $t('invite.selectEmail') }}</p>
+        <p class="mt-5 text-sm font-bold">{{ $t('invite.mustEmail') }}</p>
       </div>
-      <div>
-        <section class="input-group relative flex flex-wrap items-stretch w-full">
-          <form class="w-[95%]">
-            <div class="flex flex-col items-center w-full">
-              <BInput
-                  :value="email"
-                  type="email"
-                  :placeholder="$t('invite.email')"
-                  :error="emailErrors"
-                  :submitted="submitted"
-                  @input="onInputEmail"
-              />
-              <div class="flex justify-center">
-                <button type="button" @click.prevent="submitted"
-                        class="btn btn-primary inline-block mt-3 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
-                  {{ $t('invite.button') }}
-                </button>
-              </div>
-            </div>
-          </form>
-        </section>
-      </div>
+      <form class="mt-8 w-full">
+        <div class="flex flex-col items-center w-full">
+          <BInput
+              :value="email"
+              type="email"
+              :placeholder="$t('invite.email')"
+              :error="emailErrors"
+              :submitted="submitted"
+              @input="onInputEmail"
+          />
+          <div class="flex justify-center">
+            <button type="button" @click.prevent="submitted"
+                    class="btn btn-primary inline-block mt-5 px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
+              {{ $t('invite.button') }}
+            </button>
+          </div>
+        </div>
+      </form>
+
     </section>
   </modal>
 </template>

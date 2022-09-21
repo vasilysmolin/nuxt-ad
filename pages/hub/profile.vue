@@ -5,11 +5,13 @@
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <section class="flex flex-col items-start mb-5 w-[95%] sm:w-[27rem]">
           <article class="flex justify-between w-full">
-            <p class="text-xs text-[#A0A3BD]">{{isPerson() ? 'Юридическое лицо' : 'Физическое лицо'}}</p>
+            <p class="text-xs text-[#A0A3BD]">{{ isPerson() ? 'Юридическое лицо' : 'Физическое лицо' }}</p>
             <p v-if="check" class="text-xs text-[#D9DBE9] uppercase">инн<span class="pl-1">{{ person.inn }}</span></p>
           </article>
-          <h1 v-if="check" class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ getEntityName(user) }}</h1>
-          <h1 v-else class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{user.name}}</h1>
+          <h1 v-if="check" class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{
+              getEntityName(user)
+            }}</h1>
+          <h1 v-else class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ user.name }}</h1>
         </section>
         <form class="w-[95%]">
           <div class="flex flex-col items-center w-full">
@@ -46,7 +48,7 @@
     ease-in-out
     m-0
     focus:text-black focus:bg-white focus:border-black focus:outline-hidden"
-                        placeholder="Ваш телефон" />
+                        placeholder="Ваш телефон"/>
               <label class="text-[#6E7191]">Ваш телефон</label>
             </div>
 
@@ -80,22 +82,22 @@
           </div>
           <article class="relative mx-auto w-full sm:w-[27rem] bg-white z-50">
             <ul class="pt-1 px-3 w-full leading-8" v-if="cities.length > 0">
-              <li @click="saveCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id" >
+              <li @click="saveCity(city)" style="list-style-type: none;" v-for="city in cities" :key="city.id">
                 <nuxt-link to="#" class="text-blue-700 hover:text-black">
-                {{ city.name }}
-              </nuxt-link>
+                  {{ city.name }}
+                </nuxt-link>
               </li>
             </ul>
           </article>
         </form>
       </div>
 
-      <div v-if="isPerson()" class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <section class="flex flex-col mb-5 w-[95%] sm:w-[27rem]">
-          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate"></h2>
+      <div v-if="isPerson()"
+           class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+        <section class="flex flex-col justify-center items-center w-[95%] sm:w-[27rem]">
+          <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ $t('invite.manager') }}</h2>
           <p class="mt-3 text-sm text-black">{{ $t('invite.text') }}</p>
-
-          <section class="mt-3 flex-col w-full">
+          <section class="mt-3 flex flex-col w-full">
             <article v-for="(item, index) in users" :key="item.id"
                      class="mt-3 flex justify-between items-center w-full">
               <p class="text-base font-bold truncate">{{ item.email }}</p>
@@ -105,7 +107,7 @@
             </article>
           </section>
           <AddInviteModal/>
-          <div class="mt-10 flex justify-center">
+          <div class="mt-7 flex justify-center">
             <button type="button" @click.prevent="showModal"
                     class="btn btn-primary inline-block px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black">
               {{ $t('invite.button') }}
@@ -114,27 +116,30 @@
         </section>
       </div>
 
-      <div v-if="!isPerson()" class="mt-[20px] flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      <div v-if="!isPerson()"
+           class="mt-[20px] flex flex-col items-center px-5 py-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <section class="flex flex-col mb-5 w-[95%] sm:w-[27rem]">
           <h2 class="mt-2 w-full text-xl text-black font-bold leading-none truncate">{{ $t('invite.account') }}</h2>
           <p class="mt-3 text-sm text-black">{{ $t('invite.accountText') }}</p>
 
-          <section class="mt-3 flex-col w-full">
-            <article class="mt-3 flex justify-between items-center w-full">
-              <input type="radio" v-model="currentProfile" :value="$auth.user.profile.id" :key="$auth.user.id"
+
+          <article class="mt-6 flex flex-col justify-between w-full">
+            <div class="flex justify-start items-center">
+              <input class="w-[20px] h-[20px]" type="radio" v-model="currentProfile" :value="$auth.user.profile.id"
+                     :key="$auth.user.id"
                      :checked="true" @change="changeAccount($event)">
-              <label :for="$auth.user.id">{{ $auth.user.name }}</label>
-              <br/>
+              <label class="pl-4 truncate" :for="$auth.user.id">{{ $auth.user.name }}</label>
+            </div>
+            <div class="mt-4 flex justify-start items-center">
               <template v-for="item in accounts">
-                <input type="radio" v-model="currentProfile" :value="item.profile_id" :key="item.id"
+                <input class="w-[20px] h-[20px]" type="radio" v-model="currentProfile" :value="item.profile_id"
+                       :key="item.id"
                        @change="changeAccount($event)">
-                <label :for="item.user_id">{{ getName(item) }}</label>
-                <br/>
+                <label class="pl-4 truncate" :for="item.user_id">{{ getName(item) }}</label>
               </template>
-              <!--              <toggle-button :sync="true" :value="false"  @change="onChangeEventHandler"/>-->
-              <!--              <toggle-button :sync="true" :value="true"  @change="onChangeEventHandler"/>-->
-            </article>
-          </section>
+            </div>
+
+          </article>
 
         </section>
       </div>
@@ -142,6 +147,16 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+input[type='radio'] {
+  accent-color: rgb(30 58 138);
+  cursor: pointer;
+}
+input[type='radio']:hover {
+  accent-color: black;
+}
+</style>
 
 <script>
 import NavLocProfile from "../../components/NavLocProfile";
@@ -217,10 +232,10 @@ export default {
       accounts: 'users/accounts',
       currentAccount: 'users/currentAccount',
     }),
-    check(){
+    check() {
       return this.checkPerson(this.user);
     },
-    checkCity(){
+    checkCity() {
       return this.user?.city;
     },
   },
@@ -293,7 +308,7 @@ export default {
       this.removeItemsFull();
     },
     debounceInput: _.debounce(function (e) {
-      if(this.query === '') {
+      if (this.query === '') {
         this.error = true;
         this.removeItemsFull();
       } else {
@@ -305,9 +320,9 @@ export default {
         });
       }
 
-      }, 500)
+    }, 500)
 
-    },
+  },
 
 }
 
