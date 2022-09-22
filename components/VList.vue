@@ -10,7 +10,7 @@
             <h2 class="first-letter:uppercase lowercase font-black leading-[22px] text-lg group-hover:text-blue-600">
               {{ vacancy.name }}</h2>
             <h3 class="mt-2 text-base"><span class="pr-1 text-xs">от</span>{{ formatPrice(vacancy.min_price) }}</h3>
-            <h3 class="mt-2 text-xs text-gray-600">МУНИЦИПАЛЬНОЕ КАЗЕННОЕ УЧРЕЖДЕНИЕ ЦЕНТР БУХГАЛТЕРСКОГО УЧЕТА И ОТЧЕТНОСТИ В СФЕРЕ ОБРАЗОВАНИЯ ГОРОДА ПЕРМИ</h3>
+            <h3 class="mt-2 text-xs text-gray-600">{{ getUserName(vacancy) }}</h3>
             <hr class="mt-3 mb-3">
             <section class="grid grid-cols-2 gap-4 w-full py-2">
               <div class="flex justify-start items-center" title="Вид оплаты" v-if="getSalary(vacancy)">
@@ -65,9 +65,10 @@
           </div>
         </NuxtLink>
       </article>
-      <button @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user', from: 'catalog'})"
-              type="button"
-              class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+      <button
+          @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user,profile.person', from: 'catalog'})"
+          type="button"
+          class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Смотреть дальше
       </button>
     </div>
@@ -96,7 +97,7 @@ export default {
       type: 'vacancy'
     });
     if (this.vacancies.length === 0) {
-      await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
+      await this.getItems({state: 'active', expand: 'profile.user,profile.person', from: 'catalog'});
     }
     if (Object.keys(this.$store.getters['experiences/experience']).length === 0) {
       await this.$store.dispatch('experiences/getItems');
@@ -163,6 +164,9 @@ export default {
       getItems: 'vacancies/getItems',
       addItems: 'vacancies/addItems',
     }),
+    getUserName(vacancy) {
+      return vacancy?.profile?.person?.name;
+    },
     everySix(count) {
       if (count % 6 === 0) {
         window.yaContextCb.push(() => {
