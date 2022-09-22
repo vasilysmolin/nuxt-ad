@@ -44,9 +44,10 @@
           <div v-bind:id="`yandex_rtb_R-A-1779902-7-${ind+1}`"></div>
         </div>
       </template>
-      <button @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user', from: 'catalog'})"
-              type="button"
-              class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+      <button
+          @click="addItems({skip: vacancies.length, state: 'active', expand: 'profile.user,profile.person', from: 'catalog'})"
+          type="button"
+          class="m-auto w-[155px] inline-block mt-6 px-2 py-2 border-2 border-blue-600 text-blue-600 font-bold text-sm leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Смотреть дальше
       </button>
     </div>
