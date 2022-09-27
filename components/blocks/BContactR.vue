@@ -13,6 +13,7 @@
                 @click.prevent="showModalAuth">Показать телефон
         </button>
       </div>
+      <p class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{ address }}</span></p>
       <AuthModal/>
     </div>
 
@@ -57,6 +58,7 @@ export default {
   props: {
     name: String,
     phone: String,
+    address: String,
     email: String
   },
   computed: {},

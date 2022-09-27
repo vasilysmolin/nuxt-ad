@@ -1,15 +1,14 @@
 <template>
-  <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-    <template v-if="checkCoords">
-      <h2 class="text-lg font-bold text-black mb-3">{{ $t('map.name') }}</h2>
-      <yandex-map
-          v-if="showMap"
-          ref="map"
-          :coords="coordsBal"
-          :zoom="zoom"
-          style="width: 100%; height: 350px;"
-          :controls="[]"
-          :behaviors="['default', 'scrollZoom']"
+  <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="checkCoords">
+    <h2 class="text-lg font-bold text-black mb-3">{{ $t('map.name') }}</h2>
+    <yandex-map
+        v-if="showMap"
+        ref="map"
+        :coords="coordsBal"
+        :zoom="zoom"
+        style="width: 100%; height: 350px;"
+        :controls="[]"
+        :behaviors="['default', 'scrollZoom']"
 
       >
         <ymap-marker
@@ -20,10 +19,6 @@
             :balloon="{ body: 'title' }"
         ></ymap-marker>
       </yandex-map>
-    </template>
-    <template v-else>
-      <h2 class="text-lg font-bold text-black mb-3">{{ $t('map.not_coords') }}</h2>
-    </template>
   </section>
 </template>
 

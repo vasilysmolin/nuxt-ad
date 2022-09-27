@@ -15,6 +15,7 @@
         <BContactR
             :name="getUserName(resume)"
             :phone="getUserPhone(resume)"
+            :address="getUserAddress(resume)"
             :email="getUserEmail(resume)"
         />
         <hr class="my-5 mx-auto w-11/12 border-gray-300">
@@ -55,6 +56,7 @@
         <BContactR
             :name="getUserName(resume)"
             :phone="getUserPhone(resume)"
+            :address="getUserAddress(vacancy)"
             :email="getUserEmail(resume)"
         />
 
@@ -160,6 +162,12 @@ export default {
         return resume?.profile?.person?.name;
       }
       return resume?.profile?.user?.name;
+    },
+    getUserAddress(resume) {
+      if (!_.isEmpty(resume?.street) && !_.isEmpty(resume?.house) && !_.isEmpty(resume?.city?.name)) {
+        return _.join([resume?.city?.name, resume?.street, resume?.house], ', ');
+      }
+      return 'не указан';
     },
     getUserPhone(resume) {
       return resume?.profile?.user?.phone
