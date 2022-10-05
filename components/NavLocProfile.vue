@@ -5,16 +5,17 @@
         <NuxtLink to="/profile">Профиль</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
+        <NuxtLink to="/realty">Недвижимость</NuxtLink>
+      </li>
+      <li class="pl-4 sm:pl-6">
         <NuxtLink to="/catalog">Обьявления</NuxtLink>
       </li>
-
       <li v-if="isPerson()" class="pl-4 sm:pl-6">
         <NuxtLink to="/vacancies">Вакансии</NuxtLink>
       </li>
       <li v-else class="pl-4 sm:pl-6">
         <NuxtLink to="/resume">Резюме</NuxtLink>
       </li>
-
       <li class="pl-4 sm:pl-6">
         <NuxtLink to="/uslugi">Услуги</NuxtLink>
       </li>
@@ -33,6 +34,7 @@
 
 <script>
 import Person from "~/components/mixins/person.mixin";
+
 export default {
   name: "NavLocProfile",
   mixins: [Person],

@@ -41,6 +41,12 @@ export const mutations = {
 	setrealtyCategory(state, categoryAlias) {
 		state.categoryAlias = categoryAlias;
 	},
+	addRealty(state, realties) {
+		state.realties.push(...realties);
+	},
+	addRealtyNew(state, realties) {
+		state.realtiesNew.push(...realties);
+	},
 };
 
 export const actions = {
@@ -77,10 +83,10 @@ export const actions = {
 		const realties = await this.$axios.$get(`realties?${getParams}`);
 
 		if (state === 'new') {
-			commit('setrealtiesNew', realties.catalog_realties);
+			commit('setrealtiesNew', realties.realties);
 			commit('setAmountNew', realties.meta.total);
 		} else {
-			commit('setrealties', realties.catalog_realties);
+			commit('setrealties', realties.realties);
 			commit('setAmount', realties.meta.total);
 		}
 	},
@@ -104,13 +110,33 @@ export const actions = {
 		});
 		const realties = await this.$axios.$get(`realties?take=25${getParams}`);
 		if (state === 'new') {
-			commit('realtydrealtiesNew', realties.catalog_realties);
+			commit('realtydrealtiesNew', realties.realties);
 		} else {
-			commit('realtydrealties', realties.catalog_realties);
+			commit('realtydrealties', realties.realties);
 		}
 	},
 	async removeItems({commit}) {
 		commit('removerealties');
+	},
+	async addItems({commit}, {
+		skip = 0,
+		user_id = null,
+		state = null,
+		from = null,
+		expand = null,
+		name = null,
+		alias = null,
+		querySearch = null,
+	}) {
+		const getParams = params({
+			user_id, state, expand, from, skip, name, alias, querySearch,
+		});
+		const ads = await this.$axios.$get(`realties?take=25${getParams}`);
+		if (state === 'new') {
+			commit('addRealtyNew', ads.realties);
+		} else {
+			commit('addRealty', ads.realties);
+		}
 	},
 	async getItem({commit}, {id, expand = null, querySearch = null}) {
 		const getParams = params({expand, querySearch});

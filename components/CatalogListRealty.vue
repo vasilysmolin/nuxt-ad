@@ -14,29 +14,30 @@
             :depth="1"
             :link="category"
         />
-        <template v-for="(ad, ind) in ads">
+        <template v-for="(realty, ind) in realties">
           <article class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
-            <NuxtLink :to="getUrl(ad)">
+            <NuxtLink :to="getUrl(realty)">
               <section class="grid grid-cols-[25%,_1fr]">
 
                 <section>
-                  <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
+                  <img class="w-full rounded-lg" :src="getPhoto(realty)" :alt="realty.name">
                 </section>
 
                 <section class="flex flex-col px-4">
                   <h2 class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
-                    {{ ad.name }}</h2>
-                  <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}</h3>
-                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(ad) }}</p>
+                    {{ realty.name }}</h2>
+                  <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
+                  </h3>
+                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(realty) }}</p>
 
                   <table class="table-auto mb-2 mt-2">
-                    <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
+                    <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
                     <tr v-if="index <= 1">
                       <td>{{ item.filter.name }}</td>
                       <td>{{ item.value }}</td>
                     </tr>
                     </tbody>
-                    <tbody v-for="(item, index) in getParamsRange(ad)" :key="item.id">
+                    <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">
                     <tr v-if="index <= 1">
                       <td>{{ item.filter.name }}</td>
                       <td>{{ item.value }}</td>
@@ -55,7 +56,7 @@
         </template>
 
         <button v-if="checkAmount" @click="addItems({
-        skip: ads.length,
+        skip: realties.length,
         state: 'active',
         expand: 'profile.user',
         alias: alias,
@@ -69,31 +70,31 @@
     </div>
     <section v-if="$device.isMobile" class="container flex flex-col items-center mt-[80px] pb-[100px]">
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
-        <article v-for="ad in ads" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
-          <NuxtLink :to="getUrl(ad)">
+        <article v-for="realty in realties" :key="realty.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
+          <NuxtLink :to="getUrl(realty)">
             <section class="grid grid-cols-[25%,_1fr]">
               <section>
-                <img class="w-full rounded-lg" :src="getPhoto(ad)" :alt="ad.name">
+                <img class="w-full rounded-lg" :src="getPhoto(realty)" :alt="realty.name">
               </section>
               <section class="flex flex-col justify-between pl-4">
                 <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
-                  {{ ad.name }}</h2>
-                <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad) }}</p>
+                  {{ realty.name }}</h2>
+                <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
                 <table class="table-auto mb-2 mt-2">
-                  <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
+                  <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
                   <tr v-if="index <= 1">
                     <td>{{ item.filter.name }}</td>
                     <td>{{ item.value }}</td>
                   </tr>
                   </tbody>
-                  <tbody v-for="(item, index) in getParamsRange(ad)" :key="item.id">
+                  <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">
                   <tr v-if="index <= 1">
                     <td>{{ item.filter.name }}</td>
                     <td>{{ item.value }}</td>
                   </tr>
                   </tbody>
                 </table>
-                <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}
+                <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                   <!--                <span class="pl-1 text-xs">руб.</span>-->
                 </h3>
               </section>
@@ -101,7 +102,7 @@
           </NuxtLink>
         </article>
         <button v-if="checkAmount" @click="addItems({
-          skip: ads.length,
+          skip: realties.length,
           state: 'active',
           expand: 'profile.user',
           alias: alias,
@@ -120,12 +121,12 @@
 import {mapActions, mapGetters} from 'vuex';
 import Breadcrumbs from "./Breadcrumbs";
 import * as _ from "lodash";
-import CategoriesMixin from '~/components/mixins/categories.mixin';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import BCategoriesNav from "~/components/blocks/BCategoriesNav";
 import BAmount from "~/components/blocks/BAmount";
 
 export default {
-  name: "RealtyList",
+  name: "CatalogListRealty",
   components: {Breadcrumbs, BCategoriesNav, BAmount},
   mixins: [CategoriesMixin],
   props: {
@@ -141,14 +142,14 @@ export default {
     const sub = this.$route.path.split('/').pop();
     this.querySearch = this.$route.query?.querySearch;
     this.setItems({
-      type: 'ads'
+      type: 'realties'
     });
     if (this.$route.path !== '/feed') {
       this.alias = sub !== 'feed' ? sub : null;
       await this.getItem({id: this.alias}).then(() => {
         this.setItems({
           filter: this.categoryFilter,
-          type: 'ads'
+          type: 'realties'
         });
       });
     } else {
@@ -176,7 +177,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      ads: 'realty/realty',
+      realties: 'realty/realties',
       categories: 'categoriesRealty/categoriesRealties',
       categoryFilter: 'categoriesRealty/categoryRealties',
       amount: 'realty/amount',
@@ -184,20 +185,20 @@ export default {
     }),
     category: {
       get() {
-        return _.cloneDeep(this.$store.getters['categoriesRealty/categoriesRealties']);
+        return _.cloneDeep(this.$store.getters['categoriesRealty/categoryRealties']);
       },
       set(category) {
         return category
       }
     },
     checkAmount() {
-      return this.ads.length < this.amount;
+      return this.realties.length < this.amount;
     }
 
   },
   methods: {
     ...mapActions({
-      getItems: 'realty/getItems',
+      getItems: 'realty/removeItems',
       setAdCategory: 'realty/setrealtyCategory',
       setItems: 'filters/setItems',
       addItems: 'realty/addItems',
@@ -218,14 +219,14 @@ export default {
       }
       return count % 6 === 0;
     },
-    getUrl(ad) {
-      return `/feed/alias/${ad.alias}`
+    getUrl(realty) {
+      return `/feed/alias/${realty.alias}`
     },
     getUsername(catalog) {
       return catalog?.profile?.user?.name
     },
-    getPhoto(ad) {
-      return ad.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
+    getPhoto(realty) {
+      return realty.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
     },
     formatPrice(price) {
       return new Intl.NumberFormat('ru-RU', {
@@ -234,12 +235,12 @@ export default {
         minimumFractionDigits: 0
       }).format(price);
     },
-    getAddress(ad) {
+    getAddress(realty) {
       let arrayAddress = [];
-      if (ad.street && ad.house) {
-        arrayAddress = [ad.street, ad.house];
-      } else if (ad.house) {
-        arrayAddress = [ad.street];
+      if (realty.street && realty.house) {
+        arrayAddress = [realty.street, realty.house];
+      } else if (realty.house) {
+        arrayAddress = [realty.street];
       } else {
         arrayAddress = [];
       }
@@ -252,9 +253,9 @@ export default {
     },
     linkHub() {
       if (this.$auth.loggedIn) {
-        document.location.href = `${process.env.HUB_URL}/catalog/new`;
+        document.location.href = `${process.env.HUB_URL}/realty/new`;
       } else {
-        document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/catalog/new`;
+        document.location.href = `${process.env.AUTH_URL}?from=${process.env.HUB_URL}/realty/new`;
       }
     },
   },

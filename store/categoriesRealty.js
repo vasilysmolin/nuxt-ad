@@ -33,7 +33,7 @@ export const actions = {
   }) {
     const getParams = params({from});
     const categoriesRealties = await this.$axios.$get(`category-realties?skip=0&take=100${getParams}`);
-    commit('setcategoriesRealties', categoriesRealties.catalog_ad_categories);
+    commit('setcategoriesRealties', categoriesRealties.realty_categories);
   },
   async getItemsFull({commit}, {
     from = null,
@@ -41,11 +41,11 @@ export const actions = {
   }) {
     const getParams = params({from, querySearch});
     const categoriesRealtiesFull = await this.$axios.$get(`category-realties-full?take=5${getParams}`);
-    commit('setcategoriesRealtiesFull', categoriesRealtiesFull.catalog_ad_categories);
+    commit('setcategoriesRealtiesFull', categoriesRealtiesFull.realty_categories);
   },
   async addItems({commit}, {skip = 0}) {
     const categoriesRealties = await this.$axios.$get(`category-realties?skip=${skip}&take=25`);
-    commit('addcategoriesRealties', categoriesRealties.catalog_ad_categories);
+    commit('addcategoriesRealties', categoriesRealties.realty_categories);
   },
   async removeItems({commit}) {
     commit('removecategoriesRealties');

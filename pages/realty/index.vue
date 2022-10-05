@@ -10,7 +10,7 @@
           Создать аккаунт
         </nuxt-link>
       </p>
-      <ListServicesCatalogCategories/>
+      <ListServicesRealtyCategories/>
 
       <!-- вставка для перелинка сервисов -->
       <div class="mt-12">
@@ -53,7 +53,7 @@
           Создать аккаунт
         </nuxt-link>
       </p>
-      <ListServicesCatalogCategories/>
+      <ListServicesRealtyCategories/>
 
       <!-- вставка для перелинка сервисов -->
       <div class="mt-7">
@@ -89,11 +89,11 @@
 
 <script>
 import * as _ from "lodash";
-import CategoriesMixin from '~/components/mixins/categories.mixin';
-import ListCategories from "../../components/ListCategories";
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
+import ListCategories from "../../components/ListCategoriesRealty";
 import WhatsTapigo from "../../components/WhatsTapigo";
 import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
-import ListServicesCatalogCategories from "../../components/ListServicesCatalogCategories";
+import ListServicesRealtyCategories from "../../components/ListServicesRealtyCategories";
 import GoSearchDesktop from "../../components/GoSearchDesktop";
 import BNewLetters from "../../components/blocks/BNewLetters";
 import IconListServicesIndexJobs from "../../components/icons/IconListServicesIndexJobs";
@@ -111,7 +111,7 @@ export default {
     ListCategories,
     WhatsTapigo,
     SearchColorGlobalMobile,
-    ListServicesCatalogCategories,
+    ListServicesRealtyCategories,
     BNewLetters,
     GoSearchDesktop,
     IconListServicesIndexJobs,

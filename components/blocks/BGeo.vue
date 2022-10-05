@@ -94,7 +94,7 @@ export default {
   async mounted() {
     setTimeout(() => {
       if (this.checkCityObj) {
-        this.query = this.obj.city.name;
+        this.query = this.obj?.city?.name;
         this.fullData(this.obj);
         if (!_.isEmpty(this.obj.street) && !_.isEmpty(this.obj.house)) {
           this.addressQuery = `${this.obj.street}, ${this.obj.house}`
