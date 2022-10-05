@@ -8,21 +8,21 @@
     />
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ ad.name }}</h1>
-      <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad) }}</p>
-      <p class="mt-2 text-xl sm:text-2xl font-bold">{{ ad.price }}
+      <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ realty.name }}</h1>
+      <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
+      <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
         <span class="pl-2 text-sm">руб.</span>
       </p>
     </section>
 
     <BContactC
-        :name="getUserName(ad)"
-        :phone="getUserPhone(ad)"
+        :name="getUserName(realty)"
+        :phone="getUserPhone(realty)"
     />
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Описание</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600" v-html="ad.description"></p>
+      <p class="mt-1 text-sm sm:text-base text-gray-600" v-html="realty.description"></p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
@@ -31,11 +31,11 @@
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
         <tr v-if="isSelect(item)">
           <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, ad.ad_parameters) }}</td>
+          <td>{{ getSelectParams(item, realty.realty_parameters) }}</td>
         </tr>
         <tr v-if="isRange(item)">
           <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, ad.ad_parameters) }}</td>
+          <td>{{ getSelectParams(item, realty.realty_parameters) }}</td>
         </tr>
         </tbody>
       </table>
@@ -47,22 +47,22 @@
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
         <tr v-if="isCheckbox(item)" v-for="(comfort, index) in item.parameters">
           <td>{{ comfort.value }}</td>
-          <td>{{ getCheckboxParams(comfort, ad.ad_parameters) }}</td>
+          <td>{{ getCheckboxParams(comfort, realty.realty_parameters) }}</td>
         </tr>
         </tbody>
       </table>
     </section>
 
-    <template v-if="ad !== null">
+    <template v-if="realty !== null">
       <BYandexMap
-          :obj="ad"
+          :obj="realty"
       />
     </template>
 
-    <section v-if="checkPhotos(ad)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+    <section v-if="checkPhotos(realty)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
       <h2 class="text-sm font-bold text-black">Фотографии</h2>
       <section class="mt-4 grid grid-cols-2 gap-4 w-full">
-        <div v-for="photo in ad.photos">
+        <div v-for="photo in realty.photos">
           <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
         </div>
       </section>
@@ -74,13 +74,13 @@
 <script>
 import * as _ from 'lodash';
 import {mapGetters} from "vuex";
-import CategoriesMixin from '~/components/mixins/categories.mixin';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 
 import BContactC from "~/components/blocks/BContactC";
 import BYandexMap from "~/components/blocks/BYandexMap";
 
 export default {
-  name: "CObject",
+  name: "RealtyCart",
   layout: 'default-search',
   mixins: [CategoriesMixin],
   components: {BContactC, BYandexMap},
@@ -90,9 +90,9 @@ export default {
       querySearch: route.query?.querySearch,
       expand: 'profile.user,profile.person'
     });
-    await store.dispatch('categoriesRealty/getItem', {id: store.state.ads.ad.category_id});
+    await store.dispatch('categoriesRealty/getItem', {id: store.state.realty.realty.category_id});
     return {
-      ad: store.state.ads.ad,
+      realty: store.state.realty.realty,
     }
   },
   async mounted() {
@@ -104,12 +104,12 @@ export default {
       }
       return catalog?.profile?.user?.name;
     },
-    getAddress(ad) {
+    getAddress(realty) {
       let arrayAddress = [];
-      if (ad.street && ad.house) {
-        arrayAddress = [ad.street, ad.house];
-      } else if (ad.house) {
-        arrayAddress = [ad.street];
+      if (realty.street && realty.house) {
+        arrayAddress = [realty.street, realty.house];
+      } else if (realty.house) {
+        arrayAddress = [realty.street];
       } else {
         arrayAddress = [];
       }
@@ -129,18 +129,18 @@ export default {
   computed: {
     adWithCategory() {
       return {
-        'name': this.ad.name,
-        'alias': this.ad.alias,
+        'name': this.realty.name,
+        'alias': this.realty.alias,
         'categories_parent': _.cloneDeep(this.category),
       }
     },
     ...mapGetters({
-      ads: 'realty/realty',
+      realty: 'realty/realty',
       category: 'categoriesRealty/categoryRealties',
     }),
   },
   head() {
-    const title = `${this.ad.title} | Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог`;
+    const title = `${this.realty.title} | Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог`;
     return {
       title: title,
       meta: [

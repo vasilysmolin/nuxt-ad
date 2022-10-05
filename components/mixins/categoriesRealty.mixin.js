@@ -152,7 +152,7 @@ export default {
       }
     },
     checkSelectParams(filterId, parameterId) {
-      const parameter = _.find(this.data.ad_parameters, (o) => (o.filter_id === filterId && o.id === parameterId));
+      const parameter = _.find(this.data.realty_parameters, (o) => (o.filter_id === filterId && o.id === parameterId));
       return !_.isEmpty(parameter);
     },
     getSelectParams(filter, adParameters) {
@@ -177,11 +177,11 @@ export default {
       return !_.isEmpty(parameter);
     },
     checkRangeParams(filterId, parameterId) {
-      const filter = _.find(this.data.ad_parameters, (o) => (o.filter_id === filterId && o.id === parameterId));
+      const filter = _.find(this.data.realty_parameters, (o) => (o.filter_id === filterId && o.id === parameterId));
       return !_.isEmpty(filter);
     },
     checkCheckboxParams(filterId, parameterId, parameters, alias) {
-      const parameter = _.find(this.data.ad_parameters, (o) => (o.filter_id === filterId && o.id === parameterId));
+      const parameter = _.find(this.data.realty_parameters, (o) => (o.filter_id === filterId && o.id === parameterId));
       const hasParam = !_.isEmpty(parameter);
       if (hasParam) {
         Vue.set(this.parameters, `params-${alias}-${parameterId}`, parseInt(parameter.id));
@@ -211,11 +211,11 @@ export default {
     getFilter(cat) {
       return cat?.filters;
     },
-    getParamsSelect(ad) {
-      return _.sortBy(_.filter(ad?.ad_parameters, (item) => this.isSelect(item.filter)), (item) => item.filter.sort);
+    getParamsSelect(realty) {
+      return _.sortBy(_.filter(realty?.realty_parameters, (item) => this.isSelect(item.filter)), (item) => item.filter.sort);
     },
-    getParamsRange(ad) {
-      return _.sortBy(_.filter(ad?.ad_parameters, (item) => this.isRange(item.filter)), (item) => item.filter.sort);
+    getParamsRange(realty) {
+      return _.sortBy(_.filter(realty?.realty_parameters, (item) => this.isRange(item.filter)), (item) => item.filter.sort);
     },
     isFilter(cat) {
       return !_.isEmpty(cat?.filters);
@@ -270,7 +270,7 @@ export default {
         const parameterFirst = _.first(select.parameters);
         let parameterSelect = parameterFirst.id;
         _.each(select.parameters, (item) => {
-          const findParameter = _.find(this.data.ad_parameters, (userParams) => (userParams.filter_id === item.filter_id && userParams.id === item.id));
+          const findParameter = _.find(this.data.realty_parameters, (userParams) => (userParams.filter_id === item.filter_id && userParams.id === item.id));
           if (!_.isEmpty(findParameter)) {
             parameterSelect = findParameter.id;
           }
@@ -285,7 +285,7 @@ export default {
         Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(parameterFirst.sort));
         Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
         _.each(range.parameters, (item) => {
-          const findParameter = _.find(this.data.ad_parameters, (userParams) => (userParams.filter_id == item.filter_id && userParams.id == item.id));
+          const findParameter = _.find(this.data.realty_parameters, (userParams) => (userParams.filter_id == item.filter_id && userParams.id == item.id));
           if (!_.isEmpty(findParameter)) {
             Vue.set(this.rangeValue, `params-${range.alias}`, parseInt(findParameter.value));
             Vue.set(this.rangeSort, `params-${range.alias}`, parseInt(findParameter.sort));
