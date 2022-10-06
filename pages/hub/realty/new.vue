@@ -149,7 +149,7 @@
 <script>
 import * as _ from 'lodash';
 import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
-import CategoriesMixin from '~/components/mixins/categories.mixin';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import {mapActions, mapGetters} from "vuex";
 import {yandexMap, ymapMarker} from "vue-yandex-maps";
 import Validations from "~/components/mixins/validations.mixin"
@@ -255,7 +255,7 @@ export default {
     },
     filters: {
       get() {
-        return _.cloneDeep(this.$store.getters['categoriesRealty/categoriesRealties']);
+        return _.cloneDeep(this.$store.getters['categoriesRealty/categoryRealties']);
       },
       set(category) {
         return category
