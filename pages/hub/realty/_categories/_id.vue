@@ -156,7 +156,7 @@
 import * as _ from 'lodash';
 import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 import BGeo from "~/components/blocks/BGeo";
-import CategoriesMixin from '~/components/mixins/categories.mixin';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import UpWhite from "../../../../components/icons/UpWhite";
 import PauseWhite from "../../../../components/icons/PauseWhite";
 import DeleteWhite from "../../../../components/icons/DeleteWhite";
@@ -241,7 +241,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      filters: 'categoriesRealty/categoriesRealties',
+      filters: 'categoriesRealty/categoryRealties',
       cities: 'cities/citiesFull',
     }),
     category: {

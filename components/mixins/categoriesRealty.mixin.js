@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      getItem: 'categoriesRealty/getItems',
+      getItem: 'categoriesRealty/getItem',
     }),
     getChildren(node) {
       return node.categories;
@@ -205,7 +205,7 @@ export default {
       }
     },
     issetCheckbox(parameterId, item) {
-      console.log(this.parameters[`params-${item.alias}-${parameterId}`]);
+      // console.log(this.parameters[`params-${item.alias}-${parameterId}`]);
       return !_.isEmpty(this.parameters[`params-${item.alias}-${parameterId}`]);
     },
     getFilter(cat) {
