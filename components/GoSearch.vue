@@ -96,6 +96,13 @@
           </section>
           <article class="absolute pb-[80px] top-14 w-[98%] h-[95%] mx-auto bg-white z-40 overflow-y-auto" v-if="hasItems">
             <ul class="py-2 w-full text-xs text-blue-600">
+              <template v-if="realties.length > 0">
+                <li @click="hide" v-for="realty in realties" :key="realty.id" class="search-line">
+                  <a :href="getUrlRealty(realty)" class="block px-2 py-2">
+                    {{ realty.name }}, цена: {{ realty.price }} руб, адрес: {{ realty.street }} {{ realty.house }}
+                  </a>
+                </li>
+              </template>
               <template v-if="ads.length > 0">
                 <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line">
                   <a :href="getUrl(ad)" class="block px-2 py-2">

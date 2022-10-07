@@ -12,6 +12,13 @@
       <article class="absolute top-16 w-full max-h-[500px] flex flex-col justify-start items-start bg-white rounded shadow-md left-0 right-0 overflow-y-auto z-50"  v-if="hasItems">
 
         <ul class="px-2 py-2.5 w-full text-[15px]">
+          <template v-if="realties.length > 0">
+            <li @click="hide" v-for="realty in realties" :key="realty.id" class="search-line">
+              <a :href="getUrlRealty(realty)" class="block px-2 py-2">
+                {{ realty.name }}, цена: {{ realty.price }} руб, адрес: {{ realty.street }} {{ realty.house }}
+              </a>
+            </li>
+          </template>
           <template v-if="ads.length > 0">
             <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line">
               <a :href="getUrl(ad)" class="block px-2 py-2 rounded hover:bg-sky-100">

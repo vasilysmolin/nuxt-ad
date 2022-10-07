@@ -11,6 +11,7 @@ export default {
   computed: {
     ...mapGetters({
       ads: 'ads/ads',
+      realties: 'realty/realties',
       services: 'services/services',
       resumes: 'resumes/resumes',
       vacancies: 'vacancies/vacancies',
@@ -19,6 +20,7 @@ export default {
   methods: {
     ...mapActions({
       getItemsAds: 'ads/getItems',
+      getItemsRealties: 'realty/getItems',
       getItemsResumes: 'resumes/getItems',
       getItemsServices: 'services/getItems',
       getItemsVacancies: 'vacancies/getItems',
@@ -32,6 +34,9 @@ export default {
     },
     getUrl(ad) {
       return `${process.env.CATALOG_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`;
+    },
+    getUrlRealty(ad) {
+      return `${process.env.REALTY_URL}/feed/alias/${ad.alias}?querySearch=${ad.name}`;
     },
     getUrlVacancy(item) {
       return `${process.env.JOBS_URL}/vacancies/alias/${item.alias}?querySearch=${item.name}`;
@@ -53,9 +58,16 @@ export default {
       }
     },
     checkEmptyItem() {
-      this.hasItems = this.ads.length > 0 || this.services.length > 0 || this.vacancies.length > 0 || this.resumes.length > 0;
+      this.hasItems = this.realties.length > 0 || this.ads.length > 0 || this.services.length > 0 || this.vacancies.length > 0 || this.resumes.length > 0;
     },
     debounceInput: _.debounce(function () {
+      this.getItemsRealties({
+        querySearch: this.querySearch,
+        take: 6,
+      }).then(() => {
+        this.checkEmptyItem();
+      }).catch(() => {
+      });
       this.getItemsAds({
         querySearch: this.querySearch,
         take: 6,
