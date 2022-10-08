@@ -47,15 +47,20 @@
         </NuxtLink>
 
       </article>
-      <button v-if="checkAmount" @click="addItems({skip: adsActive.length, name: searchByName, state: this.searchByState})" type="button" class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Смотреть дальше</button>
+      <button v-if="checkAmount" @click="addItems({skip: adsActive.length, name: searchByName, state: searchByState})"
+              type="button"
+              class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+        Смотреть дальше
+      </button>
     </section>
   </section>
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
 import {dateFormat} from "../../helper/dataFormat";
 import * as _ from "lodash";
+
 export default {
   name: "CAdminList",
   async mounted() {

@@ -5,12 +5,15 @@
         <NuxtLink to="/users">Пользователи</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
+        <NuxtLink to="/realty">Недвижимость</NuxtLink>
+      </li>
+      <li class="pl-4 sm:pl-6">
         <NuxtLink to="/catalog">Обьявления</NuxtLink>
       </li>
-      <li  class="pl-4 sm:pl-6">
+      <li class="pl-4 sm:pl-6">
         <NuxtLink to="/jobs/vacancies">Вакансии</NuxtLink>
       </li>
-      <li  class="pl-4 sm:pl-6">
+      <li class="pl-4 sm:pl-6">
         <NuxtLink to="/jobs/resume">Резюме</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
@@ -34,6 +37,7 @@
 
 <script>
 import Person from "~/components/mixins/person.mixin";
+
 export default {
   name: "NavOffice",
   mixins: [Person],
