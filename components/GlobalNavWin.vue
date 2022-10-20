@@ -3,7 +3,7 @@
     <ul class="px-2.5 w-full font-black text-base text-gray-300">
       <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="realty">
         <div class="ml-2.5 flex justify-center items-center w-[20px]">
-          <IconListServicesIndexCatalog/>
+          <IconListServicesIndexRealty/>
         </div>
         <p class="pl-2.5 flex justify-start items-center text-black">Недвижимость</p>
       </li>
@@ -48,10 +48,12 @@ import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
 import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
 import IconListServicesIndexTravel from "./icons/IconListServicesIndexTravel";
+import IconListServicesIndexRealty from "./icons/IconListServicesIndexRealty";
 
 export default {
   name: "GlobalNavWin",
   components: {
+    IconListServicesIndexRealty,
     IconListServicesIndexTravel,
     IconListServicesIndexFood,
     IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog

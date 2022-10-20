@@ -1,6 +1,13 @@
 <template>
   <section>
-    <div v-if="$device.isDesktop" class="mt-12 flex flex-row flex-wrap w-full justify-between items-center">
+    <div v-if="$device.isDesktop" class="mt-12 grid grid-cols-4 gap-6 w-full">
+      <article @click="realty" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#CED6FF] cursor-pointer transition duration-150 ease-in-out hover:bg-[#8E9DF3]">
+        <IconListServicesIndexRealty/>
+        <div>
+          <h2 class="text-base font-black">Недвижимость</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Новостройки и любая недвижимость.</h3>
+        </div>
+      </article>
       <article @click="catalog" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFF4D2] cursor-pointer transition duration-150 ease-in-out hover:bg-[#FFE69B]">
         <IconListServicesIndexCatalog/>
         <div>
@@ -29,7 +36,7 @@
           <h3 class="mt-1 text-[12px] leading-snug">Самые дешёвые билеты на самолет и отели.</h3>
         </div>
       </article>
-      <article class="mt-8 px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFFDCB]">
+      <article class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFFDCB]">
         <IconListServicesIndexFood/>
         <div>
           <h2 class="text-base font-black">Еда</h2>
@@ -84,8 +91,10 @@ import IconListServicesIndexJobs from "./icons/IconListServicesIndexJobs";
 import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
 import IconListServicesIndexTravel from "./icons/IconListServicesIndexTravel";
+import IconListServicesIndexRealty from "./icons/IconListServicesIndexRealty";
 export default {
   components: {
+    IconListServicesIndexRealty,
     IconListServicesIndexFood,
     IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog, IconListServicesIndexTravel},
   methods: {
@@ -100,6 +109,9 @@ export default {
     },
     travel() {
       document.location.href = process.env.TRAVEL_URL;
+    },
+    realty() {
+      document.location.href = process.env.REALTY_URL;
     },
   }
 }
