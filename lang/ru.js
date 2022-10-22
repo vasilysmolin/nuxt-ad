@@ -42,9 +42,13 @@ export default {
     },
     profile: {
         'confirmEmail': 'Подтвердить email',
+        'feed': 'Адрес фида',
+        'confirm': 'Подтвердить',
     },
     validation: {
         emailRequired: 'Кажется, вы забыли написать email',
+        urlRequired: 'Кажется, вы забыли написать url',
+        urlUrl: 'url не валидный',
         phoneRequired: 'Кажется, вы забыли написать телефон',
         cityRequired: 'Ой, вы забыли указать город',
         addressRequired: 'Ой, вы забыли адрес',

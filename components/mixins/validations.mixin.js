@@ -17,6 +17,23 @@ export default {
         return text;
       }
     },
+    urlErrors: {
+      get() {
+        if (!this.$v.url?.$dirty) {
+          return '';
+        }
+        if (!this.$v.url.required) {
+          return this.$t('validation.urlRequired');
+        }
+        if (!this.$v.url.url) {
+          return this.$t('validation.urlUrl');
+        }
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
     passwordErrors: {
       get() {
         if (!this.$v.password?.$dirty) {
