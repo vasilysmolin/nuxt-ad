@@ -1,8 +1,7 @@
 <template>
   <section>
     <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
-      <h1 class="px-12 text-xl text-center font-black">Продать или купить, найти работу или услугу, большая барахолка и
-        многое другое</h1>
+      <h1 class="px-12 text-xl text-center font-black">Новостройки, квартиры, комнаты, дома, нежилые и офисные помещения, земельные участки</h1>
       <GoSearchDesktop/>
       <p @click="linkHub" class="text-center">
         <nuxt-link to=""
@@ -42,8 +41,7 @@
     </div>
 
     <div v-if="$device.isMobile" class="container mt-[70px] px-[20px] pb-[80px] w-full flex flex-col items-center">
-      <h1 class="text-center text-sm font-bold">Продать или купить, найти работу или услугу, большая барахолка и многое
-        другое</h1>
+      <h1 class="text-center text-sm font-bold">Новостройки, квартиры, комнаты, дома, нежилые и офисные помещения, земельные участки</h1>
       <div @click="showGoSearch">
         <SearchColorGlobalMobile/>
       </div>
@@ -101,7 +99,7 @@ import IconListServicesIndexUslugi from "../../components/icons/IconListServices
 
 export default {
   head: {
-    title: "Бесплатный каталог объявлений | Недвижимость, Транспорт, Работа, Услуги, Животные, Электроника, Барахолка и многое другое | Тапиго",
+    title: "Недвижимость | Новостройки, квартиры, комнаты, дома, нежилые и офисные помещения, земельные участки | Тапиго",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
