@@ -17,10 +17,16 @@
     <hr class="my-3">
     <ul class="pb-0.5 w-full text-sm font-bold">
 
+      <!--      <li class="pl-3 py-3 bg-white rounded hover:bg-sky-100">-->
+      <!--        <nuxt-link to="" class="flex justify-start items-center">-->
+      <!--          <AddAcc/>-->
+      <!--          <span class="pl-4">Добавить аккаунт</span></nuxt-link>-->
+      <!--      </li>-->
+
       <li class="pl-3 py-3 bg-white rounded hover:bg-sky-100">
-        <nuxt-link to="" class="flex justify-start items-center">
+        <nuxt-link to="/settings" class="flex justify-start items-center">
           <AddAcc/>
-          <span class="pl-4">Добавить аккаунт</span></nuxt-link>
+          <span class="pl-4">Настройки</span></nuxt-link>
       </li>
 
       <li v-if="isPerson()" class="pl-3 py-3 bg-white rounded hover:bg-sky-100">

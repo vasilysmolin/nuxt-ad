@@ -6,6 +6,7 @@
           v-on:keyup.enter="submitted"
           :value="value"
           :type="type"
+          :disabled="disabled"
           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
           class="form-control
         block
@@ -70,6 +71,10 @@ export default {
       default: false,
     },
     clear: {
+      type: Boolean,
+      default: false,
+    },
+    disabled: {
       type: Boolean,
       default: false,
     },
