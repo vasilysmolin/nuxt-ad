@@ -24,9 +24,9 @@
       <!--      </li>-->
 
       <li class="pl-3 py-3 bg-white rounded hover:bg-sky-100">
-        <nuxt-link to="/settings" class="flex justify-start items-center">
+        <a class="flex justify-start items-center" @click.prevent="settings">
           <AddAcc/>
-          <span class="pl-4">Настройки</span></nuxt-link>
+          <span class="pl-4">Настройки</span></a>
       </li>
 
       <li v-if="isPerson()" class="pl-3 py-3 bg-white rounded hover:bg-sky-100">
@@ -96,6 +96,9 @@ export default {
     },
     hub() {
       document.location.href = process.env.HUB_URL + '/profile';
+    },
+    settings() {
+      document.location.href = process.env.HUB_URL + '/settings';
     },
   }
 }
