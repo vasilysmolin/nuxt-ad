@@ -3,7 +3,7 @@
     <div class="container items-center flex flex-col mt-[20px]">
 
       <div class="flex flex-col px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <form class="w-[95%] items-center ">
+        <form class="w-[95%] items-center " v-if="feedsArray.length === 0">
           <div class="flex flex-col items-center w-full">
             <h1 class="mb-4 w-full text-xl text-black font-bold text-left leading-none truncate">
               {{ $t('feed.h1') }}</h1>
@@ -28,6 +28,9 @@
                       class="inline-block px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
                 {{ $t('feed.add') }}
               </button>
+              <span v-if="errorText" class="form-errors">
+                {{ errorText }}
+              </span>
             </div>
 
           </div>
@@ -40,6 +43,9 @@
               <button class="text-red-600" @click.prevent="removeFeed(feed,index)">X</button>
             </li>
           </ul>
+          <span v-if="successText" class="text-green-500">
+                {{ successText }}
+              </span>
         </template>
       </div>
 
@@ -74,6 +80,8 @@ export default {
     return {
       url: null,
       type: 12,
+      successText: null,
+      errorText: null,
       name: 'cian',
       feedsArray: [],
     }
@@ -124,17 +132,20 @@ export default {
       data.append('name', this.name);
       const $this = this;
       this.$axios.$post(`feeds`, data).then((res) => {
-        $this.$axios.$post(`realties/import`, {'id': res.id}).then(() => {
+        $this.$axios.$post(`realties/import`, {'id': res.id}).then((res) => {
+          this.successText = 'Объекты импортируются в течении пары минут';
+          this.errorText = null;
           this.getItems({}).then(() => {
             this.feedsArray = this.feeds;
+
           });
         }).catch((error) => {
-          // console.log(error.response.data.errors);
-          // this.$v.nameErrors = 'какой-то текст';
+          this.errorText = 'Нужно удалить прошлый фид';
+          this.successText = null;
         });
       }).catch((error) => {
-        // console.log(error.response.data.errors);
-        // this.$v.nameErrors = 'какой-то текст';
+        this.errorText = 'Нужно удалить прошлый фид';
+        this.successText = null;
       });
     },
   },
