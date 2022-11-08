@@ -9,17 +9,28 @@
               {{ $t('feed.h1') }}</h1>
             <p class="mb-5">{{ $t('feed.text') }}</p>
           </div>
-          <div class="flex flex-col items-center w-full">
-            <BInput
-                v-model="name"
-                type="hidden"
-            />
-            <BInput
-                v-model="url"
-                type="text"
-                :error="''"
-                :placeholder="$t('profile.feed')"
-            />
+
+          <div class="flex flex-col items-center w-full mb-4">
+            <div class="mb-4 w-full sm:w-[27rem]">
+              <select class="form-select form-select-lg mt-2 forms-select" v-model="type">
+
+                <option v-for="(item, index) in ['cian', 'avito', 'yandex']"
+                        :value="item"
+                        :key="index"
+                        :selected="item === type"
+                >
+                  {{ item }}
+                </option>
+              </select>
+            </div>
+            <div class="mb-4 w-full sm:w-[27rem]">
+              <BInput
+                  v-model="url"
+                  type="text"
+                  :error="''"
+                  :placeholder="$t('profile.feed')"
+              />
+            </div>
             <span v-if="urlErrors" class="form-errors">
             {{ urlErrors }}
             </span>
@@ -79,7 +90,7 @@ export default {
   data() {
     return {
       url: null,
-      type: 12,
+      type: 'cian',
       successText: null,
       errorText: null,
       name: 'cian',
