@@ -35,6 +35,11 @@ services:
       - .:/var/www/${NGINX_WORKDIR}
     depends_on:
       - front
+    logging:
+      driver: json-file
+      options:
+        max-size: "200m"
+        max-file: "3"
 
   front:
     build:
@@ -45,5 +50,10 @@ services:
         - NUXT_PORT=${NUXT_PORT}
     container_name: ${FRONT_WORKDIR}
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "200m"
+        max-file: "3"
 
 
