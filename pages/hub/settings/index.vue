@@ -124,6 +124,8 @@ export default {
     }),
     removeFeed(feed, indexFeed) {
       this.$axios.$delete(`feeds/${feed.id}`).then((res) => {
+        this.successText = null;
+        this.errorText = null;
         _.remove(this.feedsArray, function (item, index) {
           return index === indexFeed;
         });
