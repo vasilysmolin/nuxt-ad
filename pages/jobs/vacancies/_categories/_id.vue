@@ -161,7 +161,7 @@ export default {
       return vacancy?.profile?.user?.email
     },
     getUserAddress(vacancy) {
-      if (!_.isEmpty(vacancy?.street) && !_.isEmpty(vacancy?.house) && !_.isEmpty(vacancy?.city?.name)) {
+      if (!_.isEmpty(vacancy?.street) && !_.isEmpty(vacancy?.house) && vacancy?.house !== 'null' && !_.isEmpty(vacancy?.city?.name)) {
         return _.join([vacancy?.city?.name, vacancy?.street, vacancy?.house], ', ');
       }
       return 'не указан';

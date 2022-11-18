@@ -102,9 +102,9 @@ export default {
     },
     getAddress(ad) {
       let arrayAddress = [];
-      if(ad.street && ad.house) {
+      if (ad.street && ad.house && ad?.house !== 'null') {
         arrayAddress = [ad.street, ad.house];
-      } else if(ad.house) {
+      } else if (ad.house) {
         arrayAddress = [ad.street];
       } else {
         arrayAddress = [];
