@@ -2,7 +2,10 @@
   <section class="container flex flex-col items-center mt-[20px] pb-10">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="realty in realties" :key="realty.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
-        <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ realty.name }}</h2>
+        <div class="flex justify-between">
+          <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ realty.name }}</h2>
+          <p v-if="realty.external_id" class="text-sm">ID: {{ realty.external_id }}</p>
+        </div>
         <p class="text-sm">Статус: {{ getState(realty) }}</p>
         <p class="text-sm">Позиция в каталоге: {{ realty.sort }}</p>
         <NuxtLink :to="getUrl(realty)">

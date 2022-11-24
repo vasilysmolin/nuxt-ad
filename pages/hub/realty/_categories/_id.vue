@@ -119,7 +119,7 @@
               </div>
               <div class="mt-6 py-2 flex justify-around items-center w-full rounded-md bg-[#262338]">
 
-                <div @click.prevent="submitted"
+                <div v-if="data.external_id === null" @click.prevent="submitted"
                      class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-[#34304B] cursor-pointer">
                   <RefreshWhite/>
                   <button :disabled="isDisabled">{{ $t('save') }}</button>
@@ -138,7 +138,7 @@
                   <button v-else @click.prevent="pause">{{ $t('pause') }}</button>
                 </div>
 
-                <div @click.prevent="deleted"
+                <div v-if="data.external_id === null" @click.prevent="deleted"
                      class="p-3 flex flex-col justify-center items-center text-white text-[14px] tracking-wider transition-colors duration-150 bg-[#262338] rounded-md focus:shadow-outline hover:bg-red-600 cursor-pointer">
                   <DeleteWhite/>
                   <button>{{ $t('delete') }}</button>
