@@ -169,7 +169,7 @@ export default {
       if (!_.isEmpty(selectParam)) {
         return selectParam.value;
       }
-      return 'Нет';
+      return 'Не указано';
     },
     checkFilterParams(filterId, parameterId, parameters, alias) {
       const param = this.parameters[`params-${alias}`];

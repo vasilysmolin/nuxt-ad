@@ -40,6 +40,13 @@
         </tr>
         </tbody>
       </table>
+      <p v-if="realty.ceiling_height" class="first-letter:uppercase text-slate-400">Высота потолков:
+        {{ realty.ceiling_height }}</p>
+      <p v-if="realty.date_build" class="first-letter:uppercase text-slate-400">Дата постройки: {{
+          realty.date_build
+        }}</p>
+      <p v-if="realty.cadastral_number" class="first-letter:uppercase text-slate-400">Кадастровый номер:
+        {{ realty.cadastral_number }}</p>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
