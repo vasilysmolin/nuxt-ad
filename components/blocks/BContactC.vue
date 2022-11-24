@@ -1,19 +1,22 @@
 <template>
-  <section v-if="isLoading">
+  <section v-if="isLoading" class="flex flex-col p-5 w-[95%] mt-4 rounded-lg sm:max-w-screen-sm bg-white">
 
     <div v-if="$device.isDesktop" class="flex flex-col px-5 w-[100%]">
       <p class="leading-5 font-medium">Компания:<span class="pl-2 font-normal text-gray-800">{{ name }}</span></p>
-      <div class="my-6 flex justify-start items-center">
+      <div class="my-5 flex justify-start items-center">
         <p v-if="$auth.loggedIn" class="font-medium leading-none">Телефон:<span
             class="pl-2 font-black text-lg leading-none">{{ number }}</span>
-          <a class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]" :href="`mailto:${email}`">Откликнуться</a>
+          <a class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
+             :href="`mailto:${email}`">Откликнуться</a>
         </p>
         <button v-else type="button"
                 class="btn btn-primary inline-block px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black"
                 @click.prevent="showModalAuth">Показать телефон
         </button>
       </div>
-      <p class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{ address }}</span></p>
+      <p v-if="address != null" class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{
+          address
+        }}</span></p>
       <AuthModal/>
     </div>
 
@@ -29,7 +32,8 @@
                 @click.prevent="showModalAuth">Показать телефон
         </button>
       </div>
-      <p class="leading-5 text-sm font-bold">Адрес:<span class="pl-1 font-normal text-black">{{ address }}</span></p>
+      <p v-if="address != null" class="leading-5 text-sm font-bold">Адрес:<span
+          class="pl-1 font-normal text-black">{{ address }}</span></p>
       <AuthModal/>
     </div>
 

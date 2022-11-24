@@ -8,14 +8,24 @@
         </div>
         <p class="text-sm">Статус: {{ getState(realty) }}</p>
         <p class="text-sm">Позиция в каталоге: {{ realty.sort }}</p>
-        <NuxtLink :to="getUrl(realty)">
-          <div class="flex justify-between mt-2 w-full">
-            <button
-                class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-              Редактировать
-            </button>
-          </div>
-        </NuxtLink>
+        <div class="flex justify-between">
+          <NuxtLink :to="getUrl(realty)">
+            <div class="flex justify-between mt-2 w-full">
+              <button
+                  class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                Редактировать
+              </button>
+            </div>
+          </NuxtLink>
+          <a href="#" @click="getUrlCatalog(realty)">
+            <div class="flex justify-between mt-2 w-full">
+              <button
+                  class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                Просмотреть
+              </button>
+            </div>
+          </a>
+        </div>
       </article>
       <button v-if="checkAmount" @click="addItems({ skip: realties.length, from: 'cabinet'})" type="button"
               class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
@@ -65,6 +75,10 @@ export default {
       let cat = `/realty/${ad.categories ? ad.categories.alias : 'none'}`;
       return cat + '/' + `${ad.alias}`
     },
+    getUrlCatalog(realty) {
+      window.open(`${process.env.REALTY_URL}/feed/alias/${realty.alias}`, '_blank');
+    },
+
     getState(ad) {
       return this.states[ad.state];
     }

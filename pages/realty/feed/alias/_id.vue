@@ -18,6 +18,7 @@
     <BContactC
         :name="getUserName(realty)"
         :phone="getUserPhone(realty)"
+        :address="null"
     />
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
