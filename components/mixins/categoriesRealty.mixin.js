@@ -162,14 +162,14 @@ export default {
           return selectParam.value;
         }
         return acc;
-      }, 'Не указано');
+      }, null);
     },
     getCheckboxParams(filterParam, adParameters) {
       const selectParam = _.find(adParameters, (adParam) => (adParam.filter_id === filterParam.filter_id && filterParam.id === adParam.id));
       if (!_.isEmpty(selectParam)) {
         return selectParam.value;
       }
-      return 'Нет';
+      return null;
     },
     checkFilterParams(filterId, parameterId, parameters, alias) {
       const param = this.parameters[`params-${alias}`];

@@ -30,30 +30,40 @@
       <h2 class="text-sm font-bold text-black">Характеристики</h2>
       <table class="table-auto">
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isSelect(item)">
+        <tr v-if="isSelect(item) && getSelectParams(item, realty.realty_parameters) !== null">
           <td>{{ item.name }}</td>
           <td>{{ getSelectParams(item, realty.realty_parameters) }}</td>
         </tr>
-        <tr v-if="isRange(item)">
+        <tr v-if="isRange(item) && getSelectParams(item, realty.realty_parameters) !== null">
           <td>{{ item.name }}</td>
           <td>{{ getSelectParams(item, realty.realty_parameters) }}</td>
         </tr>
         </tbody>
       </table>
-      <p v-if="realty.ceiling_height" class="first-letter:uppercase text-slate-400">Высота потолков:
-        {{ realty.ceiling_height }}</p>
-      <p v-if="realty.date_build" class="first-letter:uppercase text-slate-400">Дата постройки: {{
-          realty.date_build
-        }}</p>
-      <p v-if="realty.cadastral_number" class="first-letter:uppercase text-slate-400">Кадастровый номер:
-        {{ realty.cadastral_number }}</p>
+      <table class="table-auto">
+        <tbody>
+        <tr v-if="realty.ceiling_height">
+          <td>Высота потолков</td>
+          <td>{{ realty.ceiling_height }}</td>
+        </tr>
+        <tr v-if="realty.date_build">
+          <td>Дата постройки</td>
+          <td>{{ realty.date_build }}</td>
+        </tr>
+        <tr v-if="realty.cadastral_number">
+          <td>Кадастровый номер</td>
+          <td>{{ realty.cadastral_number }}</td>
+        </tr>
+        </tbody>
+      </table>
     </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
       <h2 class="text-sm font-bold text-black">Удобства</h2>
       <table class="table-auto">
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isCheckbox(item)" v-for="(comfort, index) in item.parameters">
+        <tr v-if="isCheckbox(item) && getCheckboxParams(comfort, realty.realty_parameters)"
+            v-for="(comfort, index) in item.parameters">
           <td>{{ comfort.value }}</td>
           <td>{{ getCheckboxParams(comfort, realty.realty_parameters) }}</td>
         </tr>
