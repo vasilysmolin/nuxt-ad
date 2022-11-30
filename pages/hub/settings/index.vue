@@ -50,7 +50,7 @@
           <h1 class="mb-4 w-full text-xl text-black font-bold text-left leading-none truncate">{{ $t('feed.h2') }}</h1>
           <ul v-if="feedsArray.length > 0" class="flex flex-col items-start">
             <li v-for="(feed, index) in feedsArray" :key="feed.id">
-              {{ index + 1 }}. {{ feed.name }} {{ feed.url }}
+              {{ index + 1 }}. {{ feed.type }} {{ feed.url }}
               <button class="text-red-600" @click.prevent="removeFeed(feed,index)">X</button>
             </li>
           </ul>
