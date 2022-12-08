@@ -24,7 +24,11 @@
                 </section>
 
                 <section class="flex flex-col px-4">
-                  <h2 class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+                  <h2 v-if="isFlat(realty)"
+                      class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+                    {{ generateTitle(realty) }}</h2>
+                  <h2 v-else
+                      class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
                     {{ realty.name }}</h2>
                   <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                   </h3>
@@ -227,6 +231,18 @@ export default {
     },
     getPhoto(realty) {
       return realty.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
+    },
+    isFlat(realty) {
+      return realty?.categories?.id === 383 || realty?.categories?.id === 12;
+    },
+    generateTitle(realty) {
+      const countRooms = _.find(realty?.realty_parameters, function (item) {
+        return item.filter_id === 21 || item.filter_id === 31;
+      });
+      const area = _.find(realty?.realty_parameters, function (item) {
+        return item.filter_id === 27 || item.filter_id === 37;
+      });
+      return `${countRooms?.sort}-k квартира ${area?.sort} м2`;
     },
     formatPrice(price) {
       return new Intl.NumberFormat('ru-RU', {
