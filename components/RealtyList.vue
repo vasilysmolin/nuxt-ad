@@ -81,7 +81,11 @@
                 <img class="w-full rounded-lg" :src="getPhoto(realty)" :alt="realty.name">
               </section>
               <section class="flex flex-col justify-between pl-4">
-                <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
+                <h2 v-if="isFlat(realty)"
+                    class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
+                  {{ generateTitle(realty) }}</h2>
+                <h2 v-else
+                    class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
                   {{ realty.name }}</h2>
                 <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
                 <table class="table-auto mb-2 mt-2">
@@ -125,7 +129,7 @@
 import {mapActions, mapGetters} from 'vuex';
 import Breadcrumbs from "./Breadcrumbs";
 import * as _ from "lodash";
-import CategoriesMixin from '~/components/mixins/categories.mixin';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import BCategoriesNav from "~/components/blocks/BCategoriesNav";
 import BAmount from "~/components/blocks/BAmount";
 
@@ -236,13 +240,17 @@ export default {
       return realty?.categories?.id === 383 || realty?.categories?.id === 12;
     },
     generateTitle(realty) {
-      const countRooms = _.find(realty?.realty_parameters, function (item) {
+      const countRooms = _.find(realty?.parameters, function (item) {
         return item.filter_id === 21 || item.filter_id === 31;
       });
-      const area = _.find(realty?.realty_parameters, function (item) {
+      const area = _.find(realty?.parameters, function (item) {
         return item.filter_id === 27 || item.filter_id === 37;
       });
-      return `${countRooms?.sort}-k квартира ${area?.sort} м2`;
+      if (area?.sort) {
+        return `${countRooms?.sort}-к квартира ${area?.sort} м2`;
+      }
+      return `${countRooms?.sort}-к квартира`;
+
     },
     formatPrice(price) {
       return new Intl.NumberFormat('ru-RU', {

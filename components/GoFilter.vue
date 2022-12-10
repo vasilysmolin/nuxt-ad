@@ -129,6 +129,7 @@ export default {
   methods: {
     ...mapActions({
       getItemsAds: 'ads/getItems',
+      getItemsRealties: 'realty/getItems',
       setParameters: 'filters/setParameters',
       getItemsService: 'services/getItems',
       getItemsResumes: 'resumes/getItems',
@@ -144,21 +145,32 @@ export default {
         }
       });
       this.setParameters({
-          parameters: filtersData
+        parameters: filtersData
       })
-      if(_.isEmpty(this.priceFrom)) {
+      if (_.isEmpty(this.priceFrom)) {
         this.priceFrom = null;
       }
-      if(_.isEmpty(this.priceTo)) {
+      if (_.isEmpty(this.priceTo)) {
         this.priceTo = null;
       }
-      if(this.type === 'ads') {
+      if (this.type === 'realties') {
+        this.getItemsRealties({
+              alias: this.filters?.alias,
+              filtersArray: filtersData,
+              priceFrom: this.priceFrom,
+              priceTo: this.priceTo
+            }
+        ).then(() => {
+          this.$modal.hide('GoFilter');
+        });
+      }
+      if (this.type === 'ads') {
         this.getItemsAds({
-          alias: this.filters?.alias,
-          filtersArray: filtersData,
-          priceFrom: this.priceFrom,
-          priceTo: this.priceTo
-        }
+              alias: this.filters?.alias,
+              filtersArray: filtersData,
+              priceFrom: this.priceFrom,
+              priceTo: this.priceTo
+            }
         ).then(() => {
           this.$modal.hide('GoFilter');
         });

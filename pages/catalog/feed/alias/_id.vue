@@ -31,11 +31,11 @@
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
         <tr v-if="isSelect(item)">
           <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, ad.ad_parameters) }}</td>
+          <td>{{ getSelectParams(item, ad.parameters) }}</td>
         </tr>
         <tr v-if="isRange(item)">
           <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, ad.ad_parameters) }}</td>
+          <td>{{ getSelectParams(item, ad.parameters) }}</td>
         </tr>
         </tbody>
       </table>
@@ -47,7 +47,7 @@
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
         <tr v-if="isCheckbox(item)" v-for="(comfort, index) in item.parameters">
           <td>{{ comfort.value }}</td>
-          <td>{{ getCheckboxParams(comfort, ad.ad_parameters) }}</td>
+          <td>{{ getCheckboxParams(comfort, ad.parameters) }}</td>
         </tr>
         </tbody>
       </table>

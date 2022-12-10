@@ -30,13 +30,13 @@
       <h2 class="text-sm font-bold text-black">Характеристики</h2>
       <table class="table-auto">
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isSelect(item) && getSelectParams(item, realty.realty_parameters) !== null">
+        <tr v-if="isSelect(item) && getSelectParams(item, realty.parameters) !== null">
           <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, realty.realty_parameters) }}</td>
+          <td>{{ getSelectParams(item, realty.parameters) }}</td>
         </tr>
-        <tr v-if="isRange(item) && getSelectParams(item, realty.realty_parameters) !== null">
+        <tr v-if="isRange(item) && getSelectParams(item, realty.parameters) !== null">
           <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, realty.realty_parameters) }}</td>
+          <td>{{ getSelectParams(item, realty.parameters) }}</td>
         </tr>
         </tbody>
       </table>
@@ -62,10 +62,10 @@
       <h2 class="text-sm font-bold text-black">Удобства</h2>
       <table class="table-auto">
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isCheckbox(item) && getCheckboxParams(comfort, realty.realty_parameters)"
+        <tr v-if="isCheckbox(item) && getCheckboxParams(comfort, realty.parameters)"
             v-for="(comfort, index) in item.parameters">
           <td>{{ comfort.value }}</td>
-          <td>{{ getCheckboxParams(comfort, realty.realty_parameters) }}</td>
+          <td>{{ getCheckboxParams(comfort, realty.parameters) }}</td>
         </tr>
         </tbody>
       </table>
