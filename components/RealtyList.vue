@@ -88,20 +88,29 @@
                     class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
                   {{ realty.name }}</h2>
                 <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
-                <table class="table-auto mb-2 mt-2">
-                  <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
-                  <tr v-if="index <= 1">
-                    <td>{{ item.filter.name }}</td>
-                    <td>{{ item.value }}</td>
-                  </tr>
-                  </tbody>
-                  <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">
-                  <tr v-if="index <= 1">
-                    <td>{{ item.filter.name }}</td>
-                    <td>{{ item.value }}</td>
-                  </tr>
-                  </tbody>
-                </table>
+                <div v-if="isFlat(realty)" class="table-auto mb-2 mt-2">
+                  <p class="first-letter:uppercase">{{ getSeller(realty) }}</p>
+                  <p class="first-letter:uppercase">{{ getRooms(realty) }}</p>
+                  <p class="first-letter:uppercase">{{ getFloor(realty) }}</p>
+                  <p class="first-letter:uppercase">{{ getHouseType(realty) }}</p>
+                  <p class="first-letter:uppercase">{{ getTypeRooms(realty) }}</p>
+                  <p class="first-letter:uppercase">{{ getIsNew(realty) }}</p>
+                  <p class="first-letter:uppercase">{{ getDateBuild(realty) }}</p>
+                </div>
+                <!--                <table v-else class="table-auto mb-2 mt-2">-->
+                <!--                  <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">-->
+                <!--                  <tr v-if="index <= 1">-->
+                <!--                    <td>{{ item.filter.name }}</td>-->
+                <!--                    <td>{{ item.value }}</td>-->
+                <!--                  </tr>-->
+                <!--                  </tbody>-->
+                <!--                  <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">-->
+                <!--                  <tr v-if="index <= 1">-->
+                <!--                    <td>{{ item.filter.name }}</td>-->
+                <!--                    <td>{{ item.value }}</td>-->
+                <!--                  </tr>-->
+                <!--                  </tbody>-->
+                <!--                </table>-->
                 <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                   <!--                <span class="pl-1 text-xs">руб.</span>-->
                 </h3>
@@ -251,6 +260,60 @@ export default {
       }
       return `${countRooms?.sort}-к квартира`;
 
+    },
+    getSeller(realty) {
+      const seller = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 25 || item.filter_id === 35;
+      });
+      if (seller?.value) {
+        return `Продает ${seller?.value.toLowerCase()}`;
+      }
+
+    },
+    getRooms(realty) {
+      const countRooms = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 21 || item.filter_id === 31;
+      });
+      if (countRooms?.sort) {
+        return `Кол-во комнат ${countRooms?.sort}`;
+      }
+
+    },
+    getFloor(realty) {
+      const countFloor = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 23 || item.filter_id === 33;
+      });
+      if (countFloor?.sort) {
+        return `Этаж ${countFloor?.sort}`;
+      }
+
+    },
+    getHouseType(realty) {
+      const houseType = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 24 || item.filter_id === 34;
+      });
+      if (houseType?.value) {
+        return `Тип дома ${houseType?.value}`;
+      }
+    },
+    getTypeRooms(realty) {
+      const type = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 41 || item.filter_id === 42;
+      });
+      if (type?.value) {
+        return `Тип комнат ${type?.value}`;
+      }
+    },
+    getIsNew(realty) {
+      const type = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 26 || item.filter_id === 36;
+      });
+      if (type?.value) {
+        return `Новизна ${type?.value}`;
+      }
+    },
+    getDateBuild(realty) {
+      return `Дата постройки ${realty?.date_build}`;
     },
     formatPrice(price) {
       return new Intl.NumberFormat('ru-RU', {
