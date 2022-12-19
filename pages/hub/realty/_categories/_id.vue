@@ -72,6 +72,18 @@
             </div>
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <the-mask :mask="['####']" v-model="data.date_build"
+                        id="date_build"
+                        type="text"
+                        class="form-control forms-input"
+                        :placeholder="$t('catalog.dateBuild')"/>
+              <label class="text-[#6E7191]">{{ $t('catalog.dateBuild') }}</label>
+              <span v-if="dateErrors" class="form-errors">
+            {{ dateErrors }}
+            </span>
+            </div>
+
+            <div v-if="!isRealtyFlat" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      :placeholder="$t('catalog.name')"
@@ -192,10 +204,13 @@ export default {
   },
   validations: {
     data: {
-      name: {
+      // name: {
+      //   required,
+      //   maxLength: maxLength(70),
+      //   minLength: minLength(5)
+      // },
+      date_build: {
         required,
-        maxLength: maxLength(70),
-        minLength: minLength(5)
       },
       city_id: {
         required,
@@ -244,6 +259,9 @@ export default {
       filters: 'categoriesRealty/categoryRealties',
       cities: 'cities/citiesFull',
     }),
+    isRealtyFlat() {
+      return _.find(this.category_id, (cat) => cat === 383 || cat === 12 || cat === 410);
+    },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesRealty/categoriesRealties']);
@@ -264,6 +282,7 @@ export default {
     getCityId(event) {
       this.data.city_id = event;
     },
+
     getAddress(event) {
       if (!_.isEmpty(event)) {
         this.data.street = event.data.street_with_type;
@@ -288,6 +307,7 @@ export default {
         data.append('filter[]', value);
       });
       data.append('name', this.data.name);
+      data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('sale_price', this.data.price);

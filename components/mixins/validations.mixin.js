@@ -62,17 +62,40 @@ export default {
         if (!this.$v.data.name?.$dirty) {
           return '';
         }
-
-        if (!this.$v.data.name.required) {
-          return this.$t('validation.nameRequired');
-        }
+        //
+        // if (!this.$v.data.name.required) {
+        //   return this.$t('validation.nameRequired');
+        // }
 
         if (!this.$v.data.name.maxLength) {
           return this.$t('validation.nameMax');
         }
-        if (!this.$v.data.name.minLength) {
-          return this.$t('validation.nameMin');
+        // if (!this.$v.data.name.minLength) {
+        //   return this.$t('validation.nameMin');
+        // }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    dateErrors: {
+      get() {
+        if (!this.$v.data.date_build?.$dirty) {
+          return '';
         }
+
+        if (!this.$v.data.date_build.required) {
+          return this.$t('validation.nameRequired');
+        }
+
+        // if (!this.$v.data.name.maxLength) {
+        //   return this.$t('validation.nameMax');
+        // }
+        // if (!this.$v.data.name.minLength) {
+        //   return this.$t('validation.nameMin');
+        // }
 
         return '';
       },

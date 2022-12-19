@@ -80,8 +80,20 @@
               </template>
             </div>
 
-
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <the-mask :mask="['####']" v-model="data.date_build"
+                        id="date_build"
+                        type="text"
+                        class="form-control forms-input"
+                        placeholder="Дата постройки"/>
+              <label class="text-[#6E7191]">Дата постройки</label>
+              <span v-if="dateErrors" class="form-errors">
+            {{ dateErrors }}
+            </span>
+            </div>
+
+
+            <div v-if="!isRealtyFlat()" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
@@ -194,12 +206,15 @@ export default {
   },
   validations: {
     data: {
-      name: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(5)
-      },
+      // name: {
+      //   required,
+      //   maxLength: maxLength(70),
+      //   minLength: minLength(5)
+      // },
       photos: {
+        required,
+      },
+      date_build: {
         required,
       },
       category_id: {
@@ -245,6 +260,9 @@ export default {
     ...mapGetters({
       cities: 'cities/citiesFull',
     }),
+    isRealtyFlat() {
+      return _.find(this.category_id, (cat) => cat === 383 || cat === 12 || cat === 410);
+    },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesRealty/categoriesRealties']);
@@ -296,6 +314,7 @@ export default {
       // this.isDisabled = false;
       // return;
       data.append('name', this.data.name);
+      data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('sale_price', this.data.sale_price);
