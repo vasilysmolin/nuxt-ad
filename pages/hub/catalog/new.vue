@@ -79,7 +79,7 @@
             </div>
 
 
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="isNotRealtyFlat()" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
@@ -266,6 +266,9 @@ export default {
     }),
     getCityId(event) {
       this.data.city_id = event;
+    },
+    isNotRealtyFlat() {
+      return this.category?.id === 383 || this.category?.id === 12 || this.category?.id === 410;
     },
     getAddress(event) {
       if (!_.isEmpty(event)) {

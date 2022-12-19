@@ -91,7 +91,7 @@
               </template>
             </div>
 
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="isNotRealtyFlat()" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      :placeholder="$t('catalog.name')"
@@ -290,6 +290,9 @@ export default {
       } else {
         this.data.street = null;
       }
+    },
+    isNotRealtyFlat() {
+      return this.category?.id === 383 || this.category?.id === 12 || this.category?.id === 410;
     },
     submitted() {
       if (this.$v.$invalid) {
