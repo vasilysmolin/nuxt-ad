@@ -16,7 +16,7 @@
           </article>
         </nuxt-link>
 
-        <nuxt-link to="/feed/flats_7y5Cy">
+        <nuxt-link to="/feed/flats_rent">
           <article
               class="px-2 py-4 flex flex-col justify-start rounded-lg w-[160px] min-h-[110px] bg-[#FFFFFF] border border-solid border-white transition duration-150 ease-in-out hover:border-[#cccccc]">
             <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
@@ -24,7 +24,7 @@
           </article>
         </nuxt-link>
 
-        <nuxt-link to="/feed/rooms_Qn20y">
+        <nuxt-link to="/feed/rooms_rent">
           <article
               class="px-2 py-4 flex flex-col justify-start rounded-lg w-[160px] min-h-[110px] bg-[#FFFFFF] border border-solid border-white transition duration-150 ease-in-out hover:border-[#cccccc]">
             <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
@@ -32,7 +32,7 @@
           </article>
         </nuxt-link>
 
-        <nuxt-link to="/feed/nedvizimost-hjgob/cottage-house-townhouse_fdJQh">
+        <nuxt-link to="/feed/cottage-house-townhouse">
           <article
               class="px-2 py-4 flex flex-col justify-start rounded-lg w-[160px] min-h-[110px] bg-[#FFFFFF] border border-solid border-white transition duration-150 ease-in-out hover:border-[#cccccc]">
             <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
@@ -40,7 +40,7 @@
           </article>
         </nuxt-link>
 
-        <nuxt-link to="/feed/nedvizimost-hjgob/commercial_S3Ni9">
+        <nuxt-link to="/feed/commercial_rent">
           <article
               class="px-2 py-4 flex flex-col justify-start rounded-lg w-[160px] min-h-[110px] bg-[#FFFFFF] border border-solid border-white transition duration-150 ease-in-out hover:border-[#cccccc]">
             <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
@@ -48,7 +48,7 @@
           </article>
         </nuxt-link>
 
-        <nuxt-link to="/feed/nedvizimost-hjgob/stead_RFH9e">
+        <nuxt-link to="/feed/stead_rent">
           <article
               class="px-2 py-4 flex flex-col justify-start rounded-lg w-[160px] min-h-[110px] bg-[#FFFFFF] border border-solid border-white transition duration-150 ease-in-out hover:border-[#cccccc]">
             <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
@@ -56,7 +56,7 @@
           </article>
         </nuxt-link>
 
-        <nuxt-link to="/feed/nedvizimost-hjgob/garages-parking_MWIpu">
+        <nuxt-link to="/feed/garages-parking_rent">
           <article
               class="px-2 py-4 flex flex-col justify-start rounded-lg w-[160px] min-h-[110px] bg-[#FFFFFF] border border-solid border-white transition duration-150 ease-in-out hover:border-[#cccccc]">
             <span class="inline-block w-[10px] h-[10px] rounded-full bg-[#D9D9D9]"></span>
