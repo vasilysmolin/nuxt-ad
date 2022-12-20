@@ -260,9 +260,6 @@ export default {
     ...mapGetters({
       cities: 'cities/citiesFull',
     }),
-    isRealtyFlat() {
-      return _.find(this.category_id, (cat) => cat === 383 || cat === 12 || cat === 410);
-    },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesRealty/categoriesRealties']);
@@ -287,6 +284,9 @@ export default {
     }),
     getCityId(event) {
       this.data.city_id = event;
+    },
+    isRealtyFlat() {
+      return _.find(this.category_id, (cat) => cat === 383 || cat === 12 || cat === 410);
     },
     getAddress(event) {
       if (!_.isEmpty(event)) {
