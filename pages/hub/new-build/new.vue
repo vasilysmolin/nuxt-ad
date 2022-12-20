@@ -117,6 +117,18 @@
             {{ priceErrors }}
             </span>
             </div>
+
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="price_per_square"
+                     :placeholder="$t('catalog.priceSquare')"
+                     v-model="data.price_per_square">
+              <label for="price_per_square" class="text-[#6E7191]">{{ $t('catalog.priceSquare') }}</label>
+              <span v-if="priceSquareErrors" class="form-errors">
+            {{ priceSquareErrors }}
+            </span>
+            </div>
+
             <BGeo
                 :obj="data"
                 :cityErrors="cityErrors"
@@ -298,6 +310,7 @@ export default {
       data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
+      data.append('price_per_square', this.data.price_per_square);
       data.append('sale_price', this.data.sale_price);
       data.append('category_id', this.data.category_id);
       data.append('city_id', this.data.city_id);

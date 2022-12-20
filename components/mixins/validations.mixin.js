@@ -270,6 +270,26 @@ export default {
 
       return '';
     },
+    priceSquareErrors() {
+      if (!this.$v.data.price_per_square?.$dirty) {
+        return '';
+      }
+
+      if (!this.$v.data.price_per_square.required) {
+        return this.$t('validation.priceRequired');
+      }
+      if (!this.$v.data.price_per_square.maxLength) {
+        return this.$t('validation.priceMax');
+      }
+      if (!this.$v.data.price_per_square.minLength) {
+        return this.$t('validation.priceMin');
+      }
+      if (!this.$v.data.price_per_square.numeric) {
+        return this.$t('validation.priceNum');
+      }
+
+      return '';
+    },
     minPriceErrors() {
       if (!this.$v.data.min_price?.$dirty) {
         return '';
