@@ -38,6 +38,7 @@ export default {
         name: 'Название объявления',
         dateBuild: 'Дата постройки',
         price: 'Стоимость',
+        nameAgent: 'Застройщик',
         priceSquare: 'Стоимость за кв.м',
         city: 'Город',
         address: 'Адрес',

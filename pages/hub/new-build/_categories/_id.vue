@@ -112,6 +112,15 @@
             </span>
             </div>
 
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="nameAgent"
+                     :placeholder="$t('catalog.nameAgent')"
+                     v-model="dataAgent.name">
+              <label for="nameAgent" class="text-[#6E7191]">{{ $t('catalog.nameAgent') }}</label>
+
+            </div>
+
             <BGeo
                 :obj="data"
                 :cityErrors="cityErrors"
@@ -200,6 +209,9 @@ export default {
         cityId: null,
         address: null
       },
+      dataAgent: {
+        name: null,
+      },
       files: [],
       isDisabled: false,
     }
@@ -242,6 +254,7 @@ export default {
     await this.$store.dispatch('realty/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
       this.data = _.cloneDeep(this.$store.getters['realty/realty']);
     });
+    this.dataAgent.name = this.data?.agent?.name;
     if (this.category.length === 0) {
       await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
     }
@@ -281,7 +294,9 @@ export default {
     getCityId(event) {
       this.data.city_id = event;
     },
-
+    getAgentName() {
+      return this.dataAgent?.name;
+    },
     getAddress(event) {
       if (!_.isEmpty(event)) {
         this.data.street = event.data.street_with_type;
@@ -308,6 +323,7 @@ export default {
       data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
+      data.append('nameAgent', this.dataAgent?.name);
       data.append('price_per_square', this.data.price_per_square);
       data.append('sale_price', this.data.price);
       data.append('category_id', this.data.category_id);
