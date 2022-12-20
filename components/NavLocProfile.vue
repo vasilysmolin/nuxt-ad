@@ -5,10 +5,13 @@
         <NuxtLink to="/profile">Профиль</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
+        <NuxtLink to="/new-build">Новостройки</NuxtLink>
+      </li>
+      <li class="pl-4 sm:pl-6">
         <NuxtLink to="/realty">Недвижимость</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
-        <NuxtLink to="/catalog">Обьявления</NuxtLink>
+        <NuxtLink to="/catalog">Объявления</NuxtLink>
       </li>
       <li v-if="isPerson()" class="pl-4 sm:pl-6">
         <NuxtLink to="/vacancies">Вакансии</NuxtLink>
