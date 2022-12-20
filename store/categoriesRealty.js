@@ -30,8 +30,9 @@ export const mutations = {
 export const actions = {
   async getItems({commit}, {
     from = null,
+      id = null
   }) {
-    const getParams = params({from});
+    const getParams = params({from, id});
     const categoriesRealties = await this.$axios.$get(`category-realties?skip=0&take=100${getParams}`);
     commit('setcategoriesRealties', categoriesRealties.realty_categories);
   },

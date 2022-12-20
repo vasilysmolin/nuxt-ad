@@ -125,6 +125,11 @@ export default {
         }
       };
       iter(category);
+      if (this.category_id.includes(12) || this.category_id.includes(383) || this.category_id.includes(410)) {
+        this.hasName = false;
+      } else {
+        this.hasName = true;
+      }
     },
     setCategoryCreate(event, index) {
       this.items.splice(index + 1, Infinity);
@@ -143,6 +148,11 @@ export default {
         }
       };
       iter(category);
+      if (this.category_id.includes(12) || this.category_id.includes(383) || this.category_id.includes(410)) {
+        this.hasName = false;
+      } else {
+        this.hasName = true;
+      }
       if (_.isEmpty(this.parameters)) {
         setTimeout(() => {
           if (this.filters) {

@@ -27,7 +27,8 @@
           </a>
         </div>
       </article>
-      <button v-if="checkAmount" @click="addItems({ skip: realties.length, from: 'cabinet'})" type="button"
+      <button v-if="checkAmount" @click="addItems({ skip: realties.length, from: 'cabinet', category_ids: '382,381'})"
+              type="button"
               class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Смотреть дальше
       </button>
@@ -51,7 +52,7 @@ export default {
   },
   async mounted() {
     // if (this.realties.length === 0) {
-    await this.getItems({from: 'cabinet'});
+    await this.getItems({from: 'cabinet', category_ids: '382,381'});
     await this.getItemsState();
     // }
   },

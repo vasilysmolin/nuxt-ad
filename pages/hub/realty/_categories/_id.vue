@@ -71,7 +71,7 @@
               </template>
             </div>
 
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="hasName" class="form-floating mb-4 w-full sm:w-[27rem]">
               <the-mask :mask="['####']" v-model="data.date_build"
                         id="date_build"
                         type="text"
@@ -83,7 +83,7 @@
             </span>
             </div>
 
-            <div v-if="!isRealtyFlat" class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="hasName" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      :placeholder="$t('catalog.name')"
@@ -194,6 +194,8 @@ export default {
         [{list: "ordered"}, {list: "bullet"}],
         ["code-block"]
       ],
+      hasName: true,
+      currentCat: null,
       data: {
         cityId: null,
         address: null
@@ -246,11 +248,16 @@ export default {
       this.data = _.cloneDeep(this.$store.getters['realty/realty']);
     });
     if (this.category.length === 0) {
-      await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet'});
+      await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '382,381'});
     }
     await this.$store.dispatch('categoriesRealty/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);
+    if (this.category_id.includes(12) || this.category_id.includes(383) || this.category_id.includes(410)) {
+      this.hasName = false;
+    } else {
+      this.hasName = true;
+    }
     this.setSelectParams();
 
   },
@@ -259,9 +266,6 @@ export default {
       filters: 'categoriesRealty/categoryRealties',
       cities: 'cities/citiesFull',
     }),
-    isRealtyFlat() {
-      return _.find(this.category_id, (cat) => cat === 383 || cat === 12 || cat === 410);
-    },
     category: {
       get() {
         return _.cloneDeep(this.$store.getters['categoriesRealty/categoriesRealties']);

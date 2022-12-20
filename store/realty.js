@@ -60,6 +60,7 @@ export const actions = {
 		expand = null,
 		name = null,
 		alias = null,
+		category_ids = null,
 		filtersArray = null,
 		priceFrom = null,
 		priceTo = null,
@@ -73,6 +74,7 @@ export const actions = {
 			name,
 			alias,
 			filtersArray,
+			category_ids,
 			querySearch,
 			skipFromFull,
 			skip,
@@ -124,12 +126,13 @@ export const actions = {
 		state = null,
 		from = null,
 		expand = null,
+		category_ids = null,
 		name = null,
 		alias = null,
 		querySearch = null,
 	}) {
 		const getParams = params({
-			user_id, state, expand, from, skip, name, alias, querySearch,
+			user_id, state, expand, from, skip, name, alias, querySearch, category_ids
 		});
 		const ads = await this.$axios.$get(`realties?take=25${getParams}`);
 		if (state === 'new') {

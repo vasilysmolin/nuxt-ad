@@ -80,7 +80,7 @@
               </template>
             </div>
 
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="hasName" class="form-floating mb-4 w-full sm:w-[27rem]">
               <the-mask :mask="['####']" v-model="data.date_build"
                         id="date_build"
                         type="text"
@@ -93,7 +93,7 @@
             </div>
 
 
-            <div v-if="!isRealtyFlat()" class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="hasName" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
@@ -185,6 +185,7 @@ export default {
   data() {
     return {
       query: '',
+      hasName: true,
       data: {
         name: '',
         price: null,
@@ -247,7 +248,7 @@ export default {
   },
   async mounted() {
     if (this.category.length === 0) {
-      await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet'});
+      await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '382,381'});
     }
     this.items.push({
       title: 'Категории',
