@@ -255,9 +255,9 @@ export default {
       this.data = _.cloneDeep(this.$store.getters['realty/realty']);
     });
     this.dataAgent.name = this.data?.agent?.name;
-    if (this.category.length === 0) {
+    // if (this.category.length === 0) {
       await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
-    }
+    // }
     await this.$store.dispatch('categoriesRealty/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);

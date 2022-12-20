@@ -247,9 +247,9 @@ export default {
     await this.$store.dispatch('realty/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
       this.data = _.cloneDeep(this.$store.getters['realty/realty']);
     });
-    if (this.category.length === 0) {
+    // if (this.category.length === 0) {
       await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '382,381'});
-    }
+    // }
     await this.$store.dispatch('categoriesRealty/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
     this.category_id = this.index(this.items);

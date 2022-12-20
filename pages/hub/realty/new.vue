@@ -247,9 +247,9 @@ export default {
 
   },
   async mounted() {
-    if (this.category.length === 0) {
+    // if (this.category.length === 0) {
       await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '382,381'});
-    }
+    // }
     this.items.push({
       title: 'Категории',
       categories: this.category
