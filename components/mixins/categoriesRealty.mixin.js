@@ -334,6 +334,30 @@ export default {
     isFlat(realty) {
       return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410;
     },
+    getArea(realty) {
+      const area = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 27 || item.filter_id === 37 || item.filter_id === 70;
+      });
+      if (area?.value) {
+        return area.sort;
+      }
+    },
+    getAreaKitchen(realty) {
+      const area = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 29 || item.filter_id === 39 || item.filter_id === 72;
+      });
+      if (area?.value) {
+        return area.sort;
+      }
+    },
+    getAreaLeave(realty) {
+      const area = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 28 || item.filter_id === 38 || item.filter_id === 71;
+      });
+      if (area?.value) {
+        return area.sort;
+      }
+    },
     getSeller(realty) {
       const seller = _.find(realty?.parameters, function (item) {
         return item.filter_id === 25 || item.filter_id === 35;
@@ -345,7 +369,7 @@ export default {
     },
     getRooms(realty) {
       const countRooms = _.find(realty?.parameters, function (item) {
-        return item.filter_id === 21 || item.filter_id === 31;
+        return item.filter_id === 21 || item.filter_id === 31 || item.filter_id === 66;
       });
       if (countRooms?.sort) {
         return `Кол-во комнат ${countRooms?.sort}`;
@@ -354,7 +378,7 @@ export default {
     },
     getFloor(realty) {
       const countFloor = _.find(realty?.parameters, function (item) {
-        return item.filter_id === 23 || item.filter_id === 33;
+        return item.filter_id === 23 || item.filter_id === 33 || item.filter_id === 68;
       });
       if (countFloor?.sort) {
         return `Этаж ${countFloor?.sort}`;
@@ -363,7 +387,7 @@ export default {
     },
     getHouseType(realty) {
       const houseType = _.find(realty?.parameters, function (item) {
-        return item.filter_id === 24 || item.filter_id === 34;
+        return item.filter_id === 24 || item.filter_id === 34 || item.filter_id === 69;
       });
       if (houseType?.value) {
         return `Тип дома ${houseType?.value}`;
@@ -371,7 +395,7 @@ export default {
     },
     getTypeRooms(realty) {
       const type = _.find(realty?.parameters, function (item) {
-        return item.filter_id === 41 || item.filter_id === 42;
+        return item.filter_id === 41 || item.filter_id === 42 || item.filter_id === 74;
       });
       if (type?.value) {
         return `Тип комнат ${type?.value}`;
