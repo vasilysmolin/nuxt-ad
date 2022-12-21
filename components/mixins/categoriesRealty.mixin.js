@@ -319,5 +319,74 @@ export default {
       // Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
       // });
     },
+    generateTitle(realty) {
+      const countRooms = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 21 || item.filter_id === 31 || item.filter_id === 66;
+      });
+      const area = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 27 || item.filter_id === 37 || item.filter_id === 70;
+      });
+      if (area?.sort) {
+        return `${countRooms?.sort}-к квартира ${area?.sort} м2`;
+      }
+      return `${countRooms?.sort}-к квартира`;
+    },
+    isFlat(realty) {
+      return realty?.categories?.id === 383 || realty?.categories?.id === 12 || realty?.categories?.id === 410;
+    },
+    getSeller(realty) {
+      const seller = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 25 || item.filter_id === 35;
+      });
+      if (seller?.value) {
+        return `Продает ${seller?.value.toLowerCase()}`;
+      }
+
+    },
+    getRooms(realty) {
+      const countRooms = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 21 || item.filter_id === 31;
+      });
+      if (countRooms?.sort) {
+        return `Кол-во комнат ${countRooms?.sort}`;
+      }
+
+    },
+    getFloor(realty) {
+      const countFloor = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 23 || item.filter_id === 33;
+      });
+      if (countFloor?.sort) {
+        return `Этаж ${countFloor?.sort}`;
+      }
+
+    },
+    getHouseType(realty) {
+      const houseType = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 24 || item.filter_id === 34;
+      });
+      if (houseType?.value) {
+        return `Тип дома ${houseType?.value}`;
+      }
+    },
+    getTypeRooms(realty) {
+      const type = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 41 || item.filter_id === 42;
+      });
+      if (type?.value) {
+        return `Тип комнат ${type?.value}`;
+      }
+    },
+    getIsNew(realty) {
+      const type = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 26 || item.filter_id === 36;
+      });
+      if (type?.value) {
+        return `Новизна ${type?.value}`;
+      }
+    },
+    getDateBuild(realty) {
+      return `Дата постройки ${realty?.date_build}`;
+    },
   },
 };

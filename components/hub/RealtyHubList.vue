@@ -3,7 +3,12 @@
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
       <article v-for="realty in realties" :key="realty.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
         <div class="flex justify-between">
-          <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">{{ realty.name }}</h2>
+          <h2 v-if="isFlat(realty)"
+              class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">
+            {{ generateTitle(realty) }}</h2>
+          <h2 v-else
+              class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">
+            {{ realty.name }}</h2>
           <p v-if="realty.external_id" class="text-sm">ID: {{ realty.external_id }}</p>
         </div>
         <p class="text-sm">Статус: {{ getState(realty) }}</p>
@@ -44,9 +49,11 @@
 
 <script>
 import {mapActions, mapGetters} from 'vuex';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 
 export default {
   name: "RealtyHubList",
+  mixins: [CategoriesMixin],
   props: {
     type: String,
   },

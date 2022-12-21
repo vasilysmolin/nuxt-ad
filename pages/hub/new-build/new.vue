@@ -9,7 +9,7 @@
 
           <div class="flex flex-col items-center w-full">
 
-            <div class="mb-4 w-full sm:w-[27rem]" v-for="(item, index) in items" :key="index">
+            <div class="mb-4 w-full sm:w-[27rem] hidden" v-for="(item, index) in items" :key="index">
               <label v-if="item.title.length > 0" for="name" class="pl-4 text-gray-500">{{ item.title }}</label>
               <select @change="setCategoryCreate($event, index)" v-model="category_id[index]"
                       class="form-select form-select-lg mt-2 forms-select">
@@ -255,19 +255,23 @@ export default {
 
   },
   async mounted() {
-    // if (this.category.length === 0) {
-      await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
-    // }
+    await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
     this.items.push({
       title: 'Категории',
       categories: this.category
     });
     this.showMap = true;
-
+    this.data.category_id = 410;
+    this.category_id = [410];
+    this.getItem({id: 410});
+    setTimeout(() => {
+      this.setSelectParams();
+    }, 1700);
   },
   computed: {
     ...mapGetters({
       cities: 'cities/citiesFull',
+      filters: 'categoriesRealty/categoryRealties',
     }),
     category: {
       get() {
