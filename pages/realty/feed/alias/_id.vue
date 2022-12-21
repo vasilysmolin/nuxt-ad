@@ -8,7 +8,10 @@
     />
 
     <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h1 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">{{ realty.name }}</h1>
+      <h1 v-if="isFlat(realty)" class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
+        {{ generateTitle(realty) }}</h1>
+      <h1 v-else class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
+        {{ realty.name }}</h1>
       <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
       <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
         <span class="pl-2 text-sm">руб.</span>
@@ -62,10 +65,12 @@
       <h2 class="text-sm font-bold text-black">Удобства</h2>
       <table class="table-auto">
         <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isCheckbox(item) && getCheckboxParams(comfort, realty.parameters)"
+        <tr v-if="isCheckbox(item)"
             v-for="(comfort, index) in item.parameters">
           <td>{{ comfort.value }}</td>
-          <td>{{ getCheckboxParams(comfort, realty.parameters) }}</td>
+          <td v-if="getCheckboxParams(comfort, realty.parameters)">✅</td>
+          <td v-else>❌</td>
+
         </tr>
         </tbody>
       </table>

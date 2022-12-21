@@ -332,7 +332,7 @@ export default {
       return `${countRooms?.sort}-к квартира`;
     },
     isFlat(realty) {
-      return realty?.categories?.id === 383 || realty?.categories?.id === 12 || realty?.categories?.id === 410;
+      return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410;
     },
     getSeller(realty) {
       const seller = _.find(realty?.parameters, function (item) {
