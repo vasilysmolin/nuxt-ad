@@ -10,8 +10,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      ads: 'ads/ads',
-      realties: 'realty/realties',
+      ads: 'ads/adsSearch',
+      realties: 'realty/realtiesSearch',
       services: 'services/services',
       resumes: 'resumes/resumes',
       vacancies: 'vacancies/vacancies',
@@ -19,8 +19,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getItemsAds: 'ads/getItems',
-      getItemsRealties: 'realty/getItems',
+      getItemsAds: 'ads/getItemsSearch',
+      getItemsRealties: 'realty/getItemsSearch',
       getItemsResumes: 'resumes/getItems',
       getItemsServices: 'services/getItems',
       getItemsVacancies: 'vacancies/getItems',

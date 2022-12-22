@@ -2,8 +2,10 @@ import {params} from '../helper/requestParams';
 
 export const state = () => ({
 	realties: [],
+	realtiesSearch: [],
 	realtiesFull: [],
 	amount: null,
+	amountSearch: null,
 	amountNew: null,
 	categoryAlias: null,
 	realtiesNew: [],
@@ -13,6 +15,12 @@ export const state = () => ({
 export const mutations = {
 	setrealties(state, realties) {
 		state.realties = realties;
+	},
+	setRealtiesSearch(state, realties) {
+		state.realtiesSearch = realties;
+	},
+	setAmountSearch(state, amount) {
+		state.amountSearch = amount;
 	},
 	setrealtiesFull(state, realtiesFull) {
 		state.realtiesFull = realtiesFull;
@@ -50,6 +58,44 @@ export const mutations = {
 };
 
 export const actions = {
+	async getItemsSearch({commit}, {
+		skip = 0,
+		skipFromFull = 0,
+		take = 25,
+		user_id = null,
+		state = null,
+		from = null,
+		expand = null,
+		name = null,
+		alias = null,
+		category_ids = null,
+		filtersArray = null,
+		priceFrom = null,
+		priceTo = null,
+		querySearch = null,
+	}) {
+		const getParams = params({
+			user_id,
+			state,
+			expand,
+			from,
+			name,
+			alias,
+			filtersArray,
+			category_ids,
+			querySearch,
+			skipFromFull,
+			skip,
+			take,
+			priceFrom,
+			priceTo,
+		});
+		const realties = await this.$axios.$get(`realties?${getParams}`);
+
+		commit('setRealtiesSearch', realties.realties);
+		commit('setAmountSearch', realties.meta.total);
+
+	},
 	async getItems({commit}, {
 		skip = 0,
 		skipFromFull = 0,
@@ -150,10 +196,12 @@ export const actions = {
 
 export const getters = {
 	realties: (s) => s.realties,
+	realtiesSearch: (s) => s.realtiesSearch,
 	realtiesFull: (s) => s.realtiesFull,
 	realtiesNew: (s) => s.realtiesNew,
 	realty: (s) => s.realty,
 	amount: (s) => s.amount,
+	amountSearch: (s) => s.amountSearch,
 	amountNew: (s) => s.amountNew,
 	categoryAlias: (s) => s.categoryAlias,
 };

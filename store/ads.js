@@ -2,8 +2,10 @@ import {params} from '../helper/requestParams';
 
 export const state = () => ({
 	ads: [],
+	adsSearch: [],
 	adsFull: [],
 	amount: null,
+	amountSearch: null,
 	amountNew: null,
 	categoryAlias: null,
 	adsNew: [],
@@ -13,6 +15,9 @@ export const state = () => ({
 export const mutations = {
 	setads(state, ads) {
 		state.ads = ads;
+	},
+	setAdsSearch(state, ads) {
+		state.adsSearch = ads;
 	},
 	setAdsFull(state, adsFull) {
 		state.adsFull = adsFull;
@@ -38,12 +43,51 @@ export const mutations = {
 	setAmount(state, amount) {
 		state.amount = amount;
 	},
+	setAmountSearch(state, amount) {
+		state.amountSearch = amount;
+	},
 	setAdCategory(state, categoryAlias) {
 		state.categoryAlias = categoryAlias;
 	},
 };
 
 export const actions = {
+	async getItemsSearch({commit}, {
+		skip = 0,
+		skipFromFull = 0,
+		take = 25,
+		user_id = null,
+		state = null,
+		from = null,
+		expand = null,
+		name = null,
+		alias = null,
+		filtersArray = null,
+		priceFrom = null,
+		priceTo = null,
+		querySearch = null,
+	}) {
+		const getParams = params({
+			user_id,
+			state,
+			expand,
+			from,
+			name,
+			alias,
+			filtersArray,
+			querySearch,
+			skipFromFull,
+			skip,
+			take,
+			priceFrom,
+			priceTo,
+		});
+		const ads = await this.$axios.$get(`declarations?${getParams}`);
+
+		commit('setAdsSearch', ads.catalog_ads);
+		commit('setAmountSearch', ads.meta.total);
+
+	},
 	async getItems({commit}, {
 		skip = 0,
 		skipFromFull = 0,
@@ -121,10 +165,12 @@ export const actions = {
 
 export const getters = {
 	ads: (s) => s.ads,
+	adsSearch: (s) => s.adsSearch,
 	adsFull: (s) => s.adsFull,
 	adsNew: (s) => s.adsNew,
 	ad: (s) => s.ad,
 	amount: (s) => s.amount,
+	amountSearch: (s) => s.amountSearch,
 	amountNew: (s) => s.amountNew,
 	categoryAlias: (s) => s.categoryAlias,
 };
