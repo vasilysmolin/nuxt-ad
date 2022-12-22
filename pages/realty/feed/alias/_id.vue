@@ -163,7 +163,14 @@ export default {
     }),
   },
   head() {
-    const title = `${this.realty.title} | Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог`;
+    let title = this.realty.title;
+    if (this.isFlat(this.realty)) {
+      const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
+      const entity = this.generateTitle(this.realty);
+      const address = `по адресу ` + this.getAddress(this.realty);
+      title = `${type} ${entity} ${address}`;
+    }
+
     return {
       title: title,
       meta: [

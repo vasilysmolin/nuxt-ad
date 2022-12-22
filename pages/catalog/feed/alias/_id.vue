@@ -136,10 +136,13 @@ export default {
     }),
   },
   head() {
-    const type = this.isBuy(this.ad) ? 'Продаётся' : 'Сдаётся';
-    const entity = this.isFlat(this.ad) ? this.generateTitle(this.ad) : this.ad.title;
-    const address = `по адресу ` + this.getAddress(this.ad);
-    const title = `${type} ${entity} ${address}`;
+    let title = this.realty.title;
+    if (this.isFlat(this.realty)) {
+      const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
+      const entity = this.generateTitle(this.realty);
+      const address = `по адресу ` + this.getAddress(this.realty);
+      title = `${type} ${entity} ${address}`;
+    }
     return {
       title: title,
       meta: [
