@@ -334,6 +334,12 @@ export default {
     isFlat(realty) {
       return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410;
     },
+    isBuy(realty) {
+      return realty?.category_id === 12;
+    },
+    isRent(realty) {
+      return realty?.category_id === 383;
+    },
     getArea(realty) {
       const area = _.find(realty?.parameters, function (item) {
         return item.filter_id === 27 || item.filter_id === 37 || item.filter_id === 70;

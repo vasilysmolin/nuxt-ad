@@ -260,6 +260,15 @@ export default {
 
       return sort;
     },
+    isFlat(realty) {
+      return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410;
+    },
+    isBuy(realty) {
+      return realty?.category_id === 12;
+    },
+    isRent(realty) {
+      return realty?.category_id === 383;
+    },
     setSelectParams() {
       const filter = this.filters.filters;
       const selects = _.filter(filter, (item) => item.type === 'select');
