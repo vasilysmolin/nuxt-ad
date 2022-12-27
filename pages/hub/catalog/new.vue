@@ -79,7 +79,7 @@
             </div>
 
 
-            <div v-if="isNotRealtyFlat()" class="form-floating mb-4 w-full sm:w-[27rem]">
+            <div v-if="!isNotRealtyFlat()" class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
                      placeholder="Название вакансии"
@@ -191,11 +191,11 @@ export default {
   },
   validations: {
     data: {
-      name: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(5)
-      },
+      // name: {
+      //   required,
+      //   maxLength: maxLength(70),
+      //   minLength: minLength(5)
+      // },
       photos: {
         required,
       },

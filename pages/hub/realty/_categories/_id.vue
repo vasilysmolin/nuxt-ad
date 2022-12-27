@@ -211,9 +211,9 @@ export default {
       //   maxLength: maxLength(70),
       //   minLength: minLength(5)
       // },
-      date_build: {
-        required,
-      },
+      // date_build: {
+      //   required,
+      // },
       city_id: {
         required,
         maxLength: maxLength(70),
@@ -311,7 +311,9 @@ export default {
         data.append('filter[]', value);
       });
       data.append('name', this.data.name);
-      data.append('date_build', this.data.date_build);
+      if (this.data.date_build) {
+        data.append('date_build', this.data.date_build);
+      }
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('sale_price', this.data.price);

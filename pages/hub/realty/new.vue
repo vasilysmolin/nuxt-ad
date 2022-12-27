@@ -215,9 +215,9 @@ export default {
       photos: {
         required,
       },
-      date_build: {
-        required,
-      },
+      // date_build: {
+      //   required,
+      // },
       category_id: {
         required,
         numeric,
@@ -315,7 +315,9 @@ export default {
       // this.isDisabled = false;
       // return;
       data.append('name', this.data.name);
-      data.append('date_build', this.data.date_build);
+      if (this.data.date_build) {
+        data.append('date_build', this.data.date_build);
+      }
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('sale_price', this.data.sale_price);
