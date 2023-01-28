@@ -85,7 +85,12 @@ export default {
   mixins: [CategoriesMixin],
   components: {BContactC, BYandexMap},
   async asyncData({store, route}) {
-    await store.dispatch('ads/getItem', { id: route.params.id, querySearch: route.query?.querySearch,  expand: 'profile.user,profile.person'});
+    await store.dispatch('filters/setSearchType', {parameter: 'catalog'});
+    await store.dispatch('ads/getItem', {
+      id: route.params.id,
+      querySearch: route.query?.querySearch,
+      expand: 'profile.user,profile.person'
+    });
     await store.dispatch('categoriesAd/getItem', {id: store.state.ads.ad.category_id });
     return {
       ad: store.state.ads.ad,
@@ -136,11 +141,11 @@ export default {
     }),
   },
   head() {
-    let title = this.realty.title;
-    if (this.isFlat(this.realty)) {
-      const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
-      const entity = this.generateTitle(this.realty);
-      const address = `по адресу ` + this.getAddress(this.realty);
+    let title = this.ad?.title;
+    if (this.isFlat(this.ad)) {
+      const type = this.isBuy(this.ad) ? 'Продаётся' : 'Сдаётся';
+      const entity = this.generateTitle(this.ad);
+      const address = `по адресу ` + this.getAddress(this.ad);
       title = `${type} ${entity} ${address}`;
     }
     return {

@@ -137,6 +137,7 @@ export default {
     }
   },
   async mounted() {
+    await this.setSearchType({parameter: 'catalog'});
     const sub = this.$route.path.split('/').pop();
     this.querySearch = this.$route.query?.querySearch;
     this.setItems({
@@ -203,6 +204,7 @@ export default {
       setItemCategory: 'categoriesAd/setItem',
       getItemsCategories: 'categoriesAd/getItems',
       removeItem: 'categoriesAd/removeItem',
+      setSearchType: 'filters/setSearchType',
     }),
     everySix(count) {
       if (count % 6 === 0) {

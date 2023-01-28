@@ -15,6 +15,7 @@ export default {
       services: 'services/services',
       resumes: 'resumes/resumes',
       vacancies: 'vacancies/vacancies',
+      searchType: 'filters/searchType',
     }),
   },
   methods: {
@@ -51,8 +52,6 @@ export default {
       this.$modal.hide('GoSearch');
     },
     getSearchQuery() {
-      // this.$router.push({ path: '/feed', query: { query: this.query } })
-      // this.hide();
       if (this.querySearch) {
         window.location.href = `${process.env.CATALOG_URL}/feed?querySearch=${this.querySearch}`;
       }
@@ -60,42 +59,61 @@ export default {
     checkEmptyItem() {
       this.hasItems = this.realties.length > 0 || this.ads.length > 0 || this.services.length > 0 || this.vacancies.length > 0 || this.resumes.length > 0;
     },
+
     debounceInput: _.debounce(function () {
-      this.getItemsRealties({
-        querySearch: this.querySearch,
-        take: 6,
-      }).then(() => {
-        this.checkEmptyItem();
-      }).catch(() => {
-      });
-      this.getItemsAds({
-        querySearch: this.querySearch,
-        take: 6,
-      }).then(() => {
-        this.checkEmptyItem();
-      }).catch(() => {
-      });
-      this.getItemsResumes({
-        querySearch: this.querySearch,
-        take: 6,
-      }).then(() => {
-        this.checkEmptyItem();
-      }).catch(() => {
-      });
-      this.getItemsVacancies({
-        querySearch: this.querySearch,
-        take: 6,
-      }).then(() => {
-        this.checkEmptyItem();
-      }).catch(() => {
-      });
-      this.getItemsServices({
-        querySearch: this.querySearch,
-        take: 6,
-      }).then(() => {
-        this.checkEmptyItem();
-      }).catch(() => {
-      });
+      if (this.searchType === 'realty') {
+        this.getItemsRealties({
+          querySearch: this.querySearch,
+          take: 20,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+      } else if (this.searchType === 'catalog') {
+        this.getItemsAds({
+          querySearch: this.querySearch,
+          take: 20,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+      } else {
+        this.getItemsRealties({
+          querySearch: this.querySearch,
+          take: 6,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+        this.getItemsAds({
+          querySearch: this.querySearch,
+          take: 6,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+        this.getItemsResumes({
+          querySearch: this.querySearch,
+          take: 6,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+        this.getItemsVacancies({
+          querySearch: this.querySearch,
+          take: 6,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+        this.getItemsServices({
+          querySearch: this.querySearch,
+          take: 6,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+      }
     }, 500),
   },
 };

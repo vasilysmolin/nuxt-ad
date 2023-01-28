@@ -156,6 +156,7 @@ export default {
     }
   },
   async mounted() {
+    await this.setSearchType({parameter: 'realty'});
     const sub = this.$route.path.split('/').pop();
     this.querySearch = this.$route.query?.querySearch;
     this.setItems({
@@ -223,6 +224,7 @@ export default {
       setItemCategory: 'categoriesRealty/setItem',
       getItemsCategories: 'categoriesRealty/getItems',
       removeItem: 'categoriesRealty/removeItem',
+      setSearchType: 'filters/setSearchType',
     }),
     everySix(count) {
       if (count % 6 === 0) {

@@ -17,6 +17,13 @@
         <article class="mt-0 flex justify-start items-start" v-if="hasItems">
 
           <ul class="pl-6 py-2 w-[100%] list-disc list-inside">
+            <template v-if="realties.length > 0">
+              <li @click="hide" v-for="realty in realties" :key="realty.id" class="search-line">
+                <a :href="getUrlRealty(realty)" class="text-blue-700 hover:text-black">
+                  {{ realty.name }}, цена: {{ realty.price }} руб, адрес: {{ realty.street }} {{ realty.house }}
+                </a>
+              </li>
+            </template>
             <template v-if="ads.length > 0">
               <li @click="hide" v-for="ad in ads" :key="ad.id" class="search-line">
                 <a :href="getUrl(ad)" class="text-blue-700 hover:text-black">

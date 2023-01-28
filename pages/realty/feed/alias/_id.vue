@@ -108,6 +108,7 @@ export default {
   mixins: [CategoriesMixin],
   components: {BContactC, BYandexMap},
   async asyncData({store, route}) {
+    await store.dispatch('filters/setSearchType', {parameter: 'realty'});
     await store.dispatch('realty/getItem', {
       id: route.params.id,
       querySearch: route.query?.querySearch,
