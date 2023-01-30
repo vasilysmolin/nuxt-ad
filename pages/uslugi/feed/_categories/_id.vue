@@ -50,6 +50,7 @@ export default {
   layout: 'default-search',
   components: {BHead, BDescription, BContactU, BList, Breadcrumbs, BYandexMap},
   async asyncData({store, route}) {
+    await store.dispatch('filters/setSearchType', {parameter: 'service'});
     await store.dispatch('typeServices/getItems');
     await store.dispatch('services/getItem', {id: route.params.id, expand: 'profile.user,profile.person'});
     await store.dispatch('categoriesService/getItem', {id: store.state.services.service.category_id});

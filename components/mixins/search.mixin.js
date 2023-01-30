@@ -77,6 +77,30 @@ export default {
           this.checkEmptyItem();
         }).catch(() => {
         });
+      } else if (this.searchType === 'resume') {
+        this.getItemsResumes({
+          querySearch: this.querySearch,
+          take: 20,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+      } else if (this.searchType === 'vacancy') {
+        this.getItemsVacancies({
+          querySearch: this.querySearch,
+          take: 20,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
+      } else if (this.searchType === 'service') {
+        this.getItemsServices({
+          querySearch: this.querySearch,
+          take: 20,
+        }).then(() => {
+          this.checkEmptyItem();
+        }).catch(() => {
+        });
       } else {
         this.getItemsRealties({
           querySearch: this.querySearch,

@@ -16,6 +16,9 @@
       <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
         <span class="pl-2 text-sm">руб.</span>
       </p>
+      <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price_per_square }}
+        <span class="pl-2 text-sm">руб. за м.кв</span>
+      </p>
     </section>
 
     <BContactC

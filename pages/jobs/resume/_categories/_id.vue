@@ -105,6 +105,7 @@ export default {
   },
   async mounted() {
     this.showMap = true;
+    await this.$store.dispatch('filters/setSearchType', {parameter: 'resume'});
     await this.$store.dispatch('resumes/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
     if (Object.keys(this.$store.getters['experiences/experience']).length === 0) {
       await this.$store.dispatch('experiences/getItems');

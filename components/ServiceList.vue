@@ -80,6 +80,7 @@ export default {
     this.setItems({
       type: 'service'
     });
+    await this.$store.dispatch('filters/setSearchType', {parameter: 'service'});
     if(this.$route.path !== '/feed') {
       await this.getItem({id: this.alias }).then(() => {
         this.setItems({

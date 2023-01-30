@@ -93,6 +93,7 @@ export default {
     this.setItems({
       type: 'resume'
     });
+    await this.$store.dispatch('filters/setSearchType', {parameter: 'resume'});
     if (this.resumes.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user', from: 'catalog'});
     }

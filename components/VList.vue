@@ -97,6 +97,7 @@ export default {
     this.setItems({
       type: 'vacancy'
     });
+    await this.$store.dispatch('filters/setSearchType', {parameter: 'vacancy'});
     if (this.vacancies.length === 0) {
       await this.getItems({state: 'active', expand: 'profile.user,profile.person', from: 'catalog'});
     }

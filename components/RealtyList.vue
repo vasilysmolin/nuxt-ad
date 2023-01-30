@@ -32,6 +32,8 @@
                     {{ realty.name }}</h2>
                   <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                   </h3>
+                  <h3 class="mt-1 font-medium">{{ formatPrice(realty.price_per_square) }} <span class=" pr-1 text-xs">м.кв</span>
+                  </h3>
                   <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(realty) }}</p>
 
                   <table class="table-auto mb-2 mt-2">
@@ -112,7 +114,9 @@
                 <!--                  </tbody>-->
                 <!--                </table>-->
                 <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
-                  <!--                <span class="pl-1 text-xs">руб.</span>-->
+                </h3>
+                <h3 class="mt-1 text-sm sm:text-lg">{{ formatPrice(realty.price_per_square) }} <span
+                    class=" pr-1 text-xs">м.кв</span>
                 </h3>
               </section>
             </section>

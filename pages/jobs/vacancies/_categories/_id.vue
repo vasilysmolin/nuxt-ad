@@ -130,6 +130,7 @@ export default {
   },
   async mounted() {
     this.showMap = true;
+    await this.$store.dispatch('filters/setSearchType', {parameter: 'vacancy'});
     await this.$store.dispatch('vacancies/getItem', {id: this.$route.params.id, expand: 'profile.user,profile.person'});
     if (Object.keys(this.$store.getters['categoriesVacancy/categoriesVacancies']).length === 0) {
       await this.$store.dispatch('categoriesVacancy/getItems');
