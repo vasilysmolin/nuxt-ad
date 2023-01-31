@@ -331,6 +331,9 @@ export default {
       }
       return `${countRooms?.sort}-к квартира`;
     },
+    isNewBuilding(realty) {
+      return realty?.category_id === 410;
+    },
     isFlat(realty) {
       return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410;
     },

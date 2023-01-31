@@ -32,7 +32,8 @@
                     {{ realty.name }}</h2>
                   <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                   </h3>
-                  <h3 class="mt-1 font-medium">{{ formatPrice(realty.price_per_square) }} <span class=" pr-1 text-xs">м.кв</span>
+                  <h3 v-if="isNewBuilding(realty)" class="mt-1 font-medium">{{ formatPrice(realty.price_per_square) }}
+                    <span class=" pr-1 text-xs">м.кв</span>
                   </h3>
                   <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(realty) }}</p>
 
@@ -99,24 +100,12 @@
                   <p class="first-letter:uppercase">{{ getIsNew(realty) }}</p>
                   <p class="first-letter:uppercase">{{ getDateBuild(realty) }}</p>
                 </div>
-                <!--                <table v-else class="table-auto mb-2 mt-2">-->
-                <!--                  <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">-->
-                <!--                  <tr v-if="index <= 1">-->
-                <!--                    <td>{{ item.filter.name }}</td>-->
-                <!--                    <td>{{ item.value }}</td>-->
-                <!--                  </tr>-->
-                <!--                  </tbody>-->
-                <!--                  <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">-->
-                <!--                  <tr v-if="index <= 1">-->
-                <!--                    <td>{{ item.filter.name }}</td>-->
-                <!--                    <td>{{ item.value }}</td>-->
-                <!--                  </tr>-->
-                <!--                  </tbody>-->
-                <!--                </table>-->
                 <h3 class="mt-1 text-sm sm:text-lg"><span class=" pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                 </h3>
-                <h3 class="mt-1 text-sm sm:text-lg">{{ formatPrice(realty.price_per_square) }} <span
-                    class=" pr-1 text-xs">м.кв</span>
+                <h3 v-if="isNewBuilding(realty)" class="mt-1 text-sm sm:text-lg">{{
+                    formatPrice(realty.price_per_square)
+                  }} <span
+                      class=" pr-1 text-xs">м.кв</span>
                 </h3>
               </section>
             </section>
