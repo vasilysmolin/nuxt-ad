@@ -35,7 +35,9 @@
                   <h3 v-if="isNewBuilding(realty)" class="mt-1 font-medium">{{ formatPrice(realty.price_per_square) }}
                     <span class=" pr-1 text-xs">м.кв</span>
                   </h3>
-                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(realty) }}</p>
+                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{
+                      realty.full_address
+                    }}</p>
 
                   <table class="table-auto mb-2 mt-2">
                     <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
@@ -90,7 +92,7 @@
                 <h2 v-else
                     class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
                   {{ realty.name }}</h2>
-                <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
+                <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
                 <div v-if="isFlat(realty)" class="table-auto mb-2 mt-2">
                   <p class="first-letter:uppercase">{{ getSeller(realty) }}</p>
                   <p class="first-letter:uppercase">{{ getRooms(realty) }}</p>

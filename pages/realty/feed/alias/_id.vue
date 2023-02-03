@@ -12,7 +12,7 @@
         {{ generateTitle(realty) }}</h1>
       <h1 v-else class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
         {{ realty.name }}</h1>
-      <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
+      <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
       <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
         <span class="pl-2 text-sm">руб.</span>
       </p>

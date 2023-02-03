@@ -28,7 +28,9 @@
                     {{ realty.name }}</h2>
                   <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
                   </h3>
-                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(realty) }}</p>
+                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{
+                      realty.full_address
+                    }}</p>
 
                   <table class="table-auto mb-2 mt-2">
                     <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
@@ -79,7 +81,7 @@
               <section class="flex flex-col justify-between pl-4">
                 <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">
                   {{ realty.name }}</h2>
-                <p class="first-letter:uppercase text-slate-400">{{ getAddress(realty) }}</p>
+                <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
                 <table class="table-auto mb-2 mt-2">
                   <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
                   <tr v-if="index <= 1">

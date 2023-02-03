@@ -27,7 +27,7 @@
                   <h2 class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
                     {{ ad.name }}</h2>
                   <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(ad.price) }}</h3>
-                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ getAddress(ad) }}</p>
+                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{ ad.full_address }}</p>
 
                   <table class="table-auto mb-2 mt-2">
                     <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
@@ -77,7 +77,7 @@
             </section>
             <section class="flex flex-col justify-between pl-4">
               <h2 class="first-letter:uppercase font-bold sm:font-black text-[0.75rem] leading-tight sm:leading-5 sm:text-lg">{{ ad.name }}</h2>
-              <p class="first-letter:uppercase text-slate-400">{{ getAddress(ad)}}</p>
+              <p class="first-letter:uppercase text-slate-400">{{ ad.full_address }}</p>
               <table class="table-auto mb-2 mt-2">
                 <tbody v-for="(item, index) in getParamsSelect(ad)" :key="item.id">
                 <tr v-if="index <= 1">
