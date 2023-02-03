@@ -26,7 +26,7 @@
                 <section class="flex flex-col pl-5 pr-10">
                   <h2 v-if="isFlat(realty)"
                       class="mt-3 font-bold leading-[27px] text-2xl group-hover:text-blue-600">
-                    {{ generateTitle(realty) }}</h2>
+                    {{ generateTitle(realty) }}<span class="text-lg"> м<sup>2</sup></span></h2>
                   <h2 v-else
                       class="mt-3 font-bold leading-[27px] text-2xl group-hover:text-blue-600">
                     {{ realty.name }}</h2>
@@ -35,45 +35,44 @@
 
                   <h3 class="mt-5 font-bold text-2xl">{{ formatPrice(realty.price) }}</h3>
 
-                  <h3 v-if="isNewBuilding(realty)" class="mt-1 text-gray-500">Застройщик ЗАПРАВКИН</h3>
+                  <h3 v-if="isNewBuilding(realty)" class="mt-1 text-sm text-gray-500">Застройщик ЗАПРАВКИН</h3>
 
                 </section>
 
-                <section class="grid grid-cols-2 gap-4 items-center text-sm">
-                  <ul class="pl-2 text-gray-500 leading-9">
+                <section v-if="isNewBuilding(realty)" class="grid grid-cols-2 gap-4 items-center text-sm">
+                  <ul class="text-gray-500 leading-9">
                     <li>Стоимость, м<sup><small>2</small></sup></li>
                     <li>Этаж</li>
                     <li>Тип дома</li>
                     <li>Тип комнат</li>
-                    <li>Отделка</li>
                     <li class="text-black font-bold">Срок сдачи</li>
                   </ul>
                   <ul class="text-gray-500 leading-9">
                     <li v-if="isNewBuilding(realty)" class="mt-1 text-gray-500">{{ formatPrice(realty.price_per_square) }}</li>
-                    <li>21</li>
-                    <li>Монолитный</li>
-                    <li>Студия</li>
-                    <li>Без отделки</li>
-                    <li class="text-black font-bold">1 кв. 2025 года</li>
+                    <li>{{ getFloor(realty) }}</li>
+                    <li>{{ getHouseType(realty) }}</li>
+                    <li>{{ getTypeRooms(realty) }}</li>
+                    <li class="text-black font-bold">{{ getDateBuild(realty) }} год</li>
                   </ul>
+                </section>
 
-                  <!--
-                  <table class="px-5 w-full bg-blue-600">
-                    <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
-                    <tr v-if="index <= 1">
-                      <td>{{ item.filter.name }}</td>
-                      <td>{{ item.value }}</td>
-                    </tr>
-                    </tbody>
-                    <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">
-                    <tr v-if="index <= 1">
-                      <td>{{ item.filter.name }}</td>
-                      <td>{{ item.value }}</td>
-                    </tr>
-                    </tbody>
-                  </table>
-                  -->
-
+                <section v-else class="grid grid-cols-2 gap-4 items-center text-sm">
+                  <ul class="text-gray-500 leading-9">
+                      <li v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.filter.name }}</template>
+                      </li>
+                      <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.filter.name }}</template>
+                      </li>
+                  </ul>
+                  <ul class="text-gray-500 leading-9">
+                      <li v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.value }}</template>
+                      </li>
+                      <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.value }}</template>
+                      </li>
+                  </ul>
                 </section>
 
               </section>
