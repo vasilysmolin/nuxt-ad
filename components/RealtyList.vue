@@ -3,9 +3,9 @@
     <BCategoriesNav
         :category="category"
     />
-    <div v-if="$device.isDesktop" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
-      <div class="mx-auto flex flex-col w-[500px]">
-        <h1 class="text-xl text-center font-black leading-none">
+    <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
+      <div class="mx-auto flex flex-col w-full">
+        <h1 class="text-2xl font-black leading-none">
           {{ getH1() }}
         </h1>
         <Breadcrumbs
@@ -15,45 +15,64 @@
             :link="category"
         />
         <template v-for="(realty, ind) in realties">
-          <article class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
+          <article class="p-1 group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
             <NuxtLink :to="getUrl(realty)">
-              <section class="grid grid-cols-[25%,_1fr]">
+              <section class="grid grid-cols-[250px,450px,_1fr]">
 
                 <section>
-                  <img class="w-full rounded-lg" :src="getPhoto(realty)" :alt="realty.name">
+                  <img class="w-full rounded-lg bg-cover" :src="getPhoto(realty)" :alt="realty.name">
                 </section>
 
-                <section class="flex flex-col px-4">
+                <section class="flex flex-col pl-5 pr-10">
                   <h2 v-if="isFlat(realty)"
-                      class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
-                    {{ generateTitle(realty) }}</h2>
+                      class="mt-3 font-bold leading-[27px] text-2xl group-hover:text-blue-600">
+                    {{ generateTitle(realty) }}<span class="text-lg"> м<sup>2</sup></span></h2>
                   <h2 v-else
-                      class="mt-3 first-letter:uppercase lowercase font-medium leading-[22px] text-lg group-hover:text-blue-600">
+                      class="mt-3 font-bold leading-[27px] text-2xl group-hover:text-blue-600">
                     {{ realty.name }}</h2>
-                  <h3 class="mt-1.5 font-medium"><span class="pr-1 text-xs">от</span>{{ formatPrice(realty.price) }}
-                  </h3>
-                  <h3 v-if="isNewBuilding(realty)" class="mt-1 font-medium">{{ formatPrice(realty.price_per_square) }}
-                    <span class=" pr-1 text-xs">м.кв</span>
-                  </h3>
-                  <p class="mt-1.5  first-letter:uppercase lowercase text-sm text-gray-500">{{
-                      realty.full_address
-                    }}</p>
 
-                  <table class="table-auto mb-2 mt-2">
-                    <tbody v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
-                    <tr v-if="index <= 1">
-                      <td>{{ item.filter.name }}</td>
-                      <td>{{ item.value }}</td>
-                    </tr>
-                    </tbody>
-                    <tbody v-for="(item, index) in getParamsRange(realty)" :key="item.id">
-                    <tr v-if="index <= 1">
-                      <td>{{ item.filter.name }}</td>
-                      <td>{{ item.value }}</td>
-                    </tr>
-                    </tbody>
-                  </table>
+                  <p class="mt-2.5 text-sm text-gray-500">{{ realty.full_address }}</p>
 
+                  <h3 class="mt-5 font-bold text-2xl">{{ formatPrice(realty.price) }}</h3>
+
+                  <h3 v-if="isNewBuilding(realty)" class="mt-1 text-sm text-gray-500">Застройщик ЗАПРАВКИН</h3>
+
+                </section>
+
+                <section v-if="isNewBuilding(realty)" class="grid grid-cols-2 gap-4 items-center text-sm">
+                  <ul class="text-gray-500 leading-9">
+                    <li>Стоимость, м<sup><small>2</small></sup></li>
+                    <li>Этаж</li>
+                    <li>Тип дома</li>
+                    <li>Тип комнат</li>
+                    <li class="text-black font-bold">Срок сдачи</li>
+                  </ul>
+                  <ul class="text-gray-500 leading-9">
+                    <li v-if="isNewBuilding(realty)" class="mt-1 text-gray-500">{{ formatPrice(realty.price_per_square) }}</li>
+                    <li>{{ getFloor(realty) }}</li>
+                    <li>{{ getHouseType(realty) }}</li>
+                    <li>{{ getTypeRooms(realty) }}</li>
+                    <li class="text-black font-bold">{{ getDateBuild(realty) }} год</li>
+                  </ul>
+                </section>
+
+                <section v-else class="grid grid-cols-2 gap-4 items-center text-sm">
+                  <ul class="text-gray-500 leading-9">
+                      <li v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.filter.name }}</template>
+                      </li>
+                      <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.filter.name }}</template>
+                      </li>
+                  </ul>
+                  <ul class="text-gray-500 leading-9">
+                      <li v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.value }}</template>
+                      </li>
+                      <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
+                        <template v-if="index <= 2">{{ item.value }}</template>
+                      </li>
+                  </ul>
                 </section>
 
               </section>

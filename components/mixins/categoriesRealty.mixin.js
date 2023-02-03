@@ -327,7 +327,7 @@ export default {
         return item.filter_id === 27 || item.filter_id === 37 || item.filter_id === 70;
       });
       if (area?.sort) {
-        return `${countRooms?.sort}-к квартира ${area?.sort} м2`;
+        return `${countRooms?.sort}-к квартира, ${area?.sort}`;
       }
       return `${countRooms?.sort}-к квартира`;
     },
@@ -390,7 +390,7 @@ export default {
         return item.filter_id === 23 || item.filter_id === 33 || item.filter_id === 68;
       });
       if (countFloor?.sort) {
-        return `Этаж ${countFloor?.sort}`;
+        return `${countFloor?.sort}`;
       }
 
     },
@@ -399,7 +399,7 @@ export default {
         return item.filter_id === 24 || item.filter_id === 34 || item.filter_id === 69;
       });
       if (houseType?.value) {
-        return `Тип дома ${houseType?.value}`;
+        return `${houseType?.value}`;
       }
     },
     getTypeRooms(realty) {
@@ -407,7 +407,7 @@ export default {
         return item.filter_id === 41 || item.filter_id === 42 || item.filter_id === 74;
       });
       if (type?.value) {
-        return `Тип комнат ${type?.value}`;
+        return `${type?.value}`;
       }
     },
     getIsNew(realty) {
@@ -419,7 +419,7 @@ export default {
       }
     },
     getDateBuild(realty) {
-      return `Дата постройки ${realty?.date_build}`;
+      return `${realty?.date_build}`;
     },
   },
 };
