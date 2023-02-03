@@ -1,10 +1,9 @@
 <template>
-  <section class="mt-12 py-5 px-3 flex flex-col justify-center items-center w-full rounded bg-[#eeeeee]">
-    <h2 class="text-base font-bold">Найти объявление, работу или исполнителя</h2>
-    <section class="mt-4 p-1.5 relative flex flex-wrap items-stretch w-full bg-white border border-solid rounded border-gray-300">
+  <section class="mt-10 flex flex-col justify-center items-center w-full">
+    <section class="p-1.5 relative flex flex-wrap items-stretch w-full bg-[#F7F7FC] border border-solid rounded border-gray-400">
       <input autofocus v-on:input="debounceInput" v-model="querySearch" type="text"
-             class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
-             placeholder="Например, квартира, вакансии, подработка" aria-label="Поиск" aria-describedby="button-addon2">
+             class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-[#F7F7FC] bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
+             placeholder="Поиск по каталогу недвижимости" aria-label="Поиск" aria-describedby="button-addon2">
       <button @click="getSearchQuery"
               class="btn inline-block px-10 py-1 bg-blue-900 text-white font-bold text-sm tracking-wider rounded hover:bg-black focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
               type="button" id="button-addon2">Найти
@@ -14,7 +13,7 @@
         <ul class="px-2 py-2.5 w-full text-[15px]">
           <template v-if="realties.length > 0">
             <li @click="hide" v-for="realty in realties" :key="realty.id" class="search-line">
-              <a :href="getUrlRealty(realty)" class="block px-2 py-2">
+              <a :href="getUrlRealty(realty)" class="block px-2 py-2 rounded hover:bg-sky-100">
                 {{ realty.name }}, цена: {{ realty.price }} руб, адрес: {{ realty.street }} {{ realty.house }}
               </a>
             </li>

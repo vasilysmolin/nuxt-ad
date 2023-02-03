@@ -2,11 +2,11 @@
   <section v-if="isLoading">
 
     <div v-if="$device.isDesktop">
-      <section class="mt-12 py-5 px-3 flex flex-col justify-center items-center w-full rounded bg-[#eeeeee]">
+      <section class="mt-10 flex flex-col justify-center items-center w-full">
         <h2 class="max-w-[650px] text-base text-center">Тапиго обновляется каждый день — новые инструменты и сервисы, грамотные и полезные советы. Раз в неделю без спама.</h2>
-        <section class="mt-7 p-1.5 relative flex flex-wrap items-stretch w-full bg-white border border-solid rounded border-gray-300">
+        <section class="mt-7 p-1.5 relative flex flex-wrap items-stretch w-full bg-[#F7F7FC] border border-solid rounded border-gray-400">
           <input v-model="data.email" type="email"
-                 class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-white bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
+                 class="form-control relative mr-2 flex-auto block px-1 py-2.5 text-base font-regular bg-[#F7F7FC] bg-clip-padding transition ease-in-out m-0 focus:outline-none focus:ring-0"
                  placeholder="Ваша почта" aria-label="Поиск" aria-describedby="button-addon2">
           <button @click.prevent="submitted"
                   class="btn inline-block px-10 py-1 bg-blue-900 text-white font-bold text-sm tracking-wider rounded hover:bg-black focus:bg-black focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
