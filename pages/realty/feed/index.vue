@@ -16,7 +16,7 @@ export default {
   components: {RealtyList},
   layout: 'default-search',
   head: {
-    title: "Бесплатно создавайте объявления без ограничений на Tapigo.ru | Каталог объявлений",
+    title: "Новостройки и квартиры от застройщика на Tapigo.ru | Каталог недвижимости",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
