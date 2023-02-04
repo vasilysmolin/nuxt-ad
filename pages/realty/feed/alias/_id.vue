@@ -1,36 +1,53 @@
 <template>
-  <article class="container flex flex-col items-center mt-[80px] pb-[100px]">
+  <section v-if="$device.isDesktopOrTablet" class="container mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
     <Breadcrumbs
         :baseName="`Все категории`"
         :basePath="`/`"
         :depth="1"
         :link="adWithCategory"
     />
+    <article class="mt-[15px] grid grid-cols-[620px,_1fr] gap-[20px] bg-blue-300">
+      <section class="rounded-lg bg-white w-[620px]">
+        <section class="w-full">
+          <h1 v-if="isFlat(realty)" class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
+            {{ generateTitle(realty) }}</h1>
+          <h1 v-else class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
+            {{ realty.name }}</h1>
+          <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
+          <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
+            <span class="pl-2 text-sm">руб.</span>
+          </p>
+          <p v-if="isNewBuilding(realty)" class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price_per_square }}
+            <span class="pl-2 text-sm">руб. за м.кв</span>
+          </p>
+        </section>
 
-    <section class="flex flex-col p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h1 v-if="isFlat(realty)" class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
-        {{ generateTitle(realty) }}</h1>
-      <h1 v-else class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
-        {{ realty.name }}</h1>
-      <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
-      <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
-        <span class="pl-2 text-sm">руб.</span>
-      </p>
-      <p v-if="isNewBuilding(realty)" class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price_per_square }}
-        <span class="pl-2 text-sm">руб. за м.кв</span>
-      </p>
-    </section>
+        <section class="w-full bg-blue-300">
+          <div class="grid grid-cols-1 bg-white">
+            <div class="flex justify-center items-center">
+              <img class="cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+            </div>
+            <div class="mt-2.5 pl-[20px] pr-[20px] flex justify-center items-center">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
+              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
 
-    <BContactC
-        :name="getUserName(realty)"
-        :phone="getUserPhone(realty)"
-        :address="null"
-    />
+            </div>
+          </div>
+        </section>
 
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
+      </section>
+
+        <!--
       <h2 class="text-sm font-bold text-black">Описание</h2>
       <p class="mt-1 text-sm sm:text-base text-gray-600" v-html="realty.description"></p>
-    </section>
 
     <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
       <h2 class="text-sm font-bold text-black">Характеристики</h2>
@@ -93,8 +110,18 @@
         </div>
       </section>
     </section>
-  </article>
+-->
 
+        <BContactC
+            :name="getUserName(realty)"
+            :phone="getUserPhone(realty)"
+            :address="null"
+        />
+
+
+
+  </article>
+  </section>
 </template>
 
 <script>

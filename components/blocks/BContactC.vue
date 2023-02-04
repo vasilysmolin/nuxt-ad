@@ -1,18 +1,18 @@
 <template>
-  <section v-if="isLoading" class="flex flex-col p-5 w-[95%] mt-4 rounded-lg sm:max-w-screen-sm bg-white">
+  <section v-if="isLoading" class="flex flex-col px-2.5 h-[220px] rounded-lg bg-white">
 
-    <div v-if="$device.isDesktop" class="flex flex-col px-5 w-[100%]">
-      <p class="leading-5 font-medium">Компания:<span class="pl-2 font-normal text-gray-800">{{ name }}</span></p>
-      <div class="my-5 flex justify-start items-center">
-        <p v-if="$auth.loggedIn" class="font-medium leading-none">Телефон:<span
+    <div v-if="$device.isDesktop" class="flex flex-col">
+      <div class="flex flex-col justify-start items-start">
+        <p v-if="$auth.loggedIn" class="w-full font-medium leading-none">Телефон:<span
             class="pl-2 font-black text-lg leading-none">{{ number }}</span>
           <a class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
              :href="`mailto:${email}`">Откликнуться</a>
         </p>
         <button v-else type="button"
-                class="btn btn-primary inline-block px-5 py-3 bg-blue-900 text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-black"
+                class="btn btn-primary inline-block px-5 py-3 bg-[#00A05D] w-full text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
                 @click.prevent="showModalAuth">Показать телефон
         </button>
+        <p class="leading-5 font-medium"><span class="pl-2 font-normal text-gray-500">{{ name }}</span></p>
       </div>
       <p v-if="address != null" class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{
           address
