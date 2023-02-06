@@ -21,25 +21,50 @@
           </p>
         </section>
 
-        <section class="w-full bg-blue-300">
-          <div class="grid grid-cols-1 bg-white">
-            <div class="flex justify-center items-center">
-              <img class="cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-            </div>
-            <div class="mt-2.5 pl-[20px] pr-[20px] flex justify-center items-center">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">
-
-            </div>
+        <section class="w-full bg-blue-300 container container--fluid">
+          <div class="row no-gutters align-center justify-center carousel-wrapper as-nav-for">
+            <VueSlickCarousel
+                ref="main"
+                :asNavFor="$refs.preview"
+                :focusOnSelect="true"
+            >
+              <!--              <div v-for="(photo, index) in realty.photos">-->
+              <img v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
+              <!--              </div>-->
+            </VueSlickCarousel>
           </div>
+          <div class="row no-gutters align-center justify-center carousel-wrapper as-nav-for">
+            <VueSlickCarousel
+                ref="preview"
+                :asNavFor="$refs.main"
+                :slidesToShow="4"
+                :focusOnSelect="true"
+                v-show="main"
+            >
+              <!--              <div >-->
+              <img v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
+              <!--              </div>-->
+            </VueSlickCarousel>
+          </div>
+          <!--          </div>-->
+          <!--          <div class="grid grid-cols-1 bg-white">-->
+          <!--            <div class="flex justify-center items-center">-->
+          <!--              <img class="cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--            </div>-->
+          <!--            <div class="mt-2.5 pl-[20px] pr-[20px] flex justify-center items-center">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
+
+          <!--            </div>-->
+          <!--          </div>-->
         </section>
 
       </section>
@@ -131,11 +156,15 @@ import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import BContactC from "~/components/blocks/BContactC";
 import BYandexMap from "~/components/blocks/BYandexMap";
 
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
 export default {
   name: "RealtyCart",
   layout: 'default-search',
   mixins: [CategoriesMixin],
-  components: {BContactC, BYandexMap},
+  components: {BContactC, BYandexMap, VueSlickCarousel},
   async asyncData({store, route}) {
     await store.dispatch('filters/setSearchType', {parameter: 'realty'});
     await store.dispatch('realty/getItem', {
@@ -148,7 +177,15 @@ export default {
       realty: store.state.realty.realty,
     }
   },
+  data() {
+    return {
+      main: null,
+      preview: null,
+    }
+  },
   async mounted() {
+    this.main = this.$refs.main;
+    this.preview = this.$refs.preview;
   },
   methods: {
     getUserName(catalog) {
@@ -188,7 +225,7 @@ export default {
       }
     },
     ...mapGetters({
-      realty: 'realty/realty',
+      // realty: 'realty/realty',
       category: 'categoriesRealty/categoryRealties',
     }),
   },
