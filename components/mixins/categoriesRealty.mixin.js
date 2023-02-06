@@ -319,6 +319,13 @@ export default {
       // Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
       // });
     },
+    formatPrice(price) {
+      return new Intl.NumberFormat('ru-RU', {
+        style: 'currency',
+        currency: 'RUB',
+        minimumFractionDigits: 0
+      }).format(price);
+    },
     generateTitle(realty) {
       const countRooms = _.find(realty?.parameters, function (item) {
         return item.filter_id === 21 || item.filter_id === 31 || item.filter_id === 66;
@@ -365,6 +372,25 @@ export default {
       });
       if (area?.value) {
         return area.sort;
+      }
+    },
+    getAgent(realty) {
+      return realty?.agent?.name;
+    },
+    getFinishing(realty) {
+      const finishing = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 78;
+      });
+      if (finishing?.value) {
+        return `${finishing?.value}`;
+      }
+    },
+    getDeadline(realty) {
+      const deadline = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 79;
+      });
+      if (deadline?.value) {
+        return `${deadline?.value}`;
       }
     },
     getSeller(realty) {

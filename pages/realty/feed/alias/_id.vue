@@ -10,15 +10,14 @@
       <section class="rounded-lg bg-white w-[620px]">
         <section class="w-full">
           <h1 v-if="isFlat(realty)" class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
-            {{ generateTitle(realty) }}</h1>
+            {{ generateTitle(realty) }} <span class="text-lg"> м<sup>2</sup></span></h1>
           <h1 v-else class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
             {{ realty.name }}</h1>
           <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
-          <p class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price }}
-            <span class="pl-2 text-sm">руб.</span>
-          </p>
-          <p v-if="isNewBuilding(realty)" class="mt-2 text-xl sm:text-2xl font-bold">{{ realty.price_per_square }}
-            <span class="pl-2 text-sm">руб. за м.кв</span>
+          <p class="mt-2 text-xl sm:text-2xl font-bold">{{ formatPrice(realty.price) }}</p>
+          <p v-if="isNewBuilding(realty)" class="mt-2 text-xl sm:text-2xl font-bold">
+            {{ formatPrice(realty.price_per_square) }}
+            <span class="text-lg"> м<sup>2</sup></span>
           </p>
         </section>
 

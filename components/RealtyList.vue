@@ -35,7 +35,8 @@
 
                   <h3 class="mt-5 font-bold text-2xl">{{ formatPrice(realty.price) }}</h3>
 
-                  <h3 v-if="isNewBuilding(realty)" class="mt-1 text-sm text-gray-500">Застройщик ЗАПРАВКИН</h3>
+                  <h3 v-if="isNewBuilding(realty)" class="mt-1 text-sm text-gray-500">Застройщик
+                    {{ getAgent(realty) }}</h3>
 
                 </section>
 
@@ -45,14 +46,19 @@
                     <li>Этаж</li>
                     <li>Тип дома</li>
                     <li>Тип комнат</li>
+                    <li>Отделка</li>
                     <li class="text-black font-bold">Срок сдачи</li>
                   </ul>
                   <ul class="text-gray-500 leading-9">
-                    <li v-if="isNewBuilding(realty)" class="mt-1 text-gray-500">{{ formatPrice(realty.price_per_square) }}</li>
+                    <li v-if="isNewBuilding(realty)" class="mt-1 text-gray-500">{{
+                        formatPrice(realty.price_per_square)
+                      }}
+                    </li>
                     <li>{{ getFloor(realty) }}</li>
                     <li>{{ getHouseType(realty) }}</li>
                     <li>{{ getTypeRooms(realty) }}</li>
-                    <li class="text-black font-bold">{{ getDateBuild(realty) }} год</li>
+                    <li>{{ getFinishing(realty) }}</li>
+                    <li class="text-black font-bold">{{ getDeadline(realty) }} {{ getDateBuild(realty) }} год</li>
                   </ul>
                 </section>
 
@@ -260,13 +266,6 @@ export default {
     },
     getPhoto(realty) {
       return realty.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
-    },
-    formatPrice(price) {
-      return new Intl.NumberFormat('ru-RU', {
-        style: 'currency',
-        currency: 'RUB',
-        minimumFractionDigits: 0
-      }).format(price);
     },
     getAddress(realty) {
       let arrayAddress = [];
