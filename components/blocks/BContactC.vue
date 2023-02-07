@@ -2,6 +2,8 @@
   <section v-if="isLoading" class="flex flex-col px-2.5 h-[220px] rounded-lg bg-white">
 
     <div v-if="$device.isDesktop" class="flex flex-col">
+      <p>{{ price }}</p>
+      <p>{{ agent }}</p>
       <div class="flex flex-col justify-start items-start">
         <p v-if="$auth.loggedIn" class="w-full font-medium leading-none">Телефон:<span
             class="pl-2 font-black text-lg leading-none">{{ number }}</span>
@@ -64,6 +66,8 @@ export default {
     name: String,
     phone: String,
     address: String,
+    price: String,
+    agent: String,
     email: String
   },
   computed: {},

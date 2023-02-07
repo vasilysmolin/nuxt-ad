@@ -139,6 +139,8 @@
         <BContactC
             :name="getUserName(realty)"
             :phone="getUserPhone(realty)"
+            :price="formatPrice(realty.price)"
+            :agent="getAgent(realty)"
             :address="null"
         />
 
