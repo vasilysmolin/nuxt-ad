@@ -1,6 +1,6 @@
 <template>
   <section>
-    <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
+    <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
       <h1 class="px-12 text-4xl text-center font-black">Каталог недвижимости</h1>
       <p @click="linkHub" class="text-center">
         <nuxt-link to=""
@@ -11,7 +11,7 @@
       <GoSearchDesktop/>
       <ListServicesRealtyCategories/>
 
-      <!-- вставка для перелинка сервисов -->
+      <!-- вставка для перелинка сервисов
       <div class="mt-12">
         <span class="block mx-auto w-[100%] h-[1px] bg-[#E9E9E9]"></span>
         <h3 class="mt-10 mb-7 text-center font-bold">Другие сервисы</h3>
@@ -34,7 +34,7 @@
           </article>
         </div>
       </div>
-      <!-- -->
+      -->
 
       <WhatsTapigo/>
       <BNewLetters/>

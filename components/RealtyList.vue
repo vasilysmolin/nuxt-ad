@@ -1,8 +1,10 @@
 <template>
   <section>
+    <!--
     <BCategoriesNav
         :category="category"
     />
+    -->
     <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
       <div class="mx-auto flex flex-col w-full">
         <h1 class="text-2xl font-black leading-none">
