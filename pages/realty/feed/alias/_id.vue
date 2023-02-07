@@ -140,6 +140,8 @@
             :name="getUserName(realty)"
             :phone="getUserPhone(realty)"
             :price="formatPrice(realty.price)"
+            :price_per_square="formatPrice(realty.price_per_square)"
+            :isNew="isNewBuilding(realty)"
             :agent="getAgent(realty)"
             :address="null"
         />

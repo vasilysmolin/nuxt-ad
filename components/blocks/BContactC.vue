@@ -3,18 +3,21 @@
 
     <div v-if="$device.isDesktop" class="flex flex-col">
       <p>{{ price }}</p>
-      <p>{{ agent }}</p>
+      <p v-if="isNew">{{ price_per_square }} <span class="">за м<sup>2</sup></span></p>
       <div class="flex flex-col justify-start items-start">
         <p v-if="$auth.loggedIn" class="w-full font-medium leading-none">Телефон:<span
             class="pl-2 font-black text-lg leading-none">{{ number }}</span>
-          <a class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
-             :href="`mailto:${email}`">Откликнуться</a>
+          <a v-if="isNew" class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
+             :href="`mailto:${email}`">Оставить заявку</a>
+          <a v-else class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
+             :href="`mailto:${email}`">Написать продавцу</a>
         </p>
         <button v-else type="button"
                 class="btn btn-primary inline-block px-5 py-3 bg-[#00A05D] w-full text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
                 @click.prevent="showModalAuth">Показать телефон
         </button>
-        <p class="leading-5 font-medium"><span class="pl-2 font-normal text-gray-500">{{ name }}</span></p>
+        <p v-if="isNew">{{ agent }}</p>
+        <p v-else class="leading-5 font-medium"><span class="pl-2 font-normal text-gray-500">{{ name }}</span></p>
       </div>
       <p v-if="address != null" class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{
           address
@@ -45,6 +48,7 @@
 <script>
 import AuthModal from "../../components/AuthModal";
 import VMask from 'string-mask'
+import {isObject} from "lodash/lang";
 
 export default {
   name: "BContactC",
@@ -66,7 +70,9 @@ export default {
     name: String,
     phone: String,
     address: String,
+    isNew: Boolean,
     price: String,
+    price_per_square: String,
     agent: String,
     email: String
   },
