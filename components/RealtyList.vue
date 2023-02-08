@@ -268,9 +268,6 @@ export default {
     getUrl(realty) {
       return `/feed/alias/${realty.alias}`
     },
-    getUsername(catalog) {
-      return catalog?.profile?.user?.name
-    },
     getPhoto(realty) {
       return realty.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
     },
