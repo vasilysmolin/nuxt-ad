@@ -1,12 +1,13 @@
 <template>
-  <section v-if="isLoading" class="flex flex-col px-2.5 h-[220px] rounded-lg bg-white">
+  <section v-if="isLoading" class="flex flex-col self-start py-3 px-2.5 w-full rounded-lg bg-white">
 
-    <div v-if="$device.isDesktop" class="flex flex-col">
-      <p>{{ price }}</p>
-      <p v-if="isNew">{{ price_per_square }} <span class="">за м<sup>2</sup></span></p>
-      <div class="flex flex-col justify-start items-start">
-        <p v-if="$auth.loggedIn" class="w-full font-medium leading-none">Телефон:<span
-            class="pl-2 font-black text-lg leading-none">{{ number }}</span>
+    <div v-if="$device.isDesktop">
+      <p class="font-bold leading-[27px] text-2xl">{{ price }}</p>
+      <p class="mt-1.5 text-base text-gray-500" v-if="isNew">{{ price_per_square }} <span class="text-sm">за м<sup>2</sup></span></p>
+      <p class="mt-1.5 text-sm text-gray-500"><span class="">Продавец {{ name }}</span></p>
+      <div class="mt-5 flex flex-col justify-start items-start">
+        <p v-if="$auth.loggedIn" class="w-full text-sm text-gray-500 leading-none">Телефон:<span
+            class="pl-2 text-black font-black text-lg leading-none">{{ number }}</span>
           <a v-if="isNew" class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
              :href="`mailto:${email}`">Оставить заявку</a>
           <a v-else class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
@@ -16,8 +17,7 @@
                 class="btn btn-primary inline-block px-5 py-3 bg-[#00A05D] w-full text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
                 @click.prevent="showModalAuth">Показать телефон
         </button>
-        <p v-if="isNew">{{ agent }}</p>
-        <p v-else class="leading-5 font-medium"><span class="pl-2 font-normal text-gray-500">{{ name }}</span></p>
+        <p class="mt-5 text-sm text-gray-500" v-if="isNew">Застройщик {{ agent }}</p>
       </div>
       <p v-if="address != null" class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{
           address

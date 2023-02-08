@@ -37,7 +37,7 @@
 
                   <h3 class="mt-5 font-bold text-2xl">{{ formatPrice(realty.price) }}</h3>
 
-                  <h3 v-if="isNewBuilding(realty)" class="mt-1 text-sm text-gray-500">Застройщик
+                  <h3 class="mt-1 text-sm text-gray-500">Застройщик
                     {{ getAgent(realty) }}</h3>
 
                 </section>

@@ -6,22 +6,20 @@
         :depth="1"
         :link="adWithCategory"
     />
-    <article class="mt-[15px] grid grid-cols-[620px,_1fr] gap-[20px] bg-blue-300">
+    <article class="mt-[15px] grid grid-cols-[620px,_1fr] gap-[20px]">
       <section class="rounded-lg bg-white w-[620px]">
         <section class="w-full">
-          <h1 v-if="isFlat(realty)" class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
+          <h1 v-if="isFlat(realty)" class="mt-3 px-2.5 font-bold leading-[27px] text-2xl">
             {{ generateTitle(realty) }} <span class="text-lg"> м<sup>2</sup></span></h1>
-          <h1 v-else class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-xl">
+
+          <h1 v-else class="mt-3 px-2.5 font-bold leading-[27px] text-2xl">
             {{ realty.name }}</h1>
-          <p class="first-letter:uppercase text-slate-400">{{ realty.full_address }}</p>
-          <p class="mt-2 text-xl sm:text-2xl font-bold">{{ formatPrice(realty.price) }}</p>
-          <p v-if="isNewBuilding(realty)" class="mt-2 text-xl sm:text-2xl font-bold">
-            {{ formatPrice(realty.price_per_square) }}
-            <span class="text-lg"> м<sup>2</sup></span>
-          </p>
+
+          <p class="mt-1.5 px-2.5 text-sm text-gray-500">{{ realty.full_address }}</p>
+
         </section>
 
-        <section class="w-full bg-blue-300 container container--fluid">
+        <section class="mt-5 w-full bg-blue-300 container container--fluid">
           <div class="row no-gutters align-center justify-center carousel-wrapper as-nav-for">
             <VueSlickCarousel
                 ref="main"
