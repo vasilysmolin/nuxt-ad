@@ -37,7 +37,7 @@
 
                   <h3 class="mt-5 font-bold text-2xl">{{ formatPrice(realty.price) }}</h3>
 
-                  <h3 class="mt-1 text-sm text-gray-500">Продавец </h3>
+                  <h3 class="mt-1 text-sm text-gray-500">Продавец {{ getUserName(realty) }}</h3>
 
                 </section>
 
@@ -247,6 +247,12 @@ export default {
       removeItem: 'categoriesRealty/removeItem',
       setSearchType: 'filters/setSearchType',
     }),
+    getUserName(catalog) {
+      if (catalog?.profile?.isPerson === true) {
+        return catalog?.profile?.person?.name;
+      }
+      return catalog?.profile?.user?.name;
+    },
     everySix(count) {
       if (count % 6 === 0) {
         window.yaContextCb.push(() => {
