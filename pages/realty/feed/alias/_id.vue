@@ -250,3 +250,32 @@ export default {
 
 }
 </script>
+
+
+<style scoped>
+::v-deep .slick-slide {
+  padding: 7px;
+}
+
+::v-deep .slick-slider {
+  background: #fff;
+
+}
+
+::v-deep .slick-next {
+  right: 40px;
+}
+
+::v-deep .slick-prev {
+  left: 20px;
+  z-index: 1;
+}
+
+::v-deep .slick-prev:before {
+  font-size: 40px;
+}
+
+::v-deep .slick-next:before {
+  font-size: 40px;
+}
+</style>
