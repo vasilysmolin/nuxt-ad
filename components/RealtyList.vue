@@ -59,7 +59,7 @@
                     <li>{{ getHouseType(realty) }}</li>
                     <li>{{ getTypeRooms(realty) }}</li>
                     <li>{{ getFinishing(realty) }}</li>
-                    <li class="text-black font-bold">{{ getDeadline(realty) }} {{ getDateBuild(realty) }} год</li>
+                    <li class="text-black font-bold">{{ getDeadline(realty) }} {{ getDateBuild(realty) }} г.</li>
                   </ul>
                 </section>
 

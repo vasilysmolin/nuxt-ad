@@ -69,10 +69,85 @@
           <!--          </div>-->
         </section>
 
-        <section class="mt-5 w-full h-[300px] bg-blue-300">
-
+        <section class="mt-5 mx-auto w-[300px]">
+          <section class="grid grid-cols-3 gap-6">
+            <div class="text-center">
+              <p class="text-sm text-gray-500">Общая</p>
+              <p class="text-xl font-bold">35<span> м<sup><small>2</small></sup></span></p>
+            </div>
+            <div class="text-center">
+              <p class="text-sm text-gray-500">Жилая</p>
+              <p class="text-xl font-bold">13<span> м<sup><small>2</small></sup></span></p>
+            </div>
+            <div class="text-center">
+              <p class="text-sm text-gray-500">Кухня</p>
+              <p class="text-xl font-bold">11<span> м<sup><small>2</small></sup></span></p>
+            </div>
+          </section>
+          <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+          <section class="mt-5 grid grid-cols-2 gap-4">
+            <ul class="text-gray-500 leading-9">
+              <li>Кол-во комнат</li>
+              <li>Этаж</li>
+              <li>Этажей в доме</li>
+              <li>Тип дома</li>
+              <li>Дом элитный</li>
+              <li>Отделка</li>
+              <li>Тип комнат</li>
+              <li>Вид из окон</li>
+              <li>Срок сдачи</li>
+            </ul>
+            <ul class="text-black font-medium leading-9">
+              <li>1</li>
+              <li>21</li>
+              <li>25</li>
+              <li>Монолитный</li>
+              <li>Нет</li>
+              <li>С отделкой</li>
+              <li>Изолированные</li>
+              <li>На улицу</li>
+              <li>1 кв. 2025</li>
+            </ul>
+          </section>
+          <hr class="mt-5 bg-gray-300 w-full h-[1px]">
         </section>
-
+        <section class="mt-5 mx-auto w-[90%]">
+          <p class="leading-6 text-gray-700" v-html="realty.description"></p>
+        </section>
+        <section class="mt-5 mx-auto w-[300px]">
+          <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+          <section class="mt-5 grid grid-cols-2 gap-4">
+            <ul class="text-gray-500 leading-9">
+              <li>Телефон</li>
+              <li>Интернет</li>
+              <li>Парковка</li>
+              <li>Два лифта</li>
+              <li>Балкон</li>
+              <li>Консьерж</li>
+              <li>Мусоропровод</li>
+            </ul>
+            <ul class="text-black font-medium leading-9">
+              <li>&mdash;</li>
+              <li>&mdash;</li>
+              <li>&mdash;</li>
+              <li>&mdash;</li>
+              <li>да</li>
+              <li>&mdash;</li>
+              <li>&mdash;</li>
+            </ul>
+          </section>
+          <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+        </section>
+        <p v-if="isFlat(realty)" class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">Продается {{ generateTitle(realty) }} м<sup><small>2</small></sup> по адресу {{ realty.full_address }}</p>
+        <p v-else class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">Продается {{ realty.name }} по адресу {{ realty.full_address }}</p>
+        <section class="mt-5 w-full">
+          <template v-if="realty !== null">
+            <BYandexMap
+                :obj="realty"
+            />
+          </template>
+        </section>
+        <p class="my-5 text-center text-sm text-gray-500">Размещено 02.11.2022</p>
       </section>
 
         <!--

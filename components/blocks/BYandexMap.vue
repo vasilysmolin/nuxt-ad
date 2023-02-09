@@ -1,6 +1,5 @@
 <template>
-  <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="checkCoords">
-    <h2 class="text-lg font-bold text-black mb-3">{{ $t('map.name') }}</h2>
+  <section class="flex flex-col w-full" v-if="checkCoords">
     <yandex-map
         v-if="showMap"
         ref="map"
