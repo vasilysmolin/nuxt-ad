@@ -73,15 +73,15 @@
           <section class="grid grid-cols-3 gap-6">
             <div class="text-center">
               <p class="text-sm text-gray-500">Общая</p>
-              <p class="text-xl font-bold">35<span> м<sup><small>2</small></sup></span></p>
+              <p class="text-xl font-bold">{{ getArea(realty) }}<span> м<sup><small>2</small></sup></span></p>
             </div>
             <div class="text-center">
               <p class="text-sm text-gray-500">Жилая</p>
-              <p class="text-xl font-bold">13<span> м<sup><small>2</small></sup></span></p>
+              <p class="text-xl font-bold">{{ getAreaLeave(realty) }}<span> м<sup><small>2</small></sup></span></p>
             </div>
             <div class="text-center">
               <p class="text-sm text-gray-500">Кухня</p>
-              <p class="text-xl font-bold">11<span> м<sup><small>2</small></sup></span></p>
+              <p class="text-xl font-bold">{{ getAreaKitchen(realty) }}<span> м<sup><small>2</small></sup></span></p>
             </div>
           </section>
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
@@ -89,24 +89,24 @@
             <ul class="text-gray-500 leading-9">
               <li>Кол-во комнат</li>
               <li>Этаж</li>
-              <li>Этажей в доме</li>
+              <!--              <li>Этажей в доме</li>-->
               <li>Тип дома</li>
-              <li>Дом элитный</li>
+              <!--              <li>Дом элитный</li>-->
               <li>Отделка</li>
               <li>Тип комнат</li>
-              <li>Вид из окон</li>
+              <!--              <li>Вид из окон</li>-->
               <li>Срок сдачи</li>
             </ul>
             <ul class="text-black font-medium leading-9">
-              <li>1</li>
-              <li>21</li>
-              <li>25</li>
-              <li>Монолитный</li>
-              <li>Нет</li>
-              <li>С отделкой</li>
-              <li>Изолированные</li>
-              <li>На улицу</li>
-              <li>1 кв. 2025</li>
+              <li>{{ getRooms(realty) }}</li>
+              <li>{{ getFloor(realty) }}</li>
+              <!--              <li>25</li>-->
+              <li>{{ getHouseType(realty) }}</li>
+              <!--              <li>Нет</li>-->
+              <li>{{ getFinishing(realty) }}</li>
+              <li>{{ getTypeRooms(realty) }}</li>
+              <!--              <li>На улицу</li>-->
+              <li>{{ getDeadline(realty) }} {{ getDateBuild(realty) }} г.</li>
             </ul>
           </section>
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
@@ -117,23 +117,15 @@
         <section class="mt-5 mx-auto w-[300px]">
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
           <section class="mt-5 grid grid-cols-2 gap-4">
-            <ul class="text-gray-500 leading-9">
-              <li>Телефон</li>
-              <li>Интернет</li>
-              <li>Парковка</li>
-              <li>Два лифта</li>
-              <li>Балкон</li>
-              <li>Консьерж</li>
-              <li>Мусоропровод</li>
+            <ul class="text-gray-500 leading-9" v-for="(item, index) in getFilter(category)" v-if="isCheckbox(item)"
+                :key="item.id">
+              <li v-for="(comfort, index) in item.parameters">{{ comfort.value }}</li>
             </ul>
-            <ul class="text-black font-medium leading-9">
-              <li>&mdash;</li>
-              <li>&mdash;</li>
-              <li>&mdash;</li>
-              <li>&mdash;</li>
-              <li>да</li>
-              <li>&mdash;</li>
-              <li>&mdash;</li>
+            <ul class="text-black font-medium leading-9" v-for="(item, index) in getFilter(category)"
+                v-if="isCheckbox(item)" :key="item.id">
+              <li v-if="getCheckboxParams(comfort, realty.parameters)" v-for="(comfort, index) in item.parameters">да
+              </li>
+              <li v-else>&mdash;</li>
             </ul>
           </section>
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
@@ -147,7 +139,7 @@
             />
           </template>
         </section>
-        <p class="my-5 text-center text-sm text-gray-500">Размещено 02.11.2022</p>
+        <p class="my-5 text-center text-sm text-gray-500">Размещено {{ format(realty.created_at) }}</p>
       </section>
 
         <!--
@@ -244,6 +236,7 @@ import BYandexMap from "~/components/blocks/BYandexMap";
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import {dateFormat} from "~/helper/dataFormat";
 
 export default {
   name: "RealtyCart",
@@ -299,6 +292,9 @@ export default {
     },
     showModalAuth() {
       this.$modal.show('AuthModal');
+    },
+    format(date) {
+      return dateFormat(date);
     }
   },
   computed: {

@@ -398,7 +398,7 @@ export default {
         return item.filter_id === 25 || item.filter_id === 35;
       });
       if (seller?.value) {
-        return `Продает ${seller?.value.toLowerCase()}`;
+        return `${seller?.value.toLowerCase()}`;
       }
 
     },
@@ -407,7 +407,7 @@ export default {
         return item.filter_id === 21 || item.filter_id === 31 || item.filter_id === 66;
       });
       if (countRooms?.sort) {
-        return `Кол-во комнат ${countRooms?.sort}`;
+        return `${countRooms?.sort}`;
       }
 
     },
@@ -441,7 +441,7 @@ export default {
         return item.filter_id === 26 || item.filter_id === 36;
       });
       if (type?.value) {
-        return `Новизна ${type?.value}`;
+        return `${type?.value}`;
       }
     },
     getDateBuild(realty) {
