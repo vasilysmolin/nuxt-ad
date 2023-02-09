@@ -85,7 +85,7 @@
             </div>
           </section>
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
-          <section class="mt-5 grid grid-cols-2 gap-4">
+          <section v-if="isNewBuilding(realty)" class="mt-5 grid grid-cols-2 gap-4">
             <ul class="text-gray-500 leading-9">
               <li>Кол-во комнат</li>
               <li>Этаж</li>
@@ -109,11 +109,34 @@
               <li>{{ getDeadline(realty) }} {{ getDateBuild(realty) }} г.</li>
             </ul>
           </section>
+          <section v-else class="mt-5 grid grid-cols-2 gap-4">
+            <ul class="text-gray-500 leading-9">
+              <li v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
+                <template>{{ item.filter.name }}</template>
+              </li>
+              <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
+                <template>{{ item.filter.name }}</template>
+              </li>
+            </ul>
+            <ul class="text-black font-medium leading-9">
+              <li v-for="(item, index) in getParamsSelect(realty)" :key="item.id">
+                <template>{{ item.value }}</template>
+              </li>
+              <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
+                <template>{{ item.value }}</template>
+              </li>
+            </ul>
+          </section>
+
+
+
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
         </section>
+
         <section class="mt-5 mx-auto w-[90%]">
           <p class="leading-6 text-gray-700" v-html="realty.description"></p>
         </section>
+
         <section class="mt-5 mx-auto w-[300px]">
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
           <section class="mt-5 grid grid-cols-2 gap-4">
@@ -130,6 +153,7 @@
           </section>
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
         </section>
+
         <p v-if="isFlat(realty)" class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">Продается {{ generateTitle(realty) }} м<sup><small>2</small></sup> по адресу {{ realty.full_address }}</p>
         <p v-else class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">Продается {{ realty.name }} по адресу {{ realty.full_address }}</p>
         <section class="mt-5 w-full">
