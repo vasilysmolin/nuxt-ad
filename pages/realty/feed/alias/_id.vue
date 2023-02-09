@@ -311,18 +311,22 @@ export default {
     }),
   },
   head() {
-    let title = this.realty.title;
+    let title = '';
     if (this.isFlat(this.realty)) {
       const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
       const entity = this.generateTitle(this.realty);
       const address = `по адресу ` + this.getAddress(this.realty);
       title = `${type} ${entity} ${address}`;
+    } else {
+      const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
+      const address = `по адресу ` + this.getAddress(this.realty);
+      title = `${type} ${this.realty.title} ${address}`;
     }
 
     return {
       title: title,
       meta: [
-        {hid: 'description', name: 'description', content: 'Обьект'}
+        {hid: 'description', name: 'description', content: 'Объект'}
       ]
     }
   },
