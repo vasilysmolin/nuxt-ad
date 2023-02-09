@@ -19,28 +19,32 @@
 
         </section>
 
-        <section class="mt-5 w-full bg-blue-300 container container--fluid">
-          <div class="row no-gutters align-center justify-center carousel-wrapper as-nav-for">
+        <section class="mt-5">
+          <div class="">
             <VueSlickCarousel
                 ref="main"
                 :asNavFor="$refs.preview"
                 :focusOnSelect="true"
+                :adaptiveHeight="true"
             >
               <!--              <div v-for="(photo, index) in realty.photos">-->
               <img v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
               <!--              </div>-->
             </VueSlickCarousel>
           </div>
-          <div class="row no-gutters align-center justify-center carousel-wrapper as-nav-for">
+          <div class="cursor-pointer">
             <VueSlickCarousel
                 ref="preview"
                 :asNavFor="$refs.main"
-                :slidesToShow="4"
+                :slidesToShow="8"
                 :focusOnSelect="true"
+                :arrows="false"
+                :centerMode="true"
                 v-show="main"
+
             >
               <!--              <div >-->
-              <img v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
+              <img class="rounded" v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
               <!--              </div>-->
             </VueSlickCarousel>
           </div>
@@ -63,6 +67,10 @@
 
           <!--            </div>-->
           <!--          </div>-->
+        </section>
+
+        <section class="mt-5 w-full h-[300px] bg-blue-300">
+
         </section>
 
       </section>
@@ -253,29 +261,28 @@ export default {
 
 
 <style scoped>
-::v-deep .slick-slide {
-  padding: 7px;
-}
-
 ::v-deep .slick-slider {
-  background: #fff;
-
 }
-
+::v-deep .slick-slide {
+  padding: 3px;
+  max-height: 400px;
+}
 ::v-deep .slick-next {
-  right: 40px;
+  right: 20px;
 }
-
+::v-deep .slick-list {
+  margin-top: 2px;
+}
 ::v-deep .slick-prev {
-  left: 20px;
+  left: 10px;
   z-index: 1;
 }
 
 ::v-deep .slick-prev:before {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 ::v-deep .slick-next:before {
-  font-size: 40px;
+  font-size: 30px;
 }
 </style>
