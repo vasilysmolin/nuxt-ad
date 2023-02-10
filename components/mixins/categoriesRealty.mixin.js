@@ -342,13 +342,35 @@ export default {
       return realty?.category_id === 410;
     },
     isFlat(realty) {
-      return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410;
+      return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410 || realty?.category_id === 384;
     },
     isBuy(realty) {
-      return realty?.category_id === 12;
+      return realty?.category_id === 12 || realty?.category_id === 388 || realty?.category_id === 389 || realty?.category_id === 390 || realty?.category_id === 391
+          || realty?.category_id === 392
+          || realty?.category_id === 393
+          || realty?.category_id === 394
+          || realty?.category_id === 395
+          || realty?.category_id === 396
+          || realty?.category_id === 397
+          || realty?.category_id === 398
+          || realty?.category_id === 399
+          || realty?.category_id === 410
+          || realty?.category_id === 400;
     },
     isRent(realty) {
-      return realty?.category_id === 383;
+      return realty?.category_id === 383 || realty?.category_id === 384 || realty?.category_id === 385 || realty?.category_id === 386 || realty?.category_id === 387
+          || realty?.category_id === 401
+          || realty?.category_id === 402
+          || realty?.category_id === 403
+          || realty?.category_id === 404
+          || realty?.category_id === 405
+          || realty?.category_id === 406
+          || realty?.category_id === 407
+          || realty?.category_id === 408
+          || realty?.category_id === 409;
+    },
+    getAction(realty) {
+      return this.isRent(realty) ? "Сдаётся" : "Продается"
     },
     getArea(realty) {
       const area = _.find(realty?.parameters, function (item) {

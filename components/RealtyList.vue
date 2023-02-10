@@ -1,10 +1,5 @@
 <template>
   <section>
-    <!--
-    <BCategoriesNav
-        :category="category"
-    />
-    -->
     <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
       <div class="mx-auto flex flex-col w-full">
         <h1 class="text-2xl font-black leading-none">
@@ -37,7 +32,7 @@
 
                   <h3 class="mt-5 font-bold text-2xl">{{ formatPrice(realty.price) }}</h3>
 
-                  <h3 class="mt-1 text-sm text-gray-500">Продавец {{ getUserName(realty) }}</h3>
+                  <h3 class="mt-1 text-sm text-gray-500">{{ getActionUser(realty) }} {{ getUserName(realty) }}</h3>
 
                 </section>
 
@@ -247,6 +242,9 @@ export default {
       removeItem: 'categoriesRealty/removeItem',
       setSearchType: 'filters/setSearchType',
     }),
+    getActionUser(realty) {
+      return this.isBuy(realty) ? 'Продавец' : 'Арендодатель';
+    },
     getUserName(catalog) {
       if (catalog?.profile?.isPerson === true) {
         return catalog?.profile?.person?.name;

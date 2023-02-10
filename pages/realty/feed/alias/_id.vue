@@ -11,12 +11,9 @@
         <section class="w-full">
           <h1 v-if="isFlat(realty)" class="mt-3 px-2.5 font-bold leading-[27px] text-2xl">
             {{ generateTitle(realty) }} <span class="text-lg"> м<sup>2</sup></span></h1>
-
           <h1 v-else class="mt-3 px-2.5 font-bold leading-[27px] text-2xl">
             {{ realty.name }}</h1>
-
           <p class="mt-1.5 px-2.5 text-sm text-gray-500">{{ realty.full_address }}</p>
-
         </section>
 
         <section class="mt-5">
@@ -27,9 +24,8 @@
                 :focusOnSelect="true"
                 :adaptiveHeight="true"
             >
-              <!--              <div v-for="(photo, index) in realty.photos">-->
               <img v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
-              <!--              </div>-->
+
             </VueSlickCarousel>
           </div>
           <div class="cursor-pointer">
@@ -43,33 +39,12 @@
                 v-show="main"
 
             >
-              <!--              <div >-->
               <img class="rounded" v-for="(photo, index) in realty.photos" :src="photo" alt="" :key="index">
-              <!--              </div>-->
             </VueSlickCarousel>
           </div>
-          <!--          </div>-->
-          <!--          <div class="grid grid-cols-1 bg-white">-->
-          <!--            <div class="flex justify-center items-center">-->
-          <!--              <img class="cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--            </div>-->
-          <!--            <div class="mt-2.5 pl-[20px] pr-[20px] flex justify-center items-center">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-          <!--              <img class="mx-1 rounded w-[50px] h-[50px] cursor-pointer" src="https://storage.yandexcloud.net/backgrounds-images/images/realty_flats_index.jpg" alt="">-->
-
-          <!--            </div>-->
-          <!--          </div>-->
         </section>
 
-        <section class="mt-5 mx-auto w-[300px]">
+        <section v-if="isFlat(realty)" class="mt-5 mx-auto w-[300px]">
           <section class="grid grid-cols-3 gap-6">
             <div class="text-center">
               <p class="text-sm text-gray-500">Общая</p>
@@ -84,7 +59,7 @@
               <p class="text-xl font-bold">{{ getAreaKitchen(realty) }}<span> м<sup><small>2</small></sup></span></p>
             </div>
           </section>
-          <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+          <hr v-if="isFlat(realty)" class="mt-5 bg-gray-300 w-full h-[1px]">
           <section v-if="isNewBuilding(realty)" class="mt-5 grid grid-cols-2 gap-4">
             <ul class="text-gray-500 leading-9">
               <li>Кол-во комнат</li>
@@ -127,17 +102,14 @@
               </li>
             </ul>
           </section>
-
-
-
-          <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+          <hr v-if="isFlat(realty)" class="mt-5 bg-gray-300 w-full h-[1px]">
         </section>
 
         <section class="mt-5 mx-auto w-[90%]">
           <p class="leading-6 text-gray-700" v-html="realty.description"></p>
         </section>
 
-        <section class="mt-5 mx-auto w-[300px]">
+        <section v-if="isFlat(realty)" class="mt-5 mx-auto w-[300px]">
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
           <section class="mt-5 grid grid-cols-2 gap-4">
             <ul class="text-gray-500 leading-9" v-for="(item, index) in getFilter(category)" v-if="isCheckbox(item)"
@@ -166,84 +138,16 @@
         <p class="my-5 text-center text-sm text-gray-500">Размещено {{ format(realty.created_at) }}</p>
       </section>
 
-        <!--
-      <h2 class="text-sm font-bold text-black">Описание</h2>
-      <p class="mt-1 text-sm sm:text-base text-gray-600" v-html="realty.description"></p>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
-      <h2 class="text-sm font-bold text-black">Характеристики</h2>
-      <table class="table-auto">
-        <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isSelect(item) && getSelectParams(item, realty.parameters) !== null">
-          <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, realty.parameters) }}</td>
-        </tr>
-        <tr v-if="isRange(item) && getSelectParams(item, realty.parameters) !== null">
-          <td>{{ item.name }}</td>
-          <td>{{ getSelectParams(item, realty.parameters) }}</td>
-        </tr>
-        </tbody>
-      </table>
-      <table class="table-auto">
-        <tbody>
-        <tr v-if="realty.ceiling_height">
-          <td>Высота потолков</td>
-          <td>{{ realty.ceiling_height }}</td>
-        </tr>
-        <tr v-if="realty.date_build">
-          <td>Дата постройки</td>
-          <td>{{ realty.date_build }}</td>
-        </tr>
-        <tr v-if="realty.cadastral_number">
-          <td>Кадастровый номер</td>
-          <td>{{ realty.cadastral_number }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white" v-if="isFilter(category)">
-      <h2 class="text-sm font-bold text-black">Удобства</h2>
-      <table class="table-auto">
-        <tbody v-for="(item, index) in getFilter(category)" :key="item.id">
-        <tr v-if="isCheckbox(item)"
-            v-for="(comfort, index) in item.parameters">
-          <td>{{ comfort.value }}</td>
-          <td v-if="getCheckboxParams(comfort, realty.parameters)">✅</td>
-          <td v-else>❌</td>
-
-        </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <template v-if="realty !== null">
-      <BYandexMap
-          :obj="realty"
-      />
-    </template>
-
-    <section v-if="checkPhotos(realty)" class="flex flex-col mt-4 p-5 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-      <h2 class="text-sm font-bold text-black">Фотографии</h2>
-      <section class="mt-4 grid grid-cols-2 gap-4 w-full">
-        <div v-for="photo in realty.photos">
-          <img :src="photo" class="max-w-full h-auto rounded-lg" alt="">
-        </div>
-      </section>
-    </section>
--->
-
         <BContactC
             :name="getUserName(realty)"
             :phone="getUserPhone(realty)"
             :price="formatPrice(realty.price)"
             :price_per_square="formatPrice(realty.price_per_square)"
             :isNew="isNewBuilding(realty)"
+            :isBuy="isBuy(realty)"
             :agent="getAgent(realty)"
             :address="null"
         />
-
-
 
   </article>
   </section>
@@ -264,7 +168,7 @@ import {dateFormat} from "~/helper/dataFormat";
 
 export default {
   name: "RealtyCart",
-  layout: 'default-search',
+  layout: 'alias-realty',
   mixins: [CategoriesMixin],
   components: {BContactC, BYandexMap, VueSlickCarousel},
   async asyncData({store, route}) {
@@ -336,14 +240,19 @@ export default {
   },
   head() {
     let title = '';
-    if (this.isFlat(this.realty)) {
+    if (this.isNewBuilding(this.realty)) {
+      const type = 'Продаётся';
+      const entity = this.generateTitle(this.realty);
+      const address = `по адресу ` + this.realty?.full_address;
+      title = `${type} ${entity} ${address}`;
+    } else if (this.isFlat(this.realty)) {
       const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
       const entity = this.generateTitle(this.realty);
-      const address = `по адресу ` + this.getAddress(this.realty);
+      const address = `по адресу ` + this.realty?.full_address;
       title = `${type} ${entity} ${address}`;
     } else {
       const type = this.isBuy(this.realty) ? 'Продаётся' : 'Сдаётся';
-      const address = `по адресу ` + this.getAddress(this.realty);
+      const address = `по адресу ` + this.realty?.full_address;
       title = `${type} ${this.realty.title} ${address}`;
     }
 

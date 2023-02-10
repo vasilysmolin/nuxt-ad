@@ -4,14 +4,15 @@
     <div v-if="$device.isDesktop">
       <p class="font-bold leading-[27px] text-2xl">{{ price }}</p>
       <p class="mt-1.5 text-base text-gray-500" v-if="isNew">{{ price_per_square }} <span class="text-sm">за м<sup>2</sup></span></p>
-      <p class="mt-1.5 text-sm text-gray-500"><span class="">Продавец {{ name }}</span></p>
+      <p class="mt-1.5 text-sm text-gray-500"><span class="">{{ getActionUser() }} {{ name }}</span></p>
       <div class="mt-5 flex flex-col justify-start items-start">
         <p v-if="$auth.loggedIn" class="w-full text-sm text-gray-500 leading-none">Телефон:<span
             class="pl-2 text-black font-black text-lg leading-none">{{ number }}</span>
           <a v-if="isNew" class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
              :href="`mailto:${email}`">Оставить заявку</a>
-          <a v-else class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
-             :href="`mailto:${email}`">Написать продавцу</a>
+          <a v-else
+             class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
+             :href="`mailto:${email}`">Написать {{ getActionUser2() }}</a>
         </p>
         <button v-else type="button"
                 class="btn btn-primary inline-block px-5 py-3 bg-[#00A05D] w-full text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
@@ -48,7 +49,6 @@
 <script>
 import AuthModal from "../../components/AuthModal";
 import VMask from 'string-mask'
-import {isObject} from "lodash/lang";
 
 export default {
   name: "BContactC",
@@ -71,6 +71,7 @@ export default {
     phone: String,
     address: String,
     isNew: Boolean,
+    isBuy: Boolean,
     price: String,
     price_per_square: String,
     agent: String,
@@ -80,7 +81,13 @@ export default {
   methods: {
     showModalAuth() {
       this.$modal.show('AuthModal');
-    }
+    },
+    getActionUser() {
+      return this.isBuy ? 'Продавец' : 'Арендодатель';
+    },
+    getActionUser2() {
+      return this.isBuy ? 'Продавцу' : 'Арендодателю';
+    },
   },
 
 }
