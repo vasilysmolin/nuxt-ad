@@ -126,8 +126,10 @@
           <hr class="mt-5 bg-gray-300 w-full h-[1px]">
         </section>
 
-        <p v-if="isFlat(realty)" class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">Продается {{ generateTitle(realty) }} м<sup><small>2</small></sup> по адресу {{ realty.full_address }}</p>
-        <p v-else class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">Продается {{ realty.name }} по адресу {{ realty.full_address }}</p>
+        <p v-if="isFlat(realty)" class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">{{ getAction(realty) }}
+          {{ generateTitle(realty) }} м<sup><small>2</small></sup> по адресу {{ realty.full_address }}</p>
+        <p v-else class="mt-5 mx-auto w-[90%] leading-5 text-sm text-gray-500">{{ getAction(realty) }} {{ realty.name }}
+          по адресу {{ realty.full_address }}</p>
         <section class="mt-5 w-full">
           <template v-if="realty !== null">
             <BYandexMap
