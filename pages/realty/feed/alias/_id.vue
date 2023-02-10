@@ -64,23 +64,23 @@
             <ul class="text-gray-500 leading-9">
               <li>Кол-во комнат</li>
               <li>Этаж</li>
-              <!--              <li>Этажей в доме</li>-->
+              <li>Этажей в доме</li>
               <li>Тип дома</li>
-              <!--              <li>Дом элитный</li>-->
+              <li>Дом элитный</li>
               <li>Отделка</li>
               <li>Тип комнат</li>
-              <!--              <li>Вид из окон</li>-->
+              <li>Вид из окон</li>
               <li>Срок сдачи</li>
             </ul>
             <ul class="text-black font-medium leading-9">
               <li>{{ getRooms(realty) }}</li>
               <li>{{ getFloor(realty) }}</li>
-              <!--              <li>25</li>-->
+              <li>{{ getAllFloor(realty) }}</li>
               <li>{{ getHouseType(realty) }}</li>
-              <!--              <li>Нет</li>-->
+              <li>{{ isElite(realty) }}</li>
               <li>{{ getFinishing(realty) }}</li>
               <li>{{ getTypeRooms(realty) }}</li>
-              <!--              <li>На улицу</li>-->
+              <li>{{ getWindow(realty) }}</li>
               <li>{{ getDeadline(realty) }} {{ getDateBuild(realty) }} г.</li>
             </ul>
           </section>

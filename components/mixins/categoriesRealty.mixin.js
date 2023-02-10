@@ -442,6 +442,30 @@ export default {
       }
 
     },
+    getAllFloor(realty) {
+      const countFloor = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 22 || item.filter_id === 32 || item.filter_id === 67;
+      });
+      if (countFloor?.sort) {
+        return `${countFloor?.sort}`;
+      }
+    },
+    isElite(realty) {
+      const countFloor = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 49 || item.filter_id === 77 || item.filter_id === 45;
+      });
+      if (countFloor?.sort) {
+        return `${countFloor?.value}`;
+      }
+    },
+    getWindow(realty) {
+      const countFloor = _.find(realty?.parameters, function (item) {
+        return item.filter_id === 43 || item.filter_id === 46 || item.filter_id === 75;
+      });
+      if (countFloor?.sort) {
+        return `${countFloor?.value}`;
+      }
+    },
     getHouseType(realty) {
       const houseType = _.find(realty?.parameters, function (item) {
         return item.filter_id === 24 || item.filter_id === 34 || item.filter_id === 69;
