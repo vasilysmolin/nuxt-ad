@@ -178,10 +178,10 @@ import * as _ from 'lodash';
 import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 import BGeo from "~/components/blocks/BGeo";
 import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
-import UpWhite from "../../../../components/icons/UpWhite";
-import PauseWhite from "../../../../components/icons/PauseWhite";
-import DeleteWhite from "../../../../components/icons/DeleteWhite";
-import RefreshWhite from "../../../../components/icons/RefreshWhite";
+import UpWhite from "../../../../../components/icons/UpWhite";
+import PauseWhite from "../../../../../components/icons/PauseWhite";
+import DeleteWhite from "../../../../../components/icons/DeleteWhite";
+import RefreshWhite from "../../../../../components/icons/RefreshWhite";
 import Validations from "~/components/mixins/validations.mixin"
 import {mapActions, mapGetters} from "vuex";
 

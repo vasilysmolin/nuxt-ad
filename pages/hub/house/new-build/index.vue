@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import NewBuildHubList from "../../../components/hub/NewBuildHubList";
+import NewBuildHubList from "../../../../components/hub/NewBuildHubList";
 
 export default {
   components: {NewBuildHubList},
