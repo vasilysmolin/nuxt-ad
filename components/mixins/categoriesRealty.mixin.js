@@ -338,11 +338,18 @@ export default {
       }
       return `${countRooms?.sort}-к квартира`;
     },
+    dontArea(value) {
+      return !value.includes('м2');
+    },
     isNewBuilding(realty) {
       return realty?.category_id === 410;
     },
     isFlat(realty) {
-      return realty?.category_id === 383 || realty?.category_id === 12 || realty?.category_id === 410 || realty?.category_id === 384;
+      return realty?.category_id === 383 ||
+          realty?.category_id === 12 ||
+          realty?.category_id === 410 ||
+          realty?.category_id === 388 ||
+          realty?.category_id === 384;
     },
     isBuy(realty) {
       return realty?.category_id === 12 || realty?.category_id === 388 || realty?.category_id === 389 || realty?.category_id === 390 || realty?.category_id === 391

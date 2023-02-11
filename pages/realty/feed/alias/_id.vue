@@ -44,8 +44,8 @@
           </div>
         </section>
 
-        <section v-if="isFlat(realty)" class="mt-5 mx-auto w-[300px]">
-          <section class="grid grid-cols-3 gap-6">
+        <section class="mt-5 mx-auto w-[300px]">
+          <section v-if="isFlat(realty)" class="grid grid-cols-3 gap-6">
             <div class="text-center">
               <p class="text-sm text-gray-500">Общая</p>
               <p class="text-xl font-bold">{{ getArea(realty) }}<span> м<sup><small>2</small></sup></span></p>
@@ -59,7 +59,10 @@
               <p class="text-xl font-bold">{{ getAreaKitchen(realty) }}<span> м<sup><small>2</small></sup></span></p>
             </div>
           </section>
-          <hr v-if="isFlat(realty)" class="mt-5 bg-gray-300 w-full h-[1px]">
+          <template v-if="isFlat(realty)">
+            <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+          </template>
+
           <section v-if="isNewBuilding(realty)" class="mt-5 grid grid-cols-2 gap-4">
             <ul class="text-gray-500 leading-9">
               <li>Кол-во комнат</li>
@@ -90,7 +93,7 @@
                 <template>{{ item.filter.name }}</template>
               </li>
               <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
-                <template>{{ item.filter.name }}</template>
+                <template v-if="dontArea(item.value)">{{ item.filter.name }}</template>
               </li>
             </ul>
             <ul class="text-black font-medium leading-9">
@@ -98,11 +101,13 @@
                 <template>{{ item.value }}</template>
               </li>
               <li v-for="(item, index) in getParamsRange(realty)" :key="item.id">
-                <template>{{ item.value }}</template>
+                <template v-if="dontArea(item.value)">{{ item.value }}</template>
               </li>
             </ul>
           </section>
-          <hr v-if="isFlat(realty)" class="mt-5 bg-gray-300 w-full h-[1px]">
+          <template v-if="isFlat(realty)">
+            <hr class="mt-5 bg-gray-300 w-full h-[1px]">
+          </template>
         </section>
 
         <section class="mt-5 mx-auto w-[90%]">
