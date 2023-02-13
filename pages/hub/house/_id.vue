@@ -3,7 +3,7 @@
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
         <h1 class="mb-4 w-full text-xl text-black font-black text-center leading-none truncate">{{
-            $t('house.create')
+            $t('house.edit')
           }}</h1>
 
         <form class="w-[95%]">
@@ -107,13 +107,11 @@ export default {
     return {
       query: '',
       data: {
-        name: '',
-        category_id: null,
+        cityId: null,
         city_id: null,
         street: null,
         house: null,
-        description: '',
-        photos: [],
+        address: null
       },
       files: [],
       isDisabled: false,
@@ -125,9 +123,6 @@ export default {
         required,
         maxLength: maxLength(70),
         minLength: minLength(3)
-      },
-      photos: {
-        required,
       },
       street: {
         required,
@@ -148,7 +143,10 @@ export default {
 
   },
   async mounted() {
-    await this.$store.dispatch('houses/getItems', {from: 'cabinet'});
+    await this.$store.dispatch('houses/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
+      this.data = _.cloneDeep(this.$store.getters['houses/house']);
+    });
+
   },
   computed: {
     ...mapGetters({
@@ -180,7 +178,8 @@ export default {
       data.append('house', this.data.house);
       data.append('latitude', this.data.latitude);
       data.append('longitude', this.data.longitude);
-      this.$axios.$post(`houses`, data).then(() => {
+      data.append('_method', 'put');
+      this.$axios.$post(`houses/${this.$route.params.id}`, data).then(() => {
         this.$router.push({name: 'house___ru'});
         console.log('успех')
       }).catch((error) => {

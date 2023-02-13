@@ -5,12 +5,11 @@
         <div class="flex justify-between">
           <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">
             {{ house.name }}</h2>
-          <p v-if="house.external_id" class="text-sm">ID: {{ house.external_id }}</p>
         </div>
         <p class="text-sm">Статус: {{ getState(house) }}</p>
         <p class="text-sm">Позиция в каталоге: {{ house.sort }}</p>
         <div class="flex justify-between">
-          <NuxtLink :to="getUrl(house)" v-if="house.external_id === null">
+          <NuxtLink :to="getUrl(house)">
             <div class="flex justify-between mt-2 w-full">
               <button
                   class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
@@ -73,16 +72,15 @@ export default {
       addItems: 'houses/addItems',
       getItemsState: 'states/getItems',
     }),
-    getUrl(ad) {
-      let cat = `/houses/${ad.categories ? ad.categories.alias : 'none'}`;
-      return cat + '/' + `${ad.alias}`
+    getUrl(house) {
+      return `/house/${house.id}`;
     },
     getUrlCatalog(house) {
-      window.open(`${process.env.house_URL}/feed/alias/${house.alias}`, '_blank');
+      window.open(`${process.env.house_URL}/feed/houses/${house.alias}`, '_blank');
     },
 
-    getState(ad) {
-      return this.states[ad.state];
+    getState(house) {
+      return this.states[house?.state];
     }
   },
 

@@ -5,7 +5,7 @@
         <NuxtLink to="/profile">Профиль</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
-        <NuxtLink to="/new-build">Новостройки</NuxtLink>
+        <NuxtLink to="/house">Новостройки</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
         <NuxtLink to="/realty">Недвижимость</NuxtLink>

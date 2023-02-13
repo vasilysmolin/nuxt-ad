@@ -8,7 +8,7 @@ import HouseHubList from "~/components/hub/HouseHubList";
 export default {
   components: {HouseHubList},
   layout: 'hub',
-  name: "HouseHubList",
+  name: "IndexHubHouse",
   head: {
     title: "Мои объявления на Тапиго",
     meta: [

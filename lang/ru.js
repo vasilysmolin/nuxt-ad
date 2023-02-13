@@ -43,6 +43,11 @@ export default {
         city: 'Город',
         address: 'Адрес',
     },
+    house: {
+        create: 'Создать дом',
+        edit: 'Редактировать дом',
+        name: 'Название дома',
+    },
     profile: {
         'confirmEmail': 'Подтвердить email',
         'feed': 'Адрес фида',
