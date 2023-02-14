@@ -10,17 +10,17 @@
 
           <div class="flex flex-col items-center w-full">
 
-            <!--            <div class="form-floating mb-4 w-full sm:w-[27rem]">-->
-            <!--              <the-mask :mask="['####']" v-model="data.date_build"-->
-            <!--                        id="date_build"-->
-            <!--                        type="text"-->
-            <!--                        class="form-control forms-input"-->
-            <!--                        placeholder="Дата постройки"/>-->
-            <!--              <label class="text-[#6E7191]">Дата постройки</label>-->
-            <!--              <span v-if="dateErrors" class="form-errors">-->
-            <!--            {{ dateErrors }}-->
-            <!--            </span>-->
-            <!--            </div>-->
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <the-mask :mask="['####']" v-model="data.finishing"
+                        id="date_build"
+                        type="text"
+                        class="form-control forms-input"
+                        placeholder="Дата постройки"/>
+              <label class="text-[#6E7191]">{{ $t('house.finishing') }}</label>
+              <span v-if="dateErrors" class="form-errors">
+              {{ dateErrors }}
+              </span>
+            </div>
 
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
@@ -171,8 +171,8 @@ export default {
       }
 
       data.append('name', this.data.name);
-      if (this.data.date_build) {
-        data.append('date_build', this.data.date_build);
+      if (this.data.finishing) {
+        data.append('finishing', this.data.finishing);
       }
       data.append('description', this.data.description);
       data.append('city_id', this.data.city_id);
