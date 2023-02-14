@@ -212,6 +212,7 @@ export default {
       dataAgent: {
         name: null,
       },
+      house_id: null,
       files: [],
       isDisabled: false,
     }
@@ -250,6 +251,7 @@ export default {
 
   },
   async mounted() {
+    this.house_id = this.$route.params.house;
     this.showMap = true;
     await this.$store.dispatch('realty/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
       this.data = _.cloneDeep(this.$store.getters['realty/realty']);
@@ -326,6 +328,7 @@ export default {
       data.append('nameAgent', this.dataAgent?.name);
       data.append('price_per_square', this.data.price_per_square);
       data.append('sale_price', this.data.price);
+      data.append('house_id', this.house_id);
       data.append('category_id', this.data.category_id);
       data.append('city_id', this.data.city_id);
       data.append('latitude', this.data.latitude);
@@ -334,7 +337,11 @@ export default {
       data.append('house', this.data.house);
       data.append('_method', 'put');
       this.$axios.$post(`realties/${this.$route.params.id}`, data).then(() => {
-        this.$router.push({name: 'new-build___ru'});
+        this.$router.push(
+            {
+              path: `/house/${this.house_id}/new-build`,
+            }
+        );
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -343,7 +350,11 @@ export default {
     },
     deleted() {
       this.$axios.$delete(`realties/${this.$route.params.id}`).then(() => {
-        this.$router.push({name: 'new-build___ru'});
+        this.$router.push(
+            {
+              path: `/house/${this.house_id}/new-build`,
+            }
+        );
       }).catch((error) => {
         // console.log(error.response.data.errors);
         // this.$v.nameErrors = 'какой-то текст';
@@ -352,21 +363,33 @@ export default {
     },
     active() {
       this.$axios.$put(`realties/${this.$route.params.id}/state`, {state: 'active'}).then(() => {
-        this.$router.push({name: 'new-build___ru'});
+        this.$router.push(
+            {
+              path: `/house/${this.house_id}/new-build`,
+            }
+        );
       }).catch((error) => {
       });
 
     },
     pause() {
       this.$axios.$put(`realties/${this.$route.params.id}/state`, {state: 'pause'}).then(() => {
-        this.$router.push({name: 'new-build___ru'});
+        this.$router.push(
+            {
+              path: `/house/${this.house_id}/new-build`,
+            }
+        );
       }).catch((error) => {
       });
 
     },
     up() {
       this.$axios.$put(`realties/${this.$route.params.id}/sort`, {}).then(() => {
-        this.$router.push({name: 'catalog___ru'});
+        this.$router.push(
+            {
+              path: `/house/${this.house_id}/new-build`,
+            }
+        );
       }).catch((error) => {
       });
     },

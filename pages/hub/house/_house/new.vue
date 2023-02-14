@@ -207,6 +207,7 @@ export default {
         description: '',
         photos: [],
       },
+      house_id: null,
       dataAgent: {
         name: null,
       },
@@ -255,6 +256,7 @@ export default {
 
   },
   async mounted() {
+    this.house_id = this.$route.params.house;
     await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
     this.items.push({
       title: 'Категории',
@@ -331,12 +333,17 @@ export default {
       data.append('sale_price', this.data.sale_price);
       data.append('category_id', this.data.category_id);
       data.append('city_id', this.data.city_id);
+      data.append('house_id', this.house_id);
       data.append('latitude', this.data.latitude);
       data.append('longitude', this.data.longitude);
       data.append('street', this.data.street);
       data.append('house', this.data.house);
       this.$axios.$post(`realties`, data).then(() => {
-        this.$router.push({name: 'new-build___ru'});
+        this.$router.push(
+            {
+              path: `/house/${this.house_id}/new-build`,
+            }
+        );
         console.log('успех')
       }).catch((error) => {
 

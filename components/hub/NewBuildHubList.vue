@@ -38,7 +38,7 @@
         Смотреть дальше
       </button>
     </section>
-    <NuxtLink :to="`/new-build/new`">
+    <NuxtLink :to="getUrlNew(realty)">
       <button type="button"
               class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
         Добавить объявления
@@ -57,9 +57,15 @@ export default {
   props: {
     type: String,
   },
+  data() {
+    return {
+      house_id: null,
+    }
+  },
   async mounted() {
+    this.house_id = this.$route.params.house;
     // if (this.realties.length === 0) {
-    await this.getItems({from: 'cabinet', category_ids: '410'});
+    await this.getItems({from: 'cabinet', category_ids: '410', house_id: this.house_id});
     await this.getItemsState();
     // }
   },
@@ -79,14 +85,15 @@ export default {
       addItems: 'realty/addItems',
       getItemsState: 'states/getItems',
     }),
-    getUrl(ad) {
-      let cat = `/new-build/${ad.categories ? ad.categories.alias : 'none'}`;
-      return cat + '/' + `${ad.alias}`
+    getUrl(realty) {
+      return `/house/${this.house_id}/new-build/${realty.alias}`
+    },
+    getUrlNew(realty) {
+      return `/house/${this.house_id}/new`
     },
     getUrlCatalog(realty) {
       window.open(`${process.env.REALTY_URL}/feed/alias/${realty.alias}`, '_blank');
     },
-
     getState(ad) {
       return this.states[ad.state];
     }

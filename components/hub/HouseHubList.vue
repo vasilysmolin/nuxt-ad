@@ -17,14 +17,14 @@
               </button>
             </div>
           </NuxtLink>
-          <a href="#" @click="getUrlCatalog(house)">
+          <NuxtLink :to="getUrlRealty(house)">
             <div class="flex justify-between mt-2 w-full">
               <button
                   class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                Просмотреть
+                Список новостроек
               </button>
             </div>
-          </a>
+          </NuxtLink>
         </div>
       </article>
       <button v-if="checkAmount" @click="addItems({ skip: houses.length, from: 'cabinet', category_ids: '382,381'})"
@@ -75,10 +75,9 @@ export default {
     getUrl(house) {
       return `/house/${house.id}`;
     },
-    getUrlCatalog(house) {
-      window.open(`${process.env.house_URL}/feed/houses/${house.alias}`, '_blank');
+    getUrlRealty(house) {
+      return `/house/${house.id}/new-build`;
     },
-
     getState(house) {
       return this.states[house?.state];
     }

@@ -2,9 +2,8 @@
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
       <div class="flex flex-col items-center px-5 py-7 w-[95%] rounded-lg sm:max-w-screen-sm bg-white">
-        <h1 class="mb-4 w-full text-xl text-black font-black text-center leading-none truncate">{{
-            $t('house.create')
-          }}</h1>
+        <h1 class="mb-4 w-full text-xl text-black
+        font-black text-center leading-none truncate">{{ $t('house.create') }}</h1>
 
         <form class="w-[95%]">
 
