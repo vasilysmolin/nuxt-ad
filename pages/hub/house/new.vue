@@ -21,6 +21,15 @@
               </span>
             </div>
 
+            <div class="form-floating mb-6 w-full sm:w-[27rem]">
+              <input type="text"
+                     class="form-control forms-input" id="nameAgent"
+                     :placeholder="$t('catalog.nameAgent')"
+                     v-model="dataAgent.name">
+              <label for="nameAgent" class="text-[#6E7191]">{{ $t('catalog.nameAgent') }}</label>
+
+            </div>
+
 
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
@@ -115,6 +124,9 @@ export default {
         photos: [],
       },
       files: [],
+      dataAgent: {
+        name: null,
+      },
       isDisabled: false,
     }
   },
@@ -173,6 +185,7 @@ export default {
       if (this.data.finishing) {
         data.append('finishing', this.data.finishing);
       }
+      data.append('name_agent', this.dataAgent?.name);
       data.append('description', this.data.description);
       data.append('city_id', this.data.city_id);
       data.append('street', this.data.street);

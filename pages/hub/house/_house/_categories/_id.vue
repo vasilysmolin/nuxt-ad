@@ -325,7 +325,6 @@ export default {
       data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
-      data.append('nameAgent', this.dataAgent?.name);
       data.append('price_per_square', this.data.price_per_square);
       data.append('sale_price', this.data.price);
       data.append('house_id', this.house_id);

@@ -129,15 +129,6 @@
             </span>
             </div>
 
-            <div class="form-floating mb-6 w-full sm:w-[27rem]">
-              <input type="text"
-                     class="form-control forms-input" id="nameAgent"
-                     :placeholder="$t('catalog.nameAgent')"
-                     v-model="dataAgent.name">
-              <label for="nameAgent" class="text-[#6E7191]">{{ $t('catalog.nameAgent') }}</label>
-
-            </div>
-
             <BGeo
                 :obj="data"
                 :cityErrors="cityErrors"
@@ -208,9 +199,6 @@ export default {
         photos: [],
       },
       house_id: null,
-      dataAgent: {
-        name: null,
-      },
       files: [],
       isDisabled: false,
     }
@@ -326,7 +314,6 @@ export default {
       // this.isDisabled = false;
       // return;
       data.append('date_build', this.data.date_build);
-      data.append('nameAgent', this.dataAgent?.name);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('price_per_square', this.data.price_per_square);
