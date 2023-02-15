@@ -21,7 +21,7 @@
             <div class="flex justify-between mt-2 w-full">
               <button
                   class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                Список новостроек
+                Список квартир
               </button>
             </div>
           </NuxtLink>

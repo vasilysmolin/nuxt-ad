@@ -5,8 +5,9 @@
       <section class="mt-10">
 
         <section>
-          <nuxt-link to="/feed/new-buildings">
-            <article class="w-full h-[300px] bg-cover rounded-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)">
+          <nuxt-link to="/houses">
+            <article class="w-full h-[300px] bg-cover rounded-lg saturate-50"
+                     style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)">
               <h2 class="mt-5 ml-5 px-2 py-1.5 inline-block text-2xl font-black bg-white rounded">Новостройки</h2>
             </article>
           </nuxt-link>

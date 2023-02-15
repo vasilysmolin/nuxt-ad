@@ -1,0 +1,75 @@
+<template>
+  <div class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
+    <section class="container flex flex-col items-center mt-[20px] pb-10">
+      <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
+        <article v-for="house in houses" :key="house.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
+          <div class="flex justify-between">
+            <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">
+              {{ house.name }}
+            </h2>
+          </div>
+          <div class="flex justify-between">
+            <NuxtLink :to="getUrlRealty(house)">
+              <div class="flex justify-between mt-2 w-full">
+                <button
+                    class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                  Список квартир
+                </button>
+              </div>
+            </NuxtLink>
+          </div>
+        </article>
+        <button v-if="checkAmount" @click="addItems({ skip: houses.length, from: 'cabinet', category_ids: '382,381'})"
+                type="button"
+                class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+          Смотреть дальше
+        </button>
+      </section>
+    </section>
+  </div>
+
+</template>
+
+<script>
+import {mapActions, mapGetters} from 'vuex';
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
+
+export default {
+  name: "HouseHubList",
+  mixins: [CategoriesMixin],
+  props: {
+    type: String,
+  },
+  async mounted() {
+    await this.getItems({});
+    await this.getItemsState();
+  },
+  computed: {
+    ...mapGetters({
+      houses: 'houses/houses',
+      states: 'states/states',
+    }),
+    checkAmount() {
+      return this.houses.length < this.amount;
+    }
+
+  },
+  methods: {
+    ...mapActions({
+      getItems: 'houses/getItems',
+      addItems: 'houses/addItems',
+      getItemsState: 'states/getItems',
+    }),
+    getUrl(house) {
+      return `/houses/${house.id}`;
+    },
+    getUrlRealty(house) {
+      return `/houses/${house.id}/new-build`;
+    },
+    getState(house) {
+      return this.states[house?.state];
+    }
+  },
+
+}
+</script>

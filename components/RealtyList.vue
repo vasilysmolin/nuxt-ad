@@ -242,32 +242,9 @@ export default {
       removeItem: 'categoriesRealty/removeItem',
       setSearchType: 'filters/setSearchType',
     }),
-    getActionUser(realty) {
-      return this.isBuy(realty) ? 'Продавец' : 'Арендодатель';
-    },
-    getUserName(catalog) {
-      if (catalog?.profile?.isPerson === true) {
-        return catalog?.profile?.person?.name;
-      }
-      return catalog?.profile?.user?.name;
-    },
-    everySix(count) {
-      if (count % 6 === 0) {
-        window.yaContextCb.push(() => {
-          Ya.Context.AdvManager.render({
-            renderTo: `yandex_rtb_R-A-1779902-1-${count}`,
-            blockId: 'R-A-1779902-1',
-            pageNumber: count + 1,
-          })
-        })
-      }
-      return count % 6 === 0;
-    },
+
     getUrl(realty) {
       return `/feed/alias/${realty.alias}`
-    },
-    getPhoto(realty) {
-      return realty.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
     },
     getAddress(realty) {
       let arrayAddress = [];

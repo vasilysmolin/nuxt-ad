@@ -319,6 +319,30 @@ export default {
       // Vue.set(this.parameters, `params-${range.alias}`, parseInt(parameterRange.id));
       // });
     },
+    getPhoto(realty) {
+      return realty.photo ?? 'https://storage.yandexcloud.net/tapigo-static/empty.png';
+    },
+    getActionUser(realty) {
+      return this.isBuy(realty) ? 'Продавец' : 'Арендодатель';
+    },
+    getUserName(catalog) {
+      if (catalog?.profile?.isPerson === true) {
+        return catalog?.profile?.person?.name;
+      }
+      return catalog?.profile?.user?.name;
+    },
+    everySix(count) {
+      if (count % 6 === 0) {
+        window.yaContextCb.push(() => {
+          Ya.Context.AdvManager.render({
+            renderTo: `yandex_rtb_R-A-1779902-1-${count}`,
+            blockId: 'R-A-1779902-1',
+            pageNumber: count + 1,
+          })
+        })
+      }
+      return count % 6 === 0;
+    },
     formatPrice(price) {
       return new Intl.NumberFormat('ru-RU', {
         style: 'currency',
