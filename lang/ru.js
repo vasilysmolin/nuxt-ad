@@ -48,6 +48,7 @@ export default {
         edit: 'Редактировать дом',
         name: 'Название дома',
         finishing: 'Срок сдачи',
+        title: 'Дом',
     },
     profile: {
         'confirmEmail': 'Подтвердить email',

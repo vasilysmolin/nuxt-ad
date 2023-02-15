@@ -1,6 +1,10 @@
 <template>
   <section class="container flex flex-col items-center mt-[20px] pb-10">
     <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
+      <div class="flex justify-between">
+        <h1 class="first-letter:uppercase mb-4 w-full text-xl text-black font-black text-center leading-none truncate">
+          {{ $t('house.title') }}: {{ house.name }}</h1>
+      </div>
       <article v-for="realty in realties" :key="realty.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
         <div class="flex justify-between">
           <h2 v-if="isFlat(realty)"
@@ -60,18 +64,19 @@ export default {
   data() {
     return {
       house_id: null,
+      realty: null,
     }
   },
   async mounted() {
     this.house_id = this.$route.params.house;
-    // if (this.realties.length === 0) {
     await this.getItems({from: 'cabinet', category_ids: '410', house_id: this.house_id});
     await this.getItemsState();
-    // }
+    await this.getHouse({id: this.house_id});
   },
   computed: {
     ...mapGetters({
       realties: 'realty/realties',
+      house: 'houses/house',
       states: 'states/states',
     }),
     checkAmount() {
@@ -82,20 +87,21 @@ export default {
   methods: {
     ...mapActions({
       getItems: 'realty/getItems',
+      getHouse: 'houses/getItem',
       addItems: 'realty/addItems',
       getItemsState: 'states/getItems',
     }),
     getUrl(realty) {
       return `/house/${this.house_id}/new-build/${realty.alias}`
     },
-    getUrlNew(realty) {
+    getUrlNew() {
       return `/house/${this.house_id}/new`
     },
     getUrlCatalog(realty) {
       window.open(`${process.env.REALTY_URL}/feed/alias/${realty.alias}`, '_blank');
     },
-    getState(ad) {
-      return this.states[ad.state];
+    getState(realty) {
+      return this.states[realty.state];
     }
   },
 
