@@ -8,17 +8,37 @@
         <form class="w-[95%]">
 
           <div class="flex flex-col items-center w-full">
-
+            <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.finishing') }}</label>
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <the-mask :mask="['####']" v-model="data.finishing"
-                        id="date_build"
-                        type="text"
-                        class="form-control forms-input"
-                        placeholder="Дата постройки"/>
-              <label class="text-[#6E7191]">{{ $t('house.finishing') }}</label>
-              <span v-if="dateErrors" class="form-errors">
-              {{ dateErrors }}
-              </span>
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.finishing">
+                <option v-for="[key, value] in Object.entries(finishing)" :value="key" :key="key"
+                        :selected="key === data.finishing">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
+            <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.typeHouse') }}</label>
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.type">
+                <option v-for="[key, value] in Object.entries(typeHouse)" :value="key" :key="key"
+                        :selected="key === data.type">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
+            <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.deadline') }}</label>
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.deadline">
+                <option v-for="[key, value] in Object.entries(deadline)" :value="key" :key="key"
+                        :selected="key === data.deadline">
+                  {{ value }}
+                </option>
+              </select>
             </div>
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -160,10 +180,22 @@ export default {
   },
   async mounted() {
     await this.$store.dispatch('houses/getItems', {from: 'cabinet'});
+    if (Object.keys(this.$store.getters['finishing/finishing']).length === 0) {
+      await this.$store.dispatch('finishing/getItems');
+    }
+    if (Object.keys(this.$store.getters['typeHouse/typeHouse']).length === 0) {
+      await this.$store.dispatch('typeHouse/getItems');
+    }
+    if (Object.keys(this.$store.getters['deadLine/deadLine']).length === 0) {
+      await this.$store.dispatch('deadLine/getItems');
+    }
   },
   computed: {
     ...mapGetters({
       cities: 'cities/citiesFull',
+      finishing: 'finishing/finishing',
+      typeHouse: 'typeHouse/typeHouse',
+      deadline: 'deadLine/deadLine',
     }),
   },
   methods: {
@@ -182,9 +214,9 @@ export default {
       }
 
       data.append('name', this.data.name);
-      if (this.data.finishing) {
-        data.append('finishing', this.data.finishing);
-      }
+      data.append('finishing', this.data.finishing);
+      data.append('type', this.data.type);
+      data.append('deadline', this.data.deadline);
       data.append('name_agent', this.dataAgent?.name);
       data.append('description', this.data.description);
       data.append('city_id', this.data.city_id);

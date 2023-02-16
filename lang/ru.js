@@ -47,8 +47,10 @@ export default {
         create: 'Создать дом',
         edit: 'Редактировать дом',
         name: 'Название дома',
-        finishing: 'Срок сдачи',
+        finishing: 'Отделка',
         title: 'Дом',
+        typeHouse: 'Тип дома',
+        deadline: 'Срок сдачи',
     },
     profile: {
         'confirmEmail': 'Подтвердить email',
