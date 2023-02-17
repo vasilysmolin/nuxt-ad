@@ -51,6 +51,8 @@ export default {
         title: 'Дом',
         typeHouse: 'Тип дома',
         deadline: 'Срок сдачи',
+        elite: 'Элитный',
+        total_floors: 'Всего этажей',
     },
     profile: {
         'confirmEmail': 'Подтвердить email',

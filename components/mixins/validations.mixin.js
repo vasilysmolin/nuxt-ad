@@ -80,6 +80,26 @@ export default {
         return text;
       }
     },
+    total_floorsErrors: {
+      get() {
+        if (!this.$v.data.total_floors?.$dirty) {
+          return '';
+        }
+        if (!this.$v.data.total_floors.required) {
+          return this.$t('validation.nameRequired');
+        }
+        if (!this.$v.data.total_floors.maxLength) {
+          return this.$t('validation.nameMax');
+        }
+        if (!this.$v.data.total_floors.minLength) {
+          return this.$t('validation.nameMin');
+        }
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
     dateErrors: {
       get() {
         if (!this.$v.data.date_build?.$dirty) {

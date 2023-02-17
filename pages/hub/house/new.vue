@@ -30,6 +30,17 @@
               </select>
             </div>
 
+            <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.elite') }}</label>
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.elite">
+                <option v-for="[key, value] in Object.entries(elite)" :value="key" :key="key"
+                        :selected="key === data.elite">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
             <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.deadline') }}</label>
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <select class="form-select form-select-lg mt-2 forms-select"
@@ -39,6 +50,18 @@
                   {{ value }}
                 </option>
               </select>
+            </div>
+
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <the-mask :mask="['####']" v-model="data.date_build"
+                        id="date_build"
+                        type="text"
+                        class="form-control forms-input"
+                        :placeholder="$t('catalog.dateBuild')"/>
+              <label class="text-[#6E7191]">{{ $t('catalog.dateBuild') }}</label>
+              <span v-if="dateErrors" class="form-errors">
+            {{ dateErrors }}
+            </span>
             </div>
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
@@ -54,11 +77,22 @@
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <input type="text"
                      class="form-control forms-input" id="name"
-                     placeholder="Название вакансии"
+                     :placeholder="$t('house.name')"
                      v-model="data.name">
               <label for="name" class="text-[#6E7191]">{{ $t('house.name') }}</label>
               <span v-if="nameErrors" class="form-errors">
             {{ nameErrors }}
+            </span>
+            </div>
+
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="number"
+                     class="form-control forms-input" id="total_floors"
+                     :placeholder="$t('house.total_floors')"
+                     v-model="data.total_floors">
+              <label for="name" class="text-[#6E7191]">{{ $t('house.total_floors') }}</label>
+              <span v-if="total_floorsErrors" class="form-errors">
+            {{ total_floorsErrors }}
             </span>
             </div>
 
@@ -140,6 +174,7 @@ export default {
         city_id: null,
         street: null,
         house: null,
+        total_floors: null,
         description: '',
         photos: [],
       },
@@ -156,6 +191,11 @@ export default {
         required,
         maxLength: maxLength(70),
         minLength: minLength(3)
+      },
+      total_floors: {
+        required,
+        maxLength: maxLength(1000),
+        minLength: minLength(1)
       },
       photos: {
         required,
@@ -189,6 +229,9 @@ export default {
     if (Object.keys(this.$store.getters['deadLine/deadLine']).length === 0) {
       await this.$store.dispatch('deadLine/getItems');
     }
+    if (Object.keys(this.$store.getters['elite/elite']).length === 0) {
+      await this.$store.dispatch('elite/getItems');
+    }
   },
   computed: {
     ...mapGetters({
@@ -196,6 +239,7 @@ export default {
       finishing: 'finishing/finishing',
       typeHouse: 'typeHouse/typeHouse',
       deadline: 'deadLine/deadLine',
+      elite: 'elite/elite',
     }),
   },
   methods: {
@@ -216,11 +260,14 @@ export default {
       data.append('name', this.data.name);
       data.append('finishing', this.data.finishing);
       data.append('type', this.data.type);
+      data.append('total_floors', this.data.total_floors);
       data.append('deadline', this.data.deadline);
+      data.append('date_build', this.data.date_build);
       data.append('name_agent', this.dataAgent?.name);
       data.append('description', this.data.description);
       data.append('city_id', this.data.city_id);
       data.append('street', this.data.street);
+      data.append('elite', this.data.elite);
       data.append('house', this.data.house);
       data.append('latitude', this.data.latitude);
       data.append('longitude', this.data.longitude);
