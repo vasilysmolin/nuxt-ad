@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      realties: 'realty/realties',
+      realties: 'newBuildings/realties',
       house: 'houses/house',
       states: 'states/states',
     }),
@@ -86,9 +86,9 @@ export default {
   },
   methods: {
     ...mapActions({
-      getItems: 'realty/getItems',
+      getItems: 'newBuildings/getItems',
       getHouse: 'houses/getItem',
-      addItems: 'realty/addItems',
+      addItems: 'newBuildings/addItems',
       getItemsState: 'states/getItems',
     }),
     getUrl(realty) {

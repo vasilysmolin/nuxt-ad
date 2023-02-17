@@ -92,7 +92,7 @@ export const actions = {
 		});
 		const realties = await this.$axios.$get(`new-buildings?${getParams}`);
 
-		commit('setRealtiesSearch', realties.realties);
+		commit('setRealtiesSearch', realties.new_buildings);
 		commit('setAmountSearch', realties.meta.total);
 
 	},
@@ -133,10 +133,10 @@ export const actions = {
 		const realties = await this.$axios.$get(`new-buildings?${getParams}`);
 
 		if (state === 'new') {
-			commit('setrealtiesNew', realties.realties);
+			commit('setrealtiesNew', realties.new_buildings);
 			commit('setAmountNew', realties.meta.total);
 		} else {
-			commit('setrealties', realties.realties);
+			commit('setrealties', realties.new_buildings);
 			commit('setAmount', realties.meta.total);
 		}
 	},
@@ -160,9 +160,9 @@ export const actions = {
 		});
 		const realties = await this.$axios.$get(`new-buildings?take=25${getParams}`);
 		if (state === 'new') {
-			commit('realtydrealtiesNew', realties.realties);
+			commit('realtydrealtiesNew', realties.new_buildings);
 		} else {
-			commit('realtydrealties', realties.realties);
+			commit('realtydrealties', realties.new_buildings);
 		}
 	},
 	async removeItems({commit}) {
@@ -184,9 +184,9 @@ export const actions = {
 		});
 		const ads = await this.$axios.$get(`new-buildings?take=25${getParams}`);
 		if (state === 'new') {
-			commit('addRealtyNew', ads.realties);
+			commit('addRealtyNew', ads.new_buildings);
 		} else {
-			commit('addRealty', ads.realties);
+			commit('addRealty', ads.new_buildings);
 		}
 	},
 	async getItem({commit}, {id, expand = null, querySearch = null}) {

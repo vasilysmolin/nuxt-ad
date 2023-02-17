@@ -71,18 +71,6 @@
               </template>
             </div>
 
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <the-mask :mask="['####']" v-model="data.date_build"
-                        id="date_build"
-                        type="text"
-                        class="form-control forms-input"
-                        :placeholder="$t('catalog.dateBuild')"/>
-              <label class="text-[#6E7191]">{{ $t('catalog.dateBuild') }}</label>
-              <span v-if="dateErrors" class="form-errors">
-            {{ dateErrors }}
-            </span>
-            </div>
-
             <div class="mb-4 w-full sm:w-[27rem]">
               <vue-editor v-model="data.description" :editorToolbar="customToolbar"></vue-editor>
               <span v-if="descriptionErrors" class="form-errors">
@@ -111,23 +99,6 @@
             {{ priceSquareErrors }}
             </span>
             </div>
-
-            <div class="form-floating mb-6 w-full sm:w-[27rem]">
-              <input type="text"
-                     class="form-control forms-input" id="nameAgent"
-                     :placeholder="$t('catalog.nameAgent')"
-                     v-model="dataAgent.name">
-              <label for="nameAgent" class="text-[#6E7191]">{{ $t('catalog.nameAgent') }}</label>
-
-            </div>
-
-            <BGeo
-                :obj="data"
-                :cityErrors="cityErrors"
-                :addressErrors="addressErrors"
-                @cityId="getCityId"
-                @address="getAddress"
-            />
 
             <div class="form-floating mb-6 w-full sm:w-[27rem]">
               <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
@@ -178,10 +149,10 @@ import * as _ from 'lodash';
 import {maxLength, minLength, numeric, required} from 'vuelidate/lib/validators';
 import BGeo from "~/components/blocks/BGeo";
 import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
-import UpWhite from "../../../../../components/icons/UpWhite";
-import PauseWhite from "../../../../../components/icons/PauseWhite";
-import DeleteWhite from "../../../../../components/icons/DeleteWhite";
-import RefreshWhite from "../../../../../components/icons/RefreshWhite";
+import UpWhite from "~/components/icons/UpWhite";
+import PauseWhite from "~/components/icons/PauseWhite";
+import DeleteWhite from "~/components/icons/DeleteWhite";
+import RefreshWhite from "~/components/icons/RefreshWhite";
 import Validations from "~/components/mixins/validations.mixin"
 import {mapActions, mapGetters} from "vuex";
 
@@ -219,19 +190,6 @@ export default {
   },
   validations: {
     data: {
-      date_build: {
-        required,
-      },
-      city_id: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(2)
-      },
-      street: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(2)
-      },
       category_id: {
         required,
         numeric,
@@ -253,12 +211,12 @@ export default {
   async mounted() {
     this.house_id = this.$route.params.house;
     this.showMap = true;
-    await this.$store.dispatch('realty/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
-      this.data = _.cloneDeep(this.$store.getters['realty/realty']);
+    await this.$store.dispatch('newBuildings/getItem', {id: this.$route.params.id, expand: 'profile.user'}).then(() => {
+      this.data = _.cloneDeep(this.$store.getters['newBuildings/realty']);
     });
     this.dataAgent.name = this.data?.agent?.name;
     // if (this.category.length === 0) {
-      await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
+    await this.$store.dispatch('categoriesRealty/getItems', {from: 'cabinet', id: '410'});
     // }
     await this.$store.dispatch('categoriesRealty/getItem', {id: this.data.category_id});
     this.items = this.iterator(this.category);
@@ -273,8 +231,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      filters: 'categoriesRealty/categoryRealties',
-      cities: 'cities/citiesFull',
+      filters: 'categoriesRealty/categoryRealties'
     }),
     category: {
       get() {
@@ -293,21 +250,8 @@ export default {
     ...mapActions({
       removeItem: 'categoriesRealty/removeItem',
     }),
-    getCityId(event) {
-      this.data.city_id = event;
-    },
     getAgentName() {
       return this.dataAgent?.name;
-    },
-    getAddress(event) {
-      if (!_.isEmpty(event)) {
-        this.data.street = event.data.street_with_type;
-        this.data.house = event.data.house;
-        this.data.latitude = event.data.geo_lat;
-        this.data.longitude = event.data.geo_lon;
-      } else {
-        this.data.street = null;
-      }
     },
     submitted() {
       if (this.$v.$invalid) {
@@ -322,20 +266,14 @@ export default {
       _.forIn(this.parameters, function (value, key) {
         data.append('filter[]', value);
       });
-      data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('price_per_square', this.data.price_per_square);
       data.append('sale_price', this.data.price);
       data.append('house_id', this.house_id);
       data.append('category_id', this.data.category_id);
-      data.append('city_id', this.data.city_id);
-      data.append('latitude', this.data.latitude);
-      data.append('longitude', this.data.longitude);
-      data.append('street', this.data.street);
-      data.append('house', this.data.house);
       data.append('_method', 'put');
-      this.$axios.$post(`realties/${this.$route.params.id}`, data).then(() => {
+      this.$axios.$post(`new-buildings/${this.$route.params.id}`, data).then(() => {
         this.$router.push(
             {
               path: `/house/${this.house_id}/new-build`,
@@ -348,7 +286,7 @@ export default {
 
     },
     deleted() {
-      this.$axios.$delete(`realties/${this.$route.params.id}`).then(() => {
+      this.$axios.$delete(`new-buildings/${this.$route.params.id}`).then(() => {
         this.$router.push(
             {
               path: `/house/${this.house_id}/new-build`,
@@ -361,7 +299,7 @@ export default {
 
     },
     active() {
-      this.$axios.$put(`realties/${this.$route.params.id}/state`, {state: 'active'}).then(() => {
+      this.$axios.$put(`new-buildings/${this.$route.params.id}/state`, {state: 'active'}).then(() => {
         this.$router.push(
             {
               path: `/house/${this.house_id}/new-build`,
@@ -372,7 +310,7 @@ export default {
 
     },
     pause() {
-      this.$axios.$put(`realties/${this.$route.params.id}/state`, {state: 'pause'}).then(() => {
+      this.$axios.$put(`new-buildings/${this.$route.params.id}/state`, {state: 'pause'}).then(() => {
         this.$router.push(
             {
               path: `/house/${this.house_id}/new-build`,
@@ -383,7 +321,7 @@ export default {
 
     },
     up() {
-      this.$axios.$put(`realties/${this.$route.params.id}/sort`, {}).then(() => {
+      this.$axios.$put(`new-buildings/${this.$route.params.id}/sort`, {}).then(() => {
         this.$router.push(
             {
               path: `/house/${this.house_id}/new-build`,
@@ -409,14 +347,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.ymap-container {
-  height: 100%;
-}
-
-.ymap-class {
-  width: 100vw;
-  height: 100%;
-}
-</style>

@@ -195,9 +195,6 @@ export default {
         maxLength: maxLength(1000),
         minLength: minLength(1)
       },
-      photos: {
-        required,
-      },
       street: {
         required,
         maxLength: maxLength(70),

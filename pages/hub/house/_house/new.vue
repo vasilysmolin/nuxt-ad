@@ -48,17 +48,6 @@
                     class="form-control forms-input w-20"
                     placeholder=""
                     :value="rangeSort[`params-${item.alias}`]">
-
-                <!--                <input @change="changeRange($event, item)"-->
-                <!--                       :id="item.id" type="range"-->
-                <!--                       :min="min(item)"-->
-                <!--                       :max="max(item)"-->
-                <!--                       :value="rangeSort[`params-${item.alias}`]"-->
-                <!--                       class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"-->
-                <!--                >-->
-                <!--                <div class="relative">-->
-                <!--                  <div class="absolute top-0 left-0">{{rangeValue[`params-${item.alias}`]}}</div>-->
-                <!--                </div>-->
               </template>
               <template v-if="isCheckbox(item)" class="form-select form-select-lg mt-2 forms-select">
                 <div class="form-check" v-for="parameter in item.parameters">
@@ -79,19 +68,6 @@
                 </div>
               </template>
             </div>
-
-            <div class="form-floating mb-4 w-full sm:w-[27rem]">
-              <the-mask :mask="['####']" v-model="data.date_build"
-                        id="date_build"
-                        type="text"
-                        class="form-control forms-input"
-                        placeholder="Дата постройки"/>
-              <label class="text-[#6E7191]">Дата постройки</label>
-              <span v-if="dateErrors" class="form-errors">
-            {{ dateErrors }}
-            </span>
-            </div>
-
 
             <div class="mb-4 w-full sm:w-[27rem]">
                   <textarea
@@ -128,14 +104,6 @@
             {{ priceSquareErrors }}
             </span>
             </div>
-
-            <BGeo
-                :obj="data"
-                :cityErrors="cityErrors"
-                :addressErrors="addressErrors"
-                @cityId="getCityId"
-                @address="getAddress"
-            />
 
             <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
               <div class="mb-4 w-full" v-for="photo in data.photos">
@@ -212,22 +180,9 @@ export default {
       photos: {
         required,
       },
-      date_build: {
-        required,
-      },
       category_id: {
         required,
         numeric,
-      },
-      city_id: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(2)
-      },
-      street: {
-        required,
-        maxLength: maxLength(70),
-        minLength: minLength(2)
       },
       description: {
         required,
@@ -278,26 +233,12 @@ export default {
       set(category) {
         return category
       }
-      // filters: 'categoriesAd/categoryAds',
     },
   },
   methods: {
     ...mapActions({
       removeItem: 'categoriesRealty/removeItem',
     }),
-    getCityId(event) {
-      this.data.city_id = event;
-    },
-    getAddress(event) {
-      if (!_.isEmpty(event)) {
-        this.data.street = event.data.street_with_type;
-        this.data.house = event.data.house;
-        this.data.latitude = event.data.geo_lat;
-        this.data.longitude = event.data.geo_lon;
-      } else {
-        this.data.street = null;
-      }
-    },
     submitted() {
       if (this.$v.$invalid) {
         this.$v.$touch();
@@ -313,19 +254,13 @@ export default {
       });
       // this.isDisabled = false;
       // return;
-      data.append('date_build', this.data.date_build);
       data.append('description', this.data.description);
       data.append('price', this.data.price);
       data.append('price_per_square', this.data.price_per_square);
       data.append('sale_price', this.data.sale_price);
       data.append('category_id', this.data.category_id);
-      data.append('city_id', this.data.city_id);
       data.append('house_id', this.house_id);
-      data.append('latitude', this.data.latitude);
-      data.append('longitude', this.data.longitude);
-      data.append('street', this.data.street);
-      data.append('house', this.data.house);
-      this.$axios.$post(`realties`, data).then(() => {
+      this.$axios.$post(`new-buildings`, data).then(() => {
         this.$router.push(
             {
               path: `/house/${this.house_id}/new-build`,
@@ -347,43 +282,6 @@ export default {
         $this.data.photos.push(URL.createObjectURL(file))
       });
     },
-    onMapInit(event) {
-      this.zoom = event.getZoom();
-    },
-    onBoundsChange(event) {
-      this.zoom = event.originalEvent.map.getZoom();
-    },
-    checkCity() {
-      return this.user?.city;
-    },
-    ...mapActions({
-      getItems: 'cities/getItemsFull',
-      removeItemsFull: 'cities/removeItemsFull',
-    }),
-    getCity(city) {
-      this.query = city.name;
-      this.data.city_id = city.id;
-      this.coords = [city.latitude, city.longitude];
-      this.coordsBal = [city.latitude, city.longitude];
-      this.removeItemsFull();
-    },
-    onClick(e) {
-      this.coordsBal = e.get('coords');
-    },
-    debounceInput: _.debounce(function (e) {
-      if (this.query === '') {
-        this.error = true;
-        this.removeItemsFull();
-      } else {
-        this.error = false;
-        this.getItems({querySearch: this.query}).then((res) => {
-        }).catch((error) => {
-          // console.log(error.response.data.errors);
-          // this.$v.nameErrors = 'какой-то текст';
-        });
-      }
-
-    }, 500)
   },
 }
 </script>
