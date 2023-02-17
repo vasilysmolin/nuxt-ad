@@ -428,8 +428,21 @@ export default {
       }
     },
     getAgent(realty) {
-      return realty?.agent?.name;
+      return realty?.house?.agent?.name;
     },
+    getElite(realty) {
+      return this.elite[realty?.house.elite] ?? '';
+    },
+    getFinishingNew(realty) {
+      return this.finishing[realty?.house.finishing] ?? '';
+    },
+    getType(realty) {
+      return this.typeHouse[realty?.house.type] ?? '';
+    },
+    getDeadlineNew(realty) {
+      return this.deadline[realty?.house.deadline] ?? '';
+    },
+
     getFinishing(realty) {
       const finishing = _.find(realty?.parameters, function (item) {
         return item.filter_id === 78;
@@ -481,6 +494,9 @@ export default {
         return `${countFloor?.sort}`;
       }
     },
+    getAllFloorNew(realty) {
+      return realty?.house?.total_floors;
+    },
     isElite(realty) {
       const countFloor = _.find(realty?.parameters, function (item) {
         return item.filter_id === 49 || item.filter_id === 77 || item.filter_id === 45;
@@ -523,6 +539,9 @@ export default {
     },
     getDateBuild(realty) {
       return `${realty?.date_build}`;
+    },
+    getDateBuildNew(realty) {
+      return `${realty?.house?.date_build}`;
     },
   },
 };

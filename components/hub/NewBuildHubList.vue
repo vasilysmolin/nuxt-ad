@@ -98,7 +98,7 @@ export default {
       return `/house/${this.house_id}/new`
     },
     getUrlCatalog(realty) {
-      window.open(`${process.env.REALTY_URL}/feed/alias/${realty.alias}`, '_blank');
+      window.open(`${process.env.REALTY_URL}/houses/${this.house_id}/alias/${realty.alias}`, '_blank');
     },
     getState(realty) {
       return this.states[realty.state];

@@ -135,7 +135,7 @@ export default {
       getItemsState: 'states/getItems',
     }),
     getUrl(realty) {
-      return `/feed/alias/${realty.alias}`
+      return `/houses/${this.house_id}/alias/${realty.alias}`
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';
