@@ -6,6 +6,18 @@
         <div class="flex justify-between">
           <h1 class="first-letter:uppercase mb-4 w-full text-xl text-black font-black text-center leading-none truncate">
             {{ $t('house.title') }}: {{ house.name }}</h1>
+          <!--          <section class="grid grid-cols-2 gap-4 items-center text-sm">-->
+          <!--            <ul class="text-gray-500 leading-9">-->
+          <!--              <li>Элитный</li>-->
+          <!--              <li>Отделка</li>-->
+          <!--              <li>Срок сдачи}</li>-->
+          <!--            </ul>-->
+          <!--            <ul class="text-gray-500 leading-9">-->
+          <!--              <li>{{getElite(house)}}</li>-->
+          <!--              <li>{{getFinishing(house)}}</li>-->
+          <!--              <li>{{getDeadline(house)}} {{house.date_build}}</li>-->
+          <!--            </ul>-->
+          <!--          </section>-->
         </div>
         <nav class="flex justify-start items-center mt-3 mb-1.5">
           <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
@@ -39,19 +51,13 @@
                   <ul class="text-gray-500 leading-9">
                     <li>Стоимость, м<sup><small>2</small></sup></li>
                     <li>Этаж</li>
-                    <li>Тип дома</li>
                     <li>Тип комнат</li>
-                    <li>Отделка</li>
-                    <li class="text-black font-bold">Срок сдачи</li>
                   </ul>
                   <ul class="text-gray-500 leading-9">
                     <li class="mt-1 text-gray-500">{{ formatPrice(realty.price_per_square) }}
                     </li>
                     <li>{{ getFloor(realty) }}</li>
-                    <li>{{ getHouseType(realty) }}</li>
                     <li>{{ getTypeRooms(realty) }}</li>
-                    <li>{{ getFinishing(realty) }}</li>
-                    <li class="text-black font-bold">{{ getDeadline(realty) }} {{ getDateBuild(realty) }} г.</li>
                   </ul>
                 </section>
 
@@ -93,12 +99,28 @@ export default {
     await this.getItems({category_ids: '410', house_id: this.house_id});
     await this.getItemsState();
     await this.getHouse({id: this.house_id});
+    if (Object.keys(this.$store.getters['finishing/finishing']).length === 0) {
+      await this.$store.dispatch('finishing/getItems');
+    }
+    if (Object.keys(this.$store.getters['typeHouse/typeHouse']).length === 0) {
+      await this.$store.dispatch('typeHouse/getItems');
+    }
+    if (Object.keys(this.$store.getters['deadLine/deadLine']).length === 0) {
+      await this.$store.dispatch('deadLine/getItems');
+    }
+    if (Object.keys(this.$store.getters['elite/elite']).length === 0) {
+      await this.$store.dispatch('elite/getItems');
+    }
   },
   computed: {
     ...mapGetters({
-      realties: 'realty/realties',
+      realties: 'newBuildings/realties',
       house: 'houses/house',
       states: 'states/states',
+      finishing: 'finishing/finishing',
+      typeHouse: 'typeHouse/typeHouse',
+      deadline: 'deadLine/deadLine',
+      elite: 'elite/elite',
     }),
     checkAmount() {
       return this.realties.length < this.amount;
@@ -107,13 +129,25 @@ export default {
   },
   methods: {
     ...mapActions({
-      getItems: 'realty/getItems',
+      getItems: 'newBuildings/getItems',
       getHouse: 'houses/getItem',
-      addItems: 'realty/addItems',
+      addItems: 'newBuildings/getItems',
       getItemsState: 'states/getItems',
     }),
     getUrl(realty) {
       return `/feed/alias/${realty.alias}`
+    },
+    getElite(house) {
+      return this.elite[house.elite] ?? '';
+    },
+    getFinishing(house) {
+      return this.finishing[house.finishing] ?? '';
+    },
+    getType(house) {
+      return this.typeHouse[house.type] ?? '';
+    },
+    getDeadline(house) {
+      return this.deadline[house.deadline] ?? '';
     },
     getState(realty) {
       return this.states[realty.state];

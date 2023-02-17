@@ -8,6 +8,10 @@
               {{ house.name }}
             </h2>
           </div>
+          <p>Элитный {{ getElite(house) }}</p>
+          <p>{{ getFinishing(house) }}</p>
+          <p>Тип дома {{ getType(house) }}</p>
+          <p>Срок сдачи {{ getDeadline(house) }} {{ house.date_build }}</p>
           <div class="flex justify-between">
             <NuxtLink :to="getUrlRealty(house)">
               <div class="flex justify-between mt-2 w-full">
@@ -43,11 +47,27 @@ export default {
   async mounted() {
     await this.getItems({});
     await this.getItemsState();
+    if (Object.keys(this.$store.getters['finishing/finishing']).length === 0) {
+      await this.$store.dispatch('finishing/getItems');
+    }
+    if (Object.keys(this.$store.getters['typeHouse/typeHouse']).length === 0) {
+      await this.$store.dispatch('typeHouse/getItems');
+    }
+    if (Object.keys(this.$store.getters['deadLine/deadLine']).length === 0) {
+      await this.$store.dispatch('deadLine/getItems');
+    }
+    if (Object.keys(this.$store.getters['elite/elite']).length === 0) {
+      await this.$store.dispatch('elite/getItems');
+    }
   },
   computed: {
     ...mapGetters({
       houses: 'houses/houses',
       states: 'states/states',
+      finishing: 'finishing/finishing',
+      typeHouse: 'typeHouse/typeHouse',
+      deadline: 'deadLine/deadLine',
+      elite: 'elite/elite',
     }),
     checkAmount() {
       return this.houses.length < this.amount;
@@ -65,6 +85,18 @@ export default {
     },
     getUrlRealty(house) {
       return `/houses/${house.id}/new-build`;
+    },
+    getElite(house) {
+      return this.elite[house.elite] ?? '';
+    },
+    getFinishing(house) {
+      return this.finishing[house.finishing] ?? '';
+    },
+    getType(house) {
+      return this.typeHouse[house.type] ?? '';
+    },
+    getDeadline(house) {
+      return this.deadline[house.deadline] ?? '';
     },
     getState(house) {
       return this.states[house?.state];
