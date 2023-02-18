@@ -1,35 +1,58 @@
 <template>
   <div class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
-    <section class="container flex flex-col items-center mt-[20px] pb-10">
-      <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
-        <article v-for="house in houses" :key="house.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
-          <div class="flex justify-between">
-            <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">
-              {{ house.name }}
-            </h2>
-          </div>
-          <p>Элитный {{ getElite(house) }}</p>
-          <p>{{ getFinishing(house) }}</p>
-          <p>Тип дома {{ getType(house) }}</p>
-          <p>Срок сдачи {{ getDeadline(house) }} {{ house.date_build }}</p>
-          <div class="flex justify-between">
-            <NuxtLink :to="getUrlRealty(house)">
-              <div class="flex justify-between mt-2 w-full">
-                <button
-                    class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                  Список квартир
-                </button>
-              </div>
-            </NuxtLink>
-          </div>
-        </article>
-        <button v-if="checkAmount" @click="addItems({ skip: houses.length, from: 'cabinet', category_ids: '382,381'})"
-                type="button"
-                class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-          Смотреть дальше
-        </button>
-      </section>
-    </section>
+    <div class="mx-auto flex flex-col w-full">
+      <nav class="flex justify-start items-center mt-3 mb-1.5">
+        <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
+          <li class="leading-6">
+            <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Недвижимость</NuxtLink>
+          </li>
+          <li><span class="px-2 text-gray-500">/</span></li>
+          <li class="leading-6">
+            <p class="text-gray-500 hover:text-black">Новостройки</p>
+          </li>
+        </ul>
+      </nav>
+      <article v-for="house in houses" :key="house.id"
+               class="p-1 group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
+        <NuxtLink :to="getUrlRealty(house)">
+          <section class="grid grid-cols-[250px,450px,_1fr]">
+            <section>
+              <img class="w-full rounded-lg bg-cover" :src="getPhoto(house)" :alt="house.name">
+            </section>
+            <section class="flex flex-col pl-5 pr-10">
+              <h2 class="first-letter:uppercase font-black text-[0.9375rem] leading-5 sm:text-lg">
+                {{ house.name }}
+              </h2>
+
+              <p class="mt-2.5 text-sm text-gray-500">{{ house.full_address }}</p>
+
+              <h3 class="mt-1 text-sm text-gray-500">{{ getActionUser(realty) }} {{ getUserName(realty) }}</h3>
+
+            </section>
+            <section class="grid grid-cols-2 gap-4 items-center text-sm">
+              <ul class="text-gray-500 leading-9">
+                <li>Элитный</li>
+                <li>Отделка</li>
+                <li>Тип дома</li>
+                <li>Срок сдачи</li>
+              </ul>
+              <ul class="text-gray-500 leading-9">
+                <li class="mt-1 text-gray-500">{{ getElite(house) }}
+                </li>
+                <li>{{ getFinishing(house) }}</li>
+                <li>{{ getType(house) }}</li>
+                <li>{{ getDeadline(house) }} {{ house.date_build }}</li>
+              </ul>
+            </section>
+          </section>
+        </NuxtLink>
+      </article>
+      <button v-if="checkAmount" @click="addItems({ skip: houses.length, from: 'cabinet', category_ids: '382,381'})"
+              type="button"
+              class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+        Смотреть дальше
+      </button>
+    </div>
   </div>
 
 </template>

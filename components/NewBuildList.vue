@@ -22,7 +22,15 @@
         <nav class="flex justify-start items-center mt-3 mb-1.5">
           <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
             <li class="leading-6">
-              <NuxtLink :to="`/houses`" class="text-gray-500 hover:text-black">Все дома</NuxtLink>
+              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Недвижимость</NuxtLink>
+            </li>
+            <li><span class="px-2 text-gray-500">/</span></li>
+            <li class="leading-6">
+              <NuxtLink :to="`/houses`" class="text-gray-500 hover:text-black">Новостройки</NuxtLink>
+            </li>
+            <li><span class="px-2 text-gray-500">/</span></li>
+            <li class="leading-6">
+              <p class="text-gray-500 hover:text-black">{{ house.name }}</p>
             </li>
           </ul>
         </nav>
