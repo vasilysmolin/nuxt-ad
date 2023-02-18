@@ -107,7 +107,7 @@ export default {
       return `/houses/${house.id}`;
     },
     getUrlRealty(house) {
-      return `/houses/${house.id}/new-build`;
+      return `/houses/${house.id}/house`;
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';
