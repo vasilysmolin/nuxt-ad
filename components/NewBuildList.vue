@@ -30,7 +30,14 @@
             </li>
             <li><span class="px-2 text-gray-500">/</span></li>
             <li class="leading-6">
-              <p class="text-gray-500 hover:text-black">{{ house.name }}</p>
+              <NuxtLink :to="`/houses/${house.id}/house`" class="text-gray-500 hover:text-black">{{
+                  house.name
+                }}
+              </NuxtLink>
+            </li>
+            <li><span class="px-2 text-gray-500">/</span></li>
+            <li class="leading-6">
+              <p class="text-gray-500 hover:text-black">Квартиры</p>
             </li>
           </ul>
         </nav>
