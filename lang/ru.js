@@ -53,6 +53,7 @@ export default {
         deadline: 'Срок сдачи',
         elite: 'Элитный',
         total_floors: 'Всего этажей',
+        parking: 'Парковка',
     },
     profile: {
         'confirmEmail': 'Подтвердить email',

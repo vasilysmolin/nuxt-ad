@@ -42,6 +42,17 @@
               </select>
             </div>
 
+            <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.parking') }}</label>
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <select class="form-select form-select-lg mt-2 forms-select"
+                      v-model="data.parking">
+                <option v-for="[key, value] in Object.entries(parking)" :value="key" :key="key"
+                        :selected="key === data.parking">
+                  {{ value }}
+                </option>
+              </select>
+            </div>
+
             <label for="name" class="items-start text-left pl-4 text-gray-500">{{ $t('house.deadline') }}</label>
             <div class="form-floating mb-4 w-full sm:w-[27rem]">
               <select class="form-select form-select-lg mt-2 forms-select"
@@ -98,14 +109,7 @@
             </div>
 
             <div class="mb-4 w-full sm:w-[27rem]">
-                  <textarea
-                      class="form-control forms-textarea"
-                      rows="5"
-                      name="description"
-                      id="description"
-                      placeholder="Описание"
-                      v-model="data.description"
-                  >{{ data.description }}</textarea>
+              <vue-editor v-model="data.description" :editorToolbar="customToolbar"></vue-editor>
               <span v-if="descriptionErrors" class="form-errors">
             {{ descriptionErrors }}
             </span>
@@ -169,6 +173,11 @@ export default {
   data() {
     return {
       query: '',
+      customToolbar: [
+        ["bold", "italic", "underline"],
+        [{list: "ordered"}, {list: "bullet"}],
+        ["code-block"]
+      ],
       data: {
         cityId: null,
         city_id: null,
@@ -230,6 +239,9 @@ export default {
     if (Object.keys(this.$store.getters['elite/elite']).length === 0) {
       await this.$store.dispatch('elite/getItems');
     }
+    if (Object.keys(this.$store.getters['parking/parking']).length === 0) {
+      await this.$store.dispatch('parking/getItems');
+    }
   },
   computed: {
     ...mapGetters({
@@ -238,6 +250,7 @@ export default {
       typeHouse: 'typeHouse/typeHouse',
       deadline: 'deadLine/deadLine',
       elite: 'elite/elite',
+      parking: 'parking/parking',
     }),
   },
   methods: {
@@ -270,6 +283,7 @@ export default {
       data.append('city_id', this.data.city_id);
       data.append('street', this.data.street);
       data.append('elite', this.data.elite);
+      data.append('parking', this.data.parking);
       data.append('house', this.data.house);
       data.append('latitude', this.data.latitude);
       data.append('longitude', this.data.longitude);
