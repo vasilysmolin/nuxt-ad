@@ -23,7 +23,7 @@
         </li>
         <li><span class="px-2 text-gray-500">/</span></li>
         <li class="leading-6">
-          <p class="text-gray-500 hover:text-black">{{ generateTitle(realty) }} <span
+          <p class="text-black">{{ generateTitle(realty) }} <span
               class=""> м<sup>2</sup></span></p>
         </li>
       </ul>
@@ -134,7 +134,7 @@
         <section class="mt-5 w-full">
           <template v-if="realty !== null">
             <BYandexMap
-                :obj="realty"
+                :obj="realty.house"
             />
           </template>
         </section>

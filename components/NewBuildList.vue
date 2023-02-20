@@ -3,23 +3,13 @@
     <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
 
       <div class="mx-auto flex flex-col w-full">
+        <!--
         <div class="flex justify-between">
           <h1 class="first-letter:uppercase mb-4 w-full text-xl text-black font-black text-center leading-none truncate">
             {{ $t('house.title') }}: {{ house.name }}</h1>
-          <!--          <section class="grid grid-cols-2 gap-4 items-center text-sm">-->
-          <!--            <ul class="text-gray-500 leading-9">-->
-          <!--              <li>Элитный</li>-->
-          <!--              <li>Отделка</li>-->
-          <!--              <li>Срок сдачи}</li>-->
-          <!--            </ul>-->
-          <!--            <ul class="text-gray-500 leading-9">-->
-          <!--              <li>{{getElite(house)}}</li>-->
-          <!--              <li>{{getFinishing(house)}}</li>-->
-          <!--              <li>{{getDeadline(house)}} {{house.date_build}}</li>-->
-          <!--            </ul>-->
-          <!--          </section>-->
         </div>
-        <nav class="flex justify-start items-center mt-3 mb-1.5">
+        -->
+        <nav class="flex justify-start items-center mb-1.5">
           <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
             <li class="leading-6">
               <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Недвижимость</NuxtLink>
@@ -37,7 +27,7 @@
             </li>
             <li><span class="px-2 text-gray-500">/</span></li>
             <li class="leading-6">
-              <p class="text-gray-500 hover:text-black">Квартиры</p>
+              <p class="text-black">Квартиры</p>
             </li>
           </ul>
         </nav>

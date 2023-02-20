@@ -1,10 +1,7 @@
 <template>
   <section>
     <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
-
       <div class="mx-auto flex flex-col w-full">
-        <div class="flex justify-between">
-        </div>
         <nav class="flex justify-start items-center mb-1.5">
           <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
             <li class="leading-6">
@@ -20,20 +17,54 @@
             </li>
           </ul>
         </nav>
-        <h1 class="first-letter:uppercase mb-4 w-full text-xl text-black font-black text-center leading-none truncate">
-          {{ $t('house.title') }}: {{ house.name }}</h1>
-        <!--          <section class="grid grid-cols-2 gap-4 items-center text-sm">-->
-        <!--            <ul class="text-gray-500 leading-9">-->
-        <!--              <li>Элитный</li>-->
-        <!--              <li>Отделка</li>-->
-        <!--              <li>Срок сдачи}</li>-->
-        <!--            </ul>-->
-        <!--            <ul class="text-gray-500 leading-9">-->
-        <!--              <li>{{getElite(house)}}</li>-->
-        <!--              <li>{{getFinishing(house)}}</li>-->
-        <!--              <li>{{getDeadline(house)}} {{house.date_build}}</li>-->
-        <!--            </ul>-->
-        <!--          </section>-->
+
+        <section class="mt-[15px] w-full h-[450px] bg-cover bg-center rounded-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)">
+          <h1 class="mt-8 ml-8 p-2 inline-block text-3xl text-black font-black bg-white rounded">{{ house.name }}</h1>
+          <NuxtLink :to="getAllFlats(realty)" class="absolute left-8 bottom-8 p-2 inline-block text-xl text-white bg-[#0445FF] rounded">Продавец ООО Сатурн</NuxtLink>
+        </section>
+
+        <section class="mt-8 flex justify-between items-center">
+          <p class="text-lg">{{ house.full_address }}</p>
+          <a href="" class="text-base text-blue-600">Посмотреть на карте</a>
+        </section>
+
+        <section class="mt-8 flex justify-between text-lg">
+          <p class="text-gray-500">Застройщик<span class="pl-2.5 text-black">СМУ 1</span></p>
+          <p class="text-gray-500">Срок сдачи<span class="pl-2.5 text-black">{{ getDeadline(house) }}. {{ house.date_build }} г.</span></p>
+          <p class="text-gray-500">Этажей в доме<span class="pl-2.5 text-black">25</span></p>
+          <p class="text-gray-500">Тип дома<span class="pl-2.5 text-black">{{ getType(house) }}</span></p>
+        </section>
+
+        <p class="text-center">
+          <nuxt-link to=""
+                     class="btn btn-primary inline-block mt-10 px-5 py-2.5 bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
+            Все характеристики дома
+          </nuxt-link>
+        </p>
+
+        <section class="mt-8">
+          <h2 class="inline-block font-bold text-xl">О жилом комплексе</h2>
+          <p class="mt-5 leading-6 text-gray-700" v-html="house.description"></p>
+        </section>
+
+        <p class="text-center">
+          <NuxtLink :to="getAllFlats(realty)"
+                     class="btn btn-primary inline-block mt-10 px-5 py-2.5 bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
+            Все квартиры этого дома
+          </NuxtLink>
+        </p>
+
+        <section class="mt-5 w-full">
+          <template v-if="realty !== null">
+            <BYandexMap
+                :obj="realty.house"
+            />
+          </template>
+        </section>
+
+
+
+        <!--
         <template v-for="(realty, ind) in realties">
           <article class="p-1 group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
             <NuxtLink :to="getUrl(realty)">
@@ -50,6 +81,8 @@
             </NuxtLink>
           </article>
         </template>
+
+
         <NuxtLink :to="getAllFlats(realty)">
           <button
               type="button"
@@ -57,6 +90,7 @@
             Смотреть все квартиры
           </button>
         </NuxtLink>
+        -->
       </div>
     </div>
   </section>
@@ -65,10 +99,13 @@
 <script>
 import {mapActions, mapGetters} from 'vuex';
 import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
+import BYandexMap from "~/components/blocks/BYandexMap";
+import VueSlickCarousel from "vue-slick-carousel";
 
 export default {
   name: "HouseShow",
   mixins: [CategoriesMixin],
+  components: {BYandexMap, VueSlickCarousel},
   props: {
     type: String,
   },

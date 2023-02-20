@@ -17,7 +17,7 @@
           <NuxtLink :to="getUrlRealty(house)">
             <section class="flex flex-col">
               <section class="w-full max-h-[350px]">
-                <img class="w-full rounded-t-lg h-[350px]" :src="getPhoto(house)" :alt="house.name">
+                <img class="w-full rounded-t-lg h-[350px] saturate-50" :src="getPhoto(house)" :alt="house.name">
               </section>
               <section class="flex flex-col px-5 pb-6">
                 <h2 class="mt-2.5 font-black text-2xl">
