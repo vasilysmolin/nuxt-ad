@@ -21,7 +21,7 @@ ARG NUXT_PORT
 
 COPY /home.conf /etc/nginx/conf.d/
 COPY /jobs.conf /etc/nginx/conf.d/
-COPY /journal.conf /etc/nginx/conf.d/
+#COPY /journal.conf /etc/nginx/conf.d/
 COPY /food.conf /etc/nginx/conf.d/
 COPY /travel.conf /etc/nginx/conf.d/
 COPY /med.conf /etc/nginx/conf.d/
