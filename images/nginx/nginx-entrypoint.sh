@@ -3,7 +3,7 @@ set -e
 
 HOMECONF=/etc/nginx/conf.d/home.conf;
 JOBSCONF=/etc/nginx/conf.d/jobs.conf;
-#JOURNALCONF=/etc/nginx/conf.d/journal.conf;
+JOURNALCONF=/etc/nginx/conf.d/journal.conf;
 HUBCONF=/etc/nginx/conf.d/hub.conf;
 OFFICECONF=/etc/nginx/conf.d/office.conf;
 CATALOGCONF=/etc/nginx/conf.d/catalog.conf;
@@ -33,13 +33,13 @@ if test -f "$JOBSCONF"; then
     sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$JOBSCONF";
 fi
 
-#if test -f "$JOURNALCONF"; then
-#    sed -i "s#%JOURNAL%#${JOURNAL}#g" "$JOURNALCONF";
-#    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$JURNALSCONF";
-#    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$JOURNALCONF";
-#    sed -i "s#%ENV%#${ENV}#g" "$JOURNALCONF";
-#    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$JOURNALCONF";
-#fi
+if test -f "$JOURNALCONF"; then
+    sed -i "s#%JOURNAL%#${JOURNAL}#g" "$JOURNALCONF";
+    sed -i "s#%NUXT_PORT%#${NUXT_PORT}#g" "$JOURNALCONF";
+    sed -i "s#%FRONT_WORKDIR%#${FRONT_WORKDIR}#g" "$JOURNALCONF";
+    sed -i "s#%ENV%#${ENV}#g" "$JOURNALCONF";
+    sed -i "s#%NGINX_WORKDIR%#${NGINX_WORKDIR}#g" "$JOURNALCONF";
+fi
 
 if test -f "$HUBCONF"; then
     sed -i "s#%HUB%#${HUB}#g" "$HUBCONF";
