@@ -16,7 +16,7 @@
             </li>
             <li><span class="px-2 text-gray-500">/</span></li>
             <li class="leading-6">
-              <p class="text-gray-500 hover:text-black">{{ house.name }}</p>
+              <p class="text-black">{{ house.name }}</p>
             </li>
           </ul>
         </nav>

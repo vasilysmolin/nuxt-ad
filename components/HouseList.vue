@@ -8,12 +8,12 @@
           </li>
           <li><span class="px-2 text-gray-500">/</span></li>
           <li class="leading-6">
-            <p class="text-gray-500 hover:text-black">Новостройки</p>
+            <p class="text-black">Новостройки</p>
           </li>
         </ul>
       </nav>
-      <section class="grid grid-cols-2 gap-12">
-        <article v-for="house in houses" :key="house.id" class="group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
+      <section class="mt-[15px] grid grid-cols-2 gap-12">
+        <article v-for="house in houses" :key="house.id" class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
           <NuxtLink :to="getUrlRealty(house)">
             <section class="flex flex-col">
               <section class="w-full max-h-[350px]">

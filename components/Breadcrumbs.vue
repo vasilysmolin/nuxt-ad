@@ -1,5 +1,5 @@
 <template>
-    <nav class="flex justify-start items-center mt-3 mb-1.5">
+    <nav class="flex justify-start items-center mb-1.5">
       <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
         <template  v-for="item of links">
           <li class="leading-6" v-if="!item.last">
