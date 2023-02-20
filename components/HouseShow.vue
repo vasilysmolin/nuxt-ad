@@ -5,7 +5,7 @@
       <div class="mx-auto flex flex-col w-full">
         <div class="flex justify-between">
         </div>
-        <nav class="flex justify-start items-center mt-3 mb-1.5">
+        <nav class="flex justify-start items-center mb-1.5">
           <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
             <li class="leading-6">
               <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Недвижимость</NuxtLink>
