@@ -430,6 +430,9 @@ export default {
     getAgent(realty) {
       return realty?.house?.agent?.name;
     },
+    getAgentHouse(realty) {
+      return realty?.agent?.name;
+    },
     getElite(realty) {
       return this.elite[realty?.house.elite] ?? '';
     },
@@ -496,6 +499,9 @@ export default {
     },
     getAllFloorNew(realty) {
       return realty?.house?.total_floors;
+    },
+    getAllFloorHouse(realty) {
+      return realty?.total_floors;
     },
     isElite(realty) {
       const countFloor = _.find(realty?.parameters, function (item) {

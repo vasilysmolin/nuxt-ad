@@ -2,6 +2,7 @@ FROM nginx:stable-alpine
 
 ARG DOMAIN_HOME
 ARG JOBS
+ARG JOURNAL
 ARG HUB
 ARG OFFICE
 ARG USLUGI
@@ -20,6 +21,7 @@ ARG NUXT_PORT
 
 COPY /home.conf /etc/nginx/conf.d/
 COPY /jobs.conf /etc/nginx/conf.d/
+COPY /journal.conf /etc/nginx/conf.d/
 COPY /food.conf /etc/nginx/conf.d/
 COPY /travel.conf /etc/nginx/conf.d/
 COPY /med.conf /etc/nginx/conf.d/
@@ -35,6 +37,7 @@ COPY /default.conf /etc/nginx/conf.d/
 
 ENV DOMAIN_HOME=${DOMAIN_HOME}
 ENV JOBS=${JOBS}
+ENV JOURNAL=${JOURNAL}
 ENV FOOD=${FOOD}
 ENV AVIA=${AVIA}
 ENV HOTELS=${HOTELS}

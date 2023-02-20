@@ -18,9 +18,13 @@
           </ul>
         </nav>
 
-        <section class="mt-[15px] w-full h-[450px] bg-cover bg-center rounded-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)">
+        <section class="mt-[15px] w-full h-[450px] bg-cover bg-center rounded-lg saturate-50"
+                 v-bind:style="{ backgroundImage: 'url(' + house.photo + ')' }">
           <h1 class="mt-8 ml-8 p-2 inline-block text-3xl text-black font-black bg-white rounded">{{ house.name }}</h1>
-          <NuxtLink :to="getAllFlats(realty)" class="absolute left-8 bottom-8 p-2 inline-block text-xl text-white bg-[#0445FF] rounded">Продавец ООО Сатурн</NuxtLink>
+          <NuxtLink :to="getAllFlats(realty)"
+                    class="absolute left-8 bottom-8 p-2 inline-block text-xl text-white bg-[#0445FF] rounded">
+            {{ getUserName(house) }}
+          </NuxtLink>
         </section>
 
         <section class="mt-8 flex justify-between items-center">
@@ -29,9 +33,9 @@
         </section>
 
         <section class="mt-8 flex justify-between text-lg">
-          <p class="text-gray-500">Застройщик<span class="pl-2.5 text-black">СМУ 1</span></p>
+          <p class="text-gray-500">Застройщик<span class="pl-2.5 text-black">{{ getAgentHouse(house) }}</span></p>
           <p class="text-gray-500">Срок сдачи<span class="pl-2.5 text-black">{{ getDeadline(house) }}. {{ house.date_build }} г.</span></p>
-          <p class="text-gray-500">Этажей в доме<span class="pl-2.5 text-black">25</span></p>
+          <p class="text-gray-500">Этажей в доме<span class="pl-2.5 text-black">{{ getAllFloorHouse(house) }}</span></p>
           <p class="text-gray-500">Тип дома<span class="pl-2.5 text-black">{{ getType(house) }}</span></p>
         </section>
 
@@ -55,9 +59,9 @@
         </p>
 
         <section class="mt-5 w-full">
-          <template v-if="realty !== null">
+          <template v-if="house !== null">
             <BYandexMap
-                :obj="realty.house"
+                :obj="house"
             />
           </template>
         </section>

@@ -45,6 +45,7 @@ export default {
       HOME_URL: `http://${process.env.DOMAIN_HOME}:${process.env.NUXT_PORT}`,
       HUB_URL: `http://${process.env.HUB}:${process.env.NUXT_PORT}`,
       JOBS_URL: `http://${process.env.JOBS}:${process.env.NUXT_PORT}`,
+      JOURNAL_URL: `http://${process.env.JOURNAL}:${process.env.NUXT_PORT}`,
       OFFICE_URL: `http://${process.env.OFFICE}:${process.env.NUXT_PORT}`,
       CATALOG_URL: `http://${process.env.CATALOG}:${process.env.NUXT_PORT}`,
       USLUGI_URL: `http://${process.env.USLUGI}:${process.env.NUXT_PORT}`,
@@ -61,6 +62,7 @@ export default {
       HOME_URL: `https://${process.env.DOMAIN_HOME}`,
       HUB_URL: `https://${process.env.HUB}`,
       JOBS_URL: `https://${process.env.JOBS}`,
+      JOURNAL_URL: `https://${process.env.JOURNAL}`,
       OFFICE_URL: `https://${process.env.OFFICE}`,
       CATALOG_URL: `https://${process.env.CATALOG}`,
       USLUGI_URL: `https://${process.env.USLUGI}`,
@@ -109,7 +111,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     ['k-domains', {
-      subDomains: ['jobs', 'hub', 'office', 'catalog', 'realty',
+      subDomains: ['jobs', 'hub', 'office', 'catalog', 'realty', 'journal',
         'uslugi', 'food', 'travel', 'med', 'pet', 'avia', 'hotels'
       ], // List of directories to hold te pages for your subdomains
       rootDomain: 'root-domain', //  directory to hold the pages for root domain

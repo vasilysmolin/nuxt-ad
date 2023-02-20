@@ -48,7 +48,7 @@ export default {
           this.coordsBal = [this.obj?.latitude, this.obj?.longitude];
         }
       }
-    }, 1000);
+    }, 1500);
   },
   components: {yandexMap, ymapMarker},
   props: {
