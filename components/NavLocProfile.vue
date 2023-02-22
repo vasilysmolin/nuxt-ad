@@ -4,7 +4,7 @@
       <li class="pl-4">
         <NuxtLink to="/profile">Профиль</NuxtLink>
       </li>
-      <li class="pl-4 sm:pl-6">
+      <li v-if="isPerson()" class="pl-4 sm:pl-6">
         <NuxtLink to="/house">Новостройки</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
