@@ -4,7 +4,7 @@
       <li class="pl-4">
         <NuxtLink to="/profile">Профиль</NuxtLink>
       </li>
-      <li v-if="isPerson()" class="pl-4 sm:pl-6">
+      <li v-if="currentPerson" class="pl-4 sm:pl-6">
         <NuxtLink to="/house">Новостройки</NuxtLink>
       </li>
       <li class="pl-4 sm:pl-6">
@@ -13,7 +13,7 @@
       <li class="pl-4 sm:pl-6">
         <NuxtLink to="/catalog">Объявления</NuxtLink>
       </li>
-      <li v-if="isPerson()" class="pl-4 sm:pl-6">
+      <li v-if="currentPerson" class="pl-4 sm:pl-6">
         <NuxtLink to="/vacancies">Вакансии</NuxtLink>
       </li>
       <li v-else class="pl-4 sm:pl-6">
@@ -37,12 +37,18 @@
 
 <script>
 import Person from "~/components/mixins/person.mixin";
+import {mapGetters} from "vuex";
 
 export default {
   name: "NavLocProfile",
   mixins: [Person],
   mounted() {
 
+  },
+  computed: {
+    ...mapGetters({
+      currentPerson: 'currentPerson/isPerson',
+    }),
   },
 }
 

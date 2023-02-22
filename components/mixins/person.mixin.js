@@ -2,7 +2,10 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
     mounted() {
+        // if(_.isEmpty(this.currentAccount)){
         this.getCurrentAccount();
+        // }
+
     },
     computed: {
         ...mapGetters({

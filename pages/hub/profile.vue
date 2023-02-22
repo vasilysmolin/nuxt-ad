@@ -246,6 +246,7 @@ export default {
       getCurrentAccount: 'users/getCurrentAccount',
       getItems: 'cities/getItemsFull',
       removeItemsFull: 'cities/removeItemsFull',
+      addPerson: 'currentPerson/addPerson'
     }),
     showModal() {
       this.$modal.show('InviteUserModal');
@@ -264,7 +265,7 @@ export default {
       }
 
       this.$axios.$put(`users/change-profile?profile_id=${user.profile_id}&id=${user.user_id}`).then((res) => {
-        console.log(res.access_token);
+        this.addPerson({person: res.is_person});
         this.$auth.setUserToken(res.access_token, res.access_token).then(() => {
           // this.getCurrentAccount().then((res) => {
           //   this.$auth.user.profile = res.profile;

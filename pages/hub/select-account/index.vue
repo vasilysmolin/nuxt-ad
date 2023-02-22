@@ -55,6 +55,7 @@ export default {
   methods: {
     ...mapActions({
       getAccounts: 'users/getAccounts',
+      addPerson: 'currentPerson/addPerson'
     }),
     getName(item) {
       return item?.profile?.user?.name;
@@ -65,6 +66,8 @@ export default {
         return o.user_id === parseInt(event.target.value);
       });
       this.$axios.$put(`users/change-profile?profile_id=${user.profile_id}&id=${user.user_id}`).then((res) => {
+        console.log(res.is_person);
+        this.addPerson(res.is_person);
         this.$auth.setUserToken(res.access_token, res.access_token).then(() => {
           // this.$axios.$get(`auth/user`).then((res) => {
           //   this.$auth.setUser(res);
