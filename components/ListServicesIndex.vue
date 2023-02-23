@@ -36,6 +36,14 @@
           <h3 class="mt-1 text-[12px] leading-snug">Самые дешёвые билеты на самолет и отели.</h3>
         </div>
       </article>
+      <article @click="journal" class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#000000] text-white cursor-pointer">
+        <IconListServicesIndexJournal/>
+        <div>
+          <h2 class="text-base font-black">Журнал</h2>
+          <h3 class="mt-1 text-[12px] leading-snug">Материалы, проекты и подкасты без политики.</h3>
+        </div>
+      </article>
+      <!--
       <article class="px-2 py-3 flex flex-col justify-between rounded-lg w-[165px] h-[140px] bg-[#FFFDCB]">
         <IconListServicesIndexFood/>
         <div>
@@ -43,6 +51,7 @@
           <h3 class="mt-1 text-[12px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
         </div>
       </article>
+      -->
     </div>
 
     <div v-if="$device.isMobile" class="mt-7 grid grid-cols-2 gap-6">
@@ -77,6 +86,13 @@
       <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
         <IconListServicesIndexFood/>
         <div>
+          <h2 class="text-sm font-black">Журнал</h2>
+          <h3 class="mt-1 text-[11px] leading-snug">Материалы, проекты и подкасты без политики.</h3>
+        </div>
+      </article>
+      <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
+        <IconListServicesIndexFood/>
+        <div>
           <h2 class="text-sm font-black">Еда</h2>
           <h3 class="mt-1 text-[11px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
         </div>
@@ -92,8 +108,10 @@ import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
 import IconListServicesIndexTravel from "./icons/IconListServicesIndexTravel";
 import IconListServicesIndexRealty from "./icons/IconListServicesIndexRealty";
+import IconListServicesIndexJournal from "./icons/IconListServicesIndexJournal.vue";
 export default {
   components: {
+    IconListServicesIndexJournal,
     IconListServicesIndexRealty,
     IconListServicesIndexFood,
     IconListServicesIndexUslugi, IconListServicesIndexJobs, IconListServicesIndexCatalog, IconListServicesIndexTravel},
@@ -112,6 +130,9 @@ export default {
     },
     realty() {
       document.location.href = process.env.REALTY_URL;
+    },
+    journal() {
+      document.location.href = process.env.JOURNAL_URL;
     },
   }
 }

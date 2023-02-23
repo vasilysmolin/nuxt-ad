@@ -32,12 +32,21 @@
         </div>
         <p class="pl-2.5 flex justify-start items-center text-black">Путешествия</p>
       </li>
+      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="journal">
+        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+          <IconListServicesIndexJournal/>
+        </div>
+        <p class="pl-2.5 flex justify-start items-center text-black">Журнал</p>
+      </li>
+
+      <!--
       <li class="py-2 flex flex-row items-center justify-start hover:bg-white rounded cursor-default" @click="">
         <div class="ml-2.5 flex justify-center items-center w-[20px]">
           <IconListServicesIndexFood/>
         </div>
         <p class="pl-2.5 flex justify-start items-center text-black">Еда</p>
       </li>
+      -->
     </ul>
   </div>
 </template>
@@ -49,10 +58,12 @@ import IconListServicesIndexUslugi from "./icons/IconListServicesIndexUslugi";
 import IconListServicesIndexFood from "./icons/IconListServicesIndexFood";
 import IconListServicesIndexTravel from "./icons/IconListServicesIndexTravel";
 import IconListServicesIndexRealty from "./icons/IconListServicesIndexRealty";
+import IconListServicesIndexJournal from "./icons/IconListServicesIndexJournal.vue";
 
 export default {
   name: "GlobalNavWin",
   components: {
+    IconListServicesIndexJournal,
     IconListServicesIndexRealty,
     IconListServicesIndexTravel,
     IconListServicesIndexFood,
@@ -84,6 +95,9 @@ export default {
     },
     travel() {
       document.location.href = process.env.TRAVEL_URL;
+    },
+    journal() {
+      document.location.href = process.env.JOURNAL_URL;
     },
   }
 }
