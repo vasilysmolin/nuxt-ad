@@ -215,13 +215,32 @@ blockquote {
   font-style: italic;
   font-weight: bold;
   font-size: 1.25rem;
-}
-cite {
-  display: block;
-  margin-top: .9375rem;
   text-align: center;
-  font-size: 1rem;
+}
+blockquote > cite {
+  display: block;
+  margin-top: .625rem;
+  font-size: .875rem;
   font-weight: normal;
+}
+article > cite {
+  display: block;
+  margin: 0 auto 1.875rem;
+  width: 75%;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+article > cite > small {
+  margin-top: .625rem;
+  display: block;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-weight: normal;
+  color: #999999;
 }
 p  {
   margin: 0 auto 1.875rem;

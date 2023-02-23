@@ -10,6 +10,9 @@
     textarea::-webkit-input-placeholder {
         color: #6E7191;
     }
+    q {
+        quotes: "\00ab" "\00bb";
+    }
     svg.usernav,
     svg.globalnav {
         cursor: pointer;
