@@ -73,7 +73,7 @@
             воспроизведены современники автора. Ранний опыт написания портретов с фотографий не прошёл даром, что
             подтверждает не только натуралистический портрет пианиста, но и дальнейшие работы великого художника.
           </p>
-          <p> В 1891 году Густав Климт стал членом Союза изобразительных искусств, а через два года был избран профессором
+          <p>В 1891 году Густав Климт стал членом Союза изобразительных искусств, а через два года был избран профессором
             венской Академии художеств, но министерство культуры отказало художнику в этой должности. В 1892 году вслед
             за отцом умер Эрнст Климт и Густаву пришлось заботиться о матери и о вдове и дочери брата. Общаясь с семьёй
             брата, Густав познакомился с сестрой его жены — Эмилией Флёге, которая владела собственным домом моды.
@@ -146,65 +146,76 @@
 </template>
 
 
+<script>
+export default {
+  head: {
+    title: "Художник, прославивший австрийское искусство | Журнал Тапиго",
+    meta: [
+      {hid: 'description', name: 'description', content: 'В 1891 году Густав Климт стал членом Союза изобразительных искусств, а через два года был избран профессором венской Академии художеств, но министерство культуры отказало художнику в этой должности. В 1892 году вслед за отцом умел Эрнст Климт и Густаву пришлось заботиться о матери и о вдове и дочери брата. Общаясь с семьёй брата, Густав познакомился с сестрой его жены — Эмилией Флёге, которая владела собственным домом моды. Стиль Климта стал олицетворять собой опыт импрессионизма, символизма и модерна. Герои произведений живописца наделены особой чувственной красотой, далёкой от образов классического искусства. Произведения мастера наполнены миром страстей и символов, которые завлекают и манят зрителя. Сюжеты произведений сочетают в себе трепетность с реалистичностью, необыкновенную сексуальность с романтической таинственностью. Ярким примером этого служит холст «Любовь», на котором запечатлены объятия влюблённой пары. Густав Климт основал Венский Сецессион и стал его президентом. К обществу венских живописцев присоседились профессор архитектуры Академии художеств Отто Вагнер и архитекторы Йозеф Ольбрих и Йозеф Хофман. В скором времени заказчиками Климта стали известные представители австрийской буржуазии, для которых он писал портреты их жён. Женщины были в восторге от стиля полотен.'}
+    ]
+  },
+}
+</script>
+
 <style scoped>
- hr {
-   margin: 32px auto ;
-   width: 5%;
-   height: 1px;
-   background-color: black;
- }
- blockquote {
-   display: block;
-   margin: 0 auto;
-   width: 80%;
-   font-family: Arial, sans-serif;
-   font-style: italic;
-   font-weight: bold;
-   font-size: 1.25rem;
- }
- cite {
-   display: block;
-   margin-top: .9375rem;
-   text-align: center;
-   font-size: 1rem;
-   font-weight: normal;
- }
- p  {
-   margin: 0 auto 1.875rem;
-   width: 88%;
-   line-height: 1.6rem;
- }
- figure {
-   display: block;
- }
- figure.full {
-   margin: 0 auto 1.875rem;
-   width: 100%;
-   overflow: hidden;
- }
- figure.full > img,
- figure.small > img
- {
-   display: block;
-   width: 100%;
-   height: 600px;
-   object-fit: cover;
-   border-radius: 8px;
- }
- figure.small {
-   margin: 0 auto 1.875rem;
-   width: 600px;
-   overflow: hidden;
- }
- figure.small > img {
-   height: auto;
- }
- figcaption {
-   padding: 0.625rem 0.625rem 0;
-   font-family: Arial, sans-serif;
-   font-style: italic;
-   font-size: .75rem;
-   text-align: center;
-   color: #999999;
- }
+hr {
+  margin: 32px auto ;
+  width: 5%;
+  height: 1px;
+  background-color: black;
+}
+blockquote {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+cite {
+  display: block;
+  margin-top: .9375rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+}
+p  {
+  margin: 0 auto 1.875rem;
+  width: 88%;
+  line-height: 1.6rem;
+}
+figure {
+  display: block;
+}
+figure.full {
+  margin: 0 auto 1.875rem;
+  width: 100%;
+  overflow: hidden;
+}
+figure.full > img,
+figure.small > img
+{
+  display: block;
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+figure.small {
+  margin: 0 auto 1.875rem;
+  width: 600px;
+  overflow: hidden;
+}
+figure.small > img {
+  height: auto;
+}
+figcaption {
+  padding: 0.625rem 0.625rem 0;
+  font-family: Arial, sans-serif;
+  font-style: italic;
+  font-size: .75rem;
+  text-align: center;
+  color: #999999;
+}
 </style>
