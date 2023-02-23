@@ -220,7 +220,6 @@ export default {
     this.person.inn = _.clone(this.getInn());
     this.getUsers({});
     this.getAccounts({});
-    ;
     this.getCurrentAccount().then(() => {
       this.currentProfile = this.currentAccount.profile.id;
     });

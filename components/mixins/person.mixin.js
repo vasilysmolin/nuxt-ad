@@ -1,11 +1,7 @@
-import {mapActions, mapGetters} from "vuex";
+import {mapGetters} from "vuex";
 
 export default {
     mounted() {
-        // if(_.isEmpty(this.currentAccount)){
-        this.getCurrentAccount();
-        // }
-
     },
     computed: {
         ...mapGetters({
@@ -19,9 +15,6 @@ export default {
         },
     },
     methods: {
-        ...mapActions({
-            getCurrentAccount: 'users/getCurrentAccount',
-        }),
         profile() {
             return this.$auth.user?.profile;
         },

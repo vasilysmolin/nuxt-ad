@@ -92,12 +92,12 @@ export default {
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     {src: '~/plugins/directives.js'},
     {src: '~/plugins/vuelidate'},
     {src: '~/plugins/mask.js'},
     {src: '~/plugins/vue-js-modal.js'},
+    {src: '~/plugins/init.js', mode: 'client'},
     {src: '~/plugins/vue-js-toggle-button.js', ssr: false},
     {src: '~/plugins/vue-datepicker', ssr: false}
   ],
