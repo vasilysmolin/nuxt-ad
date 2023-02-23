@@ -135,6 +135,9 @@ export default {
     if (Object.keys(this.$store.getters['elite/elite']).length === 0) {
       await this.$store.dispatch('elite/getItems');
     }
+    if (Object.keys(this.$store.getters['parking/parking']).length === 0) {
+      await this.$store.dispatch('parking/getItems');
+    }
   },
   computed: {
     ...mapGetters({
@@ -145,6 +148,7 @@ export default {
       typeHouse: 'typeHouse/typeHouse',
       deadline: 'deadLine/deadLine',
       elite: 'elite/elite',
+      parking: 'parking/parking',
     }),
   },
   methods: {

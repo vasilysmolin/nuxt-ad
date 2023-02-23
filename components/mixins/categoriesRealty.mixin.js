@@ -445,6 +445,9 @@ export default {
     getDeadlineNew(realty) {
       return this.deadline[realty?.house.deadline] ?? '';
     },
+    getDeadlineHouse(house) {
+      return this.deadline[house.deadline] ?? '';
+    },
 
     getFinishing(realty) {
       const finishing = _.find(realty?.parameters, function (item) {

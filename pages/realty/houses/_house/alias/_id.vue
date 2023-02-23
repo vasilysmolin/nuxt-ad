@@ -193,6 +193,9 @@ export default {
     if (Object.keys(store.getters['elite/elite']).length === 0) {
       await store.dispatch('elite/getItems');
     }
+    if (Object.keys(store.getters['parking/parking']).length === 0) {
+      await store.dispatch('parking/getItems');
+    }
     await store.dispatch('categoriesRealty/getItem', {id: store.state.newBuildings.realty.category_id});
     return {
       realty: store.state.newBuildings.realty,
@@ -254,6 +257,7 @@ export default {
       typeHouse: 'typeHouse/typeHouse',
       deadline: 'deadLine/deadLine',
       elite: 'elite/elite',
+      parking: 'parking/parking',
     }),
   },
   head() {

@@ -12,13 +12,13 @@
           <li>Парковка</li>
         </ul>
         <ul class="text-black font-medium leading-10">
-          <li>СМУ 1</li>
-          <li>2 кв. 2027 г.</li>
-          <li>9</li>
-          <li>Монолитный</li>
-          <li>Да</li>
-          <li>С отделкой</li>
-          <li>Да</li>
+          <li>{{ getAgentHouse(house) }}</li>
+          <li>{{ getDeadlineHouse(house) }} {{ getDateBuild(house) }} г.</li>
+          <li>{{ getAllFloorHouse(house) }}</li>
+          <li>{{ getType(house) }}</li>
+          <li>{{ getElite(house) }}</li>
+          <li>{{ getFinishing(house) }}</li>
+          <li>{{ getParking(house) }}</li>
         </ul>
       </section>
     </section>
@@ -26,25 +26,54 @@
 </template>
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import * as _ from "lodash";
-import CategoriesMixin from '~/components/mixins/categories.mixin';
+import {mapGetters} from "vuex";
+import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 
 export default {
   name: 'SpecificHouse',
   async mounted() {
-
   },
+  mixins: [CategoriesMixin],
   data() {
     return {
       querySearch: null,
     }
   },
   computed: {
+    ...mapGetters({
+      house: 'houses/house',
+      states: 'states/states',
+      finishing: 'finishing/finishing',
+      typeHouse: 'typeHouse/typeHouse',
+      deadline: 'deadLine/deadLine',
+      elite: 'elite/elite',
+      parking: 'parking/parking',
+    }),
   },
   methods: {
     hide() {
       this.$modal.hide('SpecificHouse');
+    },
+    getAllFlats(realty) {
+      return `/houses/${this.house_id}/new-build`
+    },
+    getElite(house) {
+      return this.elite[house.elite] ?? '';
+    },
+    getFinishing(house) {
+      return this.finishing[house.finishing] ?? '';
+    },
+    getType(house) {
+      return this.typeHouse[house.type] ?? '';
+    },
+    getDeadline(house) {
+      return this.deadline[house.deadline] ?? '';
+    },
+    getParking(house) {
+      return this.parking[house.parking] ?? '';
+    },
+    getState(realty) {
+      return this.states[realty.state];
     },
   },
 }
