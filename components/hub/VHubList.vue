@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations, mapActions } from 'vuex';
+import {mapActions, mapGetters} from 'vuex';
+
 export default {
   name: "VHubList",
   props: {
@@ -28,8 +29,8 @@ export default {
   },
   async mounted() {
     // if(this.vacancies.length === 0) {
-      await this.getItems({ from: 'cabinet'});
-      await this.getItemsState();
+    await this.getItems({from: 'cabinet'});
+    await this.getItemsState();
     // }
   },
   computed: {
@@ -44,10 +45,10 @@ export default {
   },
   methods: {
     ...mapActions({
-        getItems: 'vacancies/getItems',
-        addItems: 'vacancies/addItems',
+      getItems: 'vacancies/getItems',
+      addItems: 'vacancies/addItems',
       getItemsState: 'states/getItems',
-      }),
+    }),
     getUrl(vacancy) {
       let cat = `/vacancies/${ vacancy.categories ? vacancy.categories.alias : 'none'}`;
       return  cat + '/' + `${ vacancy.alias}`

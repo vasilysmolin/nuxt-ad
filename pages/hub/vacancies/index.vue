@@ -3,7 +3,8 @@
 </template>
 
 <script>
-import VHubList from "../../../components/hub/VHubList";
+import VHubList from "~/components/hub/VHubList";
+
 export default {
   components: {VHubList},
   layout: 'hub',
