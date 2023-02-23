@@ -39,12 +39,10 @@
           <p class="text-gray-500">Тип дома<span class="pl-2.5 text-black">{{ getType(house) }}</span></p>
         </section>
 
-        <p class="text-center">
-          <nuxt-link to=""
-                     class="btn btn-primary inline-block mt-10 px-5 py-2.5 bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
+        <button type="button" @click.prevent="showSpecificHouse" class="btn btn-primary block mx-auto mt-10 px-5 py-2.5 w-[220px] bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
             Все характеристики дома
-          </nuxt-link>
-        </p>
+        </button>
+        <SpecificHouse/>
 
         <section class="mt-8">
           <h2 class="inline-block font-bold text-xl">О жилом комплексе</h2>
@@ -58,7 +56,7 @@
           </NuxtLink>
         </p>
 
-        <section class="mt-5 w-full">
+        <section class="mt-10 w-full">
           <template v-if="house !== null">
             <BYandexMap
                 :obj="house"
@@ -105,11 +103,12 @@ import {mapActions, mapGetters} from 'vuex';
 import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import BYandexMap from "~/components/blocks/BYandexMap";
 import VueSlickCarousel from "vue-slick-carousel";
+import SpecificHouse from "~/components/SpecificHouse.vue";
 
 export default {
   name: "HouseShow",
   mixins: [CategoriesMixin],
-  components: {BYandexMap, VueSlickCarousel},
+  components: {SpecificHouse, BYandexMap, VueSlickCarousel},
   props: {
     type: String,
   },
@@ -174,7 +173,10 @@ export default {
     },
     getState(realty) {
       return this.states[realty.state];
-    }
+    },
+    showSpecificHouse() {
+      this.$modal.show('SpecificHouse');
+    },
   },
 
 }
