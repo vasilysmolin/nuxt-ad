@@ -104,10 +104,10 @@ export default {
       getItemsState: 'states/getItems',
     }),
     getUrl(house) {
-      return `/houses/${house.id}`;
+      return `/houses/${house.alias}`;
     },
     getUrlRealty(house) {
-      return `/houses/${house.id}/house`;
+      return `/houses/${house.alias}`;
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';

@@ -11,14 +11,14 @@
         </li>
         <li><span class="px-2 text-gray-500">/</span></li>
         <li class="leading-6">
-          <NuxtLink :to="`/houses/${realty.house_id}/house`" class="text-gray-500 hover:text-black">{{
+          <NuxtLink :to="`/houses/${realty.house.alias}`" class="text-gray-500 hover:text-black">{{
               realty.house.name
             }}
           </NuxtLink>
         </li>
         <li><span class="px-2 text-gray-500">/</span></li>
         <li class="leading-6">
-          <NuxtLink :to="`/houses/${realty.house_id}/new-build`" class="text-gray-500 hover:text-black">Квартиры
+          <NuxtLink :to="`/houses/${realty.house.alias}/flats`" class="text-gray-500 hover:text-black">Квартиры
           </NuxtLink>
         </li>
         <li><span class="px-2 text-gray-500">/</span></li>
@@ -151,6 +151,7 @@
           :isNew="isNewBuilding(realty)"
           :isBuy="isBuy(realty)"
           :agent="getAgent(realty)"
+          :house="realty.house"
           :address="null"
       />
 

@@ -120,6 +120,7 @@ export default {
   },
   async mounted() {
     this.house_id = this.$route.params.house;
+    console.log(this.$route.params);
     await this.getItems({category_ids: '410', house_id: this.house_id});
     await this.getItemsState();
     await this.getHouse({id: this.house_id});
@@ -158,10 +159,10 @@ export default {
       getItemsState: 'states/getItems',
     }),
     getUrl(realty) {
-      return `/houses/${this.house_id}/alias/${realty.alias}`
+      return `/houses/${this.house_id}/flats/${realty.alias}`
     },
     getAllFlats(realty) {
-      return `/houses/${this.house_id}/new-build`
+      return `/houses/${this.house_id}/flats`
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';

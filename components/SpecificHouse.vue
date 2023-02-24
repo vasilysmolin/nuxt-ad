@@ -57,7 +57,7 @@ export default {
       this.$modal.hide('SpecificHouse');
     },
     getAllFlats(realty) {
-      return `/houses/${this.house_id}/new-build`
+      return `/houses/${this.house_id}/flats`
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';

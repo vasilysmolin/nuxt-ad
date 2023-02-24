@@ -8,7 +8,8 @@
       <div class="mt-5 flex flex-col justify-start items-start">
         <p v-if="$auth.loggedIn" class="w-full text-sm text-gray-500 leading-none">Телефон:<span
             class="pl-2 text-black font-black text-lg leading-none">{{ number }}</span>
-          <a v-if="isNew" class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
+          <a v-if="isNew"
+             class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
              :href="`mailto:${email}`">Оставить заявку</a>
           <a v-else
              class="block mt-4 py-3 bg-[#00A05D] text-white text-center font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
@@ -18,7 +19,14 @@
                 class="btn btn-primary inline-block px-5 py-3 bg-[#00A05D] w-full text-white font-bold text-sm tracking-wider leading-snug rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:bg-[#049055]"
                 @click.prevent="showModalAuth">Показать телефон
         </button>
-        <p class="mt-5 text-sm text-gray-500" v-if="isNew">Застройщик {{ agent }}</p>
+        <template v-if="isNew">
+          <p class="mt-5 text-sm text-gray-500">Застройщик {{ agent }}</p>
+          <NuxtLink :to="`/houses/${house.alias}`" class="text-gray-500 hover:text-black">{{
+              house.name
+            }}
+          </NuxtLink>
+        </template>
+
       </div>
       <p v-if="address != null" class="leading-relaxed font-medium">Адрес:<span class="pl-2 font-normal text-gray-800">{{
           address
@@ -75,7 +83,8 @@ export default {
     price: String,
     price_per_square: String,
     agent: String,
-    email: String
+    email: String,
+    house: Object
   },
   computed: {},
   methods: {

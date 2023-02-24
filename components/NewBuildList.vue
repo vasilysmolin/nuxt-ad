@@ -20,7 +20,7 @@
             </li>
             <li><span class="px-2 text-gray-500">/</span></li>
             <li class="leading-6">
-              <NuxtLink :to="`/houses/${house.id}/house`" class="text-gray-500 hover:text-black">{{
+              <NuxtLink :to="`/houses/${house.alias}`" class="text-gray-500 hover:text-black">{{
                   house.name
                 }}
               </NuxtLink>
@@ -146,7 +146,7 @@ export default {
       getItemsState: 'states/getItems',
     }),
     getUrl(realty) {
-      return `/houses/${this.house_id}/alias/${realty.alias}`
+      return `/houses/${this.house_id}/flats/${realty.alias}`
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';
