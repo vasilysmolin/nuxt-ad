@@ -6,6 +6,7 @@
           <li>Застройщик</li>
           <li>Срок сдачи</li>
           <li>Этажей в доме</li>
+          <li>{{ $t('house.ceiling_height') }}</li>
           <li>Тип дома</li>
           <li>Дом элитный</li>
           <li>Отделка</li>
@@ -15,6 +16,7 @@
           <li>{{ getAgentHouse(house) }}</li>
           <li>{{ getDeadlineHouse(house) }} {{ getDateBuild(house) }} г.</li>
           <li>{{ getAllFloorHouse(house) }}</li>
+          <li>{{ house.ceiling_height }}</li>
           <li>{{ getType(house) }}</li>
           <li>{{ getElite(house) }}</li>
           <li>{{ getFinishing(house) }}</li>

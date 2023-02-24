@@ -100,6 +100,26 @@ export default {
         return text;
       }
     },
+    ceiling_heightErrors: {
+      get() {
+        if (!this.$v.data.ceiling_height?.$dirty) {
+          return '';
+        }
+        if (!this.$v.data.ceiling_height.required) {
+          return this.$t('validation.nameRequired');
+        }
+        if (!this.$v.data.ceiling_height.maxLength) {
+          return this.$t('validation.nameMax');
+        }
+        if (!this.$v.data.ceiling_height.minLength) {
+          return this.$t('validation.nameMin');
+        }
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
     dateErrors: {
       get() {
         if (!this.$v.data.date_build?.$dirty) {

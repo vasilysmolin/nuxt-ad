@@ -53,6 +53,7 @@ export default {
         deadline: 'Срок сдачи',
         elite: 'Элитный',
         total_floors: 'Всего этажей',
+        ceiling_height: 'Высота потолков',
         parking: 'Парковка',
     },
     profile: {

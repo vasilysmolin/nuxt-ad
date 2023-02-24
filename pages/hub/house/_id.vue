@@ -108,6 +108,17 @@
             </span>
             </div>
 
+            <div class="form-floating mb-4 w-full sm:w-[27rem]">
+              <input type="number"
+                     class="form-control forms-input" id="ceiling_height"
+                     :placeholder="$t('house.ceiling_height')"
+                     v-model="data.ceiling_height">
+              <label for="name" class="text-[#6E7191]">{{ $t('house.ceiling_height') }}</label>
+              <span v-if="ceiling_heightErrors" class="form-errors">
+            {{ ceiling_heightErrors }}
+            </span>
+            </div>
+
             <div class="mb-4 w-full sm:w-[27rem]">
               <vue-editor v-model="data.description" :editorToolbar="customToolbar"></vue-editor>
               <span v-if="descriptionErrors" class="form-errors">
@@ -204,6 +215,9 @@ export default {
         maxLength: maxLength(1000),
         minLength: minLength(1)
       },
+      ceiling_height: {
+        required,
+      },
       street: {
         required,
         maxLength: maxLength(70),
@@ -276,6 +290,7 @@ export default {
       data.append('finishing', this.data.finishing);
       data.append('type', this.data.type);
       data.append('total_floors', this.data.total_floors);
+      data.append('ceiling_height', this.data.ceiling_height);
       data.append('deadline', this.data.deadline);
       data.append('date_build', this.data.date_build);
       data.append('name_agent', this.dataAgent?.name);

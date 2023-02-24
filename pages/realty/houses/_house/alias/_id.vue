@@ -86,6 +86,7 @@
               <li>Кол-во комнат</li>
               <li>Этаж</li>
               <li>Этажей в доме</li>
+              <li>{{ $t('house.ceiling_height') }}</li>
               <li>Тип дома</li>
               <li>Дом элитный</li>
               <li>Отделка</li>
@@ -97,6 +98,7 @@
               <li>{{ getRooms(realty) }}</li>
               <li>{{ getFloor(realty) }}</li>
               <li>{{ getAllFloorNew(realty) }}</li>
+              <li>{{ realty.house.ceiling_height }}</li>
               <li>{{ getType(realty) }}</li>
               <li>{{ getElite(realty) }}</li>
               <li>{{ getFinishingNew(realty) }}</li>
