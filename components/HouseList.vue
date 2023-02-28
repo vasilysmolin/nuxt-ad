@@ -26,30 +26,13 @@
                 <p class="mt-2.5 text-sm text-gray-500">{{ house.full_address }}</p>
                 <p class="mt-2 text-sm text-black">Срок сдачи<span class="pl-3"></span>{{ getDeadline(house) }}. {{ house.date_build }} г.</p>
               </section>
-              <!--
-              <section class="grid grid-cols-2 gap-4 items-center text-sm">
-                <ul class="text-gray-500 leading-9">
-                  <li>Элитный</li>
-                  <li>Отделка</li>
-                  <li>Тип дома</li>
-                  <li>Срок сдачи</li>
-                </ul>
-                <ul class="text-gray-500 leading-9">
-                  <li class="mt-1 text-gray-500">{{ getElite(house) }}
-                  </li>
-                  <li>{{ getFinishing(house) }}</li>
-                  <li>{{ getType(house) }}</li>
-                  <li>{{ getDeadline(house) }} {{ house.date_build }}</li>
-                </ul>
-              </section>
-              -->
             </section>
           </NuxtLink>
         </article>
       </section>
       <button v-if="checkAmount" @click="addItems({ skip: houses.length, from: 'cabinet', category_ids: '382,381'})"
               type="button"
-              class="w-full inline-block mt-6 px-6 py-2 border-2 border-blue-600 text-blue-600 font-bold text-normal leading-normal rounded hover:border-black hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+              class="btn btn-primary block mx-auto mt-10 px-5 py-2.5 w-[220px] bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
         Смотреть дальше
       </button>
     </div>
