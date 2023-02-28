@@ -21,148 +21,37 @@
         <section class="mt-[10px]">
           <h1 class="inline-block text-2xl font-black leading-none">Каталог продавцов</h1>
           <section class="mt-5 grid grid-cols-4 gap-4">
+            <template v-for="(seller, index) in sellers">
+              <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
+                <!--
+                <NuxtLink>
+                -->
+                <section class="relative w-full h-[200px]">
 
-            <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-              <!--
-              <NuxtLink>
-              -->
-              <section class="relative w-full h-[200px]">
+                  <!-- Обложка из страницы продавца-->
+                  <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50"
+                          style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
 
-                <!-- Обложка из страницы продавца-->
-                <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
+                  <!-- Логотип-->
+                  <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
+                    <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent"
+                            style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+                  </section>
 
-                <!-- Логотип-->
-                <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                  <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
                 </section>
-
-              </section>
-              <section class="flex flex-col px-2 pb-6">
-                  <h2 class="mt-5 font-black text-lg leading-[21px]">Группа компаний Заправкин</h2>
-                  <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">15 объектов</p>
-              </section>
-              <!--
-              </>NuxtLink>
-              -->
-            </article>
-            <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-              <!--
-              <NuxtLink>
-              -->
-              <section class="relative w-full h-[200px]">
-
-                <!-- Обложка из страницы продавца-->
-                <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
-
-                <!-- Логотип-->
-                <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                  <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+                <section class="flex flex-col px-2 pb-6">
+                  <h2 class="mt-5 font-black text-lg leading-[21px]">{{ seller.profile.person.name }}</h2>
+                  <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">
+                    {{ seller.profile.houses_count }} {{ trueEnding(seller.profile.houses_count) }}</p>
                 </section>
-
-              </section>
-              <section class="flex flex-col px-2 pb-6">
-                <h2 class="mt-5 font-black text-lg leading-[21px]">Группа компаний Заправкин</h2>
-                <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">15 объектов</p>
-              </section>
-              <!--
-              </>NuxtLink>
-              -->
-            </article>
-            <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-              <!--
-              <NuxtLink>
-              -->
-              <section class="relative w-full h-[200px]">
-
-                <!-- Обложка из страницы продавца-->
-                <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
-
-                <!-- Логотип-->
-                <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                  <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
-                </section>
-
-              </section>
-              <section class="flex flex-col px-2 pb-6">
-                <h2 class="mt-5 font-black text-lg leading-[21px]">Группа компаний Заправкин</h2>
-                <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">15 объектов</p>
-              </section>
-              <!--
-              </>NuxtLink>
-              -->
-            </article>
-            <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-              <!--
-              <NuxtLink>
-              -->
-              <section class="relative w-full h-[200px]">
-
-                <!-- Обложка из страницы продавца-->
-                <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
-
-                <!-- Логотип-->
-                <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                  <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
-                </section>
-
-              </section>
-              <section class="flex flex-col px-2 pb-6">
-                <h2 class="mt-5 font-black text-lg leading-[21px]">Группа компаний Заправкин</h2>
-                <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">15 объектов</p>
-              </section>
-              <!--
-              </>NuxtLink>
-              -->
-            </article>
-            <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-              <!--
-              <NuxtLink>
-              -->
-              <section class="relative w-full h-[200px]">
-
-                <!-- Обложка из страницы продавца-->
-                <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
-
-                <!-- Логотип-->
-                <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                  <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
-                </section>
-
-              </section>
-              <section class="flex flex-col px-2 pb-6">
-                <h2 class="mt-5 font-black text-lg leading-[21px]">Группа компаний Заправкин</h2>
-                <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">15 объектов</p>
-              </section>
-              <!--
-              </>NuxtLink>
-              -->
-            </article>
-            <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-              <!--
-              <NuxtLink>
-              -->
-              <section class="relative w-full h-[200px]">
-
-                <!-- Обложка из страницы продавца-->
-                <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
-
-                <!-- Логотип-->
-                <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                  <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
-                </section>
-
-              </section>
-              <section class="flex flex-col px-2 pb-6">
-                <h2 class="mt-5 font-black text-lg leading-[21px]">Группа компаний Заправкин</h2>
-                <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">15 объектов</p>
-              </section>
-              <!--
-              </>NuxtLink>
-              -->
-            </article>
+                <!--
+                </>NuxtLink>
+                -->
+              </article>
+            </template>
 
           </section>
-          <button type="button"
+          <button v-if="checkAmount" @click="addItems({ skip: sellers.length, seller: 'houses'})" type="button"
                   class="btn btn-primary block mx-auto mt-10 px-5 py-2.5 w-[220px] bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
             Показать всех продавцов
           </button>
@@ -175,7 +64,46 @@
 
 <script>
 
+import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: "SellersList",
+  data() {
+    return {
+      // sellers: [],
+    }
+  },
+  async mounted() {
+    await this.getItems({seller: 'houses'});
+  },
+  computed: {
+    ...mapGetters({
+      sellers: 'users/sellers',
+      amount: 'users/amountSellers',
+    }),
+    checkAmount() {
+      return this.sellers.length < this.amount;
+    },
+
+
+  },
+  methods: {
+    ...mapActions({
+      getItems: 'users/getSellers',
+      addItems: 'users/addSellers',
+    }),
+    trueEnding(amount) {
+      if (amount % 100 <= 20 && amount % 100 >= 5) {
+        return 'объектов';
+      }
+
+      if (amount % 10 === 1) {
+        return 'объект';
+      }
+
+      return 'объекта';
+    },
+  },
+
 }
 </script>

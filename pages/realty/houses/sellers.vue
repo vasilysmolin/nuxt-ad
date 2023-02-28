@@ -4,7 +4,7 @@
 
 <script>
 
-import SellersList from "../../../components/SellersList.vue";
+import SellersList from "~/components/SellersList.vue";
 
 export default {
   components: {SellersList},

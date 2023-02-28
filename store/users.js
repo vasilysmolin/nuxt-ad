@@ -2,8 +2,10 @@ import {params} from '../helper/requestParams';
 
 export const state = () => ({
   users: [],
+  sellers: [],
   accounts: [],
   amount: null,
+  amountSellers: null,
   amountNew: null,
   usersBlock: [],
   usersNew: [],
@@ -14,6 +16,15 @@ export const state = () => ({
 export const mutations = {
   setusers(state, users) {
     state.users = users;
+  },
+  setSellers(state, users) {
+    state.sellers = users;
+  },
+  addSellers(state, users) {
+    state.sellers.push(...users);
+  },
+  setSellersAmount(state, amount) {
+    state.amountSellers = amount;
   },
   setAccounts(state, users) {
     state.accounts = users;
@@ -45,11 +56,30 @@ export const mutations = {
 };
 
 export const actions = {
-  async getItems({commit}, {
-    state = null, type = null, name = null, phone = null,
+  async getSellers({commit}, {
+    state = null, type = null, name = null, phone = null, seller = null
   }) {
     const getParams = params({
-      type, state, name, phone,
+      type, state, name, phone, seller
+    });
+    const users = await this.$axios.$get(`sellers?skip=0&take=25${getParams}`);
+    commit('setSellers', users.users);
+    commit('setSellersAmount', users.meta.total);
+  },
+  async addSellers({commit}, {
+    skip = 0, state = null, type = null, name = null, phone = null,
+  }) {
+    const getParams = params({
+      skip, type, state, name, phone,
+    });
+    const users = await this.$axios.$get(`sellers?&take=25${getParams}`);
+    commit('addSellers', users.users);
+  },
+  async getItems({commit}, {
+    state = null, type = null, name = null, phone = null
+  }) {
+    const getParams = params({
+      type, state, name, phone
     });
     const users = await this.$axios.$get(`users?skip=0&take=25${getParams}`);
     if (state === 'new') {
@@ -82,6 +112,7 @@ export const actions = {
       commit('addusers', users.users);
     }
   },
+
   async removeItems({commit}) {
     commit('removeusers');
   },
@@ -97,6 +128,8 @@ export const actions = {
 
 export const getters = {
   users: (s) => s.users,
+  sellers: (s) => s.sellers,
+  amountSellers: (s) => s.amountSellers,
   currentAccount: (s) => s.currentAccount,
   accounts: (s) => s.accounts,
   usersBlock: (s) => s.usersBlock,
