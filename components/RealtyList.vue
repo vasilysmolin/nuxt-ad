@@ -2,17 +2,16 @@
   <section>
     <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[1024px]">
       <div class="mx-auto flex flex-col w-full">
-        <h1 class="mb-3 text-2xl font-black leading-none">
-          {{ getH1() }}
-        </h1>
         <Breadcrumbs
             :baseName="`Все категории`"
             :basePath="`/`"
             :depth="1"
             :link="category"
         />
+        <h1 class="mt-[10px] text-2xl font-black leading-none">{{ getH1() }}</h1>
+
         <template v-for="(realty, ind) in realties">
-          <article class="p-1 group flex flex-col mt-[15px] rounded-lg bg-white transition duration-150 ease-in-out">
+          <article class="p-1 group flex flex-col mt-5 rounded-lg bg-white transition duration-150 ease-in-out">
             <NuxtLink :to="getUrl(realty)">
               <section class="grid grid-cols-[250px,450px,_1fr]">
 

@@ -1,17 +1,17 @@
 <template>
-  <SellerProfile/>
+  <SellersList/>
 </template>
 
 <script>
 
-import SellerProfile from "../../../components/SellerProfile.vue";
+import SellersList from "../../../components/SellersList.vue";
 
 export default {
-  components: {SellerProfile},
+  components: {SellersList},
   layout: 'default-search',
-  name: "profile",
+  name: "sellers",
   head: {
-    title: "Страница продавца новостроек",
+    title: "Каталог продавцов",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]
