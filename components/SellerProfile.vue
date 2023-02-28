@@ -23,19 +23,25 @@
         </nav>
 
         <!--
-        Поля для формы:
-        1. Имя продавца (может заполнить или нет текстовый инпут, если не заполняет то тащим из хаба юр лица)
-        2. Логотип (размер 100 х 100 пикс.)
-        3. Телефон (может заполнить или нет инпут, если не заполняет тащим из хаба юр лица)
+        Поля для формы Добавить страницу продавца:
+        1. Имя продавца (может заполнить, если не заполняет то тащим из хаба юр лица)
+        2. Добавить логотип
+        3. Добавить обложку страницы
+        3. Телефон (может заполнить, если не заполняет тащим из хаба юр лица)
         4. Описание (текстареа с форматированием)
         5. На майлту подвесить надо почту из хаба, в BContactC тоже не пашет, пустое поле при вызове клиента
         -->
 
         <section class="relative mt-[15px]">
-          <section class=" w-full h-[450px] bg-cover bg-center rounded-lg saturate-50"
+
+          <!-- Обложка страницы -->
+          <figure class=" w-full h-[450px] bg-cover bg-center rounded-lg saturate-50"
                    style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)">
-          </section>
+          </figure>
+
+          <!-- Логотип -->
           <figure class="absolute bottom-32 left-8 w-[100px] h-[100px] bg-cover bg-center rounded bg-transparent z-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+
           <h1 class="absolute bottom-12 left-8 p-2 inline-block text-3xl text-black font-black bg-white rounded">Группа компаний Заправкин</h1>
         </section>
 
