@@ -9,9 +9,8 @@ import SellerProfile from "~/components/SellerProfile.vue";
 export default {
   components: {SellerProfile},
   layout: 'default-search',
-  name: "profile",
+  name: "profile-s",
   head: {
-    title: "Страница продавца новостроек",
     meta: [
       {hid: 'description', name: 'description', content: 'Список'}
     ]

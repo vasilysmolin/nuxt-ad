@@ -23,30 +23,27 @@
           <section class="mt-5 grid grid-cols-4 gap-4">
             <template v-for="(seller, index) in sellers">
               <article class="group flex flex-col rounded-lg bg-white transition duration-150 ease-in-out">
-                <!--
-                <NuxtLink>
-                -->
-                <section class="relative w-full h-[200px]">
 
-                  <!-- Обложка из страницы продавца-->
-                  <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50"
-                          style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
+                <NuxtLink :to="getUrl(seller)">
+                  <section class="relative w-full h-[200px]">
 
-                  <!-- Логотип-->
-                  <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
-                    <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent"
-                            style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+                    <!-- Обложка из страницы продавца-->
+                    <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50"
+                            style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
+
+                    <!-- Логотип-->
+                    <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
+                      <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent"
+                              style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+                    </section>
+
                   </section>
-
-                </section>
-                <section class="flex flex-col px-2 pb-6">
-                  <h2 class="mt-5 font-black text-lg leading-[21px]">{{ seller.profile.person.name }}</h2>
-                  <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">
-                    {{ seller.profile.houses_count }} {{ trueEnding(seller.profile.houses_count) }}</p>
-                </section>
-                <!--
-                </>NuxtLink>
-                -->
+                  <section class="flex flex-col px-2 pb-6">
+                    <h2 class="mt-5 font-black text-lg leading-[21px]">{{ seller.profile.person.name }}</h2>
+                    <p class="mt-5 px-2 py-1.5 inline-block text-sm font-medium text-black text-center rounded bg-gray-100">
+                      {{ seller.profile.houses_count }} {{ trueEnding(seller.profile.houses_count) }}</p>
+                  </section>
+                </NuxtLink>
               </article>
             </template>
 
@@ -70,7 +67,6 @@ export default {
   name: "SellersList",
   data() {
     return {
-      // sellers: [],
     }
   },
   async mounted() {
@@ -92,6 +88,9 @@ export default {
       getItems: 'users/getSellers',
       addItems: 'users/addSellers',
     }),
+    getUrl(seller) {
+      return 'sellers/' + `${seller.id}`
+    },
     trueEnding(amount) {
       if (amount % 100 <= 20 && amount % 100 >= 5) {
         return 'объектов';
