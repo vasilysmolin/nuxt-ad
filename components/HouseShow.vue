@@ -21,7 +21,7 @@
         <section class="mt-[15px] w-full h-[450px] bg-cover bg-center rounded-lg saturate-50"
                  v-bind:style="{ backgroundImage: 'url(' + house.photo + ')' }">
           <h1 class="mt-8 ml-8 p-2 inline-block text-3xl text-black font-black bg-white rounded">{{ house.name }}</h1>
-          <NuxtLink :to="getAllFlats(realty)"
+          <NuxtLink :to="getUrlSeller(house)"
                     class="absolute left-8 bottom-8 p-2 inline-block text-xl text-white bg-[#0445FF] rounded">
             {{ getUserName(house) }}
           </NuxtLink>
@@ -50,8 +50,8 @@
         </section>
 
         <p class="text-center">
-          <NuxtLink :to="getAllFlats(realty)"
-                     class="btn btn-primary inline-block mt-10 px-5 py-2.5 bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
+          <NuxtLink :to="getAllFlats()"
+                    class="btn btn-primary inline-block mt-10 px-5 py-2.5 bg-transparent border-2 border-solid border-blue-900 text-blue-900 font-bold text-sm leading-normal rounded focus:outline-none focus:ring-0 transition duration-150 ease-in-out hover:border-black hover:text-black">
             Все квартиры этого дома
           </NuxtLink>
         </p>
@@ -161,8 +161,11 @@ export default {
     getUrl(realty) {
       return `/houses/${this.house_id}/flats/${realty.alias}`
     },
-    getAllFlats(realty) {
+    getAllFlats() {
       return `/houses/${this.house_id}/flats`
+    },
+    getUrlSeller(house) {
+      return `/houses/sellers/${house?.profile?.user?.id}`
     },
     getElite(house) {
       return this.elite[house.elite] ?? '';
