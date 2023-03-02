@@ -1,5 +1,6 @@
 <template>
   <section class="container flex flex-col items-center mt-[20px] pb-10">
+    <h1>Укажите данные продавца</h1>
     <form class="w-[95%]">
 
       <div class="flex flex-col items-center w-full">
@@ -10,7 +11,7 @@
                       rows="5"
                       name="description"
                       id="description"
-                      placeholder="Описание"
+                      placeholder="О продавце"
                       v-model="data.description"
                   >{{ data.description }}</textarea>
           <span v-if="descriptionErrors" class="form-errors">
@@ -28,8 +29,8 @@
 
         <div class="form-floating mb-6 w-full sm:w-[27rem]">
 
-          <input type="file" @change="onLogoChange" name="label" multiple accept="image/*">
-          <span v-if="logoErrors" class="form-errors w-full mb-2">{{ photosErrors }}</span>
+          <input type="file" @change="onLogoChange" name="label" accept="image/*">
+          <span v-if="logoErrors" class="form-errors w-full mb-2">{{ logoErrors }}</span>
         </div>
 
         <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
@@ -40,8 +41,8 @@
         </div>
 
         <div class="form-floating mb-6 w-full sm:w-[27rem]">
-          <input type="file" @change="onBackChange" name="background" multiple accept="image/*">
-          <span v-if="background_imageErrors" class="form-errors w-full mb-2">{{ photosErrors }}</span>
+          <input type="file" @change="onBackChange" name="background" accept="image/*">
+          <span v-if="background_imageErrors" class="form-errors w-full mb-2">{{ background_imageErrors }}</span>
         </div>
 
 
@@ -111,10 +112,10 @@ export default {
   },
   validations: {
     data: {
-      label: {
+      logo: {
         required,
       },
-      background: {
+      background_image: {
         required,
       },
       description: {
@@ -128,12 +129,12 @@ export default {
   data() {
     return {
       data: {
+        logo: null,
+        background_image: null,
         description: null,
-        label: [],
-        logo: [],
-        background_image: [],
-        background: [],
       },
+      background: null,
+      labels: null,
       isDisabled: false,
     }
   },
@@ -172,19 +173,19 @@ export default {
       return this.states[house?.state];
     },
     onLogoChange(e) {
-      const files = e.target.label;
+      const files = e.target.files;
       let $this = this;
-      this.label = files;
+      this.labels = files;
       _.each(files, function (file) {
-        $this.data.label.push(URL.createObjectURL(file))
+        $this.data.logo = URL.createObjectURL(file);
       });
     },
     onBackChange(e) {
-      const files = e.target.background;
+      const files = e.target.files;
       let $this = this;
       this.background = files;
       _.each(files, function (file) {
-        $this.data.background.push(URL.createObjectURL(file))
+        $this.data.background_image = URL.createObjectURL(file);
       });
     },
     submitted() {
@@ -194,11 +195,11 @@ export default {
       }
       this.isDisabled = true;
       let data = new FormData();
-      for (let i = 0; i < this.label.length; i++) {
-        data.append('label[]', this.label[i]);
+      for (let i = 0; i < this.labels.length; i++) {
+        data.append('label', this.labels[i]);
       }
       for (let i = 0; i < this.background.length; i++) {
-        data.append('background[]', this.background[i]);
+        data.append('background', this.background[i]);
       }
       data.append('description', this.data.description);
       if (this.data.id) {

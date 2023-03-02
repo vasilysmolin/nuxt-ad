@@ -168,7 +168,7 @@ export default {
     },
     cityErrors: {
       get() {
-        if (!this.$v.data?.city_id.$dirty) {
+        if (!this.$v.data?.city_id?.$dirty) {
           return '';
         }
 
@@ -184,11 +184,11 @@ export default {
     },
     addressErrors: {
       get() {
-        if (!this.$v.data?.street.$dirty) {
+        if (!this.$v.data?.street?.$dirty) {
           return '';
         }
 
-        if (!this.$v.data?.street.required) {
+        if (!this.$v.data?.street?.required) {
           return this.$t('validation.addressRequired');
         }
 

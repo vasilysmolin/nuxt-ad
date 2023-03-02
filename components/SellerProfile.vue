@@ -25,11 +25,12 @@
 
           <!-- Обложка страницы -->
           <figure class=" w-full h-[450px] bg-cover bg-center rounded-lg saturate-50"
-                   style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)">
+                  v-bind:style="{ backgroundImage: 'url(' + getBackground(sellerHouse) + ')' }">
           </figure>
 
           <!-- Логотип -->
-          <figure class="absolute bottom-32 left-8 w-[100px] h-[100px] bg-cover bg-center rounded bg-transparent z-50" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+          <figure class="absolute bottom-32 left-8 w-[100px] h-[100px] bg-cover bg-center rounded bg-transparent z-50"
+                  v-bind:style="{ backgroundImage: 'url(' + getLogo(sellerHouse) + ')' }"></figure>
 
           <h1 class="absolute bottom-12 left-8 p-2 inline-block text-3xl text-black font-black bg-white rounded">
             {{ getUserName(seller) }}</h1>
@@ -42,7 +43,8 @@
 
         <section class="mt-8">
           <h2 class="inline-block font-bold text-xl">О продавце</h2>
-          <!--          <p class="mt-5 leading-6 text-gray-700">Акционерное общество «Заправкин» образовано в 1963 году как производитель товарной извести. Сегодня основными видами деятельности предприятия являются жилищное строительство, производство строительных материалов для высотного и малоэтажного строительства, продажа жилых и нежилых помещений.</p>-->
+          <p class="mt-5 leading-6 text-gray-700">
+            {{ getDesc(sellerHouse) }}</p>
         </section>
 
         <section class="mt-8">
@@ -98,6 +100,7 @@ export default {
     await this.getItem({id: this.id}).then(() => {
       let formatter = new VMask('+7 (000) 000-00-00');
       this.number = formatter.apply(this.seller.phone);
+      this.getSellerHouse({id: this.seller.profile.seller_house.id});
     });
     await this.getHouses({user_id: this.id})
 
@@ -105,6 +108,7 @@ export default {
   computed: {
     ...mapGetters({
       seller: 'users/user',
+      sellerHouse: 'sellerHouse/seller',
       houses: 'houses/houses',
       amount: 'houses/amount',
     }),
@@ -115,10 +119,20 @@ export default {
   methods: {
     ...mapActions({
       getItem: 'users/getItem',
+      getSellerHouse: 'sellerHouse/getItem',
       getHouses: 'houses/getItems',
     }),
     getUrl(house) {
       return `/houses/${house.id}`;
+    },
+    getBackground(seller) {
+      return seller?.background_image;
+    },
+    getLogo(seller) {
+      return seller?.logo;
+    },
+    getDesc(seller) {
+      return seller?.description;
     },
   },
 
