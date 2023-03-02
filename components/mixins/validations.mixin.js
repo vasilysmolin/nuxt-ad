@@ -406,5 +406,37 @@ export default {
         return text;
       }
     },
+    logoErrors: {
+      get() {
+        if (!this.$v.data.logo?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.logo.required) {
+          return this.$t('validation.photoRequired');
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
+    background_imageErrors: {
+      get() {
+        if (!this.$v.data.background_image?.$dirty) {
+          return '';
+        }
+
+        if (!this.$v.data.background_image.required) {
+          return this.$t('validation.photoRequired');
+        }
+
+        return '';
+      },
+      set(text) {
+        return text;
+      }
+    },
   },
 };
