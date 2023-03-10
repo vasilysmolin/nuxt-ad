@@ -29,12 +29,12 @@
 
                     <!-- Обложка из страницы продавца-->
                     <figure class="flex flex-col w-full h-full bg-cover bg-center rounded-t-lg saturate-50"
-                            style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/realty_new_building_index.jpg)"></figure>
+                            v-bind:style="{ backgroundImage: 'url(' + getBackground(seller) + ')' }"></figure>
 
                     <!-- Логотип-->
                     <section class="absolute bottom-4 left-0 right-0 flex justify-center items-center h-auto">
                       <figure class="w-[40px] h-[40px] bg-cover bg-center rounded bg-transparent"
-                              style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/images/logo_profile_seller.png)"></figure>
+                              v-bind:style="{ backgroundImage: 'url(' + getLogo(seller) + ')' }"></figure>
                     </section>
 
                   </section>
@@ -90,6 +90,15 @@ export default {
     }),
     getUrl(seller) {
       return 'sellers/' + `${seller.id}`
+    },
+    getBackground(seller) {
+      return seller?.background_image;
+    },
+    getLogo(seller) {
+      return seller?.logo;
+    },
+    getDesc(seller) {
+      return seller?.description;
     },
     trueEnding(amount) {
       if (amount % 100 <= 20 && amount % 100 >= 5) {

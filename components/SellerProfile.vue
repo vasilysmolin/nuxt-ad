@@ -17,7 +17,7 @@
             </li>
             <li><span class="px-2 text-gray-500">/</span></li>
             <li class="leading-6">
-              <p class="text-black">{{ getUserName(seller) }}</p>
+              <p class="text-black">{{ getUserName(sellerHouse) }}</p>
             </li>
           </ul>
         </nav>
@@ -33,12 +33,12 @@
                   v-bind:style="{ backgroundImage: 'url(' + getLogo(sellerHouse) + ')' }"></figure>
 
           <h1 class="absolute bottom-12 left-8 p-2 inline-block text-3xl text-black font-black bg-white rounded">
-            {{ getUserName(seller) }}</h1>
+            {{ getUserName(sellerHouse) }}</h1>
         </section>
 
         <section class="mt-8 flex justify-between items-center">
           <p class="font-bold text-xl">{{ number }}</p>
-          <a :href="`mailto:${seller.email}`" class="text-blue-600">Отправить письмо</a>
+          <a :href="`mailto:${getEmail(sellerHouse)}`" class="text-blue-600">Отправить письмо</a>
         </section>
 
         <section class="mt-8">
@@ -97,17 +97,16 @@ export default {
   },
   async mounted() {
     this.id = this.$route.params.id;
-    await this.getItem({id: this.id}).then(() => {
+    await this.getSellerHouse({id: this.id}).then(() => {
       let formatter = new VMask('+7 (000) 000-00-00');
-      this.number = formatter.apply(this.seller.phone);
-      this.getSellerHouse({id: this.seller.profile.seller_house.id});
+      this.number = formatter.apply(this.sellerHouse.profile.user.phone);
+      console.log(this.number);
+      this.getHouses({user_id: this.sellerHouse.profile.user.id})
     });
-    await this.getHouses({user_id: this.id})
 
   },
   computed: {
     ...mapGetters({
-      seller: 'users/user',
       sellerHouse: 'sellerHouse/seller',
       houses: 'houses/houses',
       amount: 'houses/amount',
@@ -118,7 +117,6 @@ export default {
   },
   methods: {
     ...mapActions({
-      getItem: 'users/getItem',
       getSellerHouse: 'sellerHouse/getItem',
       getHouses: 'houses/getItems',
     }),
@@ -130,6 +128,9 @@ export default {
     },
     getLogo(seller) {
       return seller?.logo;
+    },
+    getEmail(seller) {
+      return seller?.profile?.user?.email;
     },
     getDesc(seller) {
       return seller?.description;
