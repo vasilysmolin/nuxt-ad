@@ -55,6 +55,13 @@
     </div>
 
     <div v-if="$device.isMobile" class="mt-7 grid grid-cols-2 gap-6">
+      <article @click="realty" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#CED6FF]">
+        <IconListServicesIndexRealty/>
+        <div>
+          <h2 class="text-sm font-black">Недвижимость</h2>
+          <h3 class="mt-1 text-[11px] leading-snug">Новостройки и любая недвижимость.</h3>
+        </div>
+      </article>
       <article @click="catalog" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFF4D2]">
         <IconListServicesIndexCatalog/>
         <div>
@@ -79,17 +86,18 @@
       <article @click="travel" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#F7C9FF]">
         <IconListServicesIndexTravel/>
         <div>
-          <h2 class="text-base font-black">Путешествия</h2>
+          <h2 class="text-sm font-black">Путешествия</h2>
           <h3 class="mt-1 text-[12px] leading-snug">Дешёвые билеты на самолет и отели.</h3>
         </div>
       </article>
-      <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
-        <IconListServicesIndexFood/>
+      <article @click="journal" class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#000000] text-white">
+        <IconListServicesIndexJournal/>
         <div>
           <h2 class="text-sm font-black">Журнал</h2>
-          <h3 class="mt-1 text-[11px] leading-snug">Материалы, проекты и подкасты без политики.</h3>
+          <h3 class="mt-1 text-[11px] leading-snug">Материалы, проекты, подкасты и другое.</h3>
         </div>
       </article>
+      <!--
       <article class="px-2 py-5 flex flex-col justify-between rounded-lg w-[140px] h-[140px] bg-[#FFFDCB]">
         <IconListServicesIndexFood/>
         <div>
@@ -97,6 +105,7 @@
           <h3 class="mt-1 text-[11px] leading-snug">Скоро доставка еды и создание ресторана.</h3>
         </div>
       </article>
+      -->
     </div>
   </section>
 </template>
