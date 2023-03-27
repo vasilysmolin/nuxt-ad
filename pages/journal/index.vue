@@ -16,7 +16,7 @@
         <section class="mt-[15px] mx-auto columns-[450px] gap-[50px] w-full">
 
           <article class="def group mb-[50px] align-top inline-block w-[450px] self-start rounded-lg bg-white">
-            <NuxtLink :to="`/articles/5`">
+            <NuxtLink :to="`/articles/anesthesia`">
               <section class="flex flex-col">
                 <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png)"></section>
                 <section class="my-5 flex flex-col px-5">
@@ -29,7 +29,7 @@
           </article>
 
           <article class="abs group mb-[50px] align-top inline-block w-[450px] rounded-lg">
-            <NuxtLink :to="`/articles/4`">
+            <NuxtLink :to="`/articles/atomic_hiroshima`">
               <section class="flex flex-col">
                 <section class="relative w-full h-[600px] text-white rounded-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png)">
                   <section class="absolute bottom-7 left-5 right-5">
@@ -42,7 +42,7 @@
           </article>
 
           <article class="def group mb-[50px] align-top inline-block w-[450px] rounded-lg bg-white">
-            <NuxtLink :to="`/articles/3`">
+            <NuxtLink :to="`/articles/vikings_gods`">
               <section class="flex flex-col">
                 <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png)"></section>
                 <section class="my-5 flex flex-col px-5">
@@ -55,7 +55,7 @@
           </article>
 
           <article class="abs group mb-[50px] align-top inline-block w-[450px] rounded-lg">
-            <NuxtLink :to="`/articles/2`">
+            <NuxtLink :to="`/articles/karelia_fable`">
               <section class="flex flex-col">
                 <section class="relative w-full h-[600px] text-white rounded-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png)">
                   <section class="absolute bottom-7 left-5 right-5">
@@ -68,12 +68,25 @@
           </article>
 
           <article class="def group mb-[50px] align-top inline-block w-[450px] rounded-lg bg-white">
-            <NuxtLink :to="`/articles/1`">
+            <NuxtLink :to="`/articles/artist_25`">
               <section class="flex flex-col">
                 <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png)"></section>
                 <section class="my-5 flex flex-col px-5">
                   <h2 class="font-black text-2xl leading-7">
                     Художник, прославивший австрийское искусство
+                  </h2>
+                </section>
+              </section>
+            </NuxtLink>
+          </article>
+
+          <article class="def group mb-[50px] align-top inline-block w-[450px] rounded-lg bg-white">
+            <NuxtLink :to="`/articles/test_leibovitch`">
+              <section class="flex flex-col">
+                <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png)"></section>
+                <section class="my-5 flex flex-col px-5">
+                  <h2 class="font-black text-2xl leading-7">
+                    Шкала Лейбовича и болезнь упущенных возможностей
                   </h2>
                 </section>
               </section>
@@ -100,7 +113,7 @@
         <section class="mt-[15px] mx-auto px-2.5 flex flex-col justify-center items-start max-w-[450px] items-start">
 
           <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
-            <NuxtLink :to="`/articles/5`">
+            <NuxtLink :to="`/articles/anesthesia`">
               <section class="flex flex-col">
                 <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png)"></section>
                 <section class="mt-3 mb-5 flex flex-col px-3">
@@ -113,7 +126,7 @@
           </article>
 
           <article class="abs group mb-[20px] inline-block w-full rounded-lg">
-            <NuxtLink :to="`/articles/4`">
+            <NuxtLink :to="`/articles/atomic_hiroshima`">
               <section class="flex flex-col">
                 <section class="relative w-full h-[600px] text-white rounded-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png)">
                   <section class="absolute bottom-7 left-3 right-3">
@@ -126,7 +139,7 @@
           </article>
 
           <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
-            <NuxtLink :to="`/articles/3`">
+            <NuxtLink :to="`/articles/vikings_gods`">
               <section class="flex flex-col">
                 <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png)"></section>
                 <section class="mt-3 mb-5 flex flex-col px-3">
@@ -139,7 +152,7 @@
           </article>
 
           <article class="abs group mb-[20px] inline-block w-full rounded-lg">
-            <NuxtLink :to="`/articles/2`">
+            <NuxtLink :to="`/articles/karelia_fable`">
               <section class="flex flex-col">
                 <section class="relative w-full h-[600px] text-white rounded-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png)">
                   <section class="absolute bottom-7 left-3 right-3">
@@ -152,7 +165,7 @@
           </article>
 
           <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
-            <NuxtLink :to="`/articles/1`">
+            <NuxtLink :to="`/articles/artist_25`">
               <section class="flex flex-col">
                 <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png)"></section>
                 <section class="mt-3 mb-5 flex flex-col px-3">
