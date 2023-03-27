@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <div v-if="$device.isMobile" class="mx-auto mt-[70px] pb-[80px] w-full min-w-[320px] bg-blue-300">
+    <div v-if="$device.isMobile" class="mx-auto mt-[70px] pb-[80px] w-full min-w-[320px]">
         <nav class="px-5 flex justify-start items-center mb-1.5">
           <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
             <li class="leading-6">
@@ -97,7 +97,7 @@
             </li>
           </ul>
         </nav>
-        <section class="mt-[15px] mx-auto px-2.5 flex flex-col justify-center items-start max-w-[450px] items-start bg-gray-300">
+        <section class="mt-[15px] mx-auto px-2.5 flex flex-col justify-center items-start max-w-[450px] items-start">
 
           <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
             <NuxtLink :to="`/articles/5`">
