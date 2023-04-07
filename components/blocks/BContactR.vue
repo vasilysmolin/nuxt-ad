@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import AuthModal from "../../components/AuthModal";
+import AuthModal from "~/components/AuthModal";
 import VMask from 'string-mask'
 
 export default {

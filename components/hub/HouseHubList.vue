@@ -1,58 +1,17 @@
 <template>
   <section class="container flex flex-col items-center mt-[20px] pb-10">
     <h1>Укажите данные продавца</h1>
-    <form class="w-[95%]">
-
-      <div class="flex flex-col items-center w-full">
-
-        <div class="mb-4 w-full sm:w-[27rem]">
-                  <textarea
-                      class="form-control forms-textarea"
-                      rows="5"
-                      name="description"
-                      id="description"
-                      placeholder="О продавце"
-                      v-model="data.description"
-                  >{{ data.description }}</textarea>
-          <span v-if="descriptionErrors" class="form-errors">
-            {{ descriptionErrors }}
-            </span>
-        </div>
-
-        <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
-
-          <div class="mb-4 w-full">
-            <label>Логотип</label>
-            <img :src="data.logo" class="w-full h-auto rounded" alt="">
-          </div>
-        </div>
-
-        <div class="form-floating mb-6 w-full sm:w-[27rem]">
-
-          <input type="file" @change="onLogoChange" name="label" accept="image/*">
-          <span v-if="logoErrors" class="form-errors w-full mb-2">{{ logoErrors }}</span>
-        </div>
-
-        <div class="grid grid-cols-3 gap-4 w-full sm:w-[27rem]">
-          <label>Фон</label>
-          <div class="mb-4 w-full">
-            <img :src="data.background_image" class="w-full h-auto rounded" alt="">
-          </div>
-        </div>
-
-        <div class="form-floating mb-6 w-full sm:w-[27rem]">
-          <input type="file" @change="onBackChange" name="background" accept="image/*">
-          <span v-if="background_imageErrors" class="form-errors w-full mb-2">{{ background_imageErrors }}</span>
-        </div>
-
-
-        <button :disabled="isDisabled"
-                class="btn btn-primary inline-block px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
-                @click.prevent="submitted">Сохранить
-        </button>
-
-      </div>
-    </form>
+    <button v-if="sellerHouse.id"
+            class="btn btn-primary mt-5 inline-block px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            @click.prevent="showModalSeller">Редактировать продавца
+    </button>
+    <button v-else
+            class="btn btn-primary mt-5 inline-block px-7 py-4 bg-blue-900 text-white font-bold text-normal tracking-wider leading-snug rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out"
+            @click.prevent="showModalSeller">Добавить продавца
+    </button>
+    <SellerModal/>
+    <p class="mt-10 mb-10" v-if="sellerHouse.id">Добавляйте дома и квартиры</p>
+    <p class="mt-10 mb-10" v-else>Чтобы добавлять дома и квартиры необходимо заполнить данные продавца</p>
     <template v-if="sellerHouse.id">
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <article v-for="house in houses" :key="house.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
@@ -74,8 +33,8 @@
             <NuxtLink :to="getUrlRealty(house)">
               <div class="flex justify-between mt-2 w-full">
                 <button
-                    class="inline-block px-3 py-1 border-2 border-gray-100 text-gray-400 font-medium text-xs leading-tight rounded hover:text-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                  Список квартир
+                    class="inline-block px-3 py-1 border-2 border-gray-100 bg-blue-800 text-white font-medium text-xs leading-tight rounded hover:bg-black focus:bg-black focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
+                  Добавить квартиру
                 </button>
               </div>
             </NuxtLink>
@@ -102,6 +61,7 @@ import {mapActions, mapGetters} from 'vuex';
 import CategoriesMixin from '~/components/mixins/categoriesRealty.mixin';
 import Validations from "~/components/mixins/validations.mixin"
 import {maxLength, minLength, required} from "vuelidate/lib/validators";
+import SellerModal from "~/components/SellerModal";
 import * as _ from "lodash";
 
 export default {
@@ -133,8 +93,8 @@ export default {
         background_image: null,
         description: null,
       },
-      background: null,
-      labels: null,
+      background: [],
+      labels: [],
       isDisabled: false,
     }
   },
@@ -163,6 +123,12 @@ export default {
       getItemsState: 'states/getItems',
       getSeller: 'sellerHouse/getItem',
     }),
+    showModalAuth() {
+      this.$modal.show('AuthModal');
+    },
+    showModalSeller() {
+      this.$modal.show('SellerModal');
+    },
     getUrl(house) {
       return `/house/${house.id}`;
     },
@@ -195,12 +161,17 @@ export default {
       }
       this.isDisabled = true;
       let data = new FormData();
-      for (let i = 0; i < this.labels.length; i++) {
-        data.append('label', this.labels[i]);
+      if (!_.isEmpty(this.labels)) {
+        for (let i = 0; i < this.labels.length; i++) {
+          data.append('label', this.labels[i]);
+        }
       }
-      for (let i = 0; i < this.background.length; i++) {
-        data.append('background', this.background[i]);
+      if (!_.isEmpty(this.background)) {
+        for (let i = 0; i < this.background.length; i++) {
+          data.append('background', this.background[i]);
+        }
       }
+
       data.append('description', this.data.description);
       if (this.data.id) {
         data.append('_method', 'put');
