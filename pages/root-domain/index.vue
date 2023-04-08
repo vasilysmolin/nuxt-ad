@@ -1,8 +1,8 @@
 <template>
   <section>
     <div v-if="$device.isDesktop" class="container flex flex-col mt-[70px] pb-[100px] max-w-3xl min-w-[768px]">
-      <h1 class="px-12 text-xl text-center font-black">Каталог обьявлений, вакансии и резюме, поиск исполнителя,
-        доставка еды и создание ресторана</h1>
+      <h1 class="px-12 text-xl text-center font-black">Недвижимость и новостройки, каталог объявлений, вакансии и резюме, поиск исполнителя и размещение
+        услуг</h1>
       <GoSearchDesktop/>
       <ListServicesIndex/>
       <p @click="linkHub" class="text-center">
@@ -16,9 +16,9 @@
     </div>
 
     <div v-if="$device.isMobile" class="container mt-[70px] px-[20px] pb-[80px] w-full flex flex-col items-center">
-      <h1 class="text-center text-sm font-bold">Каталог объявлений, вакансии и резюме, поиск исполнителя и размещение
+      <h1 class="text-center text-sm font-bold">Недвижимость и новостройки, каталог объявлений, вакансии и резюме, поиск исполнителя и размещение
         услуг</h1>
-      <div @click="showGoSearch">
+      <div @click="showGoSearch" class="w-[100%]">
         <SearchColorGlobalMobile/>
       </div>
       <ListServicesIndex/>
