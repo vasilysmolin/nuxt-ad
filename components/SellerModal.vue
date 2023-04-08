@@ -155,21 +155,22 @@ export default {
       data.append('description', this.data.description);
       if (this.data.id) {
         data.append('_method', 'put');
-        this.$axios.$put(`seller-houses/${this.data.id}`, data).then(() => {
+        this.$axios.$post(`seller-houses/${this.data.id}`, data).then(() => {
           this.getSeller({id: this.$auth.user.id}).then(() => {
-            this.data = this.sellerHouse;
+            this.data = _.cloneDeep(this.sellerHouse);
           });
         }).catch((error) => {
         });
       } else {
         this.$axios.$post(`seller-houses`, data).then(() => {
           this.getSeller({id: this.$auth.user.id}).then(() => {
-            this.data = this.sellerHouse;
+            this.data = _.cloneDeep(this.sellerHouse);
           });
         }).catch((error) => {
         });
       }
       this.$modal.hide('SellerModal');
+      this.isDisabled = false;
 
     },
 
