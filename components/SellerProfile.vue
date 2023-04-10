@@ -38,7 +38,8 @@
 
         <section class="mt-8 flex justify-between items-center">
           <p class="font-bold text-xl">{{ number }}</p>
-          <a :href="`mailto:${getEmail(sellerHouse)}`" class="text-blue-600">Отправить письмо</a>
+          <!--          <a :href="`mailto:${getEmail(sellerHouse)}`" class="text-blue-600">Отправить письмо</a>-->
+          <p>{{ getEmail(sellerHouse) }}</p>
         </section>
 
         <section class="mt-8">
