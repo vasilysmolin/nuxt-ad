@@ -1,0 +1,165 @@
+.journal_article .wrapper {
+    margin: 70px auto 0;
+    padding-bottom: 100px;
+    max-width: 950px;
+    min-width: 384px;
+}
+.journal_article .wrapper > div {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.journal_article .wrapper > div nav {
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.journal_article .wrapper > div nav ul {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+}
+.journal_article .wrapper > div nav ul li {
+    line-height: 1.5rem;
+}
+.journal_article .wrapper > div nav ul li:last-child {
+    line-height: 1.5rem;
+    color: #000;
+}
+.journal_article .wrapper > div nav ul li span {
+    padding: 0 0.5rem;
+    color: rgb(107 114 128);
+}
+.journal_article .wrapper > div article {
+    margin: 1.25rem auto 0;
+    width: 100%;
+}
+.journal_article hr {
+    margin: 32px auto ;
+    width: 5%;
+    height: 1px;
+    background-color: black;
+}
+.journal_article h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    text-align: center;
+}
+.journal_article blockquote {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-align: center;
+}
+.journal_article blockquote > cite {
+    display: block;
+    margin-top: .625rem;
+    font-size: .875rem;
+    font-weight: normal;
+}
+.journal_article article > cite {
+    display: block;
+    margin: 0 auto 1.875rem;
+    width: 75%;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+.journal_article article > cite > small {
+    margin-top: .625rem;
+    display: block;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+    color: #999999;
+}
+.journal_article p  {
+    margin: 0 auto 1.875rem;
+    width: 88%;
+    line-height: 1.6rem;
+}
+.journal_article figure {
+    display: block;
+}
+.journal_article figure.full {
+    margin: 0 auto 1.875rem;
+    width: 100%;
+    overflow: hidden;
+}
+.journal_article figure.full > img,
+.journal_article figure.small > img
+{
+    display: block;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.journal_article figure.small {
+    margin: 0 auto 1.875rem;
+    width: 600px;
+    overflow: hidden;
+}
+.journal_article figcaption {
+    padding: 0.625rem 0.625rem 0;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-size: .75rem;
+    text-align: center;
+    color: #999999;
+}
+
+@media (max-width: 900px) {
+    .journal_article .wrapper {
+        padding: 0 25px 100px;
+        width: 100%;
+    }
+}
+@media (max-width: 660px) {
+    .journal_article figure.small {
+        width: 100%;
+    }
+    .journal_article h1 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+    }
+    .journal_article blockquote {
+        font-size: 1rem;
+    }
+    .journal_article p {
+        width: 100%;
+        font-size: 0.875rem;
+        line-height: 1.5rem;
+    }
+    .journal_article article > cite {
+        width: 90%;
+        font-size: 0.875rem;
+    }
+}
+@media (max-width: 460px) {
+    .journal_article hr {
+        width: 90%;
+    }
+    .journal_article .wrapper > div nav ul li {
+        font-size: 0.75rem;
+        line-height: 1.2rem;
+    }
+    .journal_article .wrapper > div nav ul li:last-child {
+        line-height: 1.2rem;
+    }
+    .journal_article h1 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+    }
+}

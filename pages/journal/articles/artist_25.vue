@@ -1,26 +1,25 @@
 <template>
-  <section>
-    <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[950px]">
-      <div class="mx-auto flex flex-col w-full">
-        <nav class="flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6 text-black">Художник, прославивший австрийское искусство</li>
-          </ul>
-        </nav>
-
-        <article class="mx-auto mt-5 w-full">
+    <section class="journal_article">
+        <div class="wrapper">
+            <div>
+                <nav>
+                    <ul>
+                        <li>
+                            <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
+                        </li>
+                        <li><span>/</span></li>
+                        <li>
+                            <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
+                        </li>
+                        <li><span>/</span></li>
+                        <li>Художник, прославивший австрийское искусство</li>
+                    </ul>
+                </nav>
+                <article>
           <figure class="full">
             <img src="../../../assets/img_journal_temp/258_1.png" alt=""/>
           </figure>
-          <h1 class="font-black text-black text-4xl text-center">Художник, прославивший австрийское искусство</h1>
+          <h1 class="font-black">Художник, прославивший австрийское искусство</h1>
           <hr>
           <blockquote>«Твои дела и твоё искусство не могут нравиться всем: делай то, что считаешь правильным, для
             блага немногих. Нравиться слишком многим — плохо».<cite>Фридрих Шиллер</cite>
@@ -156,85 +155,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-hr {
-  margin: 32px auto ;
-  width: 5%;
-  height: 1px;
-  background-color: black;
-}
-blockquote {
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-}
-blockquote > cite {
-  display: block;
-  margin-top: .625rem;
-  font-size: .875rem;
-  font-weight: normal;
-}
-article > cite {
-  display: block;
-  margin: 0 auto 1.875rem;
-  width: 75%;
-  font-family: Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
-article > cite > small {
-  margin-top: .625rem;
-  display: block;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: normal;
-  color: #999999;
-}
-p  {
-  margin: 0 auto 1.875rem;
-  width: 88%;
-  line-height: 1.6rem;
-}
-figure {
-  display: block;
-}
-figure.full {
-  margin: 0 auto 1.875rem;
-  width: 100%;
-  overflow: hidden;
-}
-figure.full > img,
-figure.small > img
-{
-  display: block;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-figure.small {
-  margin: 0 auto 1.875rem;
-  width: 600px;
-  overflow: hidden;
-}
-figure.small > img {
-  height: auto;
-}
-figcaption {
-  padding: 0.625rem 0.625rem 0;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-size: .75rem;
-  text-align: center;
-  color: #999999;
-}
-</style>
