@@ -177,6 +177,19 @@
             </NuxtLink>
           </article>
 
+            <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
+                <NuxtLink :to="`/articles/test_leibovitch`">
+                    <section class="flex flex-col">
+                        <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png)"></section>
+                        <section class="mt-3 mb-5 flex flex-col px-3">
+                            <h2 class="font-black text-xl leading-6">
+                                Шкала Лейбовича и болезнь упущенных возможностей
+                            </h2>
+                        </section>
+                    </section>
+                </NuxtLink>
+            </article>
+
         </section>
     </div>
   </section>
