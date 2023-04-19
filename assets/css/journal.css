@@ -225,6 +225,13 @@
     .journal_article .wrapper {
         padding: 0 15px 100px;
     }
+    .journal_index .preview article .block .content {
+        margin: .75rem 0;
+        padding: 0 .75rem;
+    }
+    .journal_index .preview article.abs .block .content {
+        bottom: 1rem;
+    }
     .journal_article hr {
         width: 90%;
     }
