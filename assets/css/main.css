@@ -123,14 +123,4 @@
         border-bottom: none;
     }
 }
-@layer utilities {
-    @variants responsive {
-        .masonry-2-col {
-            column-count: 2;
-        }
 
-        .break-inside {
-            break-inside: avoid;
-        }
-    }
-}

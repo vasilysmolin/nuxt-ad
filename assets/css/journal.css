@@ -1,21 +1,25 @@
+.journal_index .wrapper,
 .journal_article .wrapper {
     margin: 70px auto 0;
     padding-bottom: 100px;
     max-width: 950px;
     min-width: 320px;
 }
+.journal_index .wrapper > div,
 .journal_article .wrapper > div {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+.journal_index .wrapper > div nav,
 .journal_article .wrapper > div nav {
     margin-bottom: 6px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
+.journal_index .wrapper > div nav ul,
 .journal_article .wrapper > div nav ul {
     display: flex;
     justify-content: start;
@@ -23,16 +27,77 @@
     flex-wrap: wrap;
     font-size: 0.875rem;
 }
+.journal_index .wrapper > div nav ul li,
 .journal_article .wrapper > div nav ul li {
     line-height: 1.5rem;
 }
+.journal_index .wrapper > div nav ul li:last-child,
 .journal_article .wrapper > div nav ul li:last-child {
     line-height: 1.5rem;
     color: #000;
 }
+.journal_index .wrapper > div nav ul li span,
 .journal_article .wrapper > div nav ul li span {
     padding: 0 0.5rem;
     color: rgb(107 114 128);
+}
+.journal_index .wrapper > div .preview {
+    margin: 15px auto 0;
+    column-count: 2;
+    column-gap: 5%;
+    width: 100%;
+}
+.journal_index .preview article {
+    position: relative;
+    margin-bottom: 10%;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    border-radius: 8px;
+    background-color: white;
+}
+.journal_index .preview article .block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.journal_index .preview article .block img {
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    width: 100%;
+}
+.journal_index .preview article.abs .block img {
+    object-fit: cover;
+    object-position: center;
+    border-radius: .5rem;
+    width: 100%;
+    max-height: 600px;
+    min-height: 450px;
+}
+.journal_index .preview article .block .content {
+    margin: 1.25rem 0;
+    padding: 0 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+.journal_index .preview article.abs .block .content {
+    position: absolute;
+    bottom: 1.75rem;
+    color: white;
+}
+.journal_index .preview article.abs .block .content h2,
+.journal_index .preview article .block .content h2 {
+    font-size: clamp(0.9rem, 0.6rem + 1.5vw, 1.5rem);
+    font-weight: 900;
+    line-height: calc(2px + 2ex + 2px);
+}
+.journal_index .preview article.abs .block .content h3 {
+    margin-top: 1.25rem;
+    font-size: clamp(0.8rem, 0.7rem + 0.5vw, 1rem);
+    font-weight: 400;
+    line-height: calc(2px + 2ex + 2px);
 }
 .journal_article .wrapper > div article {
     margin: 1.25rem auto 0;
@@ -121,12 +186,20 @@
 }
 
 @media (max-width: 900px) {
+    .journal_index .wrapper,
     .journal_article .wrapper {
         padding: 0 25px 100px;
         width: 100%;
     }
 }
 @media (max-width: 660px) {
+    .journal_index .preview article .block .content {
+        margin: 1rem 0;
+        padding: 0 1rem;
+    }
+    .journal_index .preview article.abs .block .content {
+        bottom: 1.25rem;
+    }
     .journal_article figure.small {
         width: 100%;
     }
@@ -148,6 +221,7 @@
     }
 }
 @media (max-width: 460px) {
+    .journal_index .wrapper,
     .journal_article .wrapper {
         padding: 0 15px 100px;
     }
