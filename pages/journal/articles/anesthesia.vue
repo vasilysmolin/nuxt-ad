@@ -17,7 +17,7 @@
                 </nav>
                 <article>
                     <figure class="full">
-                        <img src="../../../assets/img_journal_temp/262_1.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_1.png" alt=""/>
                     </figure>
                     <h1 class="font-black">Оружие против боли и микробов</h1>
                     <hr>
@@ -42,7 +42,7 @@
                     <cite>«Поскольку веселящий газ, видимо, может унять физическую боль, он с успехом найдёт применение
                         в хирургии»</cite>
                     <figure class="small">
-                        <img src="../../../assets/img_journal_temp/262_2.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_2.png" alt=""/>
                         <figcaption>Источник: google.com</figcaption>
                     </figure>
                     <p>Долгое время при хирургических операциях использовался гипноз, который практиковал доктор Франц
@@ -60,7 +60,7 @@
                         никакой боли при падениях и ушибах.
                     </p>
                     <figure class="full">
-                        <img src="../../../assets/img_journal_temp/262_7.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_7.png" alt=""/>
                         <figcaption>Источник: google.com Карикатура на пристрастившихся к веселящему газу студентов.
                         </figcaption>
                     </figure>
@@ -79,7 +79,7 @@
                         известно, что он был первым врачом, кто внедрил этот метод.
                     </p>
                     <figure class="small">
-                        <img src="../../../assets/img_journal_temp/262_4.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_4.png" alt=""/>
                         <figcaption>Источник: google.com</figcaption>
                     </figure>
                     <p>Человечество сделало шаг и преодолело боль на операционном столе. Раньше хирургам приходилось
@@ -103,7 +103,7 @@
                         операционной. В те времена люди часто умирали от заражения, гангрены.
                     </p>
                     <figure class="full">
-                        <img src="../../../assets/img_journal_temp/262_5.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_5.png" alt=""/>
                         <figcaption>Источник: google.com</figcaption>
                     </figure>
                     <p>Многие врачи считали, что заражение происходит от проникновения воздуха в свежие раны. Однако
@@ -124,7 +124,7 @@
                         инфекции.
                     </p>
                     <figure class="small">
-                        <img src="../../../assets/img_journal_temp/262_6.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_6.png" alt=""/>
                         <figcaption>Источник: google.com Антисептический пульверизатор Пыхтящий Билли.</figcaption>
                     </figure>
                     <p>Первым пациентом Листера стал 11-летний мальчик с переломом ноги. Листер обработал ему рану
@@ -143,7 +143,7 @@
                         Благодаря Листеру медицина продолжила улучшаться. Появились антисептики и аппараты для обработки
                         инструментов и перевязочных материалов.</p>
                     <figure class="full">
-                        <img src="../../../assets/img_journal_temp/262_3.png" alt=""/>
+                        <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_3.png" alt=""/>
                         <figcaption>Источник: google.com</figcaption>
                     </figure>
                     <p>В начале XX столетия в Англии и Германии активно стали применяться асептические методики, которые

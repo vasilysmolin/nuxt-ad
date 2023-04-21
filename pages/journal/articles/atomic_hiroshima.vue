@@ -17,7 +17,7 @@
         </nav>
         <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/261_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_1.png" alt=""/>
           </figure>
           <h1 class="font-black">Бомбардировка Хиросимы и Нагасаки</h1>
           <hr>
@@ -37,7 +37,7 @@
             <small>«Всемирная история», «Итоги второй мировой войны», 1997 год.</small>
           </cite>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/261_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_2.png" alt=""/>
             <figcaption>Источник: allthatsinteresting.com/hiroshima-aftermath-pictures#35</figcaption>
           </figure>
           <p>1 июня 1945 года временный комитет под руководством Генри Льюиса Стимсона высказался за то, чтобы атомная бомба была
@@ -52,7 +52,7 @@
             Японии в первых числах августа. Города Хиросима и Нагасаки были выбраны для ударов не просто так.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/261_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_3.png" alt=""/>
             <figcaption>Источник: allthatsinteresting.com/hiroshima-aftermath-pictures#35</figcaption>
           </figure>
           <p>Хиросима считалась важнейшим городом военного назначения. В ней находились многочисленные военные казармы,
@@ -67,7 +67,7 @@
             <small>«Всемирная история», «Итоги второй мировой войны», 1997 год.</small>
           </cite>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/261_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_4.png" alt=""/>
             <figcaption>Источник: allthatsinteresting.com/hiroshima-aftermath-pictures#35</figcaption>
           </figure>
           <p>Хиросима первой попала под удар. В бомбардировке принимала участие эскадрилья из семи бомбардировщиков Б-29: три для
@@ -80,7 +80,7 @@
             этапов ядерного взрыва.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/261_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_5.png" alt=""/>
             <figcaption>Источник: google.ru</figcaption>
           </figure>
           <p>Смертоносное оружие взорвалось на высоте 565 метров над городом ослепляющей вспышкой бело-голубого света. В
@@ -93,7 +93,7 @@
             последовавшей взрывной волны погибли по меньшей мере 78 000 человек.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/261_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_6.png" alt=""/>
             <figcaption>Источник: allthatsinteresting.com/hiroshima-aftermath-pictures#35</figcaption>
           </figure>
           <p>Огненный шторм бушевал по городу, уничтожив все здания на площади 13 кв. км. Грибообразное облако из обломков
@@ -106,7 +106,7 @@
             бомбардировщик «Бокс кар» с плутониевой бомбой «Толстяк» атаковал город Нагасаки.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/261_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_7.png" alt=""/>
             <figcaption>Источник: allthatsinteresting.com/hiroshima-aftermath-pictures#35</figcaption>
           </figure>
           <p>Точное число жертв в городах не известно. Гибель людей, подвергшихся непосредственному облучению, прекратилась через

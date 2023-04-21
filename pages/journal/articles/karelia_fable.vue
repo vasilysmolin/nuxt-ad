@@ -17,7 +17,7 @@
                 </nav>
                 <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/259_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_1.png" alt=""/>
           </figure>
           <h1 class="font-black">Карельская сказка «Зять Хома»</h1>
           <hr>
@@ -36,7 +36,7 @@
             лесозаготовки. Сказочнику уступали самое тёплое место у костра, отдавали часть улова.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_2.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Карельская сказка по сюжету близка к русским и финским сказкам, что объясняется культурно-историческими
@@ -50,7 +50,7 @@
             томить читателя, лучше прочтите сказку и сделайте выводы.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_3.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Жили-были муж и жена. Мужа звали Хомой. Хоме всё кажется, что жене дома легко управляться с хозяйством, в
@@ -67,7 +67,7 @@
             кур.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_4.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Побежал в хлев, пустил кур в избу, насыпал зёрна, и двери оставил открытыми. А когда же масло сбивать и
@@ -83,7 +83,7 @@
             убаюкивает его, а сам весь в сметане. Остальные дети по углам разбежались, кто куда.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_5.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>— Авой-вой-вой,— причитает Хома,— что я наделал? Как я жене покажусь: ребёнка расшиб, сметану пролил, ячмень
@@ -107,7 +107,7 @@
             — А батюшка пришёл нас на свадьбу приглашать, надо пойти! — Хома уже про все свои несчастья забыл.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_6.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Кое-как прибрали, пошли на свадьбу. А там только ещё гости съезжаются, свадьба на завтра назначена. А сегодня
@@ -134,7 +134,7 @@
             — Ну, вари.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_7.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Сварил он мясо во дворе в большом котле, направился к дому, а собаки окружили его, лают. Он бросил им один
@@ -153,7 +153,7 @@
             — Ну, раз пойдёшь, так иди. Вот ведро.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_8.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Взял Хома ведро, пошёл в амбар, вытащил затычку, квас течёт в ведро. Собаки опять на него залаяли, он и

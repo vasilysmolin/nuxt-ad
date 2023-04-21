@@ -17,7 +17,7 @@
                 </nav>
                 <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/258_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_1.png" alt=""/>
           </figure>
           <h1 class="font-black">Художник, прославивший австрийское искусство</h1>
           <hr>
@@ -37,7 +37,7 @@
             чему Климт и отточил своё умение.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_2.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Портрет пианиста и преподавателя фортепианной игры Йозефа Пембауэра», 1890 год.</figcaption>
           </figure>
           <p>В 1879 году Густав, его брат Эрнст и их друг и соученик Франц Матч начали работать вместе и очень скоро
@@ -51,7 +51,7 @@
             точность.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/258_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_3.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Зрительный зал старого Бургтеатра в Вене», 1888 — 1889 год.</figcaption>
           </figure>
           <p>Закончив учёбу в 1883 году друзья открыли собственную мастерскую в Вене. Однако, несмотря на совместные
@@ -64,7 +64,7 @@
             интерьеров и фронтоном венского национального театра «Бургтеатр».
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_4.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Портрет Эмилии Флёге», 1902 год.</figcaption>
           </figure>
           <p>Работая над оформлением «Бургтеатра», Густав Климт создал групповой портрет сливок венского общества перед
@@ -82,7 +82,7 @@
             супругами, однако это не мешало художнику иметь множество связей на стороне и внебрачных детей от них.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/258_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_5.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Течение», 1898 год.</figcaption>
           </figure>
           <p>К началу 1890-х годов Густав Климт и Франц Матч разошлись во взглядах: Матч продолжал работать в
@@ -100,7 +100,7 @@
             академизмом, тем самы утвердив право на существование неофициального искусства.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_6.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Любовь», 1895 год.</figcaption>
           </figure>
           <p>Густав Климт основал Венский Сецессион и стал его президентом. К обществу венских живописцев присоединились
@@ -117,7 +117,7 @@
             построены на сексуальных ассоциациях: «Течение», «Серебрянные рыбки», «Золотые рыбки».
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_7.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Золотые рыбки», 1901 — 1902 год.</figcaption>
           </figure>
           <p>В конце 1890-х годах Густав Климт обратился к важному направлению в своём творчестве — пейзажу. Природу
@@ -130,7 +130,7 @@
             гармония и красота. В глазах Густава Климта природа самоценна сама по себе.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_8.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Сад (Цветущий луг)», 1906 год.</figcaption>
           </figure>
           <p>Таким было раннее творчество великого мастера и «обновителя» венской живописи. В дальнейшем, как и многих

@@ -17,7 +17,7 @@
                 </nav>
                 <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_1.png" alt=""/>
           </figure>
           <h1 class="font-black">Шкала Лейбовича и болезнь упущенных возможностей</h1>
           <hr>
@@ -37,7 +37,7 @@
             внимания, либо гиперопеке.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_2.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>В определённые жизненные ситуации у человека могут развиваться навязчивые переживания, которые и являются
@@ -51,7 +51,7 @@
             например, депрессии.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_3.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>Оценить симптомы социофобии можно при помощи шкалы Лейбовича, разработанной в 1987 году психиатром и
@@ -62,7 +62,7 @@
           </p>
           <p>Тест состоит из 24 вопросов, ответы на которые следует давать, опираясь на события прошедшей недели и по настоящий момент времени включительно. Внимательно прочитайте каждую ситуацию и ответьте по каждой из них два раза на вопросы: 1) насколько сильный страх, беспокойство или тревогу вы испытываете в данной ситуации; 2) как часто вы избегаете подобных ситуаций.</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_4.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>Если какая-либо ситуация в вашей жизни обычно не встречается, то представьте, какие бы она ощущения у вас вызвала, если бы вы в ней оказались. А также насколько вы бы старались избежать данной ситуации. На каждый вопрос выбирайте два подходящих ответа из раздела «страх»: отсутствует, слабый, средний, сильный; из раздела «избегание»: никогда, иногда, часто, обычно.</p>
@@ -103,7 +103,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_5.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>5. Говорить с вышестоящим лицом (с начальством)<br><br>
@@ -143,7 +143,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_6.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>9. Писать под наблюдением (в присутствии) кого-то<br><br>
@@ -183,7 +183,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_7.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>13. Мочиться в общественном туалете<br><br>
@@ -223,7 +223,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_8.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>17. Проходить тестирование своих способностей, умений или знаний<br><br>
@@ -263,7 +263,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_9.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_9.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>21. Пытаться познакомиться с кем-либо с целью романтических или сексуальных отношений<br><br>
@@ -303,7 +303,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_10.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_10.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>Подсчитываем баллы по всем ситуациям. В первом разделе определяем результат тревоги, во втором — результат

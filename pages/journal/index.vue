@@ -75,7 +75,7 @@
                                 <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png"
                                      alt="">
                                 <section class="content">
-                                    <h2>Хдожник, прославивший австрийское искусство</h2>
+                                    <h2>Художник, прославивший австрийское искусство</h2>
                                 </section>
                             </section>
                         </NuxtLink>

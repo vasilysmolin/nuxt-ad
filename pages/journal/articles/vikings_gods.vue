@@ -17,7 +17,7 @@
                 </nav>
                 <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_1.png" alt=""/>
           </figure>
           <h1 class="font-black text-black text-4xl text-center">Бои викингов и религиозные обряды</h1>
           <hr>
@@ -35,7 +35,7 @@
             поклонялись викинги.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_2.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Воссоздав картину прошлого благодаря археологам установили, что, как правило, викинги проводили свои
@@ -50,7 +50,7 @@
             праздник, который викинги проводили раз в девять лет.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_3.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Праздник длился девять дней и девять ночей. Каждый день в жертву богам приносили одного мужчину и различных
@@ -63,7 +63,7 @@
             волос или кончик ногтя. Распространены были у викингов талисманы и обереги, которые отводили беду.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_4.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Верили викинги и в пророчества. Способностью предсказывать будущее и принимать самые разнообразные формы и
@@ -79,7 +79,7 @@
             прорицательница рассказывает людям о будущих событиях и о том, как найти здоровье и счастье.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_5.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>За помощью в поисках счастья и здоровья викинги обращались к богам, которые делились на две основные
@@ -93,7 +93,7 @@
             знаниями.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_6.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Легенда на этот счёт гласит следующее. Больше всего на свете Один желал обладать великими знаниями и
@@ -106,7 +106,7 @@
             легендам, мир скандинавских викингов состоял из трёх уровней.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_7.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Верхний уровень — небесный, назывался Асгард, в котором располагались великолепные чертоги Одина и других
@@ -119,7 +119,7 @@
             ясеня Югдрасиль.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_8.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>В скандинавской мифологии помимо богов обитали и великаны с гномами, которые жили в двух различных мирах,
