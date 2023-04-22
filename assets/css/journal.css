@@ -29,17 +29,32 @@
 }
 .journal_index .wrapper > div nav ul li,
 .journal_article .wrapper > div nav ul li {
+    color: #6B7280;
     line-height: 1.5rem;
+}
+.journal_index .wrapper > div nav ul li a,
+.journal_article .wrapper > div nav ul li a {
+    display: inline-block;
+}
+.journal_index .wrapper > div nav ul li::after,
+.journal_article .wrapper > div nav ul li::after {
+    padding: 0 .313rem;
+    content: "/";
+    color: #ccc;
+}
+.journal_index .wrapper > div nav ul li:last-child::after,
+.journal_article .wrapper > div nav ul li:last-child::after {
+    padding: 0;
+    content: "";
+}
+.journal_index .wrapper > div nav ul li:hover,
+.journal_article .wrapper > div nav ul li:hover {
+    color: #000;
 }
 .journal_index .wrapper > div nav ul li:last-child,
 .journal_article .wrapper > div nav ul li:last-child {
     line-height: 1.5rem;
     color: #000;
-}
-.journal_index .wrapper > div nav ul li span,
-.journal_article .wrapper > div nav ul li span {
-    padding: 0 0.5rem;
-    color: rgb(107 114 128);
 }
 .journal_index .wrapper > div .preview {
     margin: 15px auto 0;

@@ -2,14 +2,18 @@
     <section class="journal_index">
         <div class="wrapper">
             <div>
-
                 <nav>
-                    <ul>
-                        <li>
-                            <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
+                    <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                                <span itemprop="name">Журнал</span>
+                                <meta itemprop="position" content="0">
+                            </NuxtLink>
                         </li>
-                        <li><span>/</span></li>
-                        <li>Статьи</li>
+                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                            <span itemprop="name">Статьи</span>
+                            <meta itemprop="position" content="1">
+                        </li>
                     </ul>
                 </nav>
 
@@ -100,7 +104,8 @@
                                      alt="">
                                 <section class="content">
                                     <h2>Солирующие музыкальные инструменты оркестра</h2>
-                                    <h3>Начиная с середины XX столетия классическая музыка исполняется на современных музыкальных инструментах, а это уже совсем иное ...</h3>
+                                    <h3>Начиная с середины XX столетия классическая музыка исполняется на современных
+                                        музыкальных инструментах, а это уже совсем иное ...</h3>
                                 </section>
                             </section>
                         </NuxtLink>
@@ -113,7 +118,8 @@
                                      alt="">
                                 <section class="content">
                                     <h2>Детектор лжи — тест Омура</h2>
-                                    <h3>Тест «Кольцо Омуры» опирается на определённые манипуляции, которые вызывают в теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
+                                    <h3>Тест «Кольцо Омуры» опирается на определённые манипуляции, которые вызывают в
+                                        теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
                                 </section>
                             </section>
                         </NuxtLink>
@@ -150,7 +156,8 @@
                                      alt="">
                                 <section class="content">
                                     <h2>Да, это банально: время — деньги</h2>
-                                    <h3>Нет ничего продолжительнее времени, так как оно мера вечности; нет ничего короче его, так как его недостает для всех наших начинаний…</h3>
+                                    <h3>Нет ничего продолжительнее времени, так как оно мера вечности; нет ничего короче
+                                        его, так как его недостает для всех наших начинаний…</h3>
                                 </section>
                             </section>
                         </NuxtLink>
@@ -190,6 +197,11 @@ export default {
                 hid: 'og:type',
                 property: 'og:type',
                 content: 'website'
+            },
+            {
+                hid: 'og:title',
+                property: 'og:title',
+                content: 'Материалы, проекты и подкасты без политики | Журнал Тапиго'
             },
             {
                 hid: 'og:image',
