@@ -179,14 +179,17 @@ export default {
                 content: 'website'
             },
             {
+                hid: 'og:title',
                 property: 'og:title',
-                content: 'Оружие против боли и микробов | Тест описания для ВК'
+                content: 'Оружие против боли и микробов | Журнал Тапиго'
             },
             {
+                hid: 'og:image',
                 property: 'og:image',
-                content: 'https://storage.yandexcloud.net/backgrounds-images/journal_static/opengraph/articles/king.png'
+                content: 'https://storage.yandexcloud.net/backgrounds-images/journal_static/opengraph/articles/anesthesia.png'
             },
             {
+                hid: 'og:url',
                 property: 'og:url',
                 content: 'https://journal.tapigo.ru/articles/anesthesia'
             },

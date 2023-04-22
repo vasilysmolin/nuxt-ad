@@ -179,9 +179,28 @@
 <script>
 export default {
     head: {
-        title: "Журнал Тапиго",
+        title: "Материалы, проекты и подкасты без политики | Журнал Тапиго",
         meta: [
-            {hid: 'description', name: 'description', content: 'Список'}
+            {
+                hid: 'description',
+                name: 'description',
+                content: ''
+            },
+            {
+                hid: 'og:type',
+                property: 'og:type',
+                content: 'website'
+            },
+            {
+                hid: 'og:image',
+                property: 'og:image',
+                content: 'https://storage.yandexcloud.net/backgrounds-images/journal_static/opengraph/articles/tapigo.png'
+            },
+            {
+                hid: 'og:url',
+                property: 'og:url',
+                content: 'https://journal.tapigo.ru'
+            },
         ]
     },
 }
