@@ -19,7 +19,7 @@
           <figure class="full">
             <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_1.png" alt=""/>
           </figure>
-          <h1 class="font-black">Шкала Лейбовича и болезнь упущенных возможностей</h1>
+          <h1>Шкала Лейбовича и болезнь упущенных возможностей</h1>
           <hr>
           <blockquote>«Но если человек всё-таки сумасшедший ... как он может об этом узнать?»<cite>Мелани Раабе</cite>
           </blockquote>

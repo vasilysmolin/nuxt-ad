@@ -19,7 +19,7 @@
           <figure class="full">
             <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_1.png" alt=""/>
           </figure>
-          <h1 class="font-black">Карельская сказка «Зять Хома»</h1>
+          <h1>Карельская сказка «Зять Хома»</h1>
           <hr>
           <blockquote>Благодаря сказкам народ осознаёт своё внутреннее достоинство и высмеивает собственные слабости —
             глупость, лень, упрямство и бесхозяйственность.

@@ -19,7 +19,7 @@
           <figure class="full">
             <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_1.png" alt=""/>
           </figure>
-          <h1 class="font-black">Художник, прославивший австрийское искусство</h1>
+          <h1>Художник, прославивший австрийское искусство</h1>
           <hr>
           <blockquote>«Твои дела и твоё искусство не могут нравиться всем: делай то, что считаешь правильным, для
             блага немногих. Нравиться слишком многим — плохо».<cite>Фридрих Шиллер</cite>

@@ -19,7 +19,7 @@
           <figure class="full">
             <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_1.png" alt=""/>
           </figure>
-          <h1 class="font-black text-black text-4xl text-center">Бои викингов и религиозные обряды</h1>
+          <h1>Бои викингов и религиозные обряды</h1>
           <hr>
           <blockquote>«Когда-нибудь мир непременно закончится, а с ним — и вся история».<cite>Нил Гейман «Скандинавские боги»</cite>
           </blockquote>

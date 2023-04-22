@@ -19,7 +19,7 @@
                     <figure class="full">
                         <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_1.png" alt=""/>
                     </figure>
-                    <h1 class="font-black">Оружие против боли и микробов</h1>
+                    <h1>Оружие против боли и микробов</h1>
                     <hr>
                     <blockquote>«Человек на операционном столе в одной из наших хирургических больниц имел больше шансов
                         отправиться на тот свет, чем английский солдат в битве при Ватерлоо»<cite>Сэр Джеймс Янг

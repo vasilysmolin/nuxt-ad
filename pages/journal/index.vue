@@ -93,6 +93,81 @@
                         </NuxtLink>
                     </article>
 
+                    <article class="abs">
+                        <NuxtLink :to="`/articles/music_7`">
+                            <section class="block">
+                                <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/201.png"
+                                     alt="">
+                                <section class="content">
+                                    <h2>Солирующие музыкальные инструменты оркестра</h2>
+                                    <h3>Начиная с середины XX столетия классическая музыка исполняется на современных музыкальных инструментах, а это уже совсем иное ...</h3>
+                                </section>
+                            </section>
+                        </NuxtLink>
+                    </article>
+
+                    <article class="abs">
+                        <NuxtLink :to="`/articles/test_omura`">
+                            <section class="block">
+                                <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/185.png"
+                                     alt="">
+                                <section class="content">
+                                    <h2>Детектор лжи — тест Омура</h2>
+                                    <h3>Тест «Кольцо Омуры» опирается на определённые манипуляции, которые вызывают в теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
+                                </section>
+                            </section>
+                        </NuxtLink>
+                    </article>
+
+                    <article>
+                        <NuxtLink :to="`/articles/fast`">
+                            <section class="block">
+                                <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/172.png"
+                                     alt="">
+                                <section class="content">
+                                    <h2>Приметы и обычаи Великого поста на Руси</h2>
+                                </section>
+                            </section>
+                        </NuxtLink>
+                    </article>
+
+                    <article>
+                        <NuxtLink :to="`/articles/king`">
+                            <section class="block">
+                                <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/142.png"
+                                     alt="">
+                                <section class="content">
+                                    <h2>Царство ужаса и террора Ивана Грозного</h2>
+                                </section>
+                            </section>
+                        </NuxtLink>
+                    </article>
+
+                    <article class="abs">
+                        <NuxtLink :to="`/articles/time_money`">
+                            <section class="block">
+                                <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/50.png"
+                                     alt="">
+                                <section class="content">
+                                    <h2>Да, это банально: время — деньги</h2>
+                                    <h3>Нет ничего продолжительнее времени, так как оно мера вечности; нет ничего короче его, так как его недостает для всех наших начинаний…</h3>
+                                </section>
+                            </section>
+                        </NuxtLink>
+                    </article>
+
+                    <article>
+                        <NuxtLink :to="`/articles/diary`">
+                            <section class="block">
+                                <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/31.png"
+                                     alt="">
+                                <section class="content">
+                                    <h2>Психоаналитик внутри каждого из нас</h2>
+                                </section>
+                            </section>
+                        </NuxtLink>
+                    </article>
+
 
                 </section>
             </div>
@@ -102,48 +177,12 @@
 </template>
 
 <script>
-import WhatsTapigo from "../../components/WhatsTapigo";
-import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
-import ListServicesJobs from "../../components/ListServicesJobs";
-import GoSearchDesktop from "../../components/GoSearchDesktop";
-import BNewLetters from "../../components/blocks/BNewLetters";
-import IconListServicesIndexUslugi from "../../components/icons/IconListServicesIndexUslugi";
-import IconListServicesIndexCatalog from "../../components/icons/IconListServicesIndexCatalog";
-
 export default {
-    components: {
-        GoSearchDesktop,
-        SearchColorGlobalMobile,
-        ListServicesJobs,
-        BNewLetters,
-        WhatsTapigo,
-        IconListServicesIndexUslugi,
-        IconListServicesIndexCatalog
-    },
     head: {
         title: "Журнал Тапиго",
         meta: [
             {hid: 'description', name: 'description', content: 'Список'}
         ]
     },
-    methods: {
-        linkHub() {
-            var host = window.location.host
-            if (this.$auth.loggedIn) {
-                document.location.href = `${process.env.HUB_URL}/profile`;
-            } else {
-                document.location.href = process.env.AUTH_URL;
-            }
-        },
-        showGoSearch() {
-            this.$modal.show('GoSearch');
-        },
-        uslugi() {
-            document.location.href = process.env.USLUGI_URL;
-        },
-        catalog() {
-            document.location.href = process.env.CATALOG_URL;
-        },
-    }
 }
 </script>

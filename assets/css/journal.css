@@ -112,6 +112,7 @@
 .journal_article h1 {
     font-family: 'Roboto', sans-serif;
     font-size: 2.25rem;
+    font-weight: 900;
     line-height: 2.5rem;
     text-align: center;
 }
@@ -149,6 +150,12 @@
     font-style: italic;
     font-weight: normal;
     color: #999999;
+}
+.journal_article h2  {
+    margin: 0 auto .75rem;
+    width: 88%;
+    font-size: 1.25rem;
+    font-weight: 900;
 }
 .journal_article p  {
     margin: 0 auto 1.875rem;
@@ -208,7 +215,12 @@
         line-height: 2.25rem;
     }
     .journal_article blockquote {
+        width: 95%;
         font-size: 1rem;
+    }
+    .journal_article h2 {
+        font-size: 1rem;
+        width: 100%;
     }
     .journal_article p {
         width: 100%;

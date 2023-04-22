@@ -19,7 +19,7 @@
           <figure class="full">
             <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261_1.png" alt=""/>
           </figure>
-          <h1 class="font-black">Бомбардировка Хиросимы и Нагасаки</h1>
+          <h1>Бомбардировка Хиросимы и Нагасаки</h1>
           <hr>
           <blockquote>«Боже, что мы наделали?»<cite>Роберт Льюис, второй пилот «Энолы Гэй»</cite></blockquote>
           <hr>
