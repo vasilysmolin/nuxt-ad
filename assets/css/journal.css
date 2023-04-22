@@ -186,8 +186,7 @@
     overflow: hidden;
 }
 .journal_article figure.full > img,
-.journal_article figure.small > img
-{
+.journal_article figure.small > img {
     display: block;
     width: 100%;
     object-fit: cover;

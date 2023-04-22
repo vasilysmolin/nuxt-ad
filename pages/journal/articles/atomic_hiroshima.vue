@@ -7,18 +7,18 @@
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <NuxtLink :to="`/`" title="Журнал" itemprop="item">
                                 <span itemprop="name">Журнал</span>
-                                <meta itemprop="position" content="0">
+                                <meta itemprop="position" content="1">
                             </NuxtLink>
                         </li>
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <NuxtLink :to="`/`" title="Статьи" itemprop="item">
                                 <span itemprop="name">Статьи</span>
-                                <meta itemprop="position" content="1">
+                                <meta itemprop="position" content="2">
                             </NuxtLink>
                         </li>
                         <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
                             <span itemprop="name">Бомбардировка Хиросимы и Нагасаки</span>
-                            <meta itemprop="position" content="2">
+                            <meta itemprop="position" content="3">
                         </li>
                     </ul>
                 </nav>
