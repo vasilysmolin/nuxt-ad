@@ -5,20 +5,22 @@
                 <nav>
                     <ul itemscope itemtype="https://schema.org/BreadcrumbList">
                         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                            <NuxtLink to="/" title="Журнал" itemprop="item">
                                 <span itemprop="name">Журнал</span>
                                 <meta itemprop="position" content="1">
                             </NuxtLink>
                         </li>
                         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <NuxtLink :to="`/`" title="Статьи" itemprop="item">
+                            <NuxtLink to="/" title="Статьи" itemprop="item">
                                 <span itemprop="name">Статьи</span>
                                 <meta itemprop="position" content="2">
                             </NuxtLink>
                         </li>
                         <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                            <span itemprop="name">Оружие против боли и микробов</span>
-                            <meta itemprop="position" content="3">
+                            <NuxtLink to title="Оружие против боли и микробов" itemprop="item">
+                                <span itemprop="name">Оружие против боли и микробов</span>
+                                <meta itemprop="position" content="3">
+                            </NuxtLink>
                         </li>
                     </ul>
                 </nav>
@@ -28,7 +30,6 @@
                     </figure>
                     <meta itemprop="headline" content="title"/>
                     <h1 itemprop="name">Оружие против боли и микробов</h1>
-                    <meta itemprop="url" content="https://journal.tapigo.ru/articles/anesthesia" />
                     <meta itemprop="datePublished" content="" />
                     <meta itemprop="dateModified" content="" />
                     <meta itemprop="inLanguage" content="ru-RU" />
@@ -157,7 +158,7 @@
                             инструментов и перевязочных материалов.</p>
                         <figure itemscope itemtype="https://schema.org/ImageObject" class="full">
                             <img itemprop="contentUrl" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262_3.png" alt="Оружие против боли и микробов"/>
-                            <figcaption itemprop="description">>Источник: google.com</figcaption>
+                            <figcaption itemprop="description">Источник: google.com</figcaption>
                         </figure>
                         <p>В начале XX столетия в Англии и Германии активно стали применяться асептические методики, которые
                             изначально
@@ -171,8 +172,7 @@
                         <hr>
                     </section>
                     <section itemprop="author" itemscope itemtype="https://schema.org/Person" class="article-person">
-                        <span itemprop="name">Редакция «Тапиго Журнал»</span>
-                        <meta itemprop="url" content="https://journal.tapigo.ru/"/>
+                        <span itemprop="name">Автор: <NuxtLink to="/" itemprop="url">Тапиго Журнал</NuxtLink></span>
                     </section>
                 </article>
             </div>

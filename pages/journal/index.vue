@@ -1,5 +1,5 @@
 <template>
-    <section class="journal-index">
+    <section itemscope="" itemtype="https://schema.org/WebPage" class="journal-index">
         <div class="wrapper">
             <div>
                 <nav>
@@ -23,7 +23,7 @@
                         <NuxtLink :to="`/articles/anesthesia`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png"
-                                     alt="">
+                                     alt="Оружие против боли и микробов">
                                 <section class="content">
                                     <h2 itemprop="headline">Оружие против боли и микробов</h2>
                                 </section>
@@ -35,7 +35,7 @@
                         <NuxtLink :to="`/articles/atomic_hiroshima`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png"
-                                     alt="">
+                                     alt="Бомбардировка Хиросимы и Нагасаки">
                                 <section class="content">
                                     <h2 itemprop="headline">Бомбардировка Хиросимы и Нагасаки</h2>
                                     <h3 itemprop="description">В момент создания атомной бомбы не обсуждались политические и другие аспекты.
@@ -50,7 +50,7 @@
                         <NuxtLink :to="`/articles/vikings_gods`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png"
-                                     alt="">
+                                     alt="Боги викингов и религиозные обряды">
                                 <section class="content">
                                     <h2 itemprop="headline">Боги викингов и религиозные обряды</h2>
                                 </section>
@@ -62,7 +62,7 @@
                         <NuxtLink :to="`/articles/karelia_fable`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png"
-                                     alt="">
+                                     alt="Карельская сказка «Зять Хома»">
                                 <section class="content">
                                     <h2 itemprop="headline">Карельская сказка «Зять Хома»</h2>
                                     <h3 itemprop="description">Высоко ценилось умение рассказывать сказки, особенно этим славился карельский
@@ -77,7 +77,7 @@
                         <NuxtLink :to="`/articles/artist_25`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png"
-                                     alt="">
+                                     alt="Художник, прославивший австрийское искусство">
                                 <section class="content">
                                     <h2 itemprop="headline">Художник, прославивший австрийское искусство</h2>
                                 </section>
@@ -89,7 +89,7 @@
                         <NuxtLink :to="`/articles/test_leibovitch`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png"
-                                     alt="">
+                                     alt="Шкала Лейбовича и болезнь упущенных возможностей">
                                 <section class="content">
                                     <h2 itemprop="headline">Шкала Лейбовича и болезнь упущенных возможностей</h2>
                                 </section>
@@ -101,7 +101,7 @@
                         <NuxtLink :to="`/articles/music_7`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/201.png"
-                                     alt="">
+                                     alt="Солирующие музыкальные инструменты оркестра">
                                 <section class="content">
                                     <h2 itemprop="headline">Солирующие музыкальные инструменты оркестра</h2>
                                     <h3 itemprop="description">Начиная с середины XX столетия классическая музыка исполняется на современных
@@ -115,7 +115,7 @@
                         <NuxtLink :to="`/articles/test_omura`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/185.png"
-                                     alt="">
+                                     alt="Детектор лжи — тест Омура">
                                 <section class="content">
                                     <h2 itemprop="headline">Детектор лжи — тест Омура</h2>
                                     <h3 itemprop="description">Тест «Кольцо Омуры» опирается на определённые манипуляции, которые вызывают в
@@ -129,7 +129,7 @@
                         <NuxtLink :to="`/articles/fast`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/172.png"
-                                     alt="">
+                                     alt="Приметы и обычаи Великого поста на Руси">
                                 <section class="content">
                                     <h2 itemprop="headline">Приметы и обычаи Великого поста на Руси</h2>
                                 </section>
@@ -141,7 +141,7 @@
                         <NuxtLink :to="`/articles/king`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/142.png"
-                                     alt="">
+                                     alt="Царство ужаса и террора Ивана Грозного">
                                 <section class="content">
                                     <h2 itemprop="headline">Царство ужаса и террора Ивана Грозного</h2>
                                 </section>
@@ -153,7 +153,7 @@
                         <NuxtLink :to="`/articles/time_money`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/50.png"
-                                     alt="">
+                                     alt="Да, это банально: время — деньги">
                                 <section class="content">
                                     <h2 itemprop="headline">Да, это банально: время — деньги</h2>
                                     <h3 itemprop="description">Нет ничего продолжительнее времени, так как оно мера вечности; нет ничего короче
@@ -167,7 +167,7 @@
                         <NuxtLink :to="`/articles/diary`">
                             <section class="block">
                                 <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/31.png"
-                                     alt="">
+                                     alt="Психоаналитик внутри каждого из нас">
                                 <section class="content">
                                     <h2 itemprop="headline">Психоаналитик внутри каждого из нас</h2>
                                 </section>

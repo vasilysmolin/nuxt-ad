@@ -55,6 +55,7 @@
 .journal-article .wrapper > div nav ul li:last-child {
     line-height: 1.5rem;
     color: #000;
+    cursor: default;
 }
 .journal-index .wrapper > div .preview {
     margin: 15px auto 0;
@@ -147,6 +148,15 @@
     font-size: .875rem;
     font-weight: normal;
 }
+.journal-article article a {
+    color: #0089ff;
+    border-bottom: 1px solid rgba(0,137,255,.3);
+    transition: color .3s ease, border-color .3s ease;
+}
+.journal-article article a:hover {
+    color: black;
+    border-bottom: 1px solid #000000;
+}
 .journal-article article .article-content {
     width: 100%;
 }
@@ -208,7 +218,19 @@
     text-align: center;
     color: #999999;
 }
-
+.journal-article article .article-person {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.journal-article article .article-person > span {
+    display: block;
+    font-size: .75rem;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    font-weight: normal;
+    color: #999999;
+}
 @media (max-width: 900px) {
     .journal-index .wrapper,
     .journal-article .wrapper {
