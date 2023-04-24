@@ -1,18 +1,25 @@
 <template>
-    <section class="journal_article">
+    <section class="journal-article">
         <div class="wrapper">
             <div>
                 <nav>
-                    <ul>
-                        <li>
-                            <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                                <span itemprop="name">Журнал</span>
+                                <meta itemprop="position" content="1">
+                            </NuxtLink>
                         </li>
-                        <li><span>/</span></li>
-                        <li>
-                            <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Статьи" itemprop="item">
+                                <span itemprop="name">Статьи</span>
+                                <meta itemprop="position" content="2">
+                            </NuxtLink>
                         </li>
-                        <li><span>/</span></li>
-                        <li>Карельская сказка «Зять Хома»</li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">Карельская сказка «Зять Хома»</span>
+                            <meta itemprop="position" content="3">
+                        </li>
                     </ul>
                 </nav>
                 <article>

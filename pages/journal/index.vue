@@ -1,5 +1,5 @@
 <template>
-    <section class="journal_index">
+    <section class="journal-index">
         <div class="wrapper">
             <div>
                 <nav>
