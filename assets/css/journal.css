@@ -147,7 +147,10 @@
     font-size: .875rem;
     font-weight: normal;
 }
-.journal-article article > cite {
+.journal-article article .article-content {
+    width: 100%;
+}
+.journal-article article .article-content > cite {
     display: block;
     margin: 0 auto 1.875rem;
     width: 75%;
