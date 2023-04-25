@@ -29,7 +29,8 @@
                                  alt="Оружие против боли и микробов">
                             <section class="content">
                                 <h2 itemprop="headline">Оружие против боли и микробов</h2>
-                                <meta itemprop="datePublished" content=""/>
+                                <meta itemprop="description" content="Средство, снижающее чувствительность к боли, человечество стало искать ещё в древние времена. В качестве анестезии в Древней Греции использовались специальные губки, пропитанные опиумом."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
                                 <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/anesthesia"/>
                             </section>
                         </section>
