@@ -2,14 +2,14 @@
     <section itemscope itemtype="https://schema.org/WebPage" class="journal-index">
         <section class="wrapper">
             <nav>
-                <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <NuxtLink to="/" title="Журнал" itemprop="item">
                             <span itemprop="name">Журнал</span>
                             <meta itemprop="position" content="1">
                         </NuxtLink>
                     </li>
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <NuxtLink to title="Статьи" itemprop="item">
                             <span itemprop="name">Статьи</span>
                             <meta itemprop="position" content="2">
@@ -18,11 +18,11 @@
                 </ul>
             </nav>
 
-            <section itemscope itemtype="http://schema.org/Blog" class="preview">
+            <section itemscope itemtype="https://schema.org/Blog" class="preview">
                 <meta itemprop="inLanguage" content="ru-RU"/>
                 <meta itemprop="description" content="Материалы, проекты и подкасты без политики | Журнал Тапиго"/>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/anesthesia">
                         <section class="block">
                             <img itemprop="image"
@@ -38,7 +38,7 @@
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
                     <NuxtLink to="/articles/atomic_hiroshima">
                         <section class="block">
                             <img itemprop="image"
@@ -50,12 +50,14 @@
                                     другие аспекты.
                                     Всё изменилось после смерти Рузвельта, в конце апреля 1945 года, когда работы
                                     были ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/atomic_hiroshima"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/vikings_gods">
                         <section class="block">
                             <img itemprop="image"
@@ -63,12 +65,15 @@
                                  alt="Боги викингов и религиозные обряды">
                             <section class="content">
                                 <h2 itemprop="headline">Боги викингов и религиозные обряды</h2>
+                                <meta itemprop="description" content="Викинги верили, что божества, коих у них было множество, управляют всеми сферами людской жизни и окружающим их миром. Верили викинги и в то, что боги определяют людские судьбы после их смерти."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/vikings_gods"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
                     <NuxtLink to="/articles/karelia_fable">
                         <section class="block">
                             <img itemprop="image"
@@ -80,12 +85,14 @@
                                     славился карельский
                                     народ, где слава о хорошем сказочнике простиралась далеко за сотню вёрст.
                                     Сказочника звали в народе ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/karelia_fable"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/artist_25">
                         <section class="block">
                             <img itemprop="image"
@@ -93,12 +100,15 @@
                                  alt="Художник, прославивший австрийское искусство">
                             <section class="content">
                                 <h2 itemprop="headline">Художник, прославивший австрийское искусство</h2>
+                                <meta itemprop="description" content="В конце XIX века одна из прекраснейших европейских культурных столиц Вена, богатая музыкальными гениями — Моцарт, Гайдн, Брамс, Штраус, Бетховен и Шуберт, увидела расцвет новой архитектурной школы под предводительством Отто Вагнера."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/artist_25"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/test_leibovitch">
                         <section class="block">
                             <img itemprop="image"
@@ -106,12 +116,15 @@
                                  alt="Шкала Лейбовича и болезнь упущенных возможностей">
                             <section class="content">
                                 <h2 itemprop="headline">Шкала Лейбовича и болезнь упущенных возможностей</h2>
+                                <meta itemprop="description" content="Статистика такова, что более 30% людей в той или иной степени испытывают страх перед людьми или боязнь социальных ситуаций. Многие люди боятся публичных выступлений, взглядов прохожих на улице или заговорить с незнакомцем."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/test_leibovitch"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
                     <NuxtLink to="/articles/music_7">
                         <section class="block">
                             <img itemprop="image"
@@ -122,12 +135,14 @@
                                 <h3 itemprop="description">Начиная с середины XX столетия классическая музыка
                                     исполняется на современных
                                     музыкальных инструментах, а это уже совсем иное ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/music_7"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
                     <NuxtLink to="/articles/test_omura">
                         <section class="block">
                             <img itemprop="image"
@@ -138,12 +153,14 @@
                                 <h3 itemprop="description">Тест «Кольцо Омуры» опирается на определённые манипуляции,
                                     которые вызывают в
                                     теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/test_omura"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/fast">
                         <section class="block">
                             <img itemprop="image"
@@ -151,12 +168,15 @@
                                  alt="Приметы и обычаи Великого поста на Руси">
                             <section class="content">
                                 <h2 itemprop="headline">Приметы и обычаи Великого поста на Руси</h2>
+                                <meta itemprop="description" content="Истинно верующие люди считают святой пост великим учителем. Они верят, что соблюдение святого поста в скором времени открывает им истину, заключающуюся в том, что для сохранения телесного и душевного здоровья нет нужды в излишествах."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/fast"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/king">
                         <section class="block">
                             <img itemprop="image"
@@ -164,12 +184,15 @@
                                  alt="Царство ужаса и террора Ивана Грозного">
                             <section class="content">
                                 <h2 itemprop="headline">Царство ужаса и террора Ивана Грозного</h2>
+                                <meta itemprop="description" content="История Руси, как считается, началась около 400 года нашей эры, когда славянские племена мигрировали на восток из Юго-восточной Европы. Изначально они селились на вырубках по берегам Дона, Днепра и других рек."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/king"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
                     <NuxtLink to="/articles/time_money">
                         <section class="block">
                             <img itemprop="image"
@@ -180,12 +203,14 @@
                                 <h3 itemprop="description">Нет ничего продолжительнее времени, так как оно мера
                                     вечности; нет ничего короче
                                     его, так как его недостает для всех наших начинаний…</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/time_money"/>
                             </section>
                         </section>
                     </NuxtLink>
                 </article>
 
-                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
                     <NuxtLink to="/articles/diary">
                         <section class="block">
                             <img itemprop="image"
@@ -193,6 +218,9 @@
                                  alt="Психоаналитик внутри каждого из нас">
                             <section class="content">
                                 <h2 itemprop="headline">Психоаналитик внутри каждого из нас</h2>
+                                <meta itemprop="description" content="И в правду же, бывают жизненные моменты, когда не в состоянии разобраться в мыслях. Хорошо, если знаешь опытного коучинга или психоаналитика. А если такого нет под рукой? Как быть в этом случае?"/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/diary"/>
                             </section>
                         </section>
                     </NuxtLink>
