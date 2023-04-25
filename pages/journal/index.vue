@@ -1,184 +1,203 @@
 <template>
-    <section itemscope="" itemtype="https://schema.org/WebPage" class="journal-index">
-        <div class="wrapper">
-            <div>
-                <nav>
-                    <ul itemscope itemtype="http://schema.org/BreadcrumbList">
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
-                                <span itemprop="name">Журнал</span>
-                                <meta itemprop="position" content="1">
-                            </NuxtLink>
-                        </li>
-                        <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+    <section itemscope itemtype="https://schema.org/WebPage" class="journal-index">
+        <section class="wrapper">
+            <nav>
+                <ul itemscope itemtype="http://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <NuxtLink to="/" title="Журнал" itemprop="item">
+                            <span itemprop="name">Журнал</span>
+                            <meta itemprop="position" content="1">
+                        </NuxtLink>
+                    </li>
+                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <NuxtLink to title="Статьи" itemprop="item">
                             <span itemprop="name">Статьи</span>
                             <meta itemprop="position" content="2">
-                        </li>
-                    </ul>
-                </nav>
-
-                <section itemscope itemtype="http://schema.org/Blog" class="preview">
-
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/anesthesia`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png"
-                                     alt="Оружие против боли и микробов">
-                                <section class="content">
-                                    <h2 itemprop="headline">Оружие против боли и микробов</h2>
-                                </section>
-                            </section>
                         </NuxtLink>
-                    </article>
+                    </li>
+                </ul>
+            </nav>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
-                        <NuxtLink :to="`/articles/atomic_hiroshima`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png"
-                                     alt="Бомбардировка Хиросимы и Нагасаки">
-                                <section class="content">
-                                    <h2 itemprop="headline">Бомбардировка Хиросимы и Нагасаки</h2>
-                                    <h3 itemprop="description">В момент создания атомной бомбы не обсуждались политические и другие аспекты.
-                                        Всё изменилось после смерти Рузвельта, в конце апреля 1945 года, когда работы
-                                        были ...</h3>
-                                </section>
+            <section itemscope itemtype="http://schema.org/Blog" class="preview">
+                <meta itemprop="inLanguage" content="ru-RU"/>
+
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/anesthesia">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png"
+                                 alt="Оружие против боли и микробов">
+                            <section class="content">
+                                <h2 itemprop="headline">Оружие против боли и микробов</h2>
+                                <meta itemprop="datePublished" content=""/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/anesthesia"/>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/vikings_gods`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png"
-                                     alt="Боги викингов и религиозные обряды">
-                                <section class="content">
-                                    <h2 itemprop="headline">Боги викингов и религиозные обряды</h2>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/atomic_hiroshima">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png"
+                                 alt="Бомбардировка Хиросимы и Нагасаки">
+                            <section class="content">
+                                <h2 itemprop="headline">Бомбардировка Хиросимы и Нагасаки</h2>
+                                <h3 itemprop="description">В момент создания атомной бомбы не обсуждались политические и
+                                    другие аспекты.
+                                    Всё изменилось после смерти Рузвельта, в конце апреля 1945 года, когда работы
+                                    были ...</h3>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
-                        <NuxtLink :to="`/articles/karelia_fable`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png"
-                                     alt="Карельская сказка «Зять Хома»">
-                                <section class="content">
-                                    <h2 itemprop="headline">Карельская сказка «Зять Хома»</h2>
-                                    <h3 itemprop="description">Высоко ценилось умение рассказывать сказки, особенно этим славился карельский
-                                        народ, где слава о хорошем сказочнике простиралась далеко за сотню вёрст.
-                                        Сказочника звали в народе ...</h3>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/vikings_gods">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png"
+                                 alt="Боги викингов и религиозные обряды">
+                            <section class="content">
+                                <h2 itemprop="headline">Боги викингов и религиозные обряды</h2>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/artist_25`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png"
-                                     alt="Художник, прославивший австрийское искусство">
-                                <section class="content">
-                                    <h2 itemprop="headline">Художник, прославивший австрийское искусство</h2>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/karelia_fable">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png"
+                                 alt="Карельская сказка «Зять Хома»">
+                            <section class="content">
+                                <h2 itemprop="headline">Карельская сказка «Зять Хома»</h2>
+                                <h3 itemprop="description">Высоко ценилось умение рассказывать сказки, особенно этим
+                                    славился карельский
+                                    народ, где слава о хорошем сказочнике простиралась далеко за сотню вёрст.
+                                    Сказочника звали в народе ...</h3>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/test_leibovitch`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png"
-                                     alt="Шкала Лейбовича и болезнь упущенных возможностей">
-                                <section class="content">
-                                    <h2 itemprop="headline">Шкала Лейбовича и болезнь упущенных возможностей</h2>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/artist_25">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png"
+                                 alt="Художник, прославивший австрийское искусство">
+                            <section class="content">
+                                <h2 itemprop="headline">Художник, прославивший австрийское искусство</h2>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
-                        <NuxtLink :to="`/articles/music_7`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/201.png"
-                                     alt="Солирующие музыкальные инструменты оркестра">
-                                <section class="content">
-                                    <h2 itemprop="headline">Солирующие музыкальные инструменты оркестра</h2>
-                                    <h3 itemprop="description">Начиная с середины XX столетия классическая музыка исполняется на современных
-                                        музыкальных инструментах, а это уже совсем иное ...</h3>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/test_leibovitch">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png"
+                                 alt="Шкала Лейбовича и болезнь упущенных возможностей">
+                            <section class="content">
+                                <h2 itemprop="headline">Шкала Лейбовича и болезнь упущенных возможностей</h2>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
-                        <NuxtLink :to="`/articles/test_omura`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/185.png"
-                                     alt="Детектор лжи — тест Омура">
-                                <section class="content">
-                                    <h2 itemprop="headline">Детектор лжи — тест Омура</h2>
-                                    <h3 itemprop="description">Тест «Кольцо Омуры» опирается на определённые манипуляции, которые вызывают в
-                                        теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/music_7">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/201.png"
+                                 alt="Солирующие музыкальные инструменты оркестра">
+                            <section class="content">
+                                <h2 itemprop="headline">Солирующие музыкальные инструменты оркестра</h2>
+                                <h3 itemprop="description">Начиная с середины XX столетия классическая музыка
+                                    исполняется на современных
+                                    музыкальных инструментах, а это уже совсем иное ...</h3>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/fast`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/172.png"
-                                     alt="Приметы и обычаи Великого поста на Руси">
-                                <section class="content">
-                                    <h2 itemprop="headline">Приметы и обычаи Великого поста на Руси</h2>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/test_omura">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/185.png"
+                                 alt="Детектор лжи — тест Омура">
+                            <section class="content">
+                                <h2 itemprop="headline">Детектор лжи — тест Омура</h2>
+                                <h3 itemprop="description">Тест «Кольцо Омуры» опирается на определённые манипуляции,
+                                    которые вызывают в
+                                    теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/king`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/142.png"
-                                     alt="Царство ужаса и террора Ивана Грозного">
-                                <section class="content">
-                                    <h2 itemprop="headline">Царство ужаса и террора Ивана Грозного</h2>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/fast">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/172.png"
+                                 alt="Приметы и обычаи Великого поста на Руси">
+                            <section class="content">
+                                <h2 itemprop="headline">Приметы и обычаи Великого поста на Руси</h2>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
-                        <NuxtLink :to="`/articles/time_money`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/50.png"
-                                     alt="Да, это банально: время — деньги">
-                                <section class="content">
-                                    <h2 itemprop="headline">Да, это банально: время — деньги</h2>
-                                    <h3 itemprop="description">Нет ничего продолжительнее времени, так как оно мера вечности; нет ничего короче
-                                        его, так как его недостает для всех наших начинаний…</h3>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/king">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/142.png"
+                                 alt="Царство ужаса и террора Ивана Грозного">
+                            <section class="content">
+                                <h2 itemprop="headline">Царство ужаса и террора Ивана Грозного</h2>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                    <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
-                        <NuxtLink :to="`/articles/diary`">
-                            <section class="block">
-                                <img itemprop="image" src="https://storage.yandexcloud.net/backgrounds-images/journal_static/31.png"
-                                     alt="Психоаналитик внутри каждого из нас">
-                                <section class="content">
-                                    <h2 itemprop="headline">Психоаналитик внутри каждого из нас</h2>
-                                </section>
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/time_money">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/50.png"
+                                 alt="Да, это банально: время — деньги">
+                            <section class="content">
+                                <h2 itemprop="headline">Да, это банально: время — деньги</h2>
+                                <h3 itemprop="description">Нет ничего продолжительнее времени, так как оно мера
+                                    вечности; нет ничего короче
+                                    его, так как его недостает для всех наших начинаний…</h3>
                             </section>
-                        </NuxtLink>
-                    </article>
+                        </section>
+                    </NuxtLink>
+                </article>
 
+                <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/diary">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/31.png"
+                                 alt="Психоаналитик внутри каждого из нас">
+                            <section class="content">
+                                <h2 itemprop="headline">Психоаналитик внутри каждого из нас</h2>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-                </section>
-            </div>
-        </div>
+            </section>
+        </section>
 
     </section>
 </template>
@@ -191,7 +210,7 @@ export default {
             {
                 hid: 'description',
                 name: 'description',
-                content: ''
+                content: 'Материалы, проекты и подкасты без политики | Журнал Тапиго'
             },
             {
                 hid: 'og:type',

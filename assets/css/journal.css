@@ -2,63 +2,58 @@
 .journal-article .wrapper {
     margin: 70px auto 0;
     padding-bottom: 100px;
+    display: flex;
+    flex-direction: column;
     max-width: 950px;
     min-width: 320px;
 }
-.journal-index .wrapper > div,
-.journal-article .wrapper > div {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-.journal-index .wrapper > div nav,
-.journal-article .wrapper > div nav {
+.journal-index .wrapper nav,
+.journal-article .wrapper nav {
     margin-bottom: 6px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.journal-index .wrapper > div nav ul,
-.journal-article .wrapper > div nav ul {
+.journal-index .wrapper nav ul,
+.journal-article .wrapper nav ul {
     display: flex;
     justify-content: start;
     align-items: center;
     flex-wrap: wrap;
     font-size: 0.875rem;
 }
-.journal-index .wrapper > div nav ul li,
-.journal-article .wrapper > div nav ul li {
+.journal-index .wrapper nav ul li,
+.journal-article .wrapper nav ul li {
     color: #6B7280;
     line-height: 1.5rem;
 }
-.journal-index .wrapper > div nav ul li a,
-.journal-article .wrapper > div nav ul li a {
+.journal-index .wrapper nav ul li a,
+.journal-article .wrapper nav ul li a {
     display: inline-block;
 }
-.journal-index .wrapper > div nav ul li::after,
-.journal-article .wrapper > div nav ul li::after {
+.journal-index .wrapper nav ul li::after,
+.journal-article .wrapper nav ul li::after {
     padding: 0 .313rem;
     content: "/";
     color: #ccc;
 }
-.journal-index .wrapper > div nav ul li:last-child::after,
-.journal-article .wrapper > div nav ul li:last-child::after {
+.journal-index .wrapper nav ul li:last-child::after,
+.journal-article .wrapper nav ul li:last-child::after {
     padding: 0;
     content: "";
 }
-.journal-index .wrapper > div nav ul li:hover,
-.journal-article .wrapper > div nav ul li:hover {
+.journal-index .wrapper nav ul li:hover,
+.journal-article .wrapper nav ul li:hover {
     color: #000;
 }
-.journal-index .wrapper > div nav ul li:last-child,
-.journal-article .wrapper > div nav ul li:last-child {
+.journal-index .wrapper nav ul li:last-child,
+.journal-article .wrapper nav ul li:last-child {
     line-height: 1.5rem;
     color: #000;
     cursor: default;
 }
-.journal-index .wrapper > div .preview {
-    margin: 15px auto 0;
+.journal-index .wrapper .preview {
+    margin: 1.25rem auto 0;
     column-count: 2;
     column-gap: 5%;
     width: 100%;
@@ -115,7 +110,7 @@
     font-weight: 400;
     line-height: calc(2px + 2ex + 2px);
 }
-.journal-article .wrapper > div article {
+.journal-article .wrapper article {
     margin: 1.25rem auto 0;
     width: 100%;
 }
@@ -123,7 +118,7 @@
     margin: 32px auto ;
     width: 5%;
     height: 1px;
-    background-color: black;
+    background-color: #ddd;
 }
 .journal-article h1 {
     font-family: 'Roboto', sans-serif;
@@ -231,7 +226,7 @@
     font-weight: normal;
     color: #999999;
 }
-@media (max-width: 900px) {
+@media (max-width: 990px) {
     .journal-index .wrapper,
     .journal-article .wrapper {
         padding: 0 25px 100px;
@@ -284,13 +279,18 @@
         bottom: 1rem;
     }
     .journal-article hr {
-        width: 90%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #ddd;
     }
-    .journal-article .wrapper > div nav ul li {
+    .journal-index .wrapper nav ul li,
+    .journal-article .wrapper nav ul li {
         font-size: 0.75rem;
         line-height: 1.2rem;
     }
-    .journal-article .wrapper > div nav ul li:last-child {
+    .journal-index .wrapper nav ul li:last-child,
+    .journal-article .wrapper div nav ul li:last-child {
         line-height: 1.2rem;
     }
     .journal-article h1 {
