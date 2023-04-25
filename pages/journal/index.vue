@@ -20,6 +20,7 @@
 
             <section itemscope itemtype="http://schema.org/Blog" class="preview">
                 <meta itemprop="inLanguage" content="ru-RU"/>
+                <meta itemprop="description" content="Материалы, проекты и подкасты без политики | Журнал Тапиго"/>
 
                 <article itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
                     <NuxtLink to="/articles/anesthesia">
