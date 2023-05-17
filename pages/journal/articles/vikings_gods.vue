@@ -1,26 +1,32 @@
 <template>
-  <section>
-    <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[950px]">
-      <div class="mx-auto flex flex-col w-full">
-        <nav class="flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6 text-black">Бои викингов и религиозные обряды</li>
-          </ul>
-        </nav>
-
-        <article class="mx-auto mt-5 w-full">
+    <section class="journal-article">
+        <div class="wrapper">
+            <div>
+                <nav>
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                                <span itemprop="name">Журнал</span>
+                                <meta itemprop="position" content="1">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Статьи" itemprop="item">
+                                <span itemprop="name">Статьи</span>
+                                <meta itemprop="position" content="2">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">Бои викингов и религиозные обряды</span>
+                            <meta itemprop="position" content="3">
+                        </li>
+                    </ul>
+                </nav>
+                <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_1.png" alt=""/>
           </figure>
-          <h1 class="font-black text-black text-4xl text-center">Бои викингов и религиозные обряды</h1>
+          <h1>Бои викингов и религиозные обряды</h1>
           <hr>
           <blockquote>«Когда-нибудь мир непременно закончится, а с ним — и вся история».<cite>Нил Гейман «Скандинавские боги»</cite>
           </blockquote>
@@ -36,7 +42,7 @@
             поклонялись викинги.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_2.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Воссоздав картину прошлого благодаря археологам установили, что, как правило, викинги проводили свои
@@ -51,7 +57,7 @@
             праздник, который викинги проводили раз в девять лет.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_3.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Праздник длился девять дней и девять ночей. Каждый день в жертву богам приносили одного мужчину и различных
@@ -64,7 +70,7 @@
             волос или кончик ногтя. Распространены были у викингов талисманы и обереги, которые отводили беду.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_4.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Верили викинги и в пророчества. Способностью предсказывать будущее и принимать самые разнообразные формы и
@@ -80,7 +86,7 @@
             прорицательница рассказывает людям о будущих событиях и о том, как найти здоровье и счастье.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_5.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>За помощью в поисках счастья и здоровья викинги обращались к богам, которые делились на две основные
@@ -94,7 +100,7 @@
             знаниями.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_6.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Легенда на этот счёт гласит следующее. Больше всего на свете Один желал обладать великими знаниями и
@@ -107,7 +113,7 @@
             легендам, мир скандинавских викингов состоял из трёх уровней.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/260_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_7.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>Верхний уровень — небесный, назывался Асгард, в котором располагались великолепные чертоги Одина и других
@@ -120,7 +126,7 @@
             ясеня Югдрасиль.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/260_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260_8.png" alt=""/>
             <figcaption>Источник: imgur.com/gallery/pPDgD</figcaption>
           </figure>
           <p>В скандинавской мифологии помимо богов обитали и великаны с гномами, которые жили в двух различных мирах,
@@ -150,85 +156,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-hr {
-  margin: 32px auto ;
-  width: 5%;
-  height: 1px;
-  background-color: black;
-}
-blockquote {
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-}
-blockquote > cite {
-  display: block;
-  margin-top: .625rem;
-  font-size: .875rem;
-  font-weight: normal;
-}
-article > cite {
-  display: block;
-  margin: 0 auto 1.875rem;
-  width: 75%;
-  font-family: Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
-article > cite > small {
-  margin-top: .625rem;
-  display: block;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: normal;
-  color: #999999;
-}
-p  {
-  margin: 0 auto 1.875rem;
-  width: 88%;
-  line-height: 1.6rem;
-}
-figure {
-  display: block;
-}
-figure.full {
-  margin: 0 auto 1.875rem;
-  width: 100%;
-  overflow: hidden;
-}
-figure.full > img,
-figure.small > img
-{
-  display: block;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-figure.small {
-  margin: 0 auto 1.875rem;
-  width: 600px;
-  overflow: hidden;
-}
-figure.small > img {
-  height: auto;
-}
-figcaption {
-  padding: 0.625rem 0.625rem 0;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-size: .75rem;
-  text-align: center;
-  color: #999999;
-}
-</style>

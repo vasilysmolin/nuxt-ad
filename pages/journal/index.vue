@@ -1,230 +1,268 @@
 <template>
-  <section>
-    <div v-if="$device.isDesktop" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[950px]">
-      <div class="mx-auto flex flex-col w-full">
-        <nav class="flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <p class="text-black">Статьи</p>
-            </li>
-          </ul>
-        </nav>
-        <section class="mt-[15px] mx-auto columns-[450px] gap-[50px] w-full">
+    <section itemscope itemtype="https://schema.org/WebPage" class="journal-index">
+        <section class="wrapper">
+            <nav>
+                <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <NuxtLink to="/" title="Журнал" itemprop="item">
+                            <span itemprop="name">Журнал</span>
+                            <meta itemprop="position" content="1">
+                        </NuxtLink>
+                    </li>
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <NuxtLink to title="Статьи" itemprop="item">
+                            <span itemprop="name">Статьи</span>
+                            <meta itemprop="position" content="2">
+                        </NuxtLink>
+                    </li>
+                </ul>
+            </nav>
 
-          <article class="def group mb-[50px] align-top inline-block w-[450px] self-start rounded-lg bg-white">
-            <NuxtLink :to="`/articles/anesthesia`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png)"></section>
-                <section class="my-5 flex flex-col px-5">
-                  <h2 class="font-black text-2xl leading-7">
-                    Оружие против боли и микробов
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
+            <section itemscope itemtype="https://schema.org/Blog" class="preview">
+                <meta itemprop="inLanguage" content="ru-RU"/>
+                <meta itemprop="description" content="Материалы, проекты и подкасты без политики | Журнал Тапиго"/>
 
-          <article class="abs group mb-[50px] align-top inline-block w-[450px] rounded-lg">
-            <NuxtLink :to="`/articles/atomic_hiroshima`">
-              <section class="flex flex-col">
-                <section class="relative w-full h-[600px] text-white rounded-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png)">
-                  <section class="absolute bottom-7 left-5 right-5">
-                    <h2 class="font-black text-2xl leading-7">Бомбардировка Хиросимы и Нагасаки</h2>
-                    <h3 class="mt-5">В момент создания атомной бомбы не обсуждались политические и другие аспекты. Всё изменилось после смерти Рузвельта, в конце апреля 1945 года, когда работы были ...</h3>
-                  </section>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/anesthesia">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png"
+                                 alt="Оружие против боли и микробов">
+                            <section class="content">
+                                <h2 itemprop="headline">Оружие против боли и микробов</h2>
+                                <meta itemprop="description" content="Средство, снижающее чувствительность к боли, человечество стало искать ещё в древние времена. В качестве анестезии в Древней Греции использовались специальные губки, пропитанные опиумом."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/anesthesia"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-          <article class="def group mb-[50px] align-top inline-block w-[450px] rounded-lg bg-white">
-            <NuxtLink :to="`/articles/vikings_gods`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png)"></section>
-                <section class="my-5 flex flex-col px-5">
-                  <h2 class="font-black text-2xl leading-7">
-                    Боги викингов и религиозные обряды
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/atomic_hiroshima">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png"
+                                 alt="Бомбардировка Хиросимы и Нагасаки">
+                            <section class="content">
+                                <h2 itemprop="headline">Бомбардировка Хиросимы и Нагасаки</h2>
+                                <h3 itemprop="description">В момент создания атомной бомбы не обсуждались политические и
+                                    другие аспекты.
+                                    Всё изменилось после смерти Рузвельта, в конце апреля 1945 года, когда работы
+                                    были ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/atomic_hiroshima"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-          <article class="abs group mb-[50px] align-top inline-block w-[450px] rounded-lg">
-            <NuxtLink :to="`/articles/karelia_fable`">
-              <section class="flex flex-col">
-                <section class="relative w-full h-[600px] text-white rounded-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png)">
-                  <section class="absolute bottom-7 left-5 right-5">
-                    <h2 class="font-black text-2xl leading-7">Карельская сказка «Зять Хома»</h2>
-                    <h3 class="mt-5">Высоко ценилось умение рассказывать сказки, особенно этим славился карельский народ, где слава о хорошем сказочнике простиралась далеко за сотню вёрст. Сказочника звали в народе ...</h3>
-                  </section>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/vikings_gods">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png"
+                                 alt="Боги викингов и религиозные обряды">
+                            <section class="content">
+                                <h2 itemprop="headline">Боги викингов и религиозные обряды</h2>
+                                <meta itemprop="description" content="Викинги верили, что божества, коих у них было множество, управляют всеми сферами людской жизни и окружающим их миром. Верили викинги и в то, что боги определяют людские судьбы после их смерти."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/vikings_gods"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-          <article class="def group mb-[50px] align-top inline-block w-[450px] rounded-lg bg-white">
-            <NuxtLink :to="`/articles/artist_25`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png)"></section>
-                <section class="my-5 flex flex-col px-5">
-                  <h2 class="font-black text-2xl leading-7">
-                    Художник, прославивший австрийское искусство
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/karelia_fable">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png"
+                                 alt="Карельская сказка «Зять Хома»">
+                            <section class="content">
+                                <h2 itemprop="headline">Карельская сказка «Зять Хома»</h2>
+                                <h3 itemprop="description">Высоко ценилось умение рассказывать сказки, особенно этим
+                                    славился карельский
+                                    народ, где слава о хорошем сказочнике простиралась далеко за сотню вёрст.
+                                    Сказочника звали в народе ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/karelia_fable"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
-          <article class="def group mb-[50px] align-top inline-block w-[450px] rounded-lg bg-white">
-            <NuxtLink :to="`/articles/test_leibovitch`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png)"></section>
-                <section class="my-5 flex flex-col px-5">
-                  <h2 class="font-black text-2xl leading-7">
-                    Шкала Лейбовича и болезнь упущенных возможностей
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/artist_25">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png"
+                                 alt="Художник, прославивший австрийское искусство">
+                            <section class="content">
+                                <h2 itemprop="headline">Художник, прославивший австрийское искусство</h2>
+                                <meta itemprop="description" content="В конце XIX века одна из прекраснейших европейских культурных столиц Вена, богатая музыкальными гениями — Моцарт, Гайдн, Брамс, Штраус, Бетховен и Шуберт, увидела расцвет новой архитектурной школы под предводительством Отто Вагнера."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/artist_25"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/test_leibovitch">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238.png"
+                                 alt="Шкала Лейбовича и болезнь упущенных возможностей">
+                            <section class="content">
+                                <h2 itemprop="headline">Шкала Лейбовича и болезнь упущенных возможностей</h2>
+                                <meta itemprop="description" content="Статистика такова, что более 30% людей в той или иной степени испытывают страх перед людьми или боязнь социальных ситуаций. Многие люди боятся публичных выступлений, взглядов прохожих на улице или заговорить с незнакомцем."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/test_leibovitch"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
 
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/music_7">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/201.png"
+                                 alt="Солирующие музыкальные инструменты оркестра">
+                            <section class="content">
+                                <h2 itemprop="headline">Солирующие музыкальные инструменты оркестра</h2>
+                                <h3 itemprop="description">Начиная с середины XX столетия классическая музыка
+                                    исполняется на современных
+                                    музыкальных инструментах, а это уже совсем иное ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/music_7"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
+
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/test_omura">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/185.png"
+                                 alt="Детектор лжи — тест Омура">
+                            <section class="content">
+                                <h2 itemprop="headline">Детектор лжи — тест Омура</h2>
+                                <h3 itemprop="description">Тест «Кольцо Омуры» опирается на определённые манипуляции,
+                                    которые вызывают в
+                                    теле чёткие ответные реакции мышц. Если мышцы реагируют ...</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/test_omura"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
+
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/fast">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/172.png"
+                                 alt="Приметы и обычаи Великого поста на Руси">
+                            <section class="content">
+                                <h2 itemprop="headline">Приметы и обычаи Великого поста на Руси</h2>
+                                <meta itemprop="description" content="Истинно верующие люди считают святой пост великим учителем. Они верят, что соблюдение святого поста в скором времени открывает им истину, заключающуюся в том, что для сохранения телесного и душевного здоровья нет нужды в излишествах."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/fast"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
+
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/king">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/142.png"
+                                 alt="Царство ужаса и террора Ивана Грозного">
+                            <section class="content">
+                                <h2 itemprop="headline">Царство ужаса и террора Ивана Грозного</h2>
+                                <meta itemprop="description" content="История Руси, как считается, началась около 400 года нашей эры, когда славянские племена мигрировали на восток из Юго-восточной Европы. Изначально они селились на вырубках по берегам Дона, Днепра и других рек."/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/king"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
+
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting" class="abs">
+                    <NuxtLink to="/articles/time_money">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/50.png"
+                                 alt="Да, это банально: время — деньги">
+                            <section class="content">
+                                <h2 itemprop="headline">Да, это банально: время — деньги</h2>
+                                <h3 itemprop="description">Нет ничего продолжительнее времени, так как оно мера
+                                    вечности; нет ничего короче
+                                    его, так как его недостает для всех наших начинаний…</h3>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/time_money"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
+
+                <article itemprop="blogPosts" itemscope itemtype="https://schema.org/BlogPosting">
+                    <NuxtLink to="/articles/diary">
+                        <section class="block">
+                            <img itemprop="image"
+                                 src="https://storage.yandexcloud.net/backgrounds-images/journal_static/31.png"
+                                 alt="Психоаналитик внутри каждого из нас">
+                            <section class="content">
+                                <h2 itemprop="headline">Психоаналитик внутри каждого из нас</h2>
+                                <meta itemprop="description" content="И в правду же, бывают жизненные моменты, когда не в состоянии разобраться в мыслях. Хорошо, если знаешь опытного коучинга или психоаналитика. А если такого нет под рукой? Как быть в этом случае?"/>
+                                <meta itemprop="datePublished" content="2020-01-14T07:20:10+03:00"/>
+                                <meta itemscope itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://journal.tapigo.ru/articles/diary"/>
+                            </section>
+                        </section>
+                    </NuxtLink>
+                </article>
+
+            </section>
         </section>
-      </div>
-    </div>
 
-    <div v-if="$device.isMobile" class="mx-auto mt-[70px] pb-[80px] w-full min-w-[320px]">
-        <nav class="px-5 flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <p class="text-black">Статьи</p>
-            </li>
-          </ul>
-        </nav>
-        <section class="mt-[15px] mx-auto px-2.5 flex flex-col justify-center items-start max-w-[450px] items-start">
-
-          <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
-            <NuxtLink :to="`/articles/anesthesia`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/262.png)"></section>
-                <section class="mt-3 mb-5 flex flex-col px-3">
-                  <h2 class="font-black text-xl leading-6">
-                    Оружие против боли и микробов
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
-
-          <article class="abs group mb-[20px] inline-block w-full rounded-lg">
-            <NuxtLink :to="`/articles/atomic_hiroshima`">
-              <section class="flex flex-col">
-                <section class="relative w-full h-[600px] text-white rounded-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/261.png)">
-                  <section class="absolute bottom-7 left-3 right-3">
-                    <h2 class="font-black text-xl leading-6">Бомбардировка Хиросимы и Нагасаки</h2>
-                    <h3 class="mt-5">В момент создания атомной бомбы не обсуждались политические и другие аспекты. Всё изменилось после смерти Рузвельта, в конце апреля 1945 года, когда работы были ...</h3>
-                  </section>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
-
-          <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
-            <NuxtLink :to="`/articles/vikings_gods`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/260.png)"></section>
-                <section class="mt-3 mb-5 flex flex-col px-3">
-                  <h2 class="font-black text-xl leading-6">
-                    Боги викингов и религиозные обряды
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
-
-          <article class="abs group mb-[20px] inline-block w-full rounded-lg">
-            <NuxtLink :to="`/articles/karelia_fable`">
-              <section class="flex flex-col">
-                <section class="relative w-full h-[600px] text-white rounded-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/259.png)">
-                  <section class="absolute bottom-7 left-3 right-3">
-                    <h2 class="font-black text-xl leading-6">Карельская сказка «Зять Хома»</h2>
-                    <h3 class="mt-5">Высоко ценилось умение рассказывать сказки, особенно этим славился карельский народ, где слава о хорошем сказочнике простиралась далеко за сотню вёрст. Сказочника звали в народе ...</h3>
-                  </section>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
-
-          <article class="def group mb-[20px] inline-block w-full rounded-lg bg-white">
-            <NuxtLink :to="`/articles/artist_25`">
-              <section class="flex flex-col">
-                <section class="w-full h-[450px] rounded-t-lg bg-cover bg-center" style="background-image: url(https://storage.yandexcloud.net/backgrounds-images/journal_static/258.png)"></section>
-                <section class="mt-3 mb-5 flex flex-col px-3">
-                  <h2 class="font-black text-xl leading-6">
-                    Художник, прославивший австрийское искусство
-                  </h2>
-                </section>
-              </section>
-            </NuxtLink>
-          </article>
-
-        </section>
-    </div>
-  </section>
+    </section>
 </template>
 
 <script>
-import WhatsTapigo from "../../components/WhatsTapigo";
-import SearchColorGlobalMobile from "../../components/SearchColorGlobalMobile";
-import ListServicesJobs from "../../components/ListServicesJobs";
-import GoSearchDesktop from "../../components/GoSearchDesktop";
-import BNewLetters from "../../components/blocks/BNewLetters";
-import IconListServicesIndexUslugi from "../../components/icons/IconListServicesIndexUslugi";
-import IconListServicesIndexCatalog from "../../components/icons/IconListServicesIndexCatalog";
-
 export default {
-  components: {
-    GoSearchDesktop,
-    SearchColorGlobalMobile,
-    ListServicesJobs,
-    BNewLetters,
-    WhatsTapigo,
-    IconListServicesIndexUslugi,
-    IconListServicesIndexCatalog
-  },
-  head: {
-    title: "Журнал Тапиго",
-    meta: [
-      {hid: 'description', name: 'description', content: 'Список'}
-    ]
-  },
-  methods: {
-    linkHub() {
-      var host = window.location.host
-      if (this.$auth.loggedIn) {
-        document.location.href = `${process.env.HUB_URL}/profile`;
-      } else {
-        document.location.href = process.env.AUTH_URL;
-      }
+    head: {
+        title: "Материалы, проекты и подкасты без политики | Журнал Тапиго",
+        meta: [
+            {
+                hid: 'description',
+                name: 'description',
+                content: 'Материалы, проекты и подкасты без политики | Журнал Тапиго'
+            },
+            {
+                hid: 'og:type',
+                property: 'og:type',
+                content: 'website'
+            },
+            {
+                hid: 'og:title',
+                property: 'og:title',
+                content: 'Материалы, проекты и подкасты без политики | Журнал Тапиго'
+            },
+            {
+                hid: 'og:image',
+                property: 'og:image',
+                content: 'https://storage.yandexcloud.net/backgrounds-images/journal_static/opengraph/articles/tapigo.png'
+            },
+            {
+                hid: 'og:url',
+                property: 'og:url',
+                content: 'https://journal.tapigo.ru'
+            },
+        ]
     },
-    showGoSearch() {
-      this.$modal.show('GoSearch');
-    },
-    uslugi() {
-      document.location.href = process.env.USLUGI_URL;
-    },
-    catalog() {
-      document.location.href = process.env.CATALOG_URL;
-    },
-  }
 }
 </script>

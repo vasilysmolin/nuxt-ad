@@ -1,26 +1,32 @@
 <template>
-  <section>
-    <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[950px]">
-      <div class="mx-auto flex flex-col w-full">
-        <nav class="flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6 text-black">Художник, прославивший австрийское искусство</li>
-          </ul>
-        </nav>
-
-        <article class="mx-auto mt-5 w-full">
+    <section class="journal-article">
+        <div class="wrapper">
+            <div>
+                <nav>
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                                <span itemprop="name">Журнал</span>
+                                <meta itemprop="position" content="1">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Статьи" itemprop="item">
+                                <span itemprop="name">Статьи</span>
+                                <meta itemprop="position" content="2">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">Художник, прославивший австрийское искусство</span>
+                            <meta itemprop="position" content="3">
+                        </li>
+                    </ul>
+                </nav>
+                <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/258_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_1.png" alt=""/>
           </figure>
-          <h1 class="font-black text-black text-4xl text-center">Художник, прославивший австрийское искусство</h1>
+          <h1>Художник, прославивший австрийское искусство</h1>
           <hr>
           <blockquote>«Твои дела и твоё искусство не могут нравиться всем: делай то, что считаешь правильным, для
             блага немногих. Нравиться слишком многим — плохо».<cite>Фридрих Шиллер</cite>
@@ -38,7 +44,7 @@
             чему Климт и отточил своё умение.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_2.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Портрет пианиста и преподавателя фортепианной игры Йозефа Пембауэра», 1890 год.</figcaption>
           </figure>
           <p>В 1879 году Густав, его брат Эрнст и их друг и соученик Франц Матч начали работать вместе и очень скоро
@@ -52,7 +58,7 @@
             точность.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/258_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_3.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Зрительный зал старого Бургтеатра в Вене», 1888 — 1889 год.</figcaption>
           </figure>
           <p>Закончив учёбу в 1883 году друзья открыли собственную мастерскую в Вене. Однако, несмотря на совместные
@@ -65,7 +71,7 @@
             интерьеров и фронтоном венского национального театра «Бургтеатр».
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_4.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Портрет Эмилии Флёге», 1902 год.</figcaption>
           </figure>
           <p>Работая над оформлением «Бургтеатра», Густав Климт создал групповой портрет сливок венского общества перед
@@ -83,7 +89,7 @@
             супругами, однако это не мешало художнику иметь множество связей на стороне и внебрачных детей от них.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/258_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_5.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Течение», 1898 год.</figcaption>
           </figure>
           <p>К началу 1890-х годов Густав Климт и Франц Матч разошлись во взглядах: Матч продолжал работать в
@@ -101,7 +107,7 @@
             академизмом, тем самы утвердив право на существование неофициального искусства.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_6.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Любовь», 1895 год.</figcaption>
           </figure>
           <p>Густав Климт основал Венский Сецессион и стал его президентом. К обществу венских живописцев присоединились
@@ -118,7 +124,7 @@
             построены на сексуальных ассоциациях: «Течение», «Серебрянные рыбки», «Золотые рыбки».
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_7.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Золотые рыбки», 1901 — 1902 год.</figcaption>
           </figure>
           <p>В конце 1890-х годах Густав Климт обратился к важному направлению в своём творчестве — пейзажу. Природу
@@ -131,7 +137,7 @@
             гармония и красота. В глазах Густава Климта природа самоценна сама по себе.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/258_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/258_8.png" alt=""/>
             <figcaption>Источник: Густав Климт. «Сад (Цветущий луг)», 1906 год.</figcaption>
           </figure>
           <p>Таким было раннее творчество великого мастера и «обновителя» венской живописи. В дальнейшем, как и многих
@@ -151,90 +157,32 @@ export default {
   head: {
     title: "Художник, прославивший австрийское искусство | Журнал Тапиго",
     meta: [
-      {hid: 'description', name: 'description', content: 'В 1891 году Густав Климт стал членом Союза изобразительных искусств, а через два года был избран профессором венской Академии художеств, но министерство культуры отказало художнику в этой должности. В 1892 году вслед за отцом умел Эрнст Климт и Густаву пришлось заботиться о матери и о вдове и дочери брата. Общаясь с семьёй брата, Густав познакомился с сестрой его жены — Эмилией Флёге, которая владела собственным домом моды. Стиль Климта стал олицетворять собой опыт импрессионизма, символизма и модерна. Герои произведений живописца наделены особой чувственной красотой, далёкой от образов классического искусства. Произведения мастера наполнены миром страстей и символов, которые завлекают и манят зрителя. Сюжеты произведений сочетают в себе трепетность с реалистичностью, необыкновенную сексуальность с романтической таинственностью. Ярким примером этого служит холст «Любовь», на котором запечатлены объятия влюблённой пары. Густав Климт основал Венский Сецессион и стал его президентом. К обществу венских живописцев присоседились профессор архитектуры Академии художеств Отто Вагнер и архитекторы Йозеф Ольбрих и Йозеф Хофман. В скором времени заказчиками Климта стали известные представители австрийской буржуазии, для которых он писал портреты их жён. Женщины были в восторге от стиля полотен.'}
+      {
+          hid: 'description',
+          name: 'description',
+          content: 'В 1891 году Густав Климт стал членом Союза изобразительных искусств, а через два года был избран профессором венской Академии художеств, но министерство культуры отказало художнику в этой должности. В 1892 году вслед за отцом умел Эрнст Климт и Густаву пришлось заботиться о матери и о вдове и дочери брата. Общаясь с семьёй брата, Густав познакомился с сестрой его жены — Эмилией Флёге, которая владела собственным домом моды. Стиль Климта стал олицетворять собой опыт импрессионизма, символизма и модерна. Герои произведений живописца наделены особой чувственной красотой, далёкой от образов классического искусства. Произведения мастера наполнены миром страстей и символов, которые завлекают и манят зрителя. Сюжеты произведений сочетают в себе трепетность с реалистичностью, необыкновенную сексуальность с романтической таинственностью. Ярким примером этого служит холст «Любовь», на котором запечатлены объятия влюблённой пары. Густав Климт основал Венский Сецессион и стал его президентом. К обществу венских живописцев присоседились профессор архитектуры Академии художеств Отто Вагнер и архитекторы Йозеф Ольбрих и Йозеф Хофман. В скором времени заказчиками Климта стали известные представители австрийской буржуазии, для которых он писал портреты их жён. Женщины были в восторге от стиля полотен.'
+      },
+        {
+            hid: 'og:type',
+            property: 'og:type',
+            content: 'website'
+        },
+        {
+            hid: 'og:title',
+            property: 'og:title',
+            content: 'Художник, прославивший австрийское искусство | Журнал Тапиго'
+        },
+        {
+            hid: 'og:image',
+            property: 'og:image',
+            content: 'https://storage.yandexcloud.net/backgrounds-images/journal_static/opengraph/articles/artist_25.png'
+        },
+        {
+            hid: 'og:url',
+            property: 'og:url',
+            content: 'https://journal.tapigo.ru/articles/artist_25'
+        },
     ]
   },
 }
 </script>
-
-<style scoped>
-hr {
-  margin: 32px auto ;
-  width: 5%;
-  height: 1px;
-  background-color: black;
-}
-blockquote {
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-}
-blockquote > cite {
-  display: block;
-  margin-top: .625rem;
-  font-size: .875rem;
-  font-weight: normal;
-}
-article > cite {
-  display: block;
-  margin: 0 auto 1.875rem;
-  width: 75%;
-  font-family: Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
-article > cite > small {
-  margin-top: .625rem;
-  display: block;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: normal;
-  color: #999999;
-}
-p  {
-  margin: 0 auto 1.875rem;
-  width: 88%;
-  line-height: 1.6rem;
-}
-figure {
-  display: block;
-}
-figure.full {
-  margin: 0 auto 1.875rem;
-  width: 100%;
-  overflow: hidden;
-}
-figure.full > img,
-figure.small > img
-{
-  display: block;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-figure.small {
-  margin: 0 auto 1.875rem;
-  width: 600px;
-  overflow: hidden;
-}
-figure.small > img {
-  height: auto;
-}
-figcaption {
-  padding: 0.625rem 0.625rem 0;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-size: .75rem;
-  text-align: center;
-  color: #999999;
-}
-</style>

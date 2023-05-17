@@ -1,26 +1,32 @@
 <template>
-  <section>
-    <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[950px]">
-      <div class="mx-auto flex flex-col w-full">
-        <nav class="flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6 text-black">Шкала Лейбовича и болезнь упущенных возможностей</li>
-          </ul>
-        </nav>
-
-        <article class="mx-auto mt-5 w-full">
+    <section class="journal-article">
+        <div class="wrapper">
+            <div>
+                <nav>
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                                <span itemprop="name">Журнал</span>
+                                <meta itemprop="position" content="1">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Статьи" itemprop="item">
+                                <span itemprop="name">Статьи</span>
+                                <meta itemprop="position" content="2">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">Шкала Лейбовича и болезнь упущенных возможностей</span>
+                            <meta itemprop="position" content="3">
+                        </li>
+                    </ul>
+                </nav>
+                <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_1.png" alt=""/>
           </figure>
-          <h1 class="font-black text-black text-4xl text-center">Шкала Лейбовича и болезнь упущенных возможностей</h1>
+          <h1>Шкала Лейбовича и болезнь упущенных возможностей</h1>
           <hr>
           <blockquote>«Но если человек всё-таки сумасшедший ... как он может об этом узнать?»<cite>Мелани Раабе</cite>
           </blockquote>
@@ -38,7 +44,7 @@
             внимания, либо гиперопеке.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_2.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>В определённые жизненные ситуации у человека могут развиваться навязчивые переживания, которые и являются
@@ -52,7 +58,7 @@
             например, депрессии.
           </p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_3.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>Оценить симптомы социофобии можно при помощи шкалы Лейбовича, разработанной в 1987 году психиатром и
@@ -63,7 +69,7 @@
           </p>
           <p>Тест состоит из 24 вопросов, ответы на которые следует давать, опираясь на события прошедшей недели и по настоящий момент времени включительно. Внимательно прочитайте каждую ситуацию и ответьте по каждой из них два раза на вопросы: 1) насколько сильный страх, беспокойство или тревогу вы испытываете в данной ситуации; 2) как часто вы избегаете подобных ситуаций.</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_4.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>Если какая-либо ситуация в вашей жизни обычно не встречается, то представьте, какие бы она ощущения у вас вызвала, если бы вы в ней оказались. А также насколько вы бы старались избежать данной ситуации. На каждый вопрос выбирайте два подходящих ответа из раздела «страх»: отсутствует, слабый, средний, сильный; из раздела «избегание»: никогда, иногда, часто, обычно.</p>
@@ -104,7 +110,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_5.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>5. Говорить с вышестоящим лицом (с начальством)<br><br>
@@ -144,7 +150,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_6.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>9. Писать под наблюдением (в присутствии) кого-то<br><br>
@@ -184,7 +190,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_7.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>13. Мочиться в общественном туалете<br><br>
@@ -224,7 +230,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_8.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>17. Проходить тестирование своих способностей, умений или знаний<br><br>
@@ -264,7 +270,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/238_9.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_9.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>21. Пытаться познакомиться с кем-либо с целью романтических или сексуальных отношений<br><br>
@@ -304,7 +310,7 @@
             — избегании ситуации часто<br>
             — избегание ситуации постоянно</p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/238_10.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/238_10.png" alt=""/>
             <figcaption>Источник: google.com. Takashi Murakami.</figcaption>
           </figure>
           <p>Подсчитываем баллы по всем ситуациям. В первом разделе определяем результат тревоги, во втором — результат
@@ -347,85 +353,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-hr {
-  margin: 32px auto ;
-  width: 5%;
-  height: 1px;
-  background-color: black;
-}
-blockquote {
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-}
-blockquote > cite {
-  display: block;
-  margin-top: .625rem;
-  font-size: .875rem;
-  font-weight: normal;
-}
-article > cite {
-  display: block;
-  margin: 0 auto 1.875rem;
-  width: 75%;
-  font-family: Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
-article > cite > small {
-  margin-top: .625rem;
-  display: block;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: normal;
-  color: #999999;
-}
-p  {
-  margin: 0 auto 1.875rem;
-  width: 88%;
-  line-height: 1.6rem;
-}
-figure {
-  display: block;
-}
-figure.full {
-  margin: 0 auto 1.875rem;
-  width: 100%;
-  overflow: hidden;
-}
-figure.full > img,
-figure.small > img
-{
-  display: block;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-figure.small {
-  margin: 0 auto 1.875rem;
-  width: 600px;
-  overflow: hidden;
-}
-figure.small > img {
-  height: auto;
-}
-figcaption {
-  padding: 0.625rem 0.625rem 0;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-size: .75rem;
-  text-align: center;
-  color: #999999;
-}
-</style>

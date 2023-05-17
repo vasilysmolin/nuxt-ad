@@ -1,26 +1,32 @@
 <template>
-  <section>
-    <div v-if="$device.isDesktopOrTablet" class="mx-auto mt-[70px] pb-[100px] max-w-3xl min-w-[950px]">
-      <div class="mx-auto flex flex-col w-full">
-        <nav class="flex justify-start items-center mb-1.5">
-          <ul class="flex justify-center items-center flex-wrap text-[14px] list-reset">
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Журнал</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6">
-              <NuxtLink :to="`/`" class="text-gray-500 hover:text-black">Статьи</NuxtLink>
-            </li>
-            <li><span class="px-2 text-gray-500">/</span></li>
-            <li class="leading-6 text-black">Карельская сказка «Зять Хома»</li>
-          </ul>
-        </nav>
-
-        <article class="mx-auto mt-5 w-full">
+    <section class="journal-article">
+        <div class="wrapper">
+            <div>
+                <nav>
+                    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Журнал" itemprop="item">
+                                <span itemprop="name">Журнал</span>
+                                <meta itemprop="position" content="1">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <NuxtLink :to="`/`" title="Статьи" itemprop="item">
+                                <span itemprop="name">Статьи</span>
+                                <meta itemprop="position" content="2">
+                            </NuxtLink>
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">Карельская сказка «Зять Хома»</span>
+                            <meta itemprop="position" content="3">
+                        </li>
+                    </ul>
+                </nav>
+                <article>
           <figure class="full">
-            <img src="../../../assets/img_journal_temp/259_1.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_1.png" alt=""/>
           </figure>
-          <h1 class="font-black text-black text-4xl text-center">Карельская сказка «Зять Хома»</h1>
+          <h1>Карельская сказка «Зять Хома»</h1>
           <hr>
           <blockquote>Благодаря сказкам народ осознаёт своё внутреннее достоинство и высмеивает собственные слабости —
             глупость, лень, упрямство и бесхозяйственность.
@@ -37,7 +43,7 @@
             лесозаготовки. Сказочнику уступали самое тёплое место у костра, отдавали часть улова.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_2.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_2.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Карельская сказка по сюжету близка к русским и финским сказкам, что объясняется культурно-историческими
@@ -51,7 +57,7 @@
             томить читателя, лучше прочтите сказку и сделайте выводы.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_3.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_3.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Жили-были муж и жена. Мужа звали Хомой. Хоме всё кажется, что жене дома легко управляться с хозяйством, в
@@ -68,7 +74,7 @@
             кур.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_4.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_4.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Побежал в хлев, пустил кур в избу, насыпал зёрна, и двери оставил открытыми. А когда же масло сбивать и
@@ -84,7 +90,7 @@
             убаюкивает его, а сам весь в сметане. Остальные дети по углам разбежались, кто куда.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_5.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_5.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>— Авой-вой-вой,— причитает Хома,— что я наделал? Как я жене покажусь: ребёнка расшиб, сметану пролил, ячмень
@@ -108,7 +114,7 @@
             — А батюшка пришёл нас на свадьбу приглашать, надо пойти! — Хома уже про все свои несчастья забыл.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_6.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_6.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Кое-как прибрали, пошли на свадьбу. А там только ещё гости съезжаются, свадьба на завтра назначена. А сегодня
@@ -135,7 +141,7 @@
             — Ну, вари.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_7.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_7.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Сварил он мясо во дворе в большом котле, направился к дому, а собаки окружили его, лают. Он бросил им один
@@ -154,7 +160,7 @@
             — Ну, раз пойдёшь, так иди. Вот ведро.
           </p>
           <figure class="small">
-            <img src="../../../assets/img_journal_temp/259_8.png" alt=""/>
+            <img src="https://storage.yandexcloud.net/backgrounds-images/journal_static/259_8.png" alt=""/>
             <figcaption>Источник: Юфа Михаил Шлемович</figcaption>
           </figure>
           <p>Взял Хома ведро, пошёл в амбар, вытащил затычку, квас течёт в ведро. Собаки опять на него залаяли, он и
@@ -199,85 +205,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-hr {
-  margin: 32px auto ;
-  width: 5%;
-  height: 1px;
-  background-color: black;
-}
-blockquote {
-  display: block;
-  margin: 0 auto;
-  width: 80%;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: bold;
-  font-size: 1.25rem;
-  text-align: center;
-}
-blockquote > cite {
-  display: block;
-  margin-top: .625rem;
-  font-size: .875rem;
-  font-weight: normal;
-}
-article > cite {
-  display: block;
-  margin: 0 auto 1.875rem;
-  width: 75%;
-  font-family: Arial, sans-serif;
-  font-size: 1rem;
-  font-weight: bold;
-  font-style: italic;
-  text-align: center;
-}
-article > cite > small {
-  margin-top: .625rem;
-  display: block;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-weight: normal;
-  color: #999999;
-}
-p  {
-  margin: 0 auto 1.875rem;
-  width: 88%;
-  line-height: 1.6rem;
-}
-figure {
-  display: block;
-}
-figure.full {
-  margin: 0 auto 1.875rem;
-  width: 100%;
-  overflow: hidden;
-}
-figure.full > img,
-figure.small > img
-{
-  display: block;
-  width: 100%;
-  height: 600px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-figure.small {
-  margin: 0 auto 1.875rem;
-  width: 600px;
-  overflow: hidden;
-}
-figure.small > img {
-  height: auto;
-}
-figcaption {
-  padding: 0.625rem 0.625rem 0;
-  font-family: Arial, sans-serif;
-  font-style: italic;
-  font-size: .75rem;
-  text-align: center;
-  color: #999999;
-}
-</style>

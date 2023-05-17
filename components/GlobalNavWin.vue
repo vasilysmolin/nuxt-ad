@@ -1,54 +1,50 @@
 <template>
-  <div v-show="toggleG" class="absolute top-4 left-4 w-[230px] py-4 px-3 bg-white rounded-lg shadow-lg z-60">
-    <ul class="px-2.5 w-full font-black text-base text-gray-300">
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="realty">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+  <nav itemscope itemtype="https://schema.org/SiteNavigationElement" v-show="toggleG" class="global-nav-win">
+    <ul itemprop="about" itemscope itemtype="https://schema.org/ItemList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList" @click="realty">
+        <div>
           <IconListServicesIndexRealty/>
         </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Недвижимость</p>
+        <span>Недвижимость</span>
+        <meta itemprop="name" content="Недвижимость"/>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer"
-          @click="catalog">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList" @click="catalog">
+        <div>
           <IconListServicesIndexCatalog/>
         </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Каталог</p>
+        <span>Каталог</span>
+        <meta itemprop="name" content="Каталог"/>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="jobs">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList" @click="jobs">
+        <div>
           <IconListServicesIndexJobs/>
         </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Работа</p>
+        <span>Работа</span>
+        <meta itemprop="name" content="Работа"/>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="uslugi">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList" @click="uslugi">
+        <div>
           <IconListServicesIndexUslugi/>
         </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Услуги</p>
+        <span>Услуги</span>
+        <meta itemprop="name" content="Услуги"/>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="travel">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList" @click="travel">
+        <div>
           <IconListServicesIndexTravel/>
         </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Путешествия</p>
+        <span>Путешествия</span>
+        <meta itemprop="name" content="Путешествия"/>
       </li>
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-sky-100 rounded cursor-pointer" @click="journal">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ItemList" @click="journal">
+        <div>
           <IconListServicesIndexJournal/>
         </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Журнал</p>
+        <span>Журнал</span>
+        <meta itemprop="name" content="Журнал"/>
       </li>
-
-      <!--
-      <li class="py-2 flex flex-row items-center justify-start hover:bg-white rounded cursor-default" @click="">
-        <div class="ml-2.5 flex justify-center items-center w-[20px]">
-          <IconListServicesIndexFood/>
-        </div>
-        <p class="pl-2.5 flex justify-start items-center text-black">Еда</p>
-      </li>
-      -->
     </ul>
-  </div>
+  </nav>
 </template>
 
 <script>
