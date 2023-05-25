@@ -55,6 +55,7 @@ import {maxLength, minLength, required} from 'vuelidate/lib/validators';
 export default {
   name: "NewAd",
   layout: 'default',
+  middleware: ['auth'],
   head: {
     title: "Разместить объявление",
     meta: [

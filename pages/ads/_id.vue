@@ -20,6 +20,7 @@ import * as _ from 'lodash';
 export default {
   name: "Ad",
   layout: 'default',
+  middleware: ['auth'],
   head: {
     title: "Объявление",
   },
