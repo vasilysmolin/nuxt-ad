@@ -2,8 +2,8 @@ import {params} from '../helper/requestParams';
 
 export const state = () => ({
 	ads: [],
-	ad: null,
 	page: null,
+	ad: null,
 });
 
 export const mutations = {
@@ -29,7 +29,7 @@ export const actions = {
 		const getParams = params({
 			page,
 		});
-		const ads = await this.$axios.$get(`ads?${getParams}`);
+		const ads = await this.$axios.$get(`my/ads?${getParams}`);
 
 		commit('setads', ads.data);
 		commit('setPage', ads.current_page);
@@ -41,14 +41,14 @@ export const actions = {
 		const getParams = params({
 			page,
 		});
-		const ads = await this.$axios.$get(`ads?${getParams}`);
+		const ads = await this.$axios.$get(`my/ads?${getParams}`);
 		commit('addads', ads.data);
 		commit('setPage', ads.current_page);
 	},
 
 	async getItem({commit}, {id, expand = null, querySearch = null}) {
 		const getParams = params({expand, querySearch});
-		const ad = await this.$axios.$get(`ads/${id}?${getParams}`);
+		const ad = await this.$axios.$get(`my/ads/${id}?${getParams}`);
 		commit('setad', ad);
 	},
 };

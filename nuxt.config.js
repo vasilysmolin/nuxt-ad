@@ -12,11 +12,10 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-heads
   ssr: true,
   head: {
-    title: 'Тапиго | Бесплатный каталог обьявлений, вакансии и резюме, поиск исполнителя, доставка еды и создание своего ресторана',
+    title: 'Объявления',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      // {hid: 'description', name: 'description', content: 'Главная'},
       {name: 'format-detection', content: 'telephone=no'},
       {
         hid: 'og:image',
@@ -25,100 +24,36 @@ export default {
       },
       {name: 'yandex-verification', content: '8f51fb4bdcc3c896'},
     ],
-    script: [
-      {
-        src: 'js/context-custom.js',
-      },
-      {
-        src: 'https://yandex.ru/ads/system/context.js',
-        async: true,
-      },
-    ],
     link: [
       {rel: 'icon', type: 'image/png', href: '/favicon-32x32.png'},
       {rel: 'apple-touch-icon', type: 'image/png', href: '/apple-touch-icon-180x180.png'},
     ],
   },
   env: {
-    ...(isDev && {
-      AUTH_URL: `http://${process.env.DOMAIN_HOME}:${process.env.NUXT_PORT}/auth/sign-in`,
       HOME_URL: `http://${process.env.DOMAIN_HOME}:${process.env.NUXT_PORT}`,
-      HUB_URL: `http://${process.env.HUB}:${process.env.NUXT_PORT}`,
-      JOBS_URL: `http://${process.env.JOBS}:${process.env.NUXT_PORT}`,
-      JOURNAL_URL: `http://${process.env.JOURNAL}:${process.env.NUXT_PORT}`,
-      OFFICE_URL: `http://${process.env.OFFICE}:${process.env.NUXT_PORT}`,
-      CATALOG_URL: `http://${process.env.CATALOG}:${process.env.NUXT_PORT}`,
-      USLUGI_URL: `http://${process.env.USLUGI}:${process.env.NUXT_PORT}`,
-      FOOD_URL: `http://${process.env.FOOD}:${process.env.NUXT_PORT}`,
-      TRAVEL_URL: `http://${process.env.TRAVEL}:${process.env.NUXT_PORT}`,
-      MED_URL: `http://${process.env.MED}:${process.env.NUXT_PORT}`,
-      PET_URL: `http://${process.env.PET}:${process.env.NUXT_PORT}`,
-      AVIA_URL: `http://${process.env.AVIA}:${process.env.NUXT_PORT}`,
-      HOTELS_URL: `http://${process.env.HOTELS}:${process.env.NUXT_PORT}`,
-      REALTY_URL: `http://${process.env.REALTY}:${process.env.NUXT_PORT}`,
-    }),
-    ...(!isDev && {
-      AUTH_URL: `https://${process.env.DOMAIN_HOME}/auth/sign-in`,
-      HOME_URL: `https://${process.env.DOMAIN_HOME}`,
-      HUB_URL: `https://${process.env.HUB}`,
-      JOBS_URL: `https://${process.env.JOBS}`,
-      JOURNAL_URL: `https://${process.env.JOURNAL}`,
-      OFFICE_URL: `https://${process.env.OFFICE}`,
-      CATALOG_URL: `https://${process.env.CATALOG}`,
-      USLUGI_URL: `https://${process.env.USLUGI}`,
-      FOOD_URL: `https://${process.env.FOOD}`,
-      TRAVEL_URL: `https://${process.env.TRAVEL}`,
-      MED_URL: `https://${process.env.MED}`,
-      PET_URL: `https://${process.env.PET}`,
-      AVIA_URL: `https://${process.env.AVIA}`,
-      HOTELS_URL: `https://${process.env.HOTELS}`,
-      REALTY_URL: `https://${process.env.REALTY}`,
-    }),
-    YANDEX_MAP: process.env.YANDEX_MAP,
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/css/main.css',
-    '@/assets/css/journal.css',
 
   ],
   server: {
-    // https: {
-    //     key: fs.readFileSync(path.resolve(__dirname, 'localhost.key')),
-    //     cert: fs.readFileSync(path.resolve(__dirname, 'localhost.crt')),
-    //     passphrase: '1234',
-    // },
     host: process.env.NUXT_HOST || '0.0.0.0',
     port: process.env.NUXT_PORT || 3000, // default: localhost
   },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins/directives.js'},
     {src: '~/plugins/vuelidate'},
     {src: '~/plugins/mask.js'},
-    {src: '~/plugins/vue-js-modal.js'},
-    {src: '~/plugins/init.js', mode: 'client'},
-    {src: '~/plugins/vue-js-toggle-button.js', ssr: false},
-    {src: '~/plugins/vue-datepicker', ssr: false}
   ],
-  // router: {
-  //     middleware: ['auth']
-  // },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    ['k-domains', {
-      subDomains: ['jobs', 'hub', 'office', 'catalog', 'realty', 'journal',
-        'uslugi', 'food', 'travel', 'med', 'pet', 'avia', 'hotels'
-      ], // List of directories to hold te pages for your subdomains
-      rootDomain: 'root-domain', //  directory to hold the pages for root domain
-    },
-    ],
     ['@nuxtjs/router', {
       keepDefaultRouter: true, // this line is mandatory...
     },
@@ -139,15 +74,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    [
-      '@nuxtjs/yandex-metrika',
-      {
-        id: 54862972,
-        webvisor: true,
-        clickmap: true,
-      },
-    ],
+
     [
       '@nuxtjs/axios',
       {

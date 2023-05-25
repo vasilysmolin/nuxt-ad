@@ -1,59 +1,26 @@
 <template>
   <main>
-    <header class="fixed top-0 flex justify-between items-center w-full bg-[#F7F7FC] px-5 py-4 z-50">
-      <GlobalNav
-          :toggleG="isHiddenG"
-          @toggleGBlock="toggleGBlock"
-      />
-      <GlobalNavWin
-          :toggleG="isHiddenG"
-          @toggleGBlock="toggleGBlock"
-      />
-      <TLogo/>
-      <UserNav
-          :toggle="isHidden"
-          @toggleBlock="toggleBlock"
-      />
-      <UserNavWin
-          :toggle="isHidden"
-          @toggleBlock="toggleBlock"
-      />
+    <header
+        class="fixed grid grid-cols-[80px_1fr_80px] gap-x-9 justify-items-stretch top-0 w-full px-5 py-3 z-50 bg-[#F7F7FC]">
+      <div class="flex justify-center items-center cursor-pointer globalnav">
+        <span class="pl-2 font-bold text-sm">Меню</span>
+      </div>
+      <div class="flex justify-center items-center cursor-pointer usernav">
+        <span class="pl-2 font-bold text-sm">Войти</span>
+      </div>
     </header>
     <Nuxt/>
+
   </main>
+
 </template>
 
 <script>
-import GlobalNav from "../components/icons/GlobalNav";
-import TLogo from "../components/icons/TLogo";
-import UserNav from "../components/icons/UserNav";
-import UserNavWin from "../components/UserNavWin";
-import GlobalNavWin from "../components/GlobalNavWin";
+
 export default {
-  components: {
-    GlobalNavWin,
-    UserNavWin,
-    TLogo,
-    GlobalNav,
-    UserNav
-  },
   data() {
     return {
-      isHidden: false,
-      isHiddenG: false,
-      open: false,
     }
   },
-  methods: {
-    toggleBlock(bool) {
-      this.isHidden = bool;
-    },
-    toggleGBlock(bool) {
-      this.isHiddenG = bool;
-    },
-  },
-
-
-
 }
 </script>

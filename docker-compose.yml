@@ -1,47 +1,6 @@
 version: '3'
 
 services:
-  nginx:
-    build:
-      context: images/nginx
-      dockerfile: Dockerfile
-      args:
-        - DOMAIN_HOME=${DOMAIN_HOME}
-        - HUB=${HUB}
-        - JOBS=${JOBS}
-        - JOURNAL=${JOURNAL}
-        - OFFICE=${OFFICE}
-        - CATALOG=${CATALOG}
-        - USLUGI=${USLUGI}
-        - FOOD=${FOOD}
-        - TRAVEL=${TRAVEL}
-        - REALTY=${REALTY}
-        - MED=${MED}
-        - AVIA=${AVIA}
-        - HOTELS=${HOTELS}
-        - PET=${PET}
-        - UID=${UID}
-        - USER=${USER}
-        - ENV=${APP_ENV}
-        - FRONT_WORKDIR=${FRONT_WORKDIR}
-        - NUXT_PORT=${NUXT_PORT}
-        - NGINX_WORKDIR=${NGINX_WORKDIR}
-    container_name: ${NGINX_WORKDIR}
-    restart: always
-    ports:
-      - "${PORT_HTTP}:80"
-      - "${PORT_HTTPS}:443"
-    working_dir: /var/www/${NGINX_WORKDIR}
-    volumes:
-      - .:/var/www/${NGINX_WORKDIR}
-    depends_on:
-      - front
-    logging:
-      driver: json-file
-      options:
-        max-size: "200m"
-        max-file: "3"
-
   front:
     build:
       context: .
@@ -49,7 +8,6 @@ services:
       args:
         - FRONT_WORKDIR=${FRONT_WORKDIR}
         - NUXT_PORT=${NUXT_PORT}
-    container_name: ${FRONT_WORKDIR}
     restart: always
     logging:
       driver: json-file
