@@ -18,17 +18,7 @@ $ npm run generate
 ```
 ## Для запуска на проде
 
-.env добавить
-
-добавить сертификаты в папку images/nginx/ssl 
-
 docker-compose up -d --build
-
-
-#basic auth from dev
-
-ktotam
-eto_tapigo
 
 ## Для запуска на dev
 
