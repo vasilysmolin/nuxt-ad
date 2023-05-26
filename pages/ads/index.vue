@@ -18,6 +18,10 @@
             </div>
           </NuxtLink>
         </article>
+        <TailwindPagination
+            :data="laravelData"
+            @pagination-change-page="getResults"
+        />
       </section>
     </section>
   </section>
@@ -27,10 +31,15 @@
 
 import * as _ from 'lodash';
 import {mapGetters} from "vuex";
+import {ref} from 'vue';
+import {TailwindPagination} from 'laravel-vue-pagination';
+
+const laravelData = ref({});
 
 export default {
   name: 'CatalogIndex',
   layout: 'catalog',
+  components: {TailwindPagination},
   head: {
     title: "catalog",
     meta: [
@@ -62,6 +71,10 @@ export default {
     getUrl(ad) {
       return ad.slug
     },
+    async getResults(page = 1) {
+      const response = await this.$store.dispatch('ads/addItems', {'page': page});
+      laravelData.value = await response.json();
+    }
   },
 
 }

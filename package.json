@@ -21,6 +21,7 @@
     "core-js": "^3.19.3",
     "dotenv": "^16.0.0",
     "fs": "0.0.1-security",
+    "laravel-vue-pagination": "^4.1.0",
     "lodash": "^4.17.21",
     "nuxt": "^2.15.8",
     "nuxt-basic-auth-module": "^1.4.1",

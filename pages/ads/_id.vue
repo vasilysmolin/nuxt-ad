@@ -1,13 +1,17 @@
 <template>
   <section>
     <div class="container flex flex-col items-center mt-[20px]">
-      <h1>{{ ad.name }}</h1>
+      <h1>{{ ad.user.name }}</h1>
     </div>
     <section class="container flex flex-col items-center mt-[20px] pb-10">
       <section class="flex flex-col w-[95%] sm:max-w-screen-sm">
         <article class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
           <img :src="ad.image" :alt="ad.name">
           <p class="text-sm">{{ ad.text }}</p>
+
+          <div v-for="image in ad.images" :key="ad.id" class="flex flex-col mb-[10px] p-3 rounded-lg bg-white">
+            <img :src="image.crop" :alt="ad.name">
+          </div>
         </article>
       </section>
     </section>
